@@ -206,6 +206,7 @@
 
 
 ;; ;; URL Shortener (goo.gl)
+;; (require rackunit)
 ;; (define goo.gl (local-discovery-document->service "urlshortener.js"))
 ;; (defproc goo.gl url insert)
 ;; (defproc goo.gl url get)
@@ -216,4 +217,4 @@
 ;; (define expand (url-get (hash 'shortUrl short-url
 ;;                               'key (api-key))))
 ;; (define long-url (dict-ref expand 'longUrl))
-;; (equal? orig-url long-url)
+;; (check-equal? orig-url long-url)
