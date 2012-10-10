@@ -79,29 +79,53 @@
     (close-input-port in)
     js))
 
-(struct service (dd    ;jsexpr?
-                 procs ;(hashof 'symbol (dict? -> jsexpr?))
-                 ))
+;; Exactly ike jsexpr? except allows procedure? as a value.
+(define (service? x #:null [jsnull (json-null)])
+  (let loop ([x x])
+    (or (procedure? x) ; <=== ONLY difference from jsexpr?
+        (exact-integer? x)
+        (inexact-real? x)
+        (boolean? x)
+        (string? x)
+        (eq? x jsnull)
+        (and (list? x) (andmap loop x))
+        (and (hash? x) (for/and ([(k v) (in-hash x)])
+                         (and (symbol? k) (loop v)))))))
+
+;; (define/contract (discovery-document->service root)
+;;   (jsexpr? . -> . service?)
+;;   (define/contract (build dd coll)
+;;     (jsexpr? hash? . -> . hash?)
+;;     (for ([(name resource) (in-hash (hash-ref dd 'resources (make-hash)))])
+;;       (hash-set! coll name (build resource (make-hash))))
+;;     (for ([(name method) (in-hash (hash-ref dd 'methods (make-hash)))])
+;;       (hash-set! coll name (create-new-method root name method)))
+;;     coll)
+;;   (service root
+;;            (build root (make-hash))))
 
 (define/contract (discovery-document->service root)
   (jsexpr? . -> . service?)
-  (define/contract (build dd coll)
-    (jsexpr? hash? . -> . hash?)
-    (for ([(name resource) (in-hash (hash-ref dd 'resources (make-hash)))])
-      (hash-set! coll name (build resource (make-hash))))
-    (for ([(name method) (in-hash (hash-ref dd 'methods (make-hash)))])
-      (hash-set! coll name (create-new-method root name method)))
-    coll)
-  (service root
-           (build root (make-hash))))
+  (define (do j)
+    (for/hasheq ([(k v) (in-hash j)])
+      (match k
+        ['resources
+         (values 'resources
+                 (for/hasheq ([(k v) (in-hash v)])
+                   (values k (do v))))]
+        ['methods
+         (values 'methods
+                 (for/hasheq ([(k v) (in-hash v)])
+                   (values k
+                           (hash-set* v
+                                      'proc (create-new-method root k v)))))]
+        [else (values k v)])))
+  (do root))
 
 (define local-discovery-document->service
   (compose1 discovery-document->service load-discovery-document))
 (define online-discovery-document->service
   (compose1 discovery-document->service get-discovery-document))
-
-(define (find-proc service resource method)
-  (dict-refs (service-procs service) resource method))
 
 (define-syntax (defproc stx)
   (syntax-case stx ()
@@ -123,20 +147,22 @@
                                                       (syntax->datum b)))
                               a a a))])
        (with-syntax ([id (hyphenate-ids #'resource #'method)])
-         #'(begin (define id (find-proc service
-                                        (syntax->datum #'resource)
-                                        (syntax->datum #'method)))
+         #'(begin (define id (method-proc service
+                                          (syntax->datum #'resource)
+                                          (syntax->datum #'method)))
                   (provide id))))]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Some accessors for the discovery document jsexpr.
+;;
+;; The case-lambdas provide a shortcut for resources that aren't nested.
 
 (define (api-parameters s)
-  (dict-ref (service-dd s) 'parameters))
+  (dict-ref s 'parameters))
 
 (define (resources s)
-  (dict-ref (service-dd s) 'resources '()))
+  (dict-ref s 'resources '()))
 (define (resource-names s)
   (dict-keys (resources s)))
 (define (resource s rn)
@@ -153,13 +179,17 @@
   (case-lambda
     [(r mn) (dict-ref (methods r) mn '())]
     [(s rn mn) (method (resource s rn) mn)]))
+(define method-proc
+  (case-lambda
+    [(r mn) (dict-ref (method r mn) 'proc '())]
+    [(s rn mn) (method-proc (resource s rn) mn)]))
 (define method-parameters
   (case-lambda
     [(r mn) (dict-ref (method r mn) 'parameters '())]
     [(s rn mn) (method-parameters (resource s rn) mn)]))
 
 (define (schemas s)
-  (dict-ref (service-dd s) 'schemas '()))
+  (dict-ref s 'schemas '()))
 (define (schema-names s)
   (dict-keys (schemas s)))
 (define (schema s sn)
@@ -181,9 +211,9 @@
 
 (define plus (local-discovery-document->service "plus.js"))
 
-;; (defproc plus people search)
-;; (people-search (hash 'query "Greg Hendershott"
-;;                      'key (api-key)))
+(defproc plus people search)
+(people-search (hash 'query "Greg Hendershott"
+                     'key (api-key)))
 
 
 
@@ -191,3 +221,6 @@
 ;;                                            'key (api-key)))
 
 ;;(defprocs (list (list service people search)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
