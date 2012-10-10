@@ -92,18 +92,6 @@
         (and (hash? x) (for/and ([(k v) (in-hash x)])
                          (and (symbol? k) (loop v)))))))
 
-;; (define/contract (discovery-document->service root)
-;;   (jsexpr? . -> . service?)
-;;   (define/contract (build dd coll)
-;;     (jsexpr? hash? . -> . hash?)
-;;     (for ([(name resource) (in-hash (hash-ref dd 'resources (make-hash)))])
-;;       (hash-set! coll name (build resource (make-hash))))
-;;     (for ([(name method) (in-hash (hash-ref dd 'methods (make-hash)))])
-;;       (hash-set! coll name (create-new-method root name method)))
-;;     coll)
-;;   (service root
-;;            (build root (make-hash))))
-
 (define/contract (discovery-document->service root)
   (jsexpr? . -> . service?)
   (define (do j)
