@@ -56,8 +56,7 @@
       ["POST" post-pure-port]
       ["PUT" put-pure-port]))
   (lambda (d)
-    (define s-or-b (dict-ref d 'body ""))
-    (define body (if (bytes? s-or-b) s-or-b (string->bytes/utf-8 s-or-b)))
+    (define body (jsexpr->bytes (dict-ref d 'body (hasheq))))
     (define u (string-append base-uri
                              (template-path (hash-ref method 'path) d)))
     (define non-path (filter values
@@ -211,7 +210,7 @@
 ;; (defproc goo.gl url insert)
 ;; (defproc goo.gl url get)
 ;; (define orig-url "http://www.racket-lang.org/")
-;; (define shrink (url-insert (hash 'body (format "{'longUrl': '~a'}" orig-url)
+;; (define shrink (url-insert (hash 'body (hasheq 'longUrl orig-url)
 ;;                                  'key (api-key))))
 ;; (define short-url (dict-ref shrink 'id))
 ;; (define expand (url-get (hash 'shortUrl short-url
