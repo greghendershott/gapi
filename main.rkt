@@ -200,7 +200,7 @@
 ;; ;; Google Plus
 ;; (define plus (local-discovery-document->service "plus.js"))
 ;; (defproc plus people search)
-;; (people-search (hash 'query "Greg Hendershott"
+;; (people-search (hasheq 'query "Greg Hendershott"
 ;;                      'key (api-key)))
 
 
@@ -210,10 +210,10 @@
 (defproc goo.gl url insert)
 (defproc goo.gl url get)
 (define orig-url "http://www.racket-lang.org/")
-(define shrink (url-insert (hash 'body (hasheq 'longUrl orig-url)
-                                 'key (api-key))))
+(define shrink (url-insert (hasheq 'body (hasheq 'longUrl orig-url)
+                                   'key (api-key))))
 (define short-url (dict-ref shrink 'id))
-(define expand (url-get (hash 'shortUrl short-url
-                              'key (api-key))))
+(define expand (url-get (hasheq 'shortUrl short-url
+                                'key (api-key))))
 (define long-url (dict-ref expand 'longUrl))
 (check-equal? orig-url long-url)
