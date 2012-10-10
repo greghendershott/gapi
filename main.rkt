@@ -42,8 +42,8 @@
   (for/fold ([d d]) ([k ks])
     (dict-ref d k)))
 
-(define/contract (create-new-method dd name method)
-  (jsexpr? symbol? hash? . -> . (dict? . -> . jsexpr?))
+(define/contract (create-new-method dd method)
+  (jsexpr? jsexpr? . -> . (dict? . -> . jsexpr?))
   (define base-uri (string-append (hash-ref dd 'rootUrl)
                                   (hash-ref dd 'servicePath)))
   ;; Parameters are the union of those for entire API and those for
@@ -107,7 +107,7 @@
                  (for/hasheq ([(k v) (in-hash v)])
                    (values k
                            (hash-set* v
-                                      'proc (create-new-method root k v)))))]
+                                      'proc (create-new-method root v)))))]
         [else (values k v)])))
   (do root))
 
