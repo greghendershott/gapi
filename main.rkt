@@ -56,7 +56,8 @@
       ["POST" post-pure-port]
       ["PUT" put-pure-port]))
   (lambda (d)
-    (define body (dict-ref d 'body #""))
+    (define s-or-b (dict-ref d 'body ""))
+    (define body (if (bytes? s-or-b) s-or-b (string->bytes/utf-8 s-or-b)))
     (define u (string-append base-uri
                              (template-path (hash-ref method 'path) d)))
     (define non-path (filter values
@@ -79,7 +80,7 @@
     (close-input-port in)
     js))
 
-;; Exactly ike jsexpr? except allows procedure? as a value.
+;; Exactly like jsexpr? except allows procedure? as a value.
 (define (service? x #:null [jsnull (json-null)])
   (let loop ([x x])
     (or (procedure? x) ; <=== ONLY difference from jsexpr?
@@ -155,6 +156,7 @@
   (dict-keys (resources s)))
 (define (resource s rn)
   (dict-ref (resources s) rn '()))
+
 (define methods
   (case-lambda
     [(r) (dict-ref r 'methods '())]
@@ -192,23 +194,26 @@
     [else (error 'read-api-key "Bad format for ~a" file)]))
 (define api-key (make-parameter (read-api-key)))
 
-;; (define service (build-service "urlshortener.js"))
-;; ((dict-refs service 'url 'insert) (hash 'body #"{\"longUrl\": \"http://www.google.com\"}"))
-;; ((dict-refs service 'url 'get) (hash 'shortUrl "http://goo.gl/fbsS"
-;;                                      'projections "FULL"))
-
-(define plus (local-discovery-document->service "plus.js"))
-
-(defproc plus people search)
-(people-search (hash 'query "Greg Hendershott"
-                     'key (api-key)))
-
-
-
-;; ((dict-refs service 'people 'search) (hash 'query "Greg Hendershott"
-;;                                            'key (api-key)))
-
-;;(defprocs (list (list service people search)))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; examples
 
+;; ;; Google Plus
+;; (define plus (local-discovery-document->service "plus.js"))
+;; (defproc plus people search)
+;; (people-search (hash 'query "Greg Hendershott"
+;;                      'key (api-key)))
+
+
+;; ;; URL Shortener (goo.gl)
+;; (define goo.gl (local-discovery-document->service "urlshortener.js"))
+;; (defproc goo.gl url insert)
+;; (defproc goo.gl url get)
+;; (define orig-url "http://www.racket-lang.org/")
+;; (define shrink (url-insert (hash 'body (format "{'longUrl': '~a'}" orig-url)
+;;                                  'key (api-key))))
+;; (define short-url (dict-ref shrink 'id))
+;; (define expand (url-get (hash 'shortUrl short-url
+;;                               'key (api-key))))
+;; (define long-url (dict-ref expand 'longUrl))
+;; (equal? orig-url long-url)
