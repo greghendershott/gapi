@@ -217,3 +217,115 @@
                                 'key (api-key))))
 (define long-url (dict-ref expand 'longUrl))
 (check-equal? orig-url long-url)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Code generation
+
+;; Although generating code files seems extremely un-Rackety, I'm not
+;; sure this is really possible to do with macros. Plus, the
+;; code-generation approach at least gives library users some actual
+;; code to look at, including documentation in the form of
+;; comments. So...???
+
+(define/contract (discovery-document->racket-code root)
+  (jsexpr? . -> . any)
+  (define (do j)
+    (for ([(k v) (in-hash j)])
+      (match k
+        ['resources (newline)
+                    (displayln (make-string 78 #\;))
+                    (for ([(rn rv) v])
+                      (printf ";;; RESOURCE: ~a\n" rn)
+                      (for ([(k v) (in-hash rv)])
+                        (match k
+                          ['methods (for ([(mn mv) (in-hash v)])
+                                      (do-method mn mv))]
+                          ['resources (do v)] ;sub-resources
+                          [else (cond [(string? v) (printf "~a: ~a\n" k v)]
+                                      [else (displayln k)])])))]
+        ['parameters (newline)
+                     (displayln (make-string 78 #\;))
+                     (displayln ";;; API PARAMETERS")
+                     (displayln ";; Parameters for all API functions.")
+                     (for ([(k v) v])
+                       (printf ";; `~a'\n" k)
+                       (for ([(k v) v])
+                         (printf ";;   ~a: ~a\n" k v)))
+                     (newline)]
+        [else (printf ";; ~a: ~a\n"
+                      k
+                      (if (string? v) v ""))])))
+  (define (do-method mn mv)
+    (define name (string->symbol (hash-ref mv 'id)))
+    (define api-params (hash-keys (hash-ref root 'parameters)))
+    (define req-params (map string->symbol (hash-ref mv 'parameterOrder '())))
+    (define opt-params (remove* req-params (hash-keys (hash-ref mv 'parameters (hash)))))
+    (define body-params
+      (hash-ref (hash-ref (hash-ref root 'schemas)
+                          (string->symbol
+                           (hash-ref (hash-ref mv 'request (hash)) '$ref ""))
+                          (hash))
+                'properties
+                (hash)))
+    (define body-param-names (hash-keys body-params))
+    (define all-opt-params (append opt-params body-param-names api-params))
+    (newline)
+    (displayln (make-string 78 #\;))
+    (printf ";; FUNCTION: ~a\n" name)
+    (printf ";; PARAMETERS:\n")
+    (printf ";; (See above for parameters that apply to all API methods.)\n")
+    (printf ";;\n")
+    (for ([(k v) (hash-ref mv 'parameters (hash))])
+      (printf ";; `~a'\n" k)
+      (for ([(k v) v])
+        (printf ";;   ~a: ~a\n" k v)))
+    (for ([(k v) body-params])
+      (printf ";; `~a'\n" k)
+      (for ([(k v) v])
+        (printf ";;   ~a: ~a\n" k v)))
+    (define qps (append req-params opt-params))
+    (pretty-print
+     `(define (,name
+               ,@req-params
+               ,@(letrec ([flatter (lambda (xs)
+                                     (match xs
+                                       [(list (list a b) more ...)
+                                        (cons a (cons b (flatter more)))]
+                                       [(list) (list)]))])
+                   (flatter (map (lambda (x)
+                                   (list (string->keyword (symbol->string x))
+                                         (list x ''NONE)))
+                                 all-opt-params)))
+               )
+        (define base-uri ,(hash-ref root 'baseUrl))
+        (define res-path ,(hash-ref mv 'path))
+        (define _qpstr (alist->form-urlencoded
+                        (filter-map
+                         (lambda (k v)
+                           (cond [(eq? v 'NONE) #f]
+                                 [else (cons (string->symbol k) v)]))
+                         (list ,@(map symbol->string qps))
+                         (list ,@qps))))
+        (define qpstr (cond [(equal? _qpstr "") ""]
+                            [else (string-append "?" _qpstr)]))
+        (define url (string->url (string-append base-uri res-path qpstr)))
+        (define h (list "Content-Type: application/json"))
+        (define body (jsexpr->bytes
+                      (for/hasheq ([k (list ,@(map symbol->string body-param-names))]
+                                   [v (list ,@body-param-names)]
+                                   #:when (not (eq? v 'NONE)))
+                        (values (string->symbol k) v)))) 
+        (define in
+          ,(match (hash-ref mv 'httpMethod)
+             ["GET" `(get-pure-port url h)]
+             ["POST" `(post-pure-port url body h)]
+             [else `(error ',name "TO-DO")]))
+        (define js (bytes->jsexpr (port->bytes in)))
+        (close-input-port in)
+        js))
+    (newline))
+  (do root))
+
+;; (discovery-document->racket-code (load-discovery-document "urlshortener.js"))
+;; (discovery-document->racket-code (load-discovery-document "plus.js"))
