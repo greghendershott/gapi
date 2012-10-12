@@ -1,9 +1,9 @@
 {
  "kind": "discovery#restDescription",
  "discoveryVersion": "v1",
- "id": "oauth2:v1",
+ "id": "oauth2:v2",
  "name": "oauth2",
- "version": "v1",
+ "version": "v2",
  "revision": "20120806",
  "title": "Google OAuth2 API",
  "description": "Lets you access OAuth2 protocol related APIs.",
@@ -95,31 +95,14 @@
      "type": "string",
      "description": "The email address of the user. Present only if the email scope is present in the request."
     },
-    "email_verified": {
-     "type": "boolean",
-     "description": "Boolean flag which is true if the email address is verified. Present only if the email scope is present in the request."
-    },
     "expires_in": {
      "type": "integer",
      "description": "The expiry time of the token, as number of seconds left until expiry.",
      "format": "int32"
     },
-    "issued_at": {
-     "type": "integer",
-     "description": "The issue time of the token, as number of seconds.",
-     "format": "int32"
-    },
     "issued_to": {
      "type": "string",
      "description": "To whom was the token issued to. In general the same as audience."
-    },
-    "issuer": {
-     "type": "string",
-     "description": "Who issued the token."
-    },
-    "nonce": {
-     "type": "string",
-     "description": "Nonce of the id token."
     },
     "scope": {
      "type": "string",
@@ -193,18 +176,15 @@
  "methods": {
   "tokeninfo": {
    "id": "oauth2.tokeninfo",
-   "path": "oauth2/v1/tokeninfo",
+   "path": "oauth2/v2/tokeninfo",
    "httpMethod": "POST",
-   "description": "Get token info",
    "parameters": {
     "access_token": {
      "type": "string",
-     "description": "The oauth2 access token",
      "location": "query"
     },
     "id_token": {
      "type": "string",
-     "description": "The ID token",
      "location": "query"
     }
    },
@@ -218,9 +198,8 @@
    "methods": {
     "get": {
      "id": "oauth2.userinfo.get",
-     "path": "oauth2/v1/userinfo",
+     "path": "oauth2/v2/userinfo",
      "httpMethod": "GET",
-     "description": "Get user info",
      "response": {
       "$ref": "Userinfo"
      },
@@ -240,7 +219,6 @@
          "id": "oauth2.userinfo.v2.me.get",
          "path": "userinfo/v2/me",
          "httpMethod": "GET",
-         "description": "Get user info",
          "response": {
           "$ref": "Userinfo"
          },
