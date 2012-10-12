@@ -4,7 +4,7 @@
          net/url
          net/uri-codec)
 
-(provide discovery-url
+(provide list-services
          download-discovery-document
          load-discovery-document
          get-discovery-document
@@ -40,15 +40,15 @@
                   get-pure-port
                   (compose1 bytes->jsexpr port->bytes)))
 
-(define (discovery-url name)
+(define (discovery-url name ver)
   (string->url
-   (format "https://www.googleapis.com/discovery/v1/apis/~a/v1/rest"
-           name)))
+   (format "https://www.googleapis.com/discovery/v1/apis/~a/~a/rest"
+           name ver)))
 
-(define (download-discovery-document name [path (string-append name ".js")])
+(define (download-discovery-document name ver [path (string-append name ".js")])
   (call-with-output-file* path
     (lambda (out)
-      (call/input-url (discovery-url name)
+      (call/input-url (discovery-url name ver)
                       get-pure-port
                       (lambda (in)
                         (copy-port in out))))
@@ -59,8 +59,8 @@
   (path-string? . -> . jsexpr?)
   (bytes->jsexpr (file->bytes path)))
 
-(define/contract (get-discovery-document name)
-  (string? . -> . jsexpr?)
+(define/contract (get-discovery-document name ver)
+  (string? string? . -> . jsexpr?)
   (call/input-url (discovery-url name)
                   get-pure-port
                   (compose1 bytes->jsexpr port->bytes)))
@@ -134,7 +134,7 @@
 (map (lambda (x)
        (list (hash-ref x 'name)
              (hash-ref x 'version)
-             (hash-ref x 'description)))
+             #;(hash-ref x 'description)))
      (hash-ref (list-services) 'items))
 
 ;; Download all to discovery documents in "vendor" subdir
@@ -144,9 +144,9 @@
     (define ver (hash-ref x 'version))
     (define fname (string-append name "." ver ".js"))
     (define path (build-path 'same "vendor" fname))
-    (printf "Downloading ~s to ~s.\n" name (path->string path))
+    (printf "Downloading ~s ~s to ~s.\n" name ver (path->string path))
     (flush-output)
-    (download-discovery-document name path)))
+    (download-discovery-document name ver path)))
 (download-all)
 
 |#
