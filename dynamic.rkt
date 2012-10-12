@@ -10,7 +10,6 @@
 (provide discovery-document->service
          local-discovery-document->service
          online-discovery-document->service
-         defproc
          )
 
 (define/contract (create-new-method dd method)
@@ -60,7 +59,7 @@
 ;; Exactly like jsexpr? except allows procedure? as a value.
 (define (service? x #:null [jsnull (json-null)])
   (let loop ([x x])
-    (or (procedure? x) ; <=== ONLY difference from jsexpr?
+    (or (procedure? x) ; <=== ONLY difference from `jsexpr?'
         (exact-integer? x)
         (inexact-real? x)
         (boolean? x)
@@ -93,49 +92,23 @@
 (define online-discovery-document->service
   (compose1 discovery-document->service get-discovery-document))
 
-(define-syntax (defproc stx)
-  (syntax-case stx ()
-    [(_ service resource method)
-     (let* ([assert-id (lambda (id)
-                         (unless (identifier? id)
-                                 (raise-syntax-error 
-                                  #f
-                                  "expected an identifier"
-                                  stx
-                                  id)))]
-            [hyphenate-ids (lambda (a b)
-                             (assert-id a)
-                             (assert-id b)
-                             (datum->syntax
-                              a
-                              (string->symbol (format "~a-~a"
-                                                      (syntax->datum a)
-                                                      (syntax->datum b)))
-                              a a a))])
-       (with-syntax ([id (hyphenate-ids #'resource #'method)])
-         #'(begin (define id (method-proc service
-                                          (syntax->datum #'resource)
-                                          (syntax->datum #'method)))
-                  (provide id))))]))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Examples
 
 ;; ;; Google Plus
-;; (define plus (local-discovery-document->service "plus.js"))
-;; (defproc plus people search)
-;; (people-search (hasheq 'query "Greg Hendershott"
-;;                      'key (api-key)))
-
+;; (define plus (local-discovery-document->service "vendor/plus.v1.js"))
+;; (define people-search (method-proc plus 'people 'search))
+;; (people-search (hasheq 'query "John McCarthy"
+;;                        'key (api-key)))
 
 ;; URL Shortener (goo.gl)
 (module+ test
   (require rackunit)
   (define goo.gl (local-discovery-document->service
                   "vendor/urlshortener.v1.js"))
-  (defproc goo.gl url insert)
-  (defproc goo.gl url get)
+  (define url-insert (method-proc goo.gl 'url 'insert))
+  (define url-get (method-proc goo.gl 'url 'get))
   (define orig-url "http://www.racket-lang.org/")
   (define shrink (url-insert (hasheq 'body (hasheq 'longUrl orig-url)
                                      'key (api-key))))
