@@ -133,7 +133,7 @@
 (module+ test
   (require rackunit)
   (define goo.gl (local-discovery-document->service
-                  "services/urlshortener.v1.js"))
+                  "vendor/urlshortener.v1.js"))
   (defproc goo.gl url insert)
   (defproc goo.gl url get)
   (define orig-url "http://www.racket-lang.org/")

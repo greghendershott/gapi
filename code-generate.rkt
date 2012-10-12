@@ -174,6 +174,6 @@
 ;; Examples
 
 (discovery-document->racket-code (load-discovery-document
-                                  "services/urlshortener.v1.js"))
+                                  "vendor/urlshortener.v1.js"))
 ;; (discovery-document->racket-code (load-discovery-document
-;;                                   "services/plus.v1.js"))
+;;                                   "vendor/plus.v1.js"))

@@ -137,13 +137,13 @@
              (hash-ref x 'description)))
      (hash-ref (list-services) 'items))
 
-;; Download all to discovery documents in "services" subdir
+;; Download all to discovery documents in "vendor" subdir
 (define (download-all)
   (for ([x (hash-ref (list-services #:only-preferred? #t) 'items)])
     (define name (hash-ref x 'name))
     (define ver (hash-ref x 'version))
     (define fname (string-append name "." ver ".js"))
-    (define path (build-path 'same "services" fname))
+    (define path (build-path 'same "vendor" fname))
     (printf "Downloading ~s to ~s.\n" name (path->string path))
     (flush-output)
     (download-discovery-document name path)))
