@@ -1,7 +1,8 @@
 #lang racket
 
 (require json
-         net/url)
+         net/url
+         net/uri-codec)
 
 (provide discovery-url
          download-discovery-document
@@ -21,6 +22,23 @@
          schema
          api-key
          )
+
+(define (list-services #:name [name 'N/A]
+                       #:label [label 'N/A]
+                       #:only-preferred? [preferred #t])
+  (define base "https://www.googleapis.com/discovery/v1/apis")
+  (define qps (alist->form-urlencoded
+               (filter-map (lambda (k v)
+                             (cond [(eq? v 'N/A) #f]
+                                   [(eq? v #t) (cons k "true")]
+                                   [(eq? v #f) (cons k "false")]
+                                   [else (cons k v)]))
+                           (list 'name 'label 'preferred)
+                           (list name label preferred))))
+  (define u (string-append base (if (equal? qps "") "" "?") qps))
+  (call/input-url (string->url u)
+                  get-pure-port
+                  (compose1 bytes->jsexpr port->bytes)))
 
 (define (discovery-url name)
   (string->url
@@ -100,3 +118,37 @@
     [(regexp "^\\s*(.*?)\\s*(?:[\r\n]*)$" (list _ k)) k]
     [else (error 'read-api-key "Bad format for ~a" file)]))
 (define api-key (make-parameter (read-api-key)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Examples
+
+#|
+
+;; How many preferred (e.g. latest version, not deprecated)  services?
+(length (hash-ref (list-services #:only-preferred? #t) 'items))
+;; All?
+(length (hash-ref (list-services #:only-preferred? #f) 'items))
+
+;; Show all the preferred APIs
+(map (lambda (x)
+       (list (hash-ref x 'name)
+             (hash-ref x 'version)
+             (hash-ref x 'description)))
+     (hash-ref (list-services) 'items))
+
+;; Download all to discovery documents in "services" subdir
+(define (download-all)
+  (for ([x (hash-ref (list-services #:only-preferred? #t) 'items)])
+    (define name (hash-ref x 'name))
+    (define ver (hash-ref x 'version))
+    (define fname (string-append name "." ver ".js"))
+    (define path (build-path 'same "services" fname))
+    (printf "Downloading ~s to ~s.\n" name (path->string path))
+    (flush-output)
+    (download-discovery-document name path)))
+(download-all)
+
+|#
+
+
