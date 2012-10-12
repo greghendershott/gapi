@@ -42,7 +42,7 @@
     #lang racket
     (require net/url net/uri-codec)
 
-    @make-string[78 #\;]
+    ;;@make-string[76 #\;]
     ;;
     ;; @hash-ref[j 'title] @hash-ref[j 'version]
     ;;
@@ -58,7 +58,7 @@
     (apply string-append ss))
   (displayln #reader scribble/reader
    @string-append{
-    @make-string[ 78 #\;]
+    ;;@make-string[76 #\;]
     ;; API parameters
     ;;
     ;; These keyword arguments may be passed to all functions.
@@ -173,5 +173,7 @@
 ;;
 ;; Examples
 
-(discovery-document->racket-code (load-discovery-document "urlshortener.js"))
-;; (discovery-document->racket-code (load-discovery-document "plus.js"))
+(discovery-document->racket-code (load-discovery-document
+                                  "services/urlshortener.v1.js"))
+;; (discovery-document->racket-code (load-discovery-document
+;;                                   "services/plus.v1.js"))
