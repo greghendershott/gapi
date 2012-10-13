@@ -25,7 +25,8 @@
       ["GET" (lambda (url body h) (get-pure-port url h))]
       ["POST" post-pure-port]
       ["PUT" put-pure-port]))
-  (lambda (d)
+  ;; Make a request to the server
+  (define (inner d)
     (define body (jsexpr->bytes (dict-ref d 'body (hasheq))))
     (define u (string-append base-uri
                              (template-path (hash-ref method 'path) d)))
@@ -47,7 +48,25 @@
     (define in (request url body h))
     (define js (bytes->jsexpr (port->bytes in)))
     (close-input-port in)
-    js))
+    js)
+  ;; Handle nextPageToken and multiple "pages" of results by making
+  ;; multiple requests.
+  (define (outer d)
+    (define js (inner d))
+    (define page-token (hash-ref js 'nextPageToken #f))
+    (cond [(and page-token
+                (hash-has-key? js 'items))
+           (hash-update js
+                        'items
+                        (lambda (xs)
+                          (append xs
+                                  (hash-ref (outer (dict-set* d
+                                                              'pageToken
+                                                              page-token))
+                                            'items))))]
+          [else js]))
+  outer
+  )
 
 (define (template-path str d)
   (string-join (for/list ([x (regexp-split #rx"/" str)])
@@ -99,9 +118,10 @@
 ;; ;; Google Plus
 ;; (define plus (local-discovery-document->service "vendor/plus.v1.js"))
 ;; (define people-search (method-proc plus 'people 'search))
-;; (people-search (hasheq 'query "John McCarthy"
-;;                        'key (api-key)))
-
+;; (define js (people-search (hasheq 'query "Greg Henderson"
+;;                                   'key (api-key))))
+;; (displayln (length (hash-ref js 'items '())))
+             
 ;; URL Shortener (goo.gl)
 (module+ test
   (require rackunit)
