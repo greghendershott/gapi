@@ -122,6 +122,8 @@
   (displayln "|#")
   (define qps (append req-param-names opt-param-names api-param-names))
   (pretty-print-code
+   `(provide ,name))
+  (pretty-print-code
    `(define (,name
              ,@req-param-names
              ,@(letrec ([flatter (lambda (xs)
