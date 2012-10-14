@@ -50,8 +50,18 @@
     ;; 
     ;; Documentation: @hash-ref[j 'documentationLink]
     
-   }
-   ))
+   })
+   (pretty-print-code
+    `(define (read-api-key [file (build-path (find-system-path 'home-dir)
+                                             ".google-api-key")])
+       (match (file->string file #:mode 'text)
+         [(regexp "^\\s*(.*?)\\s*(?:[\r\n]*)$" (list _ k)) k]
+         [else (error 'read-api-key "Bad format for ~a" file)])))
+    (pretty-print-code
+     `(define api-key (make-parameter (read-api-key))))
+    (pretty-print-code
+     `(provide api-key))
+    )
 
 (define (do-api-parameters j)
   (define (cat ss)
