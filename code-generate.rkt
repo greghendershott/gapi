@@ -110,6 +110,10 @@
   (newline)
   (displayln "#|")
   (displayln name)
+  (newline)
+  (displayln (hash-ref mv 'description ""))
+  (newline)
+  (displayln "Arguments:")
   ;; Parameters that are plain function arguments: req-params
   (for ([(k v) req-params])
     (newline)
