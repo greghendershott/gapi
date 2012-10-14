@@ -40,7 +40,7 @@
   (displayln #reader scribble/reader
    @string-append{
     #lang racket
-    (require net/url net/uri-codec)
+    (require net/url net/uri-codec json)
 
     ;;@make-string[76 #\;]
     ;;
