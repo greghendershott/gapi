@@ -189,7 +189,11 @@
 ;;
 ;; Examples
 
-(discovery-document->racket-code (load-discovery-document
-                                  "vendor/urlshortener.v1.js"))
+(with-output-to-file "examples/urlshortener.rkt"
+  (lambda ()
+    (discovery-document->racket-code
+     (load-discovery-document "vendor/urlshortener.v1.js")))
+  #:mode 'text
+  #:exists 'replace)
 ;; (discovery-document->racket-code (load-discovery-document
 ;;                                   "vendor/plus.v1.js"))
