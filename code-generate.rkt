@@ -18,23 +18,9 @@
 
 (define/contract (discovery-document->racket-code root)
   (jsexpr? . -> . any)
-  (define (do-resources j)
-    (for ([(k v) (in-hash j)]
-          #:when (eq? k 'resources))
-      (newline)
-      (for ([(rn rv) v])
-        (displayln (make-string 78 #\;))
-        (printf ";; Functions for the `~a' resource:\n" rn)
-        (for ([(k v) (in-hash rv)])
-          (match k
-            ['methods (for ([(mn mv) (in-hash v)])
-                        (do-method root mn mv))]
-            ['resources (do-resources v)] ;sub-resources
-            [else (cond [(string? v) (printf "~a: ~a\n" k v)]
-                        [else (displayln k)])])))))
   (do-intro root)
   (do-api-parameters root)
-  (do-resources root))
+  (do-resources root root))
 
 (define (do-intro j)
   (displayln #reader scribble/reader
@@ -80,6 +66,21 @@
                         (wrap (format "~a: ~a\n" k v))))))]
     |#
     }))
+
+(define (do-resources root j)
+  (for ([(k v) (in-hash j)]
+        #:when (eq? k 'resources))
+    (newline)
+    (for ([(rn rv) v])
+      (displayln (make-string 78 #\;))
+      (printf ";; Functions for the `~a' resource:\n" rn)
+      (for ([(k v) (in-hash rv)])
+        (match k
+          ['methods (for ([(mn mv) (in-hash v)])
+                      (do-method root mn mv))]
+          ['resources (do-resources root v)] ;sub-resources
+          [else (cond [(string? v) (printf "~a: ~a\n" k v)]
+                      [else (displayln k)])])))))
 
 (define (do-method root mn mv)
   (define name (string->symbol (hash-ref mv 'id)))
