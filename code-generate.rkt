@@ -141,16 +141,10 @@
   (pretty-print-code
    `(define (,name
              ,@req-param-names
-             ,@(letrec ([flatter (lambda (xs)
-                                   (match xs
-                                     [(list (list a b) more ...)
-                                      (cons a (cons b (flatter more)))]
-                                     [(list) (list)]))])
-                 (flatter (map (lambda (x)
-                                 (list (string->keyword (symbol->string x))
-                                       (list x ''NONE)))
-                               all-opt-param-names)))
-             )
+             ,@(append* (map (lambda (x)
+                               (list (string->keyword (symbol->string x))
+                                     (list x ''NONE)))
+                             all-opt-param-names)))
       (define base-uri ,(hash-ref root 'baseUrl))
       (define res-path ,(hash-ref mv 'path))
       (define _qpstr (alist->form-urlencoded
