@@ -28,7 +28,9 @@ the discovery tool in any of three ways:
            orig-url short-url long-url
            (if (equal? orig-url long-url) "Yay!" "Boo!"))
    
-   => "http://www.racket-lang.org/" was shortened to "http://goo.gl/uAKH9", which expanded back to "http://www.racket-lang.org/": Yay!
+   => "http://www.racket-lang.org/" was shortened
+      to "http://goo.gl/uAKH9", which expanded back to
+      "http://www.racket-lang.org/": Yay!
    ```
    
    Static `.scrbl` files are generated, because there's really no need
