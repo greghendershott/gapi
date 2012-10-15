@@ -4,7 +4,7 @@
          js->scribble-code
          require/js)
 
-(require (for-syntax racket/path racket/match json)
+(require (for-syntax racket/path racket/match racket/list json)
          scribble/base)
 
 (begin-for-syntax
