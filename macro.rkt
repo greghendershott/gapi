@@ -1,7 +1,6 @@
 #lang racket
 
 (provide require-gapi-doc
-         ;;gapi-doc->scribble-code
          require/gapi-doc
          api-key)
 
