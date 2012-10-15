@@ -122,9 +122,7 @@
          (let ([src (syntax-source stx)])
            (define js
              (parameterize ([current-directory
-                             (if (path-string? src)
-                               (path-only src)
-                               (current-directory))])
+                             (build-path (collection-path "gapi") "vendor")])
                (call-with-input-file (syntax-e #'js-file) read-json)))
            (gen js stx))]))
     m))
