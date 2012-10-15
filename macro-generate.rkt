@@ -1,7 +1,7 @@
-#lang at-exp racket
+#lang racket
 
-(provide gapi-doc->racket-code
-         gapi-doc->scribble-code
+(provide require-gapi-doc
+         ;;gapi-doc->scribble-code
          require/gapi-doc
          api-key)
 
@@ -89,17 +89,30 @@
         js))
 
   (define (gen-scribble js stx)
-    #`@list{1
-            @section{Raw spec}
-            @list{The raw spec from
-                  @(tt #,(path->string (syntax-source stx)))
-                  is:
-                  @verbatim{
-                    @#,(format "~s" js)
-                  }}
-            @section{Other stuff}
-            @bold{2}
-            3})
+    #'"NOT IMPLEMENTED")
+    ;; #`@list{@title{@(string-append #,(hash-ref js 'title "")
+    ;;                                " "
+    ;;                                #,(hash-ref js 'version ""))}
+                  
+    ;;         @(tt #,(hash-ref js 'description "") )
+    ;;         @hyperlink[#,(hash-ref js 'documentationLink) "Documentation."]
+    ;;         @table-of-contents{}
+
+    ;;         @section{API Parameters}
+    ;;         These optional keyword arguments may be passed to all functions.
+    ;;         #,@(for/list ([(k v) (hash-ref js 'parameters (hasheq))])
+    ;;              @(tt #,(symbol->string k)))
+                  
+    ;;         @section{Raw spec}
+    ;;         @list{The raw spec from
+    ;;               @(tt #,(path->string (syntax-source stx)))
+    ;;               is:
+    ;;               @verbatim{
+    ;;                 @#,(format "~s" js)
+    ;;               }}
+    ;;         @section{Other stuff}
+    ;;         @bold{2}
+    ;;         3})
 
   (define (gen gen)
     (define (m stx)
@@ -116,7 +129,7 @@
            (gen js stx))]))
     m))
 
-(define-syntax gapi-doc->racket-code   (gen gen-racket))
+(define-syntax require-gapi-doc        (gen gen-racket))
 (define-syntax gapi-doc->scribble-code (gen gen-scribble))
 
 (define-syntax-rule (require/gapi-doc gapi-doc ...)
