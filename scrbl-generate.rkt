@@ -19,27 +19,34 @@
 
 (define (do-intro j)
   (displayln "#lang scribble/manual")
-  (displayln "(require planet/scribble)")
-  (printf "@title {~a ~a}\n" (hash-ref j 'title) (hash-ref j 'version))
+  (printf "@title{~a ~a}\n" (hash-ref j 'title) (hash-ref j 'version))
   (displayln (hash-ref j 'description))
-  (printf "@hyperlink[\"~a\" Documentation link]\n"
+  (printf "@hyperlink[\"~a\" \"Documentation link\"]\n"
           (hash-ref j 'documentationLink))
-  (displayln "@table-of-contents"))
+  (displayln "@table-of-contents{}"))
 
 (define (do-api-parameters j)
   (displayln "@section{API Parameters}")
-  (displayln "These keyword arguments may be passed to all functions")
+  (displayln "These optional keyword arguments may be passed to all functions for this API:")
+    (printf "@defproc[(any-function\n")
   (for ([(k v) (hash-ref j 'parameters (hasheq))])
-     (printf "\n#:~a\n" k)
-     (for ([(k v) v])
-        (format "~a: ~a\n" k v))))
+    (printf "[#:~a ~a string? 'N/A]\n" k k))
+  (displayln ") jsexpr?]{")
+  (displayln "This is not actually a function. This is just using Scribble's")
+  (displayln "defproc form to list the optional keyword arguments that may be passed")
+  (displayln "to any function for this API.\n")
+  (for ([(k v) (hash-ref j 'parameters (hasheq))])
+    (printf "@racket[~a]: ~a\n\n" k (hash-ref v 'description "")))
+  (displayln "}")
+  (newline))
 
 (define (do-resources root j)
+  (displayln "@section{Resources}")
   (for ([(k v) (in-hash j)]
         #:when (eq? k 'resources))
     (newline)
     (for ([(rn rv) v])
-      (printf "@subsection{Functions for the `~a' resource:}\n" rn)
+      (printf "@subsection{~a}\n" rn)
       (for ([(k v) (in-hash rv)])
         (match k
           ['methods (for ([(mn mv) (in-hash v)])
@@ -48,7 +55,8 @@
 
 (define (do-method root mn mv)
   (define name (string->symbol (hash-ref mv 'id)))
-  (define api-param-names (hash-keys (hash-ref root 'parameters)))
+  (define api-params (hash-ref root 'parameters))
+  (define api-param-names (hash-keys api-params))
   (define params (hash-ref mv 'parameters (hash)))
   (define (required? x)
     (and (hash-has-key? x 'required)
@@ -69,30 +77,66 @@
               'properties
               (hash)))
   (define body-param-names (hash-keys body-params))
-  (define all-opt-param-names (append opt-param-names
-                                      body-param-names
-                                      api-param-names))
-  (define qps (append req-param-names opt-param-names api-param-names))
-  (define args "to-do")
-  
-  (define return "to-do")
-  (define doc (hash-ref mv 'description))
   (printf "@defproc[(~a\n" name)
   (for ([(k v) req-params])
     (printf "[~a string?]\n" k))
-  (for ([(k v) opt-params])
+  (for ([(k v) opt-params]
+        #:when (not (hash-has-key? req-params k)))
     (printf "[#:~a ~a string? 'N/A]\n" k k))
-  (for ([(k v) body-params])
+  (for ([(k v) body-params]
+        #:when (not (hash-has-key? req-params k)))
     (printf "[#:~a ~a string? 'N/A]\n" k k))
-  (printf ") jsexpr?]{\n~a\n}\n" doc)
+  (for ([(k v) api-params])
+    (printf "[#:~a ~a string? 'N/A]\n" k k))
+  (displayln ") jsexpr?]{")
+  (displayln (hash-ref mv 'description ""))
+  (newline)
+  (for ([(k v) req-params])
+    (printf "@racket[~a]: ~a\n\n" k (hash-ref v 'description "")))
+  (for ([(k v) opt-params]
+        #:when (not (hash-has-key? req-params k)))
+    (printf "@racket[~a]: ~a\n\n" k (hash-ref v 'description "")))
+  (for ([(k v) body-params]
+        #:when (not (hash-has-key? req-params k)))
+    (printf "@racket[~a]: ~a\n\n" k (hash-ref v 'description "")))
+  ;; Don't document the api-params here, over and over for every function.
+  ;; Already documented up in their own section.
+  (displayln "}")
   (newline))
 
-(with-output-to-file "examples/urlshortener.scrbl"
-  (lambda ()
-    (discovery-document->scribble-code
-     (load-discovery-document "vendor/urlshortener.v1.js")))
-  #:mode 'text
-  #:exists 'replace)
+(define (generate src-path dst-path name)
+  (define js-pn (build-path src-path name))
+  (define scrbl-pn (build-path dst-path (string-append name ".scrbl")))
+  (with-output-to-file scrbl-pn
+    (lambda ()
+      (discovery-document->scribble-code
+       (load-discovery-document js-pn)))
+    #:mode 'text
+    #:exists 'replace))
 
-     
-    
+(define (build dst-path name)
+  (parameterize ([current-directory dst-path])
+    (system (string-append "scribble " name ".scrbl"))))
+
+(define (generate-and-build src-path dst-path name)
+  (generate src-path dst-path name)
+  (build dst-path name))
+
+(define (generate-and-build-all src-path dst-path)
+  (fold-files
+   (lambda (fn what _)
+     (cond [(eq? what 'file)
+            (displayln fn)
+            (generate-and-build src-path
+                                dst-path
+                                (path->string (file-name-from-path fn)))]))
+   (void)
+   src-path
+   #f))
+
+;; (generate-and-build "vendor" "scribble-gen" "urlshortener.v1.js")
+;; (generate-and-build "vendor" "scribble-gen" "plus.v1.js")
+;; (generate-and-build "vendor" "scribble-gen" "licensing.v1.js")
+
+;; (generate-and-build-all (build-path 'same "vendor")
+;;                         (build-path 'same "scribble-gen"))
