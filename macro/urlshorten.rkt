@@ -13,6 +13,8 @@
 (define js-get (urlshortener.url.get short-url
                                      #:key (api-key)))
 (define long-url (dict-ref js-get 'longUrl))
-(equal? orig-url long-url)
+(printf "~s was shortened to ~s, which expanded back to ~s: ~a"
+        orig-url short-url long-url
+        (if (equal? orig-url long-url) "Yay!" "Boo!"))
 
-(js->scribble-code "../vendor/urlshortener.v1.js")
+;;(js->scribble-code "../vendor/urlshortener.v1.js")
