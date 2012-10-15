@@ -90,29 +90,6 @@
 
   (define (gen-scribble js stx)
     #'"NOT IMPLEMENTED")
-    ;; #`@list{@title{@(string-append #,(hash-ref js 'title "")
-    ;;                                " "
-    ;;                                #,(hash-ref js 'version ""))}
-                  
-    ;;         @(tt #,(hash-ref js 'description "") )
-    ;;         @hyperlink[#,(hash-ref js 'documentationLink) "Documentation."]
-    ;;         @table-of-contents{}
-
-    ;;         @section{API Parameters}
-    ;;         These optional keyword arguments may be passed to all functions.
-    ;;         #,@(for/list ([(k v) (hash-ref js 'parameters (hasheq))])
-    ;;              @(tt #,(symbol->string k)))
-                  
-    ;;         @section{Raw spec}
-    ;;         @list{The raw spec from
-    ;;               @(tt #,(path->string (syntax-source stx)))
-    ;;               is:
-    ;;               @verbatim{
-    ;;                 @#,(format "~s" js)
-    ;;               }}
-    ;;         @section{Other stuff}
-    ;;         @bold{2}
-    ;;         3})
 
   (define (gen gen)
     (define (m stx)
