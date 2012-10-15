@@ -4,7 +4,23 @@ the discovery tool in any of three ways:
 
 1. _Dynamic_: Create a function wrapper at runtime, using either a
    JSON "discovery document" (either a local file or downloaded at
-   runtime).
+   runtime). For example:
+   
+   ```
+   (require rackunit gapi/dynamic)
+   (define goo.gl (local-discovery-document->service
+                   "vendor/urlshortener.v1.js"))
+   (define url-insert (method-proc goo.gl 'url 'insert))
+   (define url-get (method-proc goo.gl 'url 'get))
+   (define orig-url "http://www.racket-lang.org/")
+   (define shrink (url-insert (hasheq 'body (hasheq 'longUrl orig-url)
+                                      'key (api-key))))
+   (define short-url (dict-ref shrink 'id))
+   (define expand (url-get (hasheq 'shortUrl short-url
+                                   'key (api-key))))
+   (define long-url (dict-ref expand 'longUrl))
+   (check-equal? orig-url long-url)
+   ```
 
 2. _.RKT and .SCRBL generation_: Generate a static `.rkt` file and a
    `.scrbl` file.
@@ -13,8 +29,7 @@ the discovery tool in any of three ways:
    macro (thank you for the assist, Eli Barzilay!). For example:
    
    ```
-   ;; Define function wrappers for the web service documented in
-   ;; the API discovery document urlshortener.v1.js.
+   (require gapi/macro-generate)
    (require-gapi-doc "urlshortener.v1.js")
 
    (define orig-url "http://www.racket-lang.org/")
