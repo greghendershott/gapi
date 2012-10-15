@@ -63,11 +63,12 @@
                             [else (string-append "?" _qpstr)]))
         (define url (string->url (string-append base-uri res-path qpstr)))
         (define h (list "Content-Type: application/json"))
-        (define body (jsexpr->bytes
-                      (for/hasheq ([k (list #,@(map symbol->string body-param-names))]
-                                   [v (list #,@body-param-names)]
-                                   #:when (not (eq? v 'NONE)))
-                        (values (string->symbol k) v)))) 
+        (define body
+          (jsexpr->bytes
+           (for/hasheq ([k (list #,@(map symbol->string body-param-names))]
+                        [v (list #,@body-param-names)]
+                        #:when (not (eq? v 'NONE)))
+             (values (string->symbol k) v)))) 
         (define in
           #,(match (hash-ref mv 'httpMethod)
               ["GET" #'(get-pure-port url h)]
@@ -111,7 +112,3 @@
 
 (define-syntax-rule (require/js jsfile ...)
   (begin (js->racket-code jsfile) ...))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
