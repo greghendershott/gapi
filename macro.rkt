@@ -14,7 +14,7 @@
  (define (gen-racket js stx)
    #`(begin
        (require json net/url net/uri-codec)
-       #,@(car
+       #,@(append*
            (for/list ([(k v) (hash-ref js 'resources)])
              (for/list ([(k v) (hash-ref v 'methods)])
                (do-method stx js k v))))))
