@@ -1,10 +1,9 @@
 #lang racket
 
-(require "../main.rkt")
 (require "../macro-generate.rkt")
 
-(js->racket-code "../vendor/urlshortener.v1.js")
-;; (require/js "../vendor/urlshortener.v1.js")
+(gapi-doc->racket-code "../vendor/urlshortener.v1.js")
+;; (require/gapi-doc "../vendor/urlshortener.v1.js")
 
 (define orig-url "http://www.racket-lang.org/")
 (define js-insert (urlshortener.url.insert #:longUrl orig-url

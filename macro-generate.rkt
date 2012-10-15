@@ -1,11 +1,13 @@
 #lang at-exp racket
 
-(provide js->racket-code
-         js->scribble-code
-         require/js)
+(provide gapi-doc->racket-code
+         gapi-doc->scribble-code
+         require/gapi-doc
+         api-key)
 
 (require (for-syntax racket/path racket/match racket/list json)
-         scribble/base)
+         scribble/base
+         "main.rkt") ;for api-key
 
 (begin-for-syntax
 
@@ -92,7 +94,7 @@
             @bold{2}
             3})
 
-  (define (js-gen gen)
+  (define (gen gen)
     (define (m stx)
       (syntax-case stx ()
         [(_ js-file)
@@ -107,8 +109,8 @@
            (gen js stx))]))
     m))
 
-(define-syntax js->racket-code   (js-gen gen-racket))
-(define-syntax js->scribble-code (js-gen gen-scribble))
+(define-syntax gapi-doc->racket-code   (gen gen-racket))
+(define-syntax gapi-doc->scribble-code (gen gen-scribble))
 
-(define-syntax-rule (require/js jsfile ...)
-  (begin (js->racket-code jsfile) ...))
+(define-syntax-rule (require/gapi-doc gapi-doc ...)
+  (begin (gapi-doc->racket-code gapi-doc) ...))
