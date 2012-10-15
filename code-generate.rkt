@@ -184,7 +184,7 @@
 ;;
 ;; Examples
 
-(with-output-to-file "examples/urlshortener.rkt"
+(with-output-to-file "code-gen-examples/urlshortener.rkt"
   (lambda ()
     (discovery-document->racket-code
      (load-discovery-document "vendor/urlshortener.v1.js")))
