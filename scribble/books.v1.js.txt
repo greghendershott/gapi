@@ -1,0 +1,423 @@
+Books API v1
+
+Lets you search for books and manage your Google Books library.
+Documentation link
+
+    1 API Parameters                          
+                                              
+    2 Functions for the `volumes’ resource    
+                                              
+    3 Functions for the `bookshelves’ resource
+                                              
+    4 Functions for the `layers’ resource     
+                                              
+    5 Functions for the `myconfig’ resource   
+                                              
+    6 Functions for the `mylibrary’ resource  
+
+1. API Parameters
+
+These optional keyword arguments may be passed to all functions for this
+API:
+
+(any-function [#:fields fields                     
+               #:key key                           
+               #:alt alt                           
+               #:oauth_token oauth_token           
+               #:prettyPrint prettyPrint           
+               #:quotaUser quotaUser               
+               #:userIp userIp])         -> jsexpr?
+  fields : string? = 'N/A                          
+  key : string? = 'N/A                             
+  alt : string? = 'N/A                             
+  oauth_token : string? = 'N/A                     
+  prettyPrint : string? = 'N/A                     
+  quotaUser : string? = 'N/A                       
+  userIp : string? = 'N/A                          
+
+This is not actually a function. This is just using Scribble’s defproc
+form to list the optional keyword arguments that may be passed to any
+function for this API.
+
+fields: Selector specifying which fields to include in a partial
+response.
+
+key: API key. Your API key identifies your project and provides you with
+API access, quota, and reports. Required unless you provide an OAuth 2.0
+token.
+
+alt: Data format for the response.
+
+oauth_token: OAuth 2.0 token for the current user.
+
+prettyPrint: Returns response with indentations and line breaks.
+
+quotaUser: Available to use for quota purposes for server-side
+applications. Can be any arbitrary string assigned to a user, but should
+not exceed 40 characters. Overrides userIp if both are provided.
+
+userIp: IP address of the site where the request originates. Use this if
+you want to enforce per-user limits.
+
+2. Functions for the `volumes’ resource
+
+(books.volumes.list  q                                 
+                    [#:filter filter                   
+                     #:projection projection           
+                     #:maxResults maxResults           
+                     #:source source                   
+                     #:startIndex startIndex           
+                     #:printType printType             
+                     #:showPreorders showPreorders     
+                     #:partner partner                 
+                     #:download download               
+                     #:langRestrict langRestrict       
+                     #:libraryRestrict libraryRestrict 
+                     #:orderBy orderBy                 
+                     #:fields fields                   
+                     #:key key                         
+                     #:alt alt                         
+                     #:oauth_token oauth_token         
+                     #:prettyPrint prettyPrint         
+                     #:quotaUser quotaUser             
+                     #:userIp userIp])                 
+ -> jsexpr?                                            
+  q : string?                                          
+  filter : string? = 'N/A                              
+  projection : string? = 'N/A                          
+  maxResults : string? = 'N/A                          
+  source : string? = 'N/A                              
+  startIndex : string? = 'N/A                          
+  printType : string? = 'N/A                           
+  showPreorders : string? = 'N/A                       
+  partner : string? = 'N/A                             
+  download : string? = 'N/A                            
+  langRestrict : string? = 'N/A                        
+  libraryRestrict : string? = 'N/A                     
+  orderBy : string? = 'N/A                             
+  fields : string? = 'N/A                              
+  key : string? = 'N/A                                 
+  alt : string? = 'N/A                                 
+  oauth_token : string? = 'N/A                         
+  prettyPrint : string? = 'N/A                         
+  quotaUser : string? = 'N/A                           
+  userIp : string? = 'N/A                              
+
+Performs a book search.
+
+q: Full-text search query string.
+
+filter: Filter search results.
+
+projection: Restrict information returned to a set of selected fields.
+
+maxResults: Maximum number of results to return.
+
+source: String to identify the originator of this request.
+
+startIndex: Index of the first result to return (starts at 0)
+
+printType: Restrict to books or magazines.
+
+showPreorders: Set to true to show books available for preorder.
+Defaults to false.
+
+partner: Restrict and brand results for partner ID.
+
+download: Restrict to volumes by download availability.
+
+langRestrict: Restrict results to books with this language code.
+
+libraryRestrict: Restrict search to this user’s library.
+
+orderBy: Sort search results.
+
+(books.volumes.get  volumeId                            
+                   [#:projection projection             
+                    #:source source                     
+                    #:country country                   
+                    #:partner partner                   
+                    #:fields fields                     
+                    #:key key                           
+                    #:alt alt                           
+                    #:oauth_token oauth_token           
+                    #:prettyPrint prettyPrint           
+                    #:quotaUser quotaUser               
+                    #:userIp userIp])         -> jsexpr?
+  volumeId : string?                                    
+  projection : string? = 'N/A                           
+  source : string? = 'N/A                               
+  country : string? = 'N/A                              
+  partner : string? = 'N/A                              
+  fields : string? = 'N/A                               
+  key : string? = 'N/A                                  
+  alt : string? = 'N/A                                  
+  oauth_token : string? = 'N/A                          
+  prettyPrint : string? = 'N/A                          
+  quotaUser : string? = 'N/A                            
+  userIp : string? = 'N/A                               
+
+Gets volume information for a single volume.
+
+volumeId: ID of volume to retrieve.
+
+projection: Restrict information returned to a set of selected fields.
+
+source: String to identify the originator of this request.
+
+country: ISO-3166-1 code to override the IP-based location.
+
+partner: Brand results for partner ID.
+
+3. Functions for the `bookshelves’ resource
+
+(books.bookshelves.list  userId                              
+                        [#:source source                     
+                         #:fields fields                     
+                         #:key key                           
+                         #:alt alt                           
+                         #:oauth_token oauth_token           
+                         #:prettyPrint prettyPrint           
+                         #:quotaUser quotaUser               
+                         #:userIp userIp])         -> jsexpr?
+  userId : string?                                           
+  source : string? = 'N/A                                    
+  fields : string? = 'N/A                                    
+  key : string? = 'N/A                                       
+  alt : string? = 'N/A                                       
+  oauth_token : string? = 'N/A                               
+  prettyPrint : string? = 'N/A                               
+  quotaUser : string? = 'N/A                                 
+  userIp : string? = 'N/A                                    
+
+Retrieves a list of public bookshelves for the specified user.
+
+userId: ID of user for whom to retrieve bookshelves.
+
+source: String to identify the originator of this request.
+
+(books.bookshelves.get  userId                              
+                        shelf                               
+                       [#:source source                     
+                        #:fields fields                     
+                        #:key key                           
+                        #:alt alt                           
+                        #:oauth_token oauth_token           
+                        #:prettyPrint prettyPrint           
+                        #:quotaUser quotaUser               
+                        #:userIp userIp])         -> jsexpr?
+  userId : string?                                          
+  shelf : string?                                           
+  source : string? = 'N/A                                   
+  fields : string? = 'N/A                                   
+  key : string? = 'N/A                                      
+  alt : string? = 'N/A                                      
+  oauth_token : string? = 'N/A                              
+  prettyPrint : string? = 'N/A                              
+  quotaUser : string? = 'N/A                                
+  userIp : string? = 'N/A                                   
+
+Retrieves metadata for a specific bookshelf for the specified user.
+
+userId: ID of user for whom to retrieve bookshelves.
+
+shelf: ID of bookshelf to retrieve.
+
+source: String to identify the originator of this request.
+
+4. Functions for the `layers’ resource
+
+(books.layers.list  volumeId                                  
+                   [#:maxResults maxResults                   
+                    #:pageToken pageToken                     
+                    #:source source                           
+                    #:contentVersion contentVersion           
+                    #:fields fields                           
+                    #:key key                                 
+                    #:alt alt                                 
+                    #:oauth_token oauth_token                 
+                    #:prettyPrint prettyPrint                 
+                    #:quotaUser quotaUser                     
+                    #:userIp userIp])               -> jsexpr?
+  volumeId : string?                                          
+  maxResults : string? = 'N/A                                 
+  pageToken : string? = 'N/A                                  
+  source : string? = 'N/A                                     
+  contentVersion : string? = 'N/A                             
+  fields : string? = 'N/A                                     
+  key : string? = 'N/A                                        
+  alt : string? = 'N/A                                        
+  oauth_token : string? = 'N/A                                
+  prettyPrint : string? = 'N/A                                
+  quotaUser : string? = 'N/A                                  
+  userIp : string? = 'N/A                                     
+
+List the layer summaries for a volume.
+
+volumeId: The volume to retrieve layers for.
+
+maxResults: Maximum number of results to return
+
+pageToken: The value of the nextToken from the previous page.
+
+source: String to identify the originator of this request.
+
+contentVersion: The content version for the requested volume.
+
+(books.layers.get  volumeId                                  
+                   summaryId                                 
+                  [#:source source                           
+                   #:contentVersion contentVersion           
+                   #:fields fields                           
+                   #:key key                                 
+                   #:alt alt                                 
+                   #:oauth_token oauth_token                 
+                   #:prettyPrint prettyPrint                 
+                   #:quotaUser quotaUser                     
+                   #:userIp userIp])               -> jsexpr?
+  volumeId : string?                                         
+  summaryId : string?                                        
+  source : string? = 'N/A                                    
+  contentVersion : string? = 'N/A                            
+  fields : string? = 'N/A                                    
+  key : string? = 'N/A                                       
+  alt : string? = 'N/A                                       
+  oauth_token : string? = 'N/A                               
+  prettyPrint : string? = 'N/A                               
+  quotaUser : string? = 'N/A                                 
+  userIp : string? = 'N/A                                    
+
+Gets the layer summary for a volume.
+
+volumeId: The volume to retrieve layers for.
+
+summaryId: The ID for the layer to get the summary for.
+
+source: String to identify the originator of this request.
+
+contentVersion: The content version for the requested volume.
+
+5. Functions for the `myconfig’ resource
+
+(books.myconfig.releaseDownloadAccess                            
+                                       cpksver                   
+                                       volumeIds                 
+                                      [#:source source           
+                                       #:locale locale           
+                                       #:fields fields           
+                                       #:key key                 
+                                       #:alt alt                 
+                                       #:oauth_token oauth_token 
+                                       #:prettyPrint prettyPrint 
+                                       #:quotaUser quotaUser     
+                                       #:userIp userIp])         
+ -> jsexpr?                                                      
+  cpksver : string?                                              
+  volumeIds : string?                                            
+  source : string? = 'N/A                                        
+  locale : string? = 'N/A                                        
+  fields : string? = 'N/A                                        
+  key : string? = 'N/A                                           
+  alt : string? = 'N/A                                           
+  oauth_token : string? = 'N/A                                   
+  prettyPrint : string? = 'N/A                                   
+  quotaUser : string? = 'N/A                                     
+  userIp : string? = 'N/A                                        
+
+Release downloaded content access restriction.
+
+cpksver: The device/version ID from which to release the restriction.
+
+volumeIds: The volume(s) to release restrictions for.
+
+source: String to identify the originator of this request.
+
+locale: ISO-639-1, ISO-3166-1 codes for message localization, i.e.
+en_US.
+
+(books.myconfig.requestAccess  source                    
+                               volumeId                  
+                               nonce                     
+                               cpksver                   
+                              [#:locale locale           
+                               #:fields fields           
+                               #:key key                 
+                               #:alt alt                 
+                               #:oauth_token oauth_token 
+                               #:prettyPrint prettyPrint 
+                               #:quotaUser quotaUser     
+                               #:userIp userIp])         
+ -> jsexpr?                                              
+  source : string?                                       
+  volumeId : string?                                     
+  nonce : string?                                        
+  cpksver : string?                                      
+  locale : string? = 'N/A                                
+  fields : string? = 'N/A                                
+  key : string? = 'N/A                                   
+  alt : string? = 'N/A                                   
+  oauth_token : string? = 'N/A                           
+  prettyPrint : string? = 'N/A                           
+  quotaUser : string? = 'N/A                             
+  userIp : string? = 'N/A                                
+
+Request concurrent and download access restrictions.
+
+source: String to identify the originator of this request.
+
+volumeId: The volume to request concurrent/download restrictions for.
+
+nonce: The client nonce value.
+
+cpksver: The device/version ID from which to request the restrictions.
+
+locale: ISO-639-1, ISO-3166-1 codes for message localization, i.e.
+en_US.
+
+(books.myconfig.syncVolumeLicenses                                
+                                    source                        
+                                    nonce                         
+                                    cpksver                       
+                                   [#:locale locale               
+                                    #:showPreorders showPreorders 
+                                    #:volumeIds volumeIds         
+                                    #:fields fields               
+                                    #:key key                     
+                                    #:alt alt                     
+                                    #:oauth_token oauth_token     
+                                    #:prettyPrint prettyPrint     
+                                    #:quotaUser quotaUser         
+                                    #:userIp userIp])             
+ -> jsexpr?                                                       
+  source : string?                                                
+  nonce : string?                                                 
+  cpksver : string?                                               
+  locale : string? = 'N/A                                         
+  showPreorders : string? = 'N/A                                  
+  volumeIds : string? = 'N/A                                      
+  fields : string? = 'N/A                                         
+  key : string? = 'N/A                                            
+  alt : string? = 'N/A                                            
+  oauth_token : string? = 'N/A                                    
+  prettyPrint : string? = 'N/A                                    
+  quotaUser : string? = 'N/A                                      
+  userIp : string? = 'N/A                                         
+
+Request downloaded content access for specified volumes on the My eBooks
+shelf.
+
+source: String to identify the originator of this request.
+
+nonce: The client nonce value.
+
+cpksver: The device/version ID from which to release the restriction.
+
+locale: ISO-639-1, ISO-3166-1 codes for message localization, i.e.
+en_US.
+
+showPreorders: Set to true to show pre-ordered books. Defaults to false.
+
+volumeIds: The volume(s) to request download restrictions for.
+
+6. Functions for the `mylibrary’ resource
+
