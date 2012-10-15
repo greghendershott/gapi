@@ -16,6 +16,19 @@ the discovery tool in any of three ways:
    ;; Define function wrappers for the web service documented in
    ;; the API discovery document urlshortener.v1.js.
    (require-gapi-doc "urlshortener.v1.js")
+
+   (define orig-url "http://www.racket-lang.org/")
+   (define js-insert (urlshortener.url.insert #:longUrl orig-url
+                                              #:key (api-key)))
+   (define short-url (dict-ref js-insert 'id))
+   (define js-get (urlshortener.url.get short-url
+                                        #:key (api-key)))
+   (define long-url (dict-ref js-get 'longUrl))
+   (printf "~s was shortened to ~s, which expanded back to ~s: ~a"
+           orig-url short-url long-url
+           (if (equal? orig-url long-url) "Yay!" "Boo!"))
+   
+   => "http://www.racket-lang.org/" was shortened to "http://goo.gl/uAKH9", which expanded back to "http://www.racket-lang.org/": Yay!
    ```
    
    Static `.scrbl` files are generated, because there's really no need
