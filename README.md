@@ -2,8 +2,8 @@ A way to access Google APIs via
 [Google API Discovery service](https://developers.google.com/discovery/). Use
 the discovery tool in any of three ways:
 
-1. _Dynamic_: Create a function wrapper at runtime, using either a
-   JSON "discovery document" (either a local file or downloaded at
+1. _Dynamic_: Create a function wrapper at runtime, using a JSON
+   "discovery document" (either a local file or downloaded at
    runtime). For example:
    
    ```
