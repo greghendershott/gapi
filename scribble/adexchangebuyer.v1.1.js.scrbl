@@ -1,23 +1,25 @@
 #lang scribble/manual
+@(require planet/scribble (for-label racket))
+
 @title{Ad Exchange Buyer API v1.1}
+@margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you manage your Ad Exchange Buyer account.
-@hyperlink["https://developers.google.com/ad-exchange/buyer-rest" "Documentation link"]
+@hyperlink["https://developers.google.com/ad-exchange/buyer-rest" "Google documentation."]
 @table-of-contents{}
+@defmodule[gapi/macro]
+@racket[(require-gapi-doc "adexchangebuyer.v1.1.js")]
 @section{API Parameters}
-These optional keyword arguments may be passed to all functions for this API:
-@defproc[(any-function
+The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+@defproc[(_
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
 ) jsexpr?]{
-This is not actually a function. This is just using Scribble's
-defproc form to list the optional keyword arguments that may be passed
-to any function for this API.
-
+@margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
 
 @racket[key]: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
@@ -34,11 +36,12 @@ to any function for this API.
 
 }
 
+@section{Resources}
 
-@section{Functions for the `accounts' resource}
+@subsection{accounts}
 @defproc[(adexchangebuyer.accounts.list
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -52,7 +55,7 @@ Retrieves the authenticated user's list of accounts.
 @defproc[(adexchangebuyer.accounts.get
 [id string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -73,7 +76,7 @@ Gets one account by ID.
 [#:cookieMatchingUrl cookieMatchingUrl string? 'N/A]
 [#:maximumTotalQps maximumTotalQps string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -104,7 +107,7 @@ Updates an existing account. This method supports patch semantics.
 [#:cookieMatchingUrl cookieMatchingUrl string? 'N/A]
 [#:maximumTotalQps maximumTotalQps string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -127,10 +130,10 @@ Updates an existing account.
 
 }
 
-@section{Functions for the `directDeals' resource}
+@subsection{directDeals}
 @defproc[(adexchangebuyer.directDeals.list
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -144,7 +147,7 @@ Retrieves the authenticated user's list of direct deals.
 @defproc[(adexchangebuyer.directDeals.get
 [id string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -157,13 +160,13 @@ Gets one direct deal by ID.
 
 }
 
-@section{Functions for the `creatives' resource}
+@subsection{creatives}
 @defproc[(adexchangebuyer.creatives.list
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:statusFilter statusFilter string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -184,7 +187,7 @@ Retrieves a list of the authenticated user's active creatives.
 [accountId string?]
 [buyerCreativeId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -202,22 +205,22 @@ Gets the status for a single creative.
 @defproc[(adexchangebuyer.creatives.insert
 [#:attribute attribute string? 'N/A]
 [#:kind kind string? 'N/A]
-[#:status status string? 'N/A]
-[#:width width string? 'N/A]
 [#:accountId accountId string? 'N/A]
+[#:status status string? 'N/A]
+[#:height height string? 'N/A]
+[#:width width string? 'N/A]
 [#:HTMLSnippet HTMLSnippet string? 'N/A]
 [#:advertiserId advertiserId string? 'N/A]
 [#:advertiserName advertiserName string? 'N/A]
 [#:buyerCreativeId buyerCreativeId string? 'N/A]
 [#:clickThroughUrl clickThroughUrl string? 'N/A]
 [#:disapprovalReasons disapprovalReasons string? 'N/A]
-[#:height height string? 'N/A]
 [#:productCategories productCategories string? 'N/A]
 [#:sensitiveCategories sensitiveCategories string? 'N/A]
 [#:vendorType vendorType string? 'N/A]
 [#:videoURL videoURL string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -230,11 +233,13 @@ Submit a new creative.
 
 @racket[kind]: Resource type.
 
+@racket[accountId]: Account id.
+
 @racket[status]: Creative serving status. Read-only. This field should not be set in requests.
 
-@racket[width]: Ad width.
+@racket[height]: Ad height.
 
-@racket[accountId]: Account id.
+@racket[width]: Ad width.
 
 @racket[HTMLSnippet]: The HTML snippet that displays the ad when inserted in the web page. If set, videoURL should not be set.
 
@@ -247,8 +252,6 @@ Submit a new creative.
 @racket[clickThroughUrl]: The set of destination urls for the snippet.
 
 @racket[disapprovalReasons]: The reason for disapproval, if any. Note that not all disapproval reasons may be categorized, so it is possible for the creative to have a status of DISAPPROVED with an empty list for disapproval_reasons. In this case, please reach out to your TAM to help debug the issue. Read-only. This field should not be set in requests.
-
-@racket[height]: Ad height.
 
 @racket[productCategories]: Detected product categories, if any. Read-only. This field should not be set in requests.
 

@@ -1,23 +1,25 @@
 #lang scribble/manual
+@(require planet/scribble (for-label racket))
+
 @title{Moderator API v1}
+@margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Moderator API
-@hyperlink["http://code.google.com/apis/moderator/v1/using_rest.html" "Documentation link"]
+@hyperlink["http://code.google.com/apis/moderator/v1/using_rest.html" "Google documentation."]
 @table-of-contents{}
+@defmodule[gapi/macro]
+@racket[(require-gapi-doc "moderator.v1.js")]
 @section{API Parameters}
-These optional keyword arguments may be passed to all functions for this API:
-@defproc[(any-function
+The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+@defproc[(_
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
 ) jsexpr?]{
-This is not actually a function. This is just using Scribble's
-defproc form to list the optional keyword arguments that may be passed
-to any function for this API.
-
+@margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
 
 @racket[key]: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
@@ -34,13 +36,14 @@ to any function for this API.
 
 }
 
+@section{Resources}
 
-@section{Functions for the `tags' resource}
+@subsection{tags}
 @defproc[(moderator.tags.list
 [seriesId string?]
 [submissionId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -62,7 +65,7 @@ Lists all tags for the specified submission within the specified series.
 [#:kind kind string? 'N/A]
 [#:text text string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -88,7 +91,7 @@ Inserts a new tag for the specified submission within the specified series.
 [submissionId string?]
 [tagId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -105,14 +108,14 @@ Deletes the specified tag from the specified submission within the specified ser
 
 }
 
-@section{Functions for the `submissions' resource}
+@subsection{submissions}
 @defproc[(moderator.submissions.get
 [seriesId string?]
 [submissionId string?]
 [#:lang lang string? 'N/A]
 [#:includeVotes includeVotes string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -140,9 +143,9 @@ Returns the specified submission within the specified series.
 [#:kind kind string? 'N/A]
 [#:author author string? 'N/A]
 [#:created created string? 'N/A]
-[#:attribution attribution string? 'N/A]
 [#:vote vote string? 'N/A]
 [#:geo geo string? 'N/A]
+[#:attribution attribution string? 'N/A]
 [#:counters counters string? 'N/A]
 [#:attachmentUrl attachmentUrl string? 'N/A]
 [#:parentSubmissionId parentSubmissionId string? 'N/A]
@@ -150,7 +153,7 @@ Returns the specified submission within the specified series.
 [#:translations translations string? 'N/A]
 [#:text text string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -175,11 +178,11 @@ Inserts a new submission in the specified topic within the specified series.
 
 @racket[created]: 
 
-@racket[attribution]: 
-
 @racket[vote]: 
 
 @racket[geo]: 
+
+@racket[attribution]: 
 
 @racket[counters]: 
 
@@ -195,13 +198,13 @@ Inserts a new submission in the specified topic within the specified series.
 
 }
 
-@section{Functions for the `votes' resource}
+@subsection{votes}
 @defproc[(moderator.votes.list
 [seriesId string?]
 [#:max-results max-results string? 'N/A]
 [#:start-index start-index string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -224,7 +227,7 @@ Lists the votes by the authenticated user for the given series.
 [#:userId userId string? 'N/A]
 [#:unauthToken unauthToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -252,7 +255,7 @@ Returns the votes by the authenticated user for the specified submission within 
 [#:flag flag string? 'N/A]
 [#:vote vote string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -287,7 +290,7 @@ Inserts a new vote by the authenticated user for the specified submission within
 [#:flag flag string? 'N/A]
 [#:vote vote string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -324,7 +327,7 @@ Updates the votes by the authenticated user for the specified submission within 
 [#:flag flag string? 'N/A]
 [#:vote vote string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -351,15 +354,16 @@ Updates the votes by the authenticated user for the specified submission within 
 
 }
 
-@section{Functions for the `topics' resource}
+@subsection{topics}
+@section{Resources}
 @defproc[(moderator.topics.list
 [seriesId string?]
-[#:q q string? 'N/A]
 [#:mode mode string? 'N/A]
 [#:max-results max-results string? 'N/A]
+[#:q q string? 'N/A]
 [#:start-index start-index string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -370,11 +374,11 @@ Searches the topics within the specified series and returns the search results.
 
 @racket[seriesId]: The decimal ID of the Series.
 
-@racket[q]: Search query.
-
 @racket[mode]: 
 
 @racket[max-results]: Maximum number of results to return.
+
+@racket[q]: Search query.
 
 @racket[start-index]: Index of the first result to be retrieved.
 
@@ -384,7 +388,7 @@ Searches the topics within the specified series and returns the search results.
 [seriesId string?]
 [topicId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -410,7 +414,7 @@ Returns the specified topic from the specified series.
 [#:featuredSubmission featuredSubmission string? 'N/A]
 [#:presenter presenter string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -451,7 +455,7 @@ Inserts a new topic into the specified series.
 [#:featuredSubmission featuredSubmission string? 'N/A]
 [#:presenter presenter string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -482,13 +486,14 @@ Updates the specified topic within the specified series.
 
 }
 
-@section{Functions for the `series' resource}
+@subsection{series}
+@section{Resources}
 @defproc[(moderator.series.list
-[#:q q string? 'N/A]
 [#:max-results max-results string? 'N/A]
+[#:q q string? 'N/A]
 [#:start-index start-index string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -497,9 +502,9 @@ Updates the specified topic within the specified series.
 ) jsexpr?]{
 Searches the series and returns the search results.
 
-@racket[q]: Search query.
-
 @racket[max-results]: Maximum number of results to return.
+
+@racket[q]: Search query.
 
 @racket[start-index]: Index of the first result to be retrieved.
 
@@ -508,7 +513,7 @@ Searches the series and returns the search results.
 @defproc[(moderator.series.get
 [seriesId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -534,7 +539,7 @@ Returns the specified series.
 [#:unauthVotingAllowed unauthVotingAllowed string? 'N/A]
 [#:videoSubmissionAllowed videoSubmissionAllowed string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -581,7 +586,7 @@ Inserts a new series.
 [#:unauthVotingAllowed unauthVotingAllowed string? 'N/A]
 [#:videoSubmissionAllowed videoSubmissionAllowed string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -630,7 +635,7 @@ Updates the specified series. This method supports patch semantics.
 [#:unauthVotingAllowed unauthVotingAllowed string? 'N/A]
 [#:videoSubmissionAllowed videoSubmissionAllowed string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -665,22 +670,18 @@ Updates the specified series.
 
 }
 
-@section{Functions for the `featured' resource}
-@section{Functions for the `global' resource}
-@section{Functions for the `my' resource}
-@section{Functions for the `myrecent' resource}
-@section{Functions for the `responses' resource}
+@subsection{responses}
 @defproc[(moderator.responses.list
 [seriesId string?]
 [submissionId string?]
 [#:sort sort string? 'N/A]
 [#:author author string? 'N/A]
-[#:q q string? 'N/A]
 [#:max-results max-results string? 'N/A]
+[#:q q string? 'N/A]
 [#:start-index start-index string? 'N/A]
 [#:hasAttachedVideo hasAttachedVideo string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -697,9 +698,9 @@ Lists or searches the responses for the specified submission within the specifie
 
 @racket[author]: Restricts the results to submissions by a specific author.
 
-@racket[q]: Search query.
-
 @racket[max-results]: Maximum number of results to return.
+
+@racket[q]: Search query.
 
 @racket[start-index]: Index of the first result to be retrieved.
 
@@ -717,16 +718,16 @@ Lists or searches the responses for the specified submission within the specifie
 [#:kind kind string? 'N/A]
 [#:author author string? 'N/A]
 [#:created created string? 'N/A]
-[#:attribution attribution string? 'N/A]
 [#:vote vote string? 'N/A]
 [#:geo geo string? 'N/A]
+[#:attribution attribution string? 'N/A]
 [#:counters counters string? 'N/A]
 [#:attachmentUrl attachmentUrl string? 'N/A]
 [#:topics topics string? 'N/A]
 [#:translations translations string? 'N/A]
 [#:text text string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -753,11 +754,11 @@ Inserts a response for the specified submission in the specified topic within th
 
 @racket[created]: 
 
-@racket[attribution]: 
-
 @racket[vote]: 
 
 @racket[geo]: 
+
+@racket[attribution]: 
 
 @racket[counters]: 
 
@@ -771,10 +772,18 @@ Inserts a response for the specified submission in the specified topic within th
 
 }
 
-@section{Functions for the `profiles' resource}
+@subsection{featured}
+@section{Resources}
+@subsection{global}
+@section{Resources}
+@subsection{my}
+@section{Resources}
+@subsection{myrecent}
+@section{Resources}
+@subsection{profiles}
 @defproc[(moderator.profiles.get
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -790,7 +799,7 @@ Returns the profile information for the authenticated user.
 [#:kind kind string? 'N/A]
 [#:attribution attribution string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -812,7 +821,7 @@ Updates the profile information for the authenticated user. This method supports
 [#:kind kind string? 'N/A]
 [#:attribution attribution string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]

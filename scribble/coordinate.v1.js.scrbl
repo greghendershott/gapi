@@ -1,23 +1,25 @@
 #lang scribble/manual
+@(require planet/scribble (for-label racket))
+
 @title{Google Maps Coordinate API v1}
+@margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you view and manage jobs in a Coordinate team.
-@hyperlink["https://developers.google.com/coordinate/" "Documentation link"]
+@hyperlink["https://developers.google.com/coordinate/" "Google documentation."]
 @table-of-contents{}
+@defmodule[gapi/macro]
+@racket[(require-gapi-doc "coordinate.v1.js")]
 @section{API Parameters}
-These optional keyword arguments may be passed to all functions for this API:
-@defproc[(any-function
+The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+@defproc[(_
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
 ) jsexpr?]{
-This is not actually a function. This is just using Scribble's
-defproc form to list the optional keyword arguments that may be passed
-to any function for this API.
-
+@margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
 
 @racket[key]: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
@@ -34,15 +36,33 @@ to any function for this API.
 
 }
 
+@section{Resources}
 
-@section{Functions for the `jobs' resource}
+@subsection{customFieldDef}
+@defproc[(coordinate.customFieldDef.list
+[teamId string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Retrieves a list of custom field definitions for a team.
+
+@racket[teamId]: Team ID
+
+}
+
+@subsection{jobs}
 @defproc[(coordinate.jobs.list
 [teamId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:minModifiedTimestampMs minModifiedTimestampMs string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -62,10 +82,10 @@ Retrieves jobs created or modified since the given timestamp.
 }
 
 @defproc[(coordinate.jobs.get
-[jobId string?]
 [teamId string?]
+[jobId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -74,17 +94,17 @@ Retrieves jobs created or modified since the given timestamp.
 ) jsexpr?]{
 Retrieves a job, including all the changes made to the job.
 
-@racket[jobId]: Job number
-
 @racket[teamId]: Team ID
+
+@racket[jobId]: Job number
 
 }
 
 @defproc[(coordinate.jobs.insert
 [title string?]
+[address string?]
 [lat string?]
 [lng string?]
-[address string?]
 [teamId string?]
 [#:customField customField string? 'N/A]
 [#:assignee assignee string? 'N/A]
@@ -96,7 +116,7 @@ Retrieves a job, including all the changes made to the job.
 [#:state state string? 'N/A]
 [#:jobChange jobChange string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -107,11 +127,11 @@ Inserts a new job. Only the state field of the job should be set.
 
 @racket[title]: Job title
 
+@racket[address]: Job address as newline (Unix) separated string
+
 @racket[lat]: The latitude coordinate of this job's location.
 
 @racket[lng]: The longitude coordinate of this job's location.
-
-@racket[address]: Job address as newline (Unix) separated string
 
 @racket[teamId]: Team ID
 
@@ -136,24 +156,24 @@ Inserts a new job. Only the state field of the job should be set.
 }
 
 @defproc[(coordinate.jobs.patch
-[jobId string?]
 [teamId string?]
+[jobId string?]
 [#:title title string? 'N/A]
-[#:progress progress string? 'N/A]
-[#:lat lat string? 'N/A]
-[#:lng lng string? 'N/A]
 [#:address address string? 'N/A]
+[#:progress progress string? 'N/A]
 [#:customField customField string? 'N/A]
 [#:assignee assignee string? 'N/A]
 [#:customerName customerName string? 'N/A]
 [#:customerPhoneNumber customerPhoneNumber string? 'N/A]
 [#:note note string? 'N/A]
+[#:lat lat string? 'N/A]
+[#:lng lng string? 'N/A]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:state state string? 'N/A]
 [#:jobChange jobChange string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -162,19 +182,15 @@ Inserts a new job. Only the state field of the job should be set.
 ) jsexpr?]{
 Updates a job. Fields that are set in the job state will be updated. This method supports patch semantics.
 
-@racket[jobId]: Job number
-
 @racket[teamId]: Team ID
+
+@racket[jobId]: Job number
 
 @racket[title]: Job title
 
-@racket[progress]: Job progress
-
-@racket[lat]: The latitude coordinate of this job's location.
-
-@racket[lng]: The longitude coordinate of this job's location.
-
 @racket[address]: Job address as newline (Unix) separated string
+
+@racket[progress]: Job progress
 
 @racket[customField]: Map from custom field id (from /team//custom_fields) to the field value. For example '123=Alice'
 
@@ -185,6 +201,10 @@ Updates a job. Fields that are set in the job state will be updated. This method
 @racket[customerPhoneNumber]: Customer phone number
 
 @racket[note]: Job note as newline (Unix) separated string
+
+@racket[lat]: The latitude coordinate of this job's location.
+
+@racket[lng]: The longitude coordinate of this job's location.
 
 @racket[id]: Job id.
 
@@ -197,24 +217,24 @@ Updates a job. Fields that are set in the job state will be updated. This method
 }
 
 @defproc[(coordinate.jobs.update
-[jobId string?]
 [teamId string?]
+[jobId string?]
 [#:title title string? 'N/A]
-[#:progress progress string? 'N/A]
-[#:lat lat string? 'N/A]
-[#:lng lng string? 'N/A]
 [#:address address string? 'N/A]
+[#:progress progress string? 'N/A]
 [#:customField customField string? 'N/A]
 [#:assignee assignee string? 'N/A]
 [#:customerName customerName string? 'N/A]
 [#:customerPhoneNumber customerPhoneNumber string? 'N/A]
 [#:note note string? 'N/A]
+[#:lat lat string? 'N/A]
+[#:lng lng string? 'N/A]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:state state string? 'N/A]
 [#:jobChange jobChange string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -223,19 +243,15 @@ Updates a job. Fields that are set in the job state will be updated. This method
 ) jsexpr?]{
 Updates a job. Fields that are set in the job state will be updated.
 
-@racket[jobId]: Job number
-
 @racket[teamId]: Team ID
+
+@racket[jobId]: Job number
 
 @racket[title]: Job title
 
-@racket[progress]: Job progress
-
-@racket[lat]: The latitude coordinate of this job's location.
-
-@racket[lng]: The longitude coordinate of this job's location.
-
 @racket[address]: Job address as newline (Unix) separated string
+
+@racket[progress]: Job progress
 
 @racket[customField]: Map from custom field id (from /team//custom_fields) to the field value. For example '123=Alice'
 
@@ -247,6 +263,10 @@ Updates a job. Fields that are set in the job state will be updated.
 
 @racket[note]: Job note as newline (Unix) separated string
 
+@racket[lat]: The latitude coordinate of this job's location.
+
+@racket[lng]: The longitude coordinate of this job's location.
+
 @racket[id]: Job id.
 
 @racket[kind]: Identifies this object as a job.
@@ -254,23 +274,6 @@ Updates a job. Fields that are set in the job state will be updated.
 @racket[state]: Current job state.
 
 @racket[jobChange]: List of job changes since it was created. The first change corresponds to the state of the job when it was created.
-
-}
-
-@section{Functions for the `customFieldDef' resource}
-@defproc[(coordinate.customFieldDef.list
-[teamId string?]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Retrieves a list of custom field definitions for a team.
-
-@racket[teamId]: Team ID
 
 }
 

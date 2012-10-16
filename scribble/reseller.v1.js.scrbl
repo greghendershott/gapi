@@ -1,23 +1,25 @@
 #lang scribble/manual
+@(require planet/scribble (for-label racket))
+
 @title{Enterprise Apps Reseller API v1}
+@margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you create and manage your customers and their subscriptions.
-@hyperlink["https://developers.google.com/google-apps/reseller/" "Documentation link"]
+@hyperlink["https://developers.google.com/google-apps/reseller/" "Google documentation."]
 @table-of-contents{}
+@defmodule[gapi/macro]
+@racket[(require-gapi-doc "reseller.v1.js")]
 @section{API Parameters}
-These optional keyword arguments may be passed to all functions for this API:
-@defproc[(any-function
+The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+@defproc[(_
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
 ) jsexpr?]{
-This is not actually a function. This is just using Scribble's
-defproc form to list the optional keyword arguments that may be passed
-to any function for this API.
-
+@margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
 
 @racket[key]: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
@@ -34,14 +36,15 @@ to any function for this API.
 
 }
 
+@section{Resources}
 
-@section{Functions for the `subscriptions' resource}
+@subsection{subscriptions}
 @defproc[(reseller.subscriptions.list
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:customerNamePrefix customerNamePrefix string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -59,10 +62,10 @@ Lists subscriptions of a reseller, optionally filtered by a customer name prefix
 }
 
 @defproc[(reseller.subscriptions.get
-[customerId string?]
 [subscriptionId string?]
+[customerId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -71,9 +74,9 @@ Lists subscriptions of a reseller, optionally filtered by a customer name prefix
 ) jsexpr?]{
 Gets a subscription of the customer.
 
-@racket[customerId]: Id of the Customer
-
 @racket[subscriptionId]: Id of the subscription, which is unique for a customer
+
+@racket[customerId]: Id of the Customer
 
 }
 
@@ -86,11 +89,11 @@ Gets a subscription of the customer.
 [#:seats seats string? 'N/A]
 [#:plan plan string? 'N/A]
 [#:renewalSettings renewalSettings string? 'N/A]
-[#:skuId skuId string? 'N/A]
 [#:subscriptionId subscriptionId string? 'N/A]
 [#:trialSettings trialSettings string? 'N/A]
+[#:skuId skuId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -115,23 +118,23 @@ Creates/Transfers a subscription for the customer.
 
 @racket[renewalSettings]: Renewal settings of the subscription.
 
-@racket[skuId]: Name of the sku for which this subscription is purchased.
-
 @racket[subscriptionId]: The id of the subscription.
 
 @racket[trialSettings]: Trial Settings of the subscription.
 
+@racket[skuId]: Name of the sku for which this subscription is purchased.
+
 }
 
 @defproc[(reseller.subscriptions.changePlan
-[customerId string?]
 [subscriptionId string?]
+[customerId string?]
 [#:kind kind string? 'N/A]
 [#:planName planName string? 'N/A]
 [#:purchaseOrderId purchaseOrderId string? 'N/A]
 [#:seats seats string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -140,9 +143,9 @@ Creates/Transfers a subscription for the customer.
 ) jsexpr?]{
 Changes the plan of a subscription
 
-@racket[customerId]: Id of the Customer
-
 @racket[subscriptionId]: Id of the subscription, which is unique for a customer
+
+@racket[customerId]: Id of the Customer
 
 @racket[kind]: Identifies the resource as a subscription change plan request.
 
@@ -155,12 +158,12 @@ Changes the plan of a subscription
 }
 
 @defproc[(reseller.subscriptions.changeRenewalSettings
-[customerId string?]
 [subscriptionId string?]
+[customerId string?]
 [#:kind kind string? 'N/A]
 [#:renewalType renewalType string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -169,9 +172,9 @@ Changes the plan of a subscription
 ) jsexpr?]{
 Changes the renewal settings of a subscription
 
-@racket[customerId]: Id of the Customer
-
 @racket[subscriptionId]: Id of the subscription, which is unique for a customer
+
+@racket[customerId]: Id of the Customer
 
 @racket[kind]: Identifies the resource as a subscription renewal setting.
 
@@ -180,13 +183,13 @@ Changes the renewal settings of a subscription
 }
 
 @defproc[(reseller.subscriptions.changeSeats
-[customerId string?]
 [subscriptionId string?]
+[customerId string?]
 [#:kind kind string? 'N/A]
 [#:maximumNumberOfSeats maximumNumberOfSeats string? 'N/A]
 [#:numberOfSeats numberOfSeats string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -195,9 +198,9 @@ Changes the renewal settings of a subscription
 ) jsexpr?]{
 Changes the seats configuration of a subscription
 
-@racket[customerId]: Id of the Customer
-
 @racket[subscriptionId]: Id of the subscription, which is unique for a customer
+
+@racket[customerId]: Id of the Customer
 
 @racket[kind]: Identifies the resource as a subscription change plan request.
 
@@ -208,10 +211,10 @@ Changes the seats configuration of a subscription
 }
 
 @defproc[(reseller.subscriptions.startPaidService
-[customerId string?]
 [subscriptionId string?]
+[customerId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -220,18 +223,18 @@ Changes the seats configuration of a subscription
 ) jsexpr?]{
 Starts paid service of a trial subscription
 
-@racket[customerId]: Id of the Customer
-
 @racket[subscriptionId]: Id of the subscription, which is unique for a customer
+
+@racket[customerId]: Id of the Customer
 
 }
 
 @defproc[(reseller.subscriptions.delete
-[customerId string?]
 [subscriptionId string?]
 [deletionType string?]
+[customerId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -240,19 +243,19 @@ Starts paid service of a trial subscription
 ) jsexpr?]{
 Cancels/Downgrades a subscription.
 
-@racket[customerId]: Id of the Customer
-
 @racket[subscriptionId]: Id of the subscription, which is unique for a customer
 
 @racket[deletionType]: Whether the subscription is to be fully cancelled or downgraded
 
+@racket[customerId]: Id of the Customer
+
 }
 
-@section{Functions for the `customers' resource}
+@subsection{customers}
 @defproc[(reseller.customers.get
 [customerId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -270,11 +273,11 @@ Gets a customer resource if one exists and is owned by the reseller.
 [#:kind kind string? 'N/A]
 [#:alternateEmail alternateEmail string? 'N/A]
 [#:customerDomain customerDomain string? 'N/A]
-[#:customerId customerId string? 'N/A]
 [#:phoneNumber phoneNumber string? 'N/A]
 [#:postalAddress postalAddress string? 'N/A]
+[#:customerId customerId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -291,11 +294,11 @@ Creates a customer resource if one does not already exist.
 
 @racket[customerDomain]: The domain name of the customer.
 
-@racket[customerId]: The id of the customer.
-
 @racket[phoneNumber]: The phone number of the customer.
 
 @racket[postalAddress]: The postal address of the customer.
+
+@racket[customerId]: The id of the customer.
 
 }
 
@@ -307,7 +310,7 @@ Creates a customer resource if one does not already exist.
 [#:phoneNumber phoneNumber string? 'N/A]
 [#:postalAddress postalAddress string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -338,7 +341,7 @@ Update a customer resource if one it exists and is owned by the reseller. This m
 [#:phoneNumber phoneNumber string? 'N/A]
 [#:postalAddress postalAddress string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]

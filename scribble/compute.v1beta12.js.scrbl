@@ -1,23 +1,25 @@
 #lang scribble/manual
+@(require planet/scribble (for-label racket))
+
 @title{Compute Engine API v1beta12}
+@margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 API for the Google Compute Engine service.
-@hyperlink["https://developers.google.com/compute/docs/reference/v1beta12" "Documentation link"]
+@hyperlink["https://developers.google.com/compute/docs/reference/v1beta12" "Google documentation."]
 @table-of-contents{}
+@defmodule[gapi/macro]
+@racket[(require-gapi-doc "compute.v1beta12.js")]
 @section{API Parameters}
-These optional keyword arguments may be passed to all functions for this API:
-@defproc[(any-function
+The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+@defproc[(_
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
 ) jsexpr?]{
-This is not actually a function. This is just using Scribble's
-defproc form to list the optional keyword arguments that may be passed
-to any function for this API.
-
+@margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
 
 @racket[key]: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
@@ -34,15 +36,203 @@ to any function for this API.
 
 }
 
+@section{Resources}
 
-@section{Functions for the `disks' resource}
+@subsection{instances}
+@defproc[(compute.instances.list
+[project string?]
+[#:filter filter string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Retrieves the list of instance resources contained within the specified project.
+
+@racket[project]: Name of the project scoping this request.
+
+@racket[filter]: Optional. Filter expression for filtering listed resources.
+
+@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
+
+@racket[pageToken]: Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+
+}
+
+@defproc[(compute.instances.get
+[project string?]
+[instance string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Returns the specified instance resource.
+
+@racket[project]: Name of the project scoping this request.
+
+@racket[instance]: Name of the instance resource to return.
+
+}
+
+@defproc[(compute.instances.insert
+[project string?]
+[#:id id string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:image image string? 'N/A]
+[#:name name string? 'N/A]
+[#:description description string? 'N/A]
+[#:selfLink selfLink string? 'N/A]
+[#:tags tags string? 'N/A]
+[#:status status string? 'N/A]
+[#:creationTimestamp creationTimestamp string? 'N/A]
+[#:zone zone string? 'N/A]
+[#:disks disks string? 'N/A]
+[#:machineType machineType string? 'N/A]
+[#:metadata metadata string? 'N/A]
+[#:networkInterfaces networkInterfaces string? 'N/A]
+[#:serviceAccounts serviceAccounts string? 'N/A]
+[#:statusMessage statusMessage string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Creates an instance resource in the specified project using the data included in the request.
+
+@racket[project]: Name of the project scoping this request.
+
+@racket[id]: Unique identifier for the resource; defined by the server (output only).
+
+@racket[kind]: Type of the resource.
+
+@racket[image]: An optional URL of the disk image resource to be to be installed on this instance; provided by the client when the instance is created. If not specified, the server will choose a default image.
+
+@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
+
+@racket[description]: An optional textual description of the resource; provided by the client when the resource is created.
+
+@racket[selfLink]: Server defined URL for the resource (output only).
+
+@racket[tags]: An optional set of tags applied to this instance. Used to identify valid sources or targets for network firewalls. Provided by the client when the instance is created. Each tag must be 1-63 characters long, and comply with RFC1035.
+
+@racket[status]: Instance status. One of the following values: "PROVISIONING", "STAGING", "RUNNING" (output only).
+
+@racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
+
+@racket[zone]: URL of the zone resource describing where this instance should be hosted; provided by the client when the instance is created.
+
+@racket[disks]: Array of disks associated with this instance. Persistent disks must be created before you can assign them.
+
+@racket[machineType]: URL of the machine type resource describing which machine type to use to host the instance; provided by the client when the instance is created.
+
+@racket[metadata]: Metadata key/value pairs assigned to this instance. Consists of custom metadata or predefined keys; see Instance documentation for more information.
+
+@racket[networkInterfaces]: Array of configurations for this interface. This specifies how this interface is configured to interact with other network services, such as connecting to the internet. Currently, ONE_TO_ONE_NAT is the only access config supported. If there are no accessConfigs specified, then this instance will have no external internet access.
+
+@racket[serviceAccounts]: A list of service accounts each with specified scopes, for which access tokens are to be made available to the instance through metadata queries.
+
+@racket[statusMessage]: An optional, human-readable explanation of the status (output only).
+
+}
+
+@defproc[(compute.instances.addAccessConfig
+[project string?]
+[instance string?]
+[network_interface string?]
+[#:kind kind string? 'N/A]
+[#:name name string? 'N/A]
+[#:type type string? 'N/A]
+[#:natIP natIP string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Adds an access config to an instance's network interface.
+
+@racket[project]: Project name.
+
+@racket[instance]: Instance name.
+
+@racket[network_interface]: Network interface name.
+
+@racket[kind]: Type of the resource.
+
+@racket[name]: Name of this access configuration.
+
+@racket[type]: Type of configuration. Must be set to "ONE_TO_ONE_NAT". This configures port-for-port NAT to the internet.
+
+@racket[natIP]: An external IP address associated with this instance. Specify an unused static IP address available to the project. If left blank, the external IP will be drawn from a shared ephemeral pool.
+
+}
+
+@defproc[(compute.instances.deleteAccessConfig
+[project string?]
+[instance string?]
+[network_interface string?]
+[access_config string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Deletes an access config from an instance's network interface.
+
+@racket[project]: Project name.
+
+@racket[instance]: Instance name.
+
+@racket[network_interface]: Network interface name.
+
+@racket[access_config]: Access config name.
+
+}
+
+@defproc[(compute.instances.delete
+[project string?]
+[instance string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Deletes the specified instance resource.
+
+@racket[project]: Name of the project scoping this request.
+
+@racket[instance]: Name of the instance resource to delete.
+
+}
+
+@subsection{disks}
 @defproc[(compute.disks.list
 [project string?]
 [#:filter filter string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -65,7 +255,7 @@ Retrieves the list of persistent disk resources contained within the specified p
 [disk string?]
 [project string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -86,16 +276,16 @@ Returns the specified persistent disk resource.
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
-[#:status status string? 'N/A]
 [#:description description string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:status status string? 'N/A]
 [#:creationTimestamp creationTimestamp string? 'N/A]
 [#:sizeGb sizeGb string? 'N/A]
 [#:sourceSnapshot sourceSnapshot string? 'N/A]
 [#:sourceSnapshotId sourceSnapshotId string? 'N/A]
 [#:zone zone string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -114,11 +304,11 @@ Creates a persistent disk resource in the specified project using the data inclu
 
 @racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
 
-@racket[status]: The status of disk creation (output only).
-
 @racket[description]: An optional textual description of the resource; provided by the client when the resource is created.
 
 @racket[selfLink]: Server defined URL for the resource (output only).
+
+@racket[status]: The status of disk creation (output only).
 
 @racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
 
@@ -136,7 +326,7 @@ Creates a persistent disk resource in the specified project using the data inclu
 [disk string?]
 [project string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -151,14 +341,14 @@ Deletes the specified persistent disk resource.
 
 }
 
-@section{Functions for the `firewalls' resource}
+@subsection{firewalls}
 @defproc[(compute.firewalls.list
 [project string?]
 [#:filter filter string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -181,7 +371,7 @@ Retrieves the list of firewall resources available to the specified project.
 [project string?]
 [firewall string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -210,7 +400,7 @@ Returns the specified firewall resource.
 [#:sourceTags sourceTags string? 'N/A]
 [#:targetTags targetTags string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -260,7 +450,7 @@ Creates a firewall resource in the specified project using the data included in 
 [#:sourceTags sourceTags string? 'N/A]
 [#:targetTags targetTags string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -312,7 +502,7 @@ Updates the specified firewall resource with the data included in the request. T
 [#:sourceTags sourceTags string? 'N/A]
 [#:targetTags targetTags string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -353,7 +543,7 @@ Updates the specified firewall resource with the data included in the request.
 [project string?]
 [firewall string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -368,14 +558,14 @@ Deletes the specified firewall resource.
 
 }
 
-@section{Functions for the `images' resource}
+@subsection{images}
 @defproc[(compute.images.list
 [project string?]
 [#:filter filter string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -398,7 +588,7 @@ Retrieves the list of image resources available to the specified project.
 [image string?]
 [project string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -426,7 +616,7 @@ Returns the specified image resource.
 [#:rawDisk rawDisk string? 'N/A]
 [#:sourceType sourceType string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -463,7 +653,7 @@ Creates an image resource in the specified project using the data included in th
 [image string?]
 [project string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -478,240 +668,14 @@ Deletes the specified image resource.
 
 }
 
-@section{Functions for the `projects' resource}
-@defproc[(compute.projects.get
-[project string?]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Returns the specified project resource.
-
-@racket[project]: Name of the project resource to retrieve.
-
-}
-
-@defproc[(compute.projects.setCommonInstanceMetadata
-[project string?]
-[#:kind kind string? 'N/A]
-[#:items items string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Sets metadata common to all instances within the specified project using the data included in the request.
-
-@racket[project]: Name of the project scoping this request.
-
-@racket[kind]: Type of the resource.
-
-@racket[items]: Array of key/value pairs. The total size of all keys and values must be less than 512 KB.
-
-}
-
-@section{Functions for the `instances' resource}
-@defproc[(compute.instances.list
-[project string?]
-[#:filter filter string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
-[#:pageToken pageToken string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Retrieves the list of instance resources contained within the specified project.
-
-@racket[project]: Name of the project scoping this request.
-
-@racket[filter]: Optional. Filter expression for filtering listed resources.
-
-@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
-
-@racket[pageToken]: Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-
-}
-
-@defproc[(compute.instances.get
-[project string?]
-[instance string?]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Returns the specified instance resource.
-
-@racket[project]: Name of the project scoping this request.
-
-@racket[instance]: Name of the instance resource to return.
-
-}
-
-@defproc[(compute.instances.insert
-[project string?]
-[#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:image image string? 'N/A]
-[#:name name string? 'N/A]
-[#:status status string? 'N/A]
-[#:description description string? 'N/A]
-[#:selfLink selfLink string? 'N/A]
-[#:creationTimestamp creationTimestamp string? 'N/A]
-[#:zone zone string? 'N/A]
-[#:disks disks string? 'N/A]
-[#:machineType machineType string? 'N/A]
-[#:metadata metadata string? 'N/A]
-[#:networkInterfaces networkInterfaces string? 'N/A]
-[#:serviceAccounts serviceAccounts string? 'N/A]
-[#:statusMessage statusMessage string? 'N/A]
-[#:tags tags string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Creates an instance resource in the specified project using the data included in the request.
-
-@racket[project]: Name of the project scoping this request.
-
-@racket[id]: Unique identifier for the resource; defined by the server (output only).
-
-@racket[kind]: Type of the resource.
-
-@racket[image]: An optional URL of the disk image resource to be to be installed on this instance; provided by the client when the instance is created. If not specified, the server will choose a default image.
-
-@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
-
-@racket[status]: Instance status. One of the following values: "PROVISIONING", "STAGING", "RUNNING" (output only).
-
-@racket[description]: An optional textual description of the resource; provided by the client when the resource is created.
-
-@racket[selfLink]: Server defined URL for the resource (output only).
-
-@racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
-
-@racket[zone]: URL of the zone resource describing where this instance should be hosted; provided by the client when the instance is created.
-
-@racket[disks]: Array of disks associated with this instance. Persistent disks must be created before you can assign them.
-
-@racket[machineType]: URL of the machine type resource describing which machine type to use to host the instance; provided by the client when the instance is created.
-
-@racket[metadata]: Metadata key/value pairs assigned to this instance. Consists of custom metadata or predefined keys; see Instance documentation for more information.
-
-@racket[networkInterfaces]: Array of configurations for this interface. This specifies how this interface is configured to interact with other network services, such as connecting to the internet. Currently, ONE_TO_ONE_NAT is the only access config supported. If there are no accessConfigs specified, then this instance will have no external internet access.
-
-@racket[serviceAccounts]: A list of service accounts each with specified scopes, for which access tokens are to be made available to the instance through metadata queries.
-
-@racket[statusMessage]: An optional, human-readable explanation of the status (output only).
-
-@racket[tags]: An optional set of tags applied to this instance. Used to identify valid sources or targets for network firewalls. Provided by the client when the instance is created. Each tag must be 1-63 characters long, and comply with RFC1035.
-
-}
-
-@defproc[(compute.instances.addAccessConfig
-[project string?]
-[instance string?]
-[network_interface string?]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
-[#:type type string? 'N/A]
-[#:natIP natIP string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Adds an access config to an instance's network interface.
-
-@racket[project]: Project name.
-
-@racket[instance]: Instance name.
-
-@racket[network_interface]: Network interface name.
-
-@racket[kind]: Type of the resource.
-
-@racket[name]: Name of this access configuration.
-
-@racket[type]: Type of configuration. Must be set to "ONE_TO_ONE_NAT". This configures port-for-port NAT to the internet.
-
-@racket[natIP]: An external IP address associated with this instance. Specify an unused static IP address available to the project. If left blank, the external IP will be drawn from a shared ephemeral pool.
-
-}
-
-@defproc[(compute.instances.deleteAccessConfig
-[project string?]
-[instance string?]
-[network_interface string?]
-[access_config string?]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Deletes an access config from an instance's network interface.
-
-@racket[project]: Project name.
-
-@racket[instance]: Instance name.
-
-@racket[network_interface]: Network interface name.
-
-@racket[access_config]: Access config name.
-
-}
-
-@defproc[(compute.instances.delete
-[project string?]
-[instance string?]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Deletes the specified instance resource.
-
-@racket[project]: Name of the project scoping this request.
-
-@racket[instance]: Name of the instance resource to delete.
-
-}
-
-@section{Functions for the `kernels' resource}
+@subsection{kernels}
 @defproc[(compute.kernels.list
 [project string?]
 [#:filter filter string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -734,7 +698,7 @@ Retrieves the list of kernel resources available to the specified project.
 [project string?]
 [kernel string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -749,14 +713,14 @@ Returns the specified kernel resource.
 
 }
 
-@section{Functions for the `machineTypes' resource}
+@subsection{machineTypes}
 @defproc[(compute.machineTypes.list
 [project string?]
 [#:filter filter string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -779,7 +743,7 @@ Retrieves the list of machine type resources available to the specified project.
 [machineType string?]
 [project string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -794,14 +758,14 @@ Returns the specified machine type resource.
 
 }
 
-@section{Functions for the `networks' resource}
+@subsection{networks}
 @defproc[(compute.networks.list
 [project string?]
 [#:filter filter string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -824,7 +788,7 @@ Retrieves the list of network resources available to the specified project.
 [network string?]
 [project string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -850,7 +814,7 @@ Returns the specified network resource.
 [#:IPv4Range IPv4Range string? 'N/A]
 [#:gatewayIPv4 gatewayIPv4 string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -883,7 +847,7 @@ Creates a network resource in the specified project using the data included in t
 [network string?]
 [project string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -898,14 +862,14 @@ Deletes the specified network resource.
 
 }
 
-@section{Functions for the `operations' resource}
+@subsection{operations}
 @defproc[(compute.operations.list
 [project string?]
 [#:filter filter string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -928,7 +892,7 @@ Retrieves the list of operation resources contained within the specified project
 [project string?]
 [operation string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -947,7 +911,7 @@ Retrieves the specified operation resource.
 [project string?]
 [operation string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -962,14 +926,53 @@ Deletes the specified operation resource.
 
 }
 
-@section{Functions for the `snapshots' resource}
+@subsection{projects}
+@defproc[(compute.projects.get
+[project string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Returns the specified project resource.
+
+@racket[project]: Name of the project resource to retrieve.
+
+}
+
+@defproc[(compute.projects.setCommonInstanceMetadata
+[project string?]
+[#:kind kind string? 'N/A]
+[#:items items string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Sets metadata common to all instances within the specified project using the data included in the request.
+
+@racket[project]: Name of the project scoping this request.
+
+@racket[kind]: Type of the resource.
+
+@racket[items]: Array of key/value pairs. The total size of all keys and values must be less than 512 KB.
+
+}
+
+@subsection{snapshots}
 @defproc[(compute.snapshots.list
 [project string?]
 [#:filter filter string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -992,7 +995,7 @@ Retrieves the list of persistent disk snapshot resources contained within the sp
 [project string?]
 [snapshot string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -1012,15 +1015,15 @@ Returns the specified persistent disk snapshot resource.
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
-[#:status status string? 'N/A]
 [#:description description string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:status status string? 'N/A]
 [#:creationTimestamp creationTimestamp string? 'N/A]
 [#:diskSizeGb diskSizeGb string? 'N/A]
 [#:sourceDisk sourceDisk string? 'N/A]
 [#:sourceDiskId sourceDiskId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -1037,11 +1040,11 @@ Creates a persistent disk snapshot resource in the specified project using the d
 
 @racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
 
-@racket[status]: The status of the persistent disk snapshot (output only).
-
 @racket[description]: An optional textual description of the resource; provided by the client when the resource is created.
 
 @racket[selfLink]: Server defined URL for the resource (output only).
+
+@racket[status]: The status of the persistent disk snapshot (output only).
 
 @racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
 
@@ -1057,7 +1060,7 @@ Creates a persistent disk snapshot resource in the specified project using the d
 [project string?]
 [snapshot string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -1072,14 +1075,14 @@ Deletes the specified persistent disk snapshot resource.
 
 }
 
-@section{Functions for the `zones' resource}
+@subsection{zones}
 @defproc[(compute.zones.list
 [project string?]
 [#:filter filter string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -1102,7 +1105,7 @@ Retrieves the list of zone resources available to the specified project.
 [zone string?]
 [project string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]

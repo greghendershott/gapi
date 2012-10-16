@@ -1,23 +1,25 @@
 #lang scribble/manual
+@(require planet/scribble (for-label racket))
+
 @title{Fusion Tables API v1}
+@margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 API for working with Fusion Tables data.
-@hyperlink["https://developers.google.com/fusiontables" "Documentation link"]
+@hyperlink["https://developers.google.com/fusiontables" "Google documentation."]
 @table-of-contents{}
+@defmodule[gapi/macro]
+@racket[(require-gapi-doc "fusiontables.v1.js")]
 @section{API Parameters}
-These optional keyword arguments may be passed to all functions for this API:
-@defproc[(any-function
+The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+@defproc[(_
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
 ) jsexpr?]{
-This is not actually a function. This is just using Scribble's
-defproc form to list the optional keyword arguments that may be passed
-to any function for this API.
-
+@margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
 
 @racket[key]: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
@@ -34,13 +36,14 @@ to any function for this API.
 
 }
 
+@section{Resources}
 
-@section{Functions for the `table' resource}
+@subsection{table}
 @defproc[(fusiontables.table.list
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -58,7 +61,7 @@ Retrieves a list of tables a user owns.
 @defproc[(fusiontables.table.get
 [tableId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -75,15 +78,15 @@ Retrieves a specific table by its id.
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
 [#:description description string? 'N/A]
-[#:attribution attribution string? 'N/A]
-[#:tableId tableId string? 'N/A]
 [#:columns columns string? 'N/A]
+[#:tableId tableId string? 'N/A]
+[#:attribution attribution string? 'N/A]
 [#:attributionLink attributionLink string? 'N/A]
 [#:baseTableIds baseTableIds string? 'N/A]
 [#:isExportable isExportable string? 'N/A]
 [#:sql sql string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -98,11 +101,11 @@ Creates a new table.
 
 @racket[description]: Optional description assigned to the table.
 
-@racket[attribution]: Optional attribution assigned to the table.
+@racket[columns]: Columns in the table.
 
 @racket[tableId]: Encrypted unique alphanumeric identifier for the table.
 
-@racket[columns]: Columns in the table.
+@racket[attribution]: Optional attribution assigned to the table.
 
 @racket[attributionLink]: Optional link for attribution.
 
@@ -120,14 +123,14 @@ Creates a new table.
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
 [#:description description string? 'N/A]
-[#:attribution attribution string? 'N/A]
 [#:columns columns string? 'N/A]
+[#:attribution attribution string? 'N/A]
 [#:attributionLink attributionLink string? 'N/A]
 [#:baseTableIds baseTableIds string? 'N/A]
 [#:isExportable isExportable string? 'N/A]
 [#:sql sql string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -146,9 +149,9 @@ Updates an existing table. Unless explicitly requested, only the name, descripti
 
 @racket[description]: Optional description assigned to the table.
 
-@racket[attribution]: Optional attribution assigned to the table.
-
 @racket[columns]: Columns in the table.
+
+@racket[attribution]: Optional attribution assigned to the table.
 
 @racket[attributionLink]: Optional link for attribution.
 
@@ -163,7 +166,7 @@ Updates an existing table. Unless explicitly requested, only the name, descripti
 @defproc[(fusiontables.table.copy
 [tableId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -182,14 +185,14 @@ Copies a table.
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
 [#:description description string? 'N/A]
-[#:attribution attribution string? 'N/A]
 [#:columns columns string? 'N/A]
+[#:attribution attribution string? 'N/A]
 [#:attributionLink attributionLink string? 'N/A]
 [#:baseTableIds baseTableIds string? 'N/A]
 [#:isExportable isExportable string? 'N/A]
 [#:sql sql string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -208,9 +211,9 @@ Updates an existing table. Unless explicitly requested, only the name, descripti
 
 @racket[description]: Optional description assigned to the table.
 
-@racket[attribution]: Optional attribution assigned to the table.
-
 @racket[columns]: Columns in the table.
+
+@racket[attribution]: Optional attribution assigned to the table.
 
 @racket[attributionLink]: Optional link for attribution.
 
@@ -225,7 +228,7 @@ Updates an existing table. Unless explicitly requested, only the name, descripti
 @defproc[(fusiontables.table.delete
 [tableId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -238,7 +241,7 @@ Deletes a table.
 
 }
 
-@section{Functions for the `import' resource}
+@subsection{import}
 @defproc[(fusiontables.import.insert
 [tableId string?]
 [#:delimiter delimiter string? 'N/A]
@@ -247,7 +250,7 @@ Deletes a table.
 [#:isStrict isStrict string? 'N/A]
 [#:startLine startLine string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -270,13 +273,13 @@ Import more rows into a table.
 
 }
 
-@section{Functions for the `query' resource}
+@subsection{query}
 @defproc[(fusiontables.query.sql
 [sql string?]
 [#:hdrs hdrs string? 'N/A]
 [#:typed typed string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -298,7 +301,7 @@ Executes an SQL SELECT/INSERT/UPDATE/DELETE/SHOW/DESCRIBE/CREATE statement.
 [#:hdrs hdrs string? 'N/A]
 [#:typed typed string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -315,13 +318,13 @@ Executes an SQL SELECT/SHOW/DESCRIBE statement.
 
 }
 
-@section{Functions for the `style' resource}
+@subsection{style}
 @defproc[(fusiontables.style.list
 [tableId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -339,10 +342,10 @@ Retrieves a list of styles.
 }
 
 @defproc[(fusiontables.style.get
-[tableId string?]
 [styleId string?]
+[tableId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -351,9 +354,9 @@ Retrieves a list of styles.
 ) jsexpr?]{
 Gets a specific style.
 
-@racket[tableId]: Table to which the requested style belongs
-
 @racket[styleId]: Identifier (integer) for a specific style in a table
+
+@racket[tableId]: Table to which the requested style belongs
 
 }
 
@@ -367,7 +370,7 @@ Gets a specific style.
 [#:polylineOptions polylineOptions string? 'N/A]
 [#:styleId styleId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -395,8 +398,8 @@ Adds a new style for the table.
 }
 
 @defproc[(fusiontables.style.patch
-[tableId string?]
 [styleId string?]
+[tableId string?]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
 [#:isDefaultForTable isDefaultForTable string? 'N/A]
@@ -404,7 +407,7 @@ Adds a new style for the table.
 [#:polygonOptions polygonOptions string? 'N/A]
 [#:polylineOptions polylineOptions string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -413,9 +416,9 @@ Adds a new style for the table.
 ) jsexpr?]{
 Updates an existing style. This method supports patch semantics.
 
-@racket[tableId]: Table whose style is being updated.
-
 @racket[styleId]: Identifier (within a table) for the style being updated.
+
+@racket[tableId]: Table whose style is being updated.
 
 @racket[kind]: Type name: an individual style setting. A StyleSetting contains the style defintions for points, lines, and polygons in a table. Since a table can have any one or all of them, a style definition can have point, line and polygon style definitions.
 
@@ -432,8 +435,8 @@ Updates an existing style. This method supports patch semantics.
 }
 
 @defproc[(fusiontables.style.update
-[tableId string?]
 [styleId string?]
+[tableId string?]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
 [#:isDefaultForTable isDefaultForTable string? 'N/A]
@@ -441,7 +444,7 @@ Updates an existing style. This method supports patch semantics.
 [#:polygonOptions polygonOptions string? 'N/A]
 [#:polylineOptions polylineOptions string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -450,9 +453,9 @@ Updates an existing style. This method supports patch semantics.
 ) jsexpr?]{
 Updates an existing style.
 
-@racket[tableId]: Table whose style is being updated.
-
 @racket[styleId]: Identifier (within a table) for the style being updated.
+
+@racket[tableId]: Table whose style is being updated.
 
 @racket[kind]: Type name: an individual style setting. A StyleSetting contains the style defintions for points, lines, and polygons in a table. Since a table can have any one or all of them, a style definition can have point, line and polygon style definitions.
 
@@ -469,10 +472,10 @@ Updates an existing style.
 }
 
 @defproc[(fusiontables.style.delete
-[tableId string?]
 [styleId string?]
+[tableId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -481,19 +484,19 @@ Updates an existing style.
 ) jsexpr?]{
 Deletes a style.
 
-@racket[tableId]: Table from which the style is being deleted
-
 @racket[styleId]: Identifier (within a table) for the style being deleted
+
+@racket[tableId]: Table from which the style is being deleted
 
 }
 
-@section{Functions for the `template' resource}
+@subsection{template}
 @defproc[(fusiontables.template.list
 [tableId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -514,7 +517,7 @@ Retrieves a list of templates.
 [tableId string?]
 [templateId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -538,7 +541,7 @@ Retrieves a specific template by its id
 [#:automaticColumnNames automaticColumnNames string? 'N/A]
 [#:templateId templateId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -572,7 +575,7 @@ Creates a new template for the table.
 [#:isDefaultForTable isDefaultForTable string? 'N/A]
 [#:automaticColumnNames automaticColumnNames string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -606,7 +609,7 @@ Updates an existing template. This method supports patch semantics.
 [#:isDefaultForTable isDefaultForTable string? 'N/A]
 [#:automaticColumnNames automaticColumnNames string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -635,7 +638,7 @@ Updates an existing template
 [tableId string?]
 [templateId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -650,13 +653,13 @@ Deletes a template
 
 }
 
-@section{Functions for the `column' resource}
+@subsection{column}
 @defproc[(fusiontables.column.list
 [tableId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -674,10 +677,10 @@ Retrieves a list of columns.
 }
 
 @defproc[(fusiontables.column.get
-[tableId string?]
 [columnId string?]
+[tableId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -686,9 +689,9 @@ Retrieves a list of columns.
 ) jsexpr?]{
 Retrieves a specific column by its id.
 
-@racket[tableId]: Table to which the column belongs.
-
 @racket[columnId]: Name or identifier for the column that is being requested.
+
+@racket[tableId]: Table to which the column belongs.
 
 }
 
@@ -700,7 +703,7 @@ Retrieves a specific column by its id.
 [#:columnId columnId string? 'N/A]
 [#:baseColumn baseColumn string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -724,14 +727,14 @@ Adds a new column to the table.
 }
 
 @defproc[(fusiontables.column.patch
-[tableId string?]
 [columnId string?]
+[tableId string?]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
 [#:type type string? 'N/A]
 [#:baseColumn baseColumn string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -740,9 +743,9 @@ Adds a new column to the table.
 ) jsexpr?]{
 Updates the name or type of an existing column. This method supports patch semantics.
 
-@racket[tableId]: Table for which the column is being updated.
-
 @racket[columnId]: Name or identifier for the column that is being updated.
+
+@racket[tableId]: Table for which the column is being updated.
 
 @racket[kind]: Type name: a template for an individual column.
 
@@ -755,14 +758,14 @@ Updates the name or type of an existing column. This method supports patch seman
 }
 
 @defproc[(fusiontables.column.update
-[tableId string?]
 [columnId string?]
+[tableId string?]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
 [#:type type string? 'N/A]
 [#:baseColumn baseColumn string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -771,9 +774,9 @@ Updates the name or type of an existing column. This method supports patch seman
 ) jsexpr?]{
 Updates the name or type of an existing column.
 
-@racket[tableId]: Table for which the column is being updated.
-
 @racket[columnId]: Name or identifier for the column that is being updated.
+
+@racket[tableId]: Table for which the column is being updated.
 
 @racket[kind]: Type name: a template for an individual column.
 
@@ -786,10 +789,10 @@ Updates the name or type of an existing column.
 }
 
 @defproc[(fusiontables.column.delete
-[tableId string?]
 [columnId string?]
+[tableId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -798,9 +801,9 @@ Updates the name or type of an existing column.
 ) jsexpr?]{
 Deletes the column.
 
-@racket[tableId]: Table from which the column is being deleted.
-
 @racket[columnId]: Name or identifier for the column being deleted.
+
+@racket[tableId]: Table from which the column is being deleted.
 
 }
 

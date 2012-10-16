@@ -1,23 +1,25 @@
 #lang scribble/manual
+@(require planet/scribble (for-label racket))
+
 @title{Google Affiliate Network API v1beta1}
+@margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you have programmatic access to your Google Affiliate Network data.
-@hyperlink["https://developers.google.com/affiliate-network/" "Documentation link"]
+@hyperlink["https://developers.google.com/affiliate-network/" "Google documentation."]
 @table-of-contents{}
+@defmodule[gapi/macro]
+@racket[(require-gapi-doc "gan.v1beta1.js")]
 @section{API Parameters}
-These optional keyword arguments may be passed to all functions for this API:
-@defproc[(any-function
+The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+@defproc[(_
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
 ) jsexpr?]{
-This is not actually a function. This is just using Scribble's
-defproc form to list the optional keyword arguments that may be passed
-to any function for this API.
-
+@margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
 
 @racket[key]: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
@@ -34,8 +36,9 @@ to any function for this API.
 
 }
 
+@section{Resources}
 
-@section{Functions for the `advertisers' resource}
+@subsection{advertisers}
 @defproc[(gan.advertisers.list
 [role string?]
 [roleId string?]
@@ -47,7 +50,7 @@ to any function for this API.
 [#:minSevenDayEpc minSevenDayEpc string? 'N/A]
 [#:relationshipStatus relationshipStatus string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -81,7 +84,7 @@ Retrieves data about all advertisers that the requesting advertiser/publisher ha
 [roleId string?]
 [#:advertiserId advertiserId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -98,13 +101,13 @@ Retrieves data about a single advertiser if that the requesting advertiser/publi
 
 }
 
-@section{Functions for the `ccOffers' resource}
+@subsection{ccOffers}
 @defproc[(gan.ccOffers.list
 [publisher string?]
 [#:projection projection string? 'N/A]
 [#:advertiser advertiser string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -121,12 +124,12 @@ Retrieves credit card offers for the given publisher.
 
 }
 
-@section{Functions for the `events' resource}
+@subsection{events}
 @defproc[(gan.events.list
 [role string?]
 [roleId string?]
-[#:status status string? 'N/A]
 [#:type type string? 'N/A]
+[#:status status string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:sku sku string? 'N/A]
@@ -142,7 +145,7 @@ Retrieves credit card offers for the given publisher.
 [#:modifyDateMin modifyDateMin string? 'N/A]
 [#:productCategory productCategory string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -155,9 +158,9 @@ Retrieves event data for a given advertiser/publisher.
 
 @racket[roleId]: The ID of the requesting advertiser or publisher.
 
-@racket[status]: Filters out all events that do not have the given status. Valid values: 'active', 'canceled'. Optional.
-
 @racket[type]: Filters out all events that are not of the given type. Valid values: 'action', 'transaction', 'charge'. Optional.
+
+@racket[status]: Filters out all events that do not have the given status. Valid values: 'active', 'canceled'. Optional.
 
 @racket[maxResults]: Max number of offers to return in this page. Optional. Defaults to 20.
 
@@ -189,7 +192,7 @@ Retrieves event data for a given advertiser/publisher.
 
 }
 
-@section{Functions for the `links' resource}
+@subsection{links}
 @defproc[(gan.links.list
 [role string?]
 [roleId string?]
@@ -205,7 +208,7 @@ Retrieves event data for a given advertiser/publisher.
 [#:startDateMax startDateMax string? 'N/A]
 [#:startDateMin startDateMin string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -247,7 +250,7 @@ Retrieves all links that match the query parameters.
 [roleId string?]
 [linkId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -286,7 +289,7 @@ Retrieves data about a single link if the requesting advertiser/publisher has ac
 [#:linkType linkType string? 'N/A]
 [#:promotionType promotionType string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -337,7 +340,7 @@ Inserts a new link.
 
 }
 
-@section{Functions for the `publishers' resource}
+@subsection{publishers}
 @defproc[(gan.publishers.list
 [role string?]
 [roleId string?]
@@ -349,7 +352,7 @@ Inserts a new link.
 [#:relationshipStatus relationshipStatus string? 'N/A]
 [#:publisherCategory publisherCategory string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -383,7 +386,7 @@ Retrieves data about all publishers that the requesting advertiser/publisher has
 [roleId string?]
 [#:publisherId publisherId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]

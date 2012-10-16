@@ -1,23 +1,25 @@
 #lang scribble/manual
+@(require planet/scribble (for-label racket))
+
 @title{BigQuery API v2}
+@margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 A data platform for customers to create, manage, share and query data.
-@hyperlink["https://developers.google.com/bigquery/docs/overview" "Documentation link"]
+@hyperlink["https://developers.google.com/bigquery/docs/overview" "Google documentation."]
 @table-of-contents{}
+@defmodule[gapi/macro]
+@racket[(require-gapi-doc "bigquery.v2.js")]
 @section{API Parameters}
-These optional keyword arguments may be passed to all functions for this API:
-@defproc[(any-function
+The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+@defproc[(_
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
 ) jsexpr?]{
-This is not actually a function. This is just using Scribble's
-defproc form to list the optional keyword arguments that may be passed
-to any function for this API.
-
+@margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
 
 @racket[key]: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
@@ -34,14 +36,15 @@ to any function for this API.
 
 }
 
+@section{Resources}
 
-@section{Functions for the `datasets' resource}
+@subsection{datasets}
 @defproc[(bigquery.datasets.list
 [projectId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -62,7 +65,7 @@ Lists all the datasets in the specified project to which the caller has read acc
 [datasetId string?]
 [projectId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -82,15 +85,15 @@ Returns the dataset specified by datasetID.
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:description description string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:etag etag string? 'N/A]
 [#:access access string? 'N/A]
 [#:creationTime creationTime string? 'N/A]
 [#:datasetReference datasetReference string? 'N/A]
 [#:friendlyName friendlyName string? 'N/A]
 [#:lastModifiedTime lastModifiedTime string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -107,9 +110,9 @@ Creates a new empty dataset.
 
 @racket[description]: [Optional] A user-friendly string description for the dataset. This might be shown in BigQuery UI for browsing the dataset.
 
-@racket[etag]: [Output-only] A hash of this resource.
-
 @racket[selfLink]: [Output-only] An URL that can be used to access this resource again. You can use this URL in Get or Update requests to this resource.
+
+@racket[etag]: [Output-only] A hash of this resource.
 
 @racket[access]: [Optional] Describes users' rights on the dataset. You can assign the same role to multiple users, and assign multiple roles to the same user.
 Default values assigned to a new dataset are as follows: OWNER - Project owners, dataset creator READ - Project readers WRITE - Project writers
@@ -133,15 +136,15 @@ Each access object can have only one of the following members: userByEmail, grou
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:description description string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:etag etag string? 'N/A]
 [#:access access string? 'N/A]
 [#:creationTime creationTime string? 'N/A]
 [#:datasetReference datasetReference string? 'N/A]
 [#:friendlyName friendlyName string? 'N/A]
 [#:lastModifiedTime lastModifiedTime string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -160,9 +163,9 @@ Updates information in an existing dataset, specified by datasetId. Properties n
 
 @racket[description]: [Optional] A user-friendly string description for the dataset. This might be shown in BigQuery UI for browsing the dataset.
 
-@racket[etag]: [Output-only] A hash of this resource.
-
 @racket[selfLink]: [Output-only] An URL that can be used to access this resource again. You can use this URL in Get or Update requests to this resource.
+
+@racket[etag]: [Output-only] A hash of this resource.
 
 @racket[access]: [Optional] Describes users' rights on the dataset. You can assign the same role to multiple users, and assign multiple roles to the same user.
 Default values assigned to a new dataset are as follows: OWNER - Project owners, dataset creator READ - Project readers WRITE - Project writers
@@ -186,15 +189,15 @@ Each access object can have only one of the following members: userByEmail, grou
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:description description string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:etag etag string? 'N/A]
 [#:access access string? 'N/A]
 [#:creationTime creationTime string? 'N/A]
 [#:datasetReference datasetReference string? 'N/A]
 [#:friendlyName friendlyName string? 'N/A]
 [#:lastModifiedTime lastModifiedTime string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -213,9 +216,9 @@ Updates information in an existing dataset, specified by datasetId. Properties n
 
 @racket[description]: [Optional] A user-friendly string description for the dataset. This might be shown in BigQuery UI for browsing the dataset.
 
-@racket[etag]: [Output-only] A hash of this resource.
-
 @racket[selfLink]: [Output-only] An URL that can be used to access this resource again. You can use this URL in Get or Update requests to this resource.
+
+@racket[etag]: [Output-only] A hash of this resource.
 
 @racket[access]: [Optional] Describes users' rights on the dataset. You can assign the same role to multiple users, and assign multiple roles to the same user.
 Default values assigned to a new dataset are as follows: OWNER - Project owners, dataset creator READ - Project readers WRITE - Project writers
@@ -238,7 +241,7 @@ Each access object can have only one of the following members: userByEmail, grou
 [projectId string?]
 [#:deleteContents deleteContents string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -255,7 +258,7 @@ Deletes the dataset specified by datasetId value. Before you can delete a datase
 
 }
 
-@section{Functions for the `jobs' resource}
+@subsection{jobs}
 @defproc[(bigquery.jobs.list
 [projectId string?]
 [#:projection projection string? 'N/A]
@@ -264,7 +267,7 @@ Deletes the dataset specified by datasetId value. Before you can delete a datase
 [#:allUsers allUsers string? 'N/A]
 [#:stateFilter stateFilter string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -291,7 +294,7 @@ Lists all the Jobs in the specified project that were started by the user.
 [projectId string?]
 [jobId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -315,7 +318,7 @@ Retrieves the specified job by ID.
 [#:dryRun dryRun string? 'N/A]
 [#:timeoutMs timeoutMs string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -344,14 +347,14 @@ Runs a BigQuery SQL query synchronously and returns query results if the query c
 [projectId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
-[#:status status string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:etag etag string? 'N/A]
+[#:status status string? 'N/A]
 [#:jobReference jobReference string? 'N/A]
 [#:configuration configuration string? 'N/A]
 [#:statistics statistics string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -366,11 +369,11 @@ Starts a new asynchronous job.
 
 @racket[kind]: [Output-only] The type of the resource.
 
-@racket[status]: [Output-only] The status of this job. Examine this value when polling an asynchronous job to see if the job is complete.
+@racket[selfLink]: [Output-only] A URL that can be used to access this resource again.
 
 @racket[etag]: [Output-only] A hash of this resource.
 
-@racket[selfLink]: [Output-only] A URL that can be used to access this resource again.
+@racket[status]: [Output-only] The status of this job. Examine this value when polling an asynchronous job to see if the job is complete.
 
 @racket[jobReference]: [Optional] Reference describing the unique-per-user name of the job.
 
@@ -387,7 +390,7 @@ Starts a new asynchronous job.
 [#:startIndex startIndex string? 'N/A]
 [#:timeoutMs timeoutMs string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -408,12 +411,12 @@ Retrieves the results of a query job.
 
 }
 
-@section{Functions for the `projects' resource}
+@subsection{projects}
 @defproc[(bigquery.projects.list
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -428,14 +431,14 @@ Lists the projects to which you have at least read access.
 
 }
 
-@section{Functions for the `tables' resource}
+@subsection{tables}
 @defproc[(bigquery.tables.list
 [datasetId string?]
 [projectId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -459,7 +462,7 @@ Lists all tables in the specified dataset.
 [datasetId string?]
 [projectId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -483,8 +486,8 @@ Gets the specified table resource by table ID. This method does not return the d
 [#:kind kind string? 'N/A]
 [#:schema schema string? 'N/A]
 [#:description description string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:etag etag string? 'N/A]
 [#:creationTime creationTime string? 'N/A]
 [#:friendlyName friendlyName string? 'N/A]
 [#:lastModifiedTime lastModifiedTime string? 'N/A]
@@ -493,7 +496,7 @@ Gets the specified table resource by table ID. This method does not return the d
 [#:numRows numRows string? 'N/A]
 [#:tableReference tableReference string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -514,9 +517,9 @@ Creates a new, empty table in the dataset.
 
 @racket[description]: [Optional] A user-friendly description of this table.
 
-@racket[etag]: [Output-only] A hash of this resource.
-
 @racket[selfLink]: [Output-only] A URL that can be used to access this resource again.
+
+@racket[etag]: [Output-only] A hash of this resource.
 
 @racket[creationTime]: [Output-only] The time when this table was created, in milliseconds since the epoch.
 
@@ -542,8 +545,8 @@ Creates a new, empty table in the dataset.
 [#:kind kind string? 'N/A]
 [#:schema schema string? 'N/A]
 [#:description description string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:etag etag string? 'N/A]
 [#:creationTime creationTime string? 'N/A]
 [#:friendlyName friendlyName string? 'N/A]
 [#:lastModifiedTime lastModifiedTime string? 'N/A]
@@ -552,7 +555,7 @@ Creates a new, empty table in the dataset.
 [#:numRows numRows string? 'N/A]
 [#:tableReference tableReference string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -575,9 +578,9 @@ Updates information in an existing table, specified by tableId. This method supp
 
 @racket[description]: [Optional] A user-friendly description of this table.
 
-@racket[etag]: [Output-only] A hash of this resource.
-
 @racket[selfLink]: [Output-only] A URL that can be used to access this resource again.
+
+@racket[etag]: [Output-only] A hash of this resource.
 
 @racket[creationTime]: [Output-only] The time when this table was created, in milliseconds since the epoch.
 
@@ -603,8 +606,8 @@ Updates information in an existing table, specified by tableId. This method supp
 [#:kind kind string? 'N/A]
 [#:schema schema string? 'N/A]
 [#:description description string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:etag etag string? 'N/A]
 [#:creationTime creationTime string? 'N/A]
 [#:friendlyName friendlyName string? 'N/A]
 [#:lastModifiedTime lastModifiedTime string? 'N/A]
@@ -613,7 +616,7 @@ Updates information in an existing table, specified by tableId. This method supp
 [#:numRows numRows string? 'N/A]
 [#:tableReference tableReference string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -636,9 +639,9 @@ Updates information in an existing table, specified by tableId.
 
 @racket[description]: [Optional] A user-friendly description of this table.
 
-@racket[etag]: [Output-only] A hash of this resource.
-
 @racket[selfLink]: [Output-only] A URL that can be used to access this resource again.
+
+@racket[etag]: [Output-only] A hash of this resource.
 
 @racket[creationTime]: [Output-only] The time when this table was created, in milliseconds since the epoch.
 
@@ -661,7 +664,7 @@ Updates information in an existing table, specified by tableId.
 [datasetId string?]
 [projectId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -678,7 +681,7 @@ Deletes the table specified by tableId from the dataset. If the table contains d
 
 }
 
-@section{Functions for the `tabledata' resource}
+@subsection{tabledata}
 @defproc[(bigquery.tabledata.list
 [tableId string?]
 [datasetId string?]
@@ -687,7 +690,7 @@ Deletes the table specified by tableId from the dataset. If the table contains d
 [#:pageToken pageToken string? 'N/A]
 [#:startIndex startIndex string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]

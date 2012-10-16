@@ -1,23 +1,25 @@
 #lang scribble/manual
+@(require planet/scribble (for-label racket))
+
 @title{AdSense Management API v1.1}
+@margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Gives AdSense publishers access to their inventory and the ability to generate reports
-@hyperlink["https://developers.google.com/adsense/management/" "Documentation link"]
+@hyperlink["https://developers.google.com/adsense/management/" "Google documentation."]
 @table-of-contents{}
+@defmodule[gapi/macro]
+@racket[(require-gapi-doc "adsense.v1.1.js")]
 @section{API Parameters}
-These optional keyword arguments may be passed to all functions for this API:
-@defproc[(any-function
+The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+@defproc[(_
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
 ) jsexpr?]{
-This is not actually a function. This is just using Scribble's
-defproc form to list the optional keyword arguments that may be passed
-to any function for this API.
-
+@margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
 
 @racket[key]: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
@@ -34,13 +36,15 @@ to any function for this API.
 
 }
 
+@section{Resources}
 
-@section{Functions for the `accounts' resource}
+@subsection{accounts}
+@section{Resources}
 @defproc[(adsense.accounts.list
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -59,7 +63,7 @@ List all accounts available to this AdSense account.
 [accountId string?]
 [#:tree tree string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -74,14 +78,58 @@ Get information about the selected AdSense account.
 
 }
 
-@section{Functions for the `adunits' resource}
+@subsection{customchannels}
+@section{Resources}
+@defproc[(adsense.customchannels.list
+[adClientId string?]
+[#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+List all custom channels in the specified ad client for this AdSense account.
+
+@racket[adClientId]: Ad client for which to list custom channels.
+
+@racket[maxResults]: The maximum number of custom channels to include in the response, used for paging.
+
+@racket[pageToken]: A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+
+}
+
+@defproc[(adsense.customchannels.get
+[adClientId string?]
+[customChannelId string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Get the specified custom channel from the specified ad client.
+
+@racket[adClientId]: Ad client which contains the custom channel.
+
+@racket[customChannelId]: Custom channel to retrieve.
+
+}
+
+@subsection{adunits}
+@section{Resources}
 @defproc[(adsense.adunits.list
 [adClientId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:includeInactive includeInactive string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -104,7 +152,7 @@ List all ad units in the specified ad client for this AdSense account.
 [adClientId string?]
 [adUnitId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -119,12 +167,12 @@ Gets the specified ad unit in the specified ad client.
 
 }
 
-@section{Functions for the `adclients' resource}
+@subsection{adclients}
 @defproc[(adsense.adclients.list
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -139,49 +187,7 @@ List all ad clients in this AdSense account.
 
 }
 
-@section{Functions for the `customchannels' resource}
-@defproc[(adsense.customchannels.list
-[adClientId string?]
-[#:maxResults maxResults string? 'N/A]
-[#:pageToken pageToken string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-List all custom channels in the specified ad client for this AdSense account.
-
-@racket[adClientId]: Ad client for which to list custom channels.
-
-@racket[maxResults]: The maximum number of custom channels to include in the response, used for paging.
-
-@racket[pageToken]: A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-
-}
-
-@defproc[(adsense.customchannels.get
-[adClientId string?]
-[customChannelId string?]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Get the specified custom channel from the specified ad client.
-
-@racket[adClientId]: Ad client which contains the custom channel.
-
-@racket[customChannelId]: Custom channel to retrieve.
-
-}
-
-@section{Functions for the `reports' resource}
+@subsection{reports}
 @defproc[(adsense.reports.generate
 [endDate string?]
 [startDate string?]
@@ -190,12 +196,12 @@ Get the specified custom channel from the specified ad client.
 [#:accountId accountId string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
 [#:currency currency string? 'N/A]
-[#:metric metric string? 'N/A]
 [#:dimension dimension string? 'N/A]
 [#:locale locale string? 'N/A]
+[#:metric metric string? 'N/A]
 [#:startIndex startIndex string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -218,23 +224,23 @@ Generate an AdSense report based on the report request sent in the query paramet
 
 @racket[currency]: Optional currency to use when reporting on monetary metrics. Defaults to the account's currency if not set.
 
-@racket[metric]: Numeric columns to include in the report.
-
 @racket[dimension]: Dimensions to base the report on.
 
 @racket[locale]: Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+
+@racket[metric]: Numeric columns to include in the report.
 
 @racket[startIndex]: Index of the first row of report data to return.
 
 }
 
-@section{Functions for the `urlchannels' resource}
+@subsection{urlchannels}
 @defproc[(adsense.urlchannels.list
 [adClientId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]

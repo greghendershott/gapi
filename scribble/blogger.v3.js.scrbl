@@ -1,23 +1,25 @@
 #lang scribble/manual
+@(require planet/scribble (for-label racket))
+
 @title{Blogger API v3}
+@margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 API for access to the data within Blogger.
-@hyperlink["https://developers.google.com/blogger/docs/3.0/getting_started" "Documentation link"]
+@hyperlink["https://developers.google.com/blogger/docs/3.0/getting_started" "Google documentation."]
 @table-of-contents{}
+@defmodule[gapi/macro]
+@racket[(require-gapi-doc "blogger.v3.js")]
 @section{API Parameters}
-These optional keyword arguments may be passed to all functions for this API:
-@defproc[(any-function
+The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+@defproc[(_
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
 ) jsexpr?]{
-This is not actually a function. This is just using Scribble's
-defproc form to list the optional keyword arguments that may be passed
-to any function for this API.
-
+@margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
 
 @racket[key]: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
@@ -34,30 +36,14 @@ to any function for this API.
 
 }
 
+@section{Resources}
 
-@section{Functions for the `users' resource}
-@defproc[(blogger.users.get
-[userId string?]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Gets one user by id.
-
-@racket[userId]: The ID of the user to get.
-
-}
-
-@section{Functions for the `pages' resource}
+@subsection{pages}
 @defproc[(blogger.pages.list
 [blogId string?]
 [#:fetchBodies fetchBodies string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -76,7 +62,7 @@ Retrieves pages for a blog, possibly filtered.
 [blogId string?]
 [pageId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -91,17 +77,17 @@ Gets one blog page by id.
 
 }
 
-@section{Functions for the `posts' resource}
+@subsection{posts}
 @defproc[(blogger.posts.list
 [blogId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
-[#:labels labels string? 'N/A]
 [#:endDate endDate string? 'N/A]
-[#:fetchBodies fetchBodies string? 'N/A]
 [#:startDate startDate string? 'N/A]
+[#:labels labels string? 'N/A]
+[#:fetchBodies fetchBodies string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -116,13 +102,13 @@ Retrieves a list of posts, possibly filtered.
 
 @racket[pageToken]: Continuation token if the request is paged.
 
-@racket[labels]: Comma-separated list of labels to search for.
-
 @racket[endDate]: Latest post date to fetch, a date-time with RFC 3339 formatting.
 
-@racket[fetchBodies]: Whether the body content of posts is included.
-
 @racket[startDate]: Earliest post date to fetch, a date-time with RFC 3339 formatting.
+
+@racket[labels]: Comma-separated list of labels to search for.
+
+@racket[fetchBodies]: Whether the body content of posts is included.
 
 }
 
@@ -131,7 +117,7 @@ Retrieves a list of posts, possibly filtered.
 [postId string?]
 [#:maxComments maxComments string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -148,6 +134,25 @@ Get a post by id.
 
 }
 
+@defproc[(blogger.posts.search
+[blogId string?]
+[#:q q string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Search for a post.
+
+@racket[blogId]: ID of the blog to fetch the post from.
+
+@racket[q]: Query terms to search this blog for matching posts.
+
+}
+
 @defproc[(blogger.posts.insert
 [blogId string?]
 [#:id id string? 'N/A]
@@ -158,14 +163,14 @@ Get a post by id.
 [#:location location string? 'N/A]
 [#:content content string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:labels labels string? 'N/A]
 [#:updated updated string? 'N/A]
-[#:customMetaData customMetaData string? 'N/A]
 [#:published published string? 'N/A]
-[#:blog blog string? 'N/A]
 [#:replies replies string? 'N/A]
+[#:customMetaData customMetaData string? 'N/A]
+[#:blog blog string? 'N/A]
+[#:labels labels string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -192,36 +197,17 @@ Add a post.
 
 @racket[selfLink]: The API REST URL to fetch this resource from.
 
-@racket[labels]: The list of labels this Post was tagged with.
-
 @racket[updated]: RFC 3339 date-time when this Post was last updated.
-
-@racket[customMetaData]: The JSON meta-data for the Post.
 
 @racket[published]: RFC 3339 date-time when this Post was published.
 
-@racket[blog]: Data about the blog containing this Post.
-
 @racket[replies]: The container of comments on this Post.
 
-}
+@racket[customMetaData]: The JSON meta-data for the Post.
 
-@defproc[(blogger.posts.search
-[blogId string?]
-[#:q q string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Search for a post.
+@racket[blog]: Data about the blog containing this Post.
 
-@racket[blogId]: ID of the blog to fetch the post from.
-
-@racket[q]: Query terms to search this blog for matching posts.
+@racket[labels]: The list of labels this Post was tagged with.
 
 }
 
@@ -236,14 +222,14 @@ Search for a post.
 [#:location location string? 'N/A]
 [#:content content string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:labels labels string? 'N/A]
 [#:updated updated string? 'N/A]
-[#:customMetaData customMetaData string? 'N/A]
 [#:published published string? 'N/A]
-[#:blog blog string? 'N/A]
 [#:replies replies string? 'N/A]
+[#:customMetaData customMetaData string? 'N/A]
+[#:blog blog string? 'N/A]
+[#:labels labels string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -272,17 +258,17 @@ Update a post. This method supports patch semantics.
 
 @racket[selfLink]: The API REST URL to fetch this resource from.
 
-@racket[labels]: The list of labels this Post was tagged with.
-
 @racket[updated]: RFC 3339 date-time when this Post was last updated.
-
-@racket[customMetaData]: The JSON meta-data for the Post.
 
 @racket[published]: RFC 3339 date-time when this Post was published.
 
+@racket[replies]: The container of comments on this Post.
+
+@racket[customMetaData]: The JSON meta-data for the Post.
+
 @racket[blog]: Data about the blog containing this Post.
 
-@racket[replies]: The container of comments on this Post.
+@racket[labels]: The list of labels this Post was tagged with.
 
 }
 
@@ -291,7 +277,7 @@ Update a post. This method supports patch semantics.
 [#:path path string? 'N/A]
 [#:maxComments maxComments string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -319,14 +305,14 @@ Retrieve a Post by Path.
 [#:location location string? 'N/A]
 [#:content content string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:labels labels string? 'N/A]
 [#:updated updated string? 'N/A]
-[#:customMetaData customMetaData string? 'N/A]
 [#:published published string? 'N/A]
-[#:blog blog string? 'N/A]
 [#:replies replies string? 'N/A]
+[#:customMetaData customMetaData string? 'N/A]
+[#:blog blog string? 'N/A]
+[#:labels labels string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -355,17 +341,17 @@ Update a post.
 
 @racket[selfLink]: The API REST URL to fetch this resource from.
 
-@racket[labels]: The list of labels this Post was tagged with.
-
 @racket[updated]: RFC 3339 date-time when this Post was last updated.
-
-@racket[customMetaData]: The JSON meta-data for the Post.
 
 @racket[published]: RFC 3339 date-time when this Post was published.
 
+@racket[replies]: The container of comments on this Post.
+
+@racket[customMetaData]: The JSON meta-data for the Post.
+
 @racket[blog]: Data about the blog containing this Post.
 
-@racket[replies]: The container of comments on this Post.
+@racket[labels]: The list of labels this Post was tagged with.
 
 }
 
@@ -373,7 +359,7 @@ Update a post.
 [blogId string?]
 [postId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -388,12 +374,12 @@ Delete a post by id.
 
 }
 
-@section{Functions for the `blogs' resource}
+@subsection{blogs}
 @defproc[(blogger.blogs.get
 [blogId string?]
 [#:maxPosts maxPosts string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -411,7 +397,7 @@ Gets one blog by id.
 @defproc[(blogger.blogs.getByUrl
 [#:url url string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -427,7 +413,7 @@ Retrieve a Blog by URL.
 @defproc[(blogger.blogs.listByUser
 [userId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -440,17 +426,17 @@ Retrieves a list of blogs, possibly filtered.
 
 }
 
-@section{Functions for the `comments' resource}
+@subsection{comments}
 @defproc[(blogger.comments.list
 [blogId string?]
 [postId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:endDate endDate string? 'N/A]
-[#:fetchBodies fetchBodies string? 'N/A]
 [#:startDate startDate string? 'N/A]
+[#:fetchBodies fetchBodies string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -469,18 +455,18 @@ Retrieves the comments for a blog, possibly filtered.
 
 @racket[endDate]: Latest date of comment to fetch, a date-time with RFC 3339 formatting.
 
-@racket[fetchBodies]: Whether the body content of the comments is included.
-
 @racket[startDate]: Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
+
+@racket[fetchBodies]: Whether the body content of the comments is included.
 
 }
 
 @defproc[(blogger.comments.get
-[blogId string?]
 [commentId string?]
+[blogId string?]
 [postId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -489,11 +475,28 @@ Retrieves the comments for a blog, possibly filtered.
 ) jsexpr?]{
 Gets one comment by id.
 
-@racket[blogId]: ID of the blog to containing the comment.
-
 @racket[commentId]: The ID of the comment to get.
 
+@racket[blogId]: ID of the blog to containing the comment.
+
 @racket[postId]: ID of the post to fetch posts from.
+
+}
+
+@subsection{users}
+@defproc[(blogger.users.get
+[userId string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Gets one user by id.
+
+@racket[userId]: The ID of the user to get.
 
 }
 

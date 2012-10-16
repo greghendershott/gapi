@@ -1,23 +1,25 @@
 #lang scribble/manual
+@(require planet/scribble (for-label racket))
+
 @title{Prediction API v1.5}
+@margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you access a cloud hosted machine learning service that makes it easy to build smart apps
-@hyperlink["https://developers.google.com/prediction/docs/developer-guide" "Documentation link"]
+@hyperlink["https://developers.google.com/prediction/docs/developer-guide" "Google documentation."]
 @table-of-contents{}
+@defmodule[gapi/macro]
+@racket[(require-gapi-doc "prediction.v1.5.js")]
 @section{API Parameters}
-These optional keyword arguments may be passed to all functions for this API:
-@defproc[(any-function
+The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+@defproc[(_
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
 ) jsexpr?]{
-This is not actually a function. This is just using Scribble's
-defproc form to list the optional keyword arguments that may be passed
-to any function for this API.
-
+@margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
 
 @racket[key]: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
@@ -34,13 +36,14 @@ to any function for this API.
 
 }
 
+@section{Resources}
 
-@section{Functions for the `hostedmodels' resource}
+@subsection{hostedmodels}
 @defproc[(prediction.hostedmodels.predict
 [hostedModelName string?]
 [#:input input string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -55,12 +58,12 @@ Submit input and request an output against a hosted model.
 
 }
 
-@section{Functions for the `trainedmodels' resource}
+@subsection{trainedmodels}
 @defproc[(prediction.trainedmodels.list
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -78,7 +81,7 @@ List available models.
 @defproc[(prediction.trainedmodels.get
 [id string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -94,8 +97,8 @@ Check training status of your model.
 @defproc[(prediction.trainedmodels.insert
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
-[#:created created string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:created created string? 'N/A]
 [#:modelInfo modelInfo string? 'N/A]
 [#:storageDataLocation storageDataLocation string? 'N/A]
 [#:storagePMMLLocation storagePMMLLocation string? 'N/A]
@@ -104,7 +107,7 @@ Check training status of your model.
 [#:trainingStatus trainingStatus string? 'N/A]
 [#:utility utility string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -117,9 +120,9 @@ Begin training your model.
 
 @racket[kind]: What kind of resource this is.
 
-@racket[created]: Insert time of the model (as a RFC 3339 timestamp).
-
 @racket[selfLink]: A URL to re-request this resource.
+
+@racket[created]: Insert time of the model (as a RFC 3339 timestamp).
 
 @racket[modelInfo]: Model metadata.
 
@@ -141,7 +144,7 @@ Begin training your model.
 [id string?]
 [#:input input string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -159,7 +162,7 @@ Submit model id and request a prediction.
 @defproc[(prediction.trainedmodels.analyze
 [id string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -177,7 +180,7 @@ Get analysis of the model and the data the model was trained on.
 [#:label label string? 'N/A]
 [#:csvInstance csvInstance string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -197,7 +200,7 @@ Add new data to a trained model.
 @defproc[(prediction.trainedmodels.delete
 [id string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]

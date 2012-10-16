@@ -1,23 +1,25 @@
 #lang scribble/manual
+@(require planet/scribble (for-label racket))
+
 @title{Cloud Storage API v1beta1}
+@margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you store and retrieve potentially-large, immutable data objects.
-@hyperlink["https://developers.google.com/storage/docs/json_api/" "Documentation link"]
+@hyperlink["https://developers.google.com/storage/docs/json_api/" "Google documentation."]
 @table-of-contents{}
+@defmodule[gapi/macro]
+@racket[(require-gapi-doc "storage.v1beta1.js")]
 @section{API Parameters}
-These optional keyword arguments may be passed to all functions for this API:
-@defproc[(any-function
+The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+@defproc[(_
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
 ) jsexpr?]{
-This is not actually a function. This is just using Scribble's
-defproc form to list the optional keyword arguments that may be passed
-to any function for this API.
-
+@margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
 
 @racket[key]: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
@@ -34,15 +36,16 @@ to any function for this API.
 
 }
 
+@section{Resources}
 
-@section{Functions for the `buckets' resource}
+@subsection{buckets}
 @defproc[(storage.buckets.list
 [projectId string?]
 [#:projection projection string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:max-results max-results string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -65,7 +68,7 @@ Retrieves a list of buckets for a given project.
 [bucket string?]
 [#:projection projection string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -86,14 +89,14 @@ Returns metadata for the specified bucket.
 [#:kind kind string? 'N/A]
 [#:location location string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:owner owner string? 'N/A]
-[#:acl acl string? 'N/A]
 [#:defaultObjectAcl defaultObjectAcl string? 'N/A]
 [#:projectId projectId string? 'N/A]
 [#:timeCreated timeCreated string? 'N/A]
 [#:website website string? 'N/A]
+[#:acl acl string? 'N/A]
+[#:owner owner string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -112,10 +115,6 @@ Creates a new bucket.
 
 @racket[selfLink]: The URI of this bucket.
 
-@racket[owner]: The owner of the bucket. This will always be the project team's owner group.
-
-@racket[acl]: Access controls on the bucket.
-
 @racket[defaultObjectAcl]: Default access controls to apply to new objects when no ACL is provided.
 
 @racket[projectId]: The project the bucket belongs to.
@@ -123,6 +122,10 @@ Creates a new bucket.
 @racket[timeCreated]: Creation time of the bucket in RFC 3339 format.
 
 @racket[website]: The bucket's website configuration.
+
+@racket[acl]: Access controls on the bucket.
+
+@racket[owner]: The owner of the bucket. This will always be the project team's owner group.
 
 }
 
@@ -133,14 +136,14 @@ Creates a new bucket.
 [#:kind kind string? 'N/A]
 [#:location location string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:owner owner string? 'N/A]
-[#:acl acl string? 'N/A]
 [#:defaultObjectAcl defaultObjectAcl string? 'N/A]
 [#:projectId projectId string? 'N/A]
 [#:timeCreated timeCreated string? 'N/A]
 [#:website website string? 'N/A]
+[#:acl acl string? 'N/A]
+[#:owner owner string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -161,10 +164,6 @@ Updates a bucket. This method supports patch semantics.
 
 @racket[selfLink]: The URI of this bucket.
 
-@racket[owner]: The owner of the bucket. This will always be the project team's owner group.
-
-@racket[acl]: Access controls on the bucket.
-
 @racket[defaultObjectAcl]: Default access controls to apply to new objects when no ACL is provided.
 
 @racket[projectId]: The project the bucket belongs to.
@@ -172,6 +171,10 @@ Updates a bucket. This method supports patch semantics.
 @racket[timeCreated]: Creation time of the bucket in RFC 3339 format.
 
 @racket[website]: The bucket's website configuration.
+
+@racket[acl]: Access controls on the bucket.
+
+@racket[owner]: The owner of the bucket. This will always be the project team's owner group.
 
 }
 
@@ -182,14 +185,14 @@ Updates a bucket. This method supports patch semantics.
 [#:kind kind string? 'N/A]
 [#:location location string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:owner owner string? 'N/A]
-[#:acl acl string? 'N/A]
 [#:defaultObjectAcl defaultObjectAcl string? 'N/A]
 [#:projectId projectId string? 'N/A]
 [#:timeCreated timeCreated string? 'N/A]
 [#:website website string? 'N/A]
+[#:acl acl string? 'N/A]
+[#:owner owner string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -210,10 +213,6 @@ Updates a bucket.
 
 @racket[selfLink]: The URI of this bucket.
 
-@racket[owner]: The owner of the bucket. This will always be the project team's owner group.
-
-@racket[acl]: Access controls on the bucket.
-
 @racket[defaultObjectAcl]: Default access controls to apply to new objects when no ACL is provided.
 
 @racket[projectId]: The project the bucket belongs to.
@@ -222,12 +221,16 @@ Updates a bucket.
 
 @racket[website]: The bucket's website configuration.
 
+@racket[acl]: Access controls on the bucket.
+
+@racket[owner]: The owner of the bucket. This will always be the project team's owner group.
+
 }
 
 @defproc[(storage.buckets.delete
 [bucket string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -240,11 +243,11 @@ Deletes an empty bucket.
 
 }
 
-@section{Functions for the `bucketAccessControls' resource}
+@subsection{bucketAccessControls}
 @defproc[(storage.bucketAccessControls.list
 [bucket string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -261,7 +264,7 @@ Retrieves ACL entries on the specified bucket.
 [entity string?]
 [bucket string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -281,13 +284,13 @@ Returns the ACL entry for the specified entity on the specified bucket.
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:role role string? 'N/A]
 [#:email email string? 'N/A]
 [#:domain domain string? 'N/A]
-[#:role role string? 'N/A]
 [#:entity entity string? 'N/A]
 [#:entityId entityId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -304,11 +307,11 @@ Creates a new ACL entry on the specified bucket.
 
 @racket[selfLink]: The link to this access-control entry.
 
+@racket[role]: The access permission for the entity. Can be READER, WRITER, or OWNER.
+
 @racket[email]: The email address associated with the entity, if any.
 
 @racket[domain]: The domain associated with the entity, if any.
-
-@racket[role]: The access permission for the entity. Can be READER, WRITER, or OWNER.
 
 @racket[entity]: The entity holding the permission, in one of the following forms: 
 - user-userId 
@@ -328,12 +331,12 @@ Creates a new ACL entry on the specified bucket.
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:role role string? 'N/A]
 [#:email email string? 'N/A]
 [#:domain domain string? 'N/A]
-[#:role role string? 'N/A]
 [#:entityId entityId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -352,11 +355,11 @@ Updates an ACL entry on the specified bucket. This method supports patch semanti
 
 @racket[selfLink]: The link to this access-control entry.
 
+@racket[role]: The access permission for the entity. Can be READER, WRITER, or OWNER.
+
 @racket[email]: The email address associated with the entity, if any.
 
 @racket[domain]: The domain associated with the entity, if any.
-
-@racket[role]: The access permission for the entity. Can be READER, WRITER, or OWNER.
 
 @racket[entityId]: The ID for the entity, if any.
 
@@ -368,12 +371,12 @@ Updates an ACL entry on the specified bucket. This method supports patch semanti
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:role role string? 'N/A]
 [#:email email string? 'N/A]
 [#:domain domain string? 'N/A]
-[#:role role string? 'N/A]
 [#:entityId entityId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -392,11 +395,11 @@ Updates an ACL entry on the specified bucket.
 
 @racket[selfLink]: The link to this access-control entry.
 
+@racket[role]: The access permission for the entity. Can be READER, WRITER, or OWNER.
+
 @racket[email]: The email address associated with the entity, if any.
 
 @racket[domain]: The domain associated with the entity, if any.
-
-@racket[role]: The access permission for the entity. Can be READER, WRITER, or OWNER.
 
 @racket[entityId]: The ID for the entity, if any.
 
@@ -406,7 +409,7 @@ Updates an ACL entry on the specified bucket.
 [entity string?]
 [bucket string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -421,12 +424,12 @@ Deletes the ACL entry for the specified entity on the specified bucket.
 
 }
 
-@section{Functions for the `objectAccessControls' resource}
+@subsection{objectAccessControls}
 @defproc[(storage.objectAccessControls.list
 [object string?]
 [bucket string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -446,7 +449,7 @@ Retrieves ACL entries on the specified object.
 [entity string?]
 [bucket string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -469,13 +472,13 @@ Returns the ACL entry for the specified entity on the specified object.
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:role role string? 'N/A]
 [#:email email string? 'N/A]
 [#:domain domain string? 'N/A]
-[#:role role string? 'N/A]
 [#:entity entity string? 'N/A]
 [#:entityId entityId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -494,11 +497,11 @@ Creates a new ACL entry on the specified object.
 
 @racket[selfLink]: The link to this access-control entry.
 
+@racket[role]: The access permission for the entity. Can be READER or OWNER.
+
 @racket[email]: The email address associated with the entity, if any.
 
 @racket[domain]: The domain associated with the entity, if any.
-
-@racket[role]: The access permission for the entity. Can be READER or OWNER.
 
 @racket[entity]: The entity holding the permission, in one of the following forms: 
 - user-userId 
@@ -519,12 +522,12 @@ Creates a new ACL entry on the specified object.
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:role role string? 'N/A]
 [#:email email string? 'N/A]
 [#:domain domain string? 'N/A]
-[#:role role string? 'N/A]
 [#:entityId entityId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -545,11 +548,11 @@ Updates an ACL entry on the specified object. This method supports patch semanti
 
 @racket[selfLink]: The link to this access-control entry.
 
+@racket[role]: The access permission for the entity. Can be READER or OWNER.
+
 @racket[email]: The email address associated with the entity, if any.
 
 @racket[domain]: The domain associated with the entity, if any.
-
-@racket[role]: The access permission for the entity. Can be READER or OWNER.
 
 @racket[entityId]: The ID for the entity, if any.
 
@@ -562,12 +565,12 @@ Updates an ACL entry on the specified object. This method supports patch semanti
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:role role string? 'N/A]
 [#:email email string? 'N/A]
 [#:domain domain string? 'N/A]
-[#:role role string? 'N/A]
 [#:entityId entityId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -588,11 +591,11 @@ Updates an ACL entry on the specified object.
 
 @racket[selfLink]: The link to this access-control entry.
 
+@racket[role]: The access permission for the entity. Can be READER or OWNER.
+
 @racket[email]: The email address associated with the entity, if any.
 
 @racket[domain]: The domain associated with the entity, if any.
-
-@racket[role]: The access permission for the entity. Can be READER or OWNER.
 
 @racket[entityId]: The ID for the entity, if any.
 
@@ -603,7 +606,7 @@ Updates an ACL entry on the specified object.
 [entity string?]
 [bucket string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -620,16 +623,16 @@ Deletes the ACL entry for the specified entity on the specified object.
 
 }
 
-@section{Functions for the `objects' resource}
+@subsection{objects}
 @defproc[(storage.objects.list
 [bucket string?]
 [#:projection projection string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
-[#:max-results max-results string? 'N/A]
 [#:delimiter delimiter string? 'N/A]
+[#:max-results max-results string? 'N/A]
 [#:prefix prefix string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -644,9 +647,9 @@ Retrieves a list of objects matching the criteria.
 
 @racket[pageToken]: A previously-returned page token representing part of the larger set of results to view.
 
-@racket[max-results]: Maximum number of items plus prefixes to return. As duplicate prefixes are omitted, fewer total results may be returned than requested.
-
 @racket[delimiter]: Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
+
+@racket[max-results]: Maximum number of items plus prefixes to return. As duplicate prefixes are omitted, fewer total results may be returned than requested.
 
 @racket[prefix]: Filter results to objects whose names begin with this prefix.
 
@@ -657,7 +660,7 @@ Retrieves a list of objects matching the criteria.
 [bucket string?]
 [#:projection projection string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -682,16 +685,16 @@ Retrieves objects or their associated metadata.
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:metadata metadata string? 'N/A]
-[#:owner owner string? 'N/A]
-[#:acl acl string? 'N/A]
 [#:cacheControl cacheControl string? 'N/A]
 [#:contentDisposition contentDisposition string? 'N/A]
 [#:contentEncoding contentEncoding string? 'N/A]
 [#:contentLanguage contentLanguage string? 'N/A]
 [#:media media string? 'N/A]
+[#:metadata metadata string? 'N/A]
+[#:acl acl string? 'N/A]
+[#:owner owner string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -714,12 +717,6 @@ Stores new data blobs and associated metadata.
 
 @racket[selfLink]: The link to this object.
 
-@racket[metadata]: User-provided metadata, in key/value pairs.
-
-@racket[owner]: The owner of the object. This will always be the uploader of the object.
-
-@racket[acl]: Access controls on the object.
-
 @racket[cacheControl]: Cache-Control directive for the object data.
 
 @racket[contentDisposition]: Content-Disposition of the object data.
@@ -729,6 +726,12 @@ Stores new data blobs and associated metadata.
 @racket[contentLanguage]: Content-Language of the object data.
 
 @racket[media]: Object media data. Provided on your behalf when uploading raw media or multipart/related with an auxiliary media part.
+
+@racket[metadata]: User-provided metadata, in key/value pairs.
+
+@racket[acl]: Access controls on the object.
+
+@racket[owner]: The owner of the object. This will always be the uploader of the object.
 
 }
 
@@ -740,16 +743,16 @@ Stores new data blobs and associated metadata.
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:metadata metadata string? 'N/A]
-[#:owner owner string? 'N/A]
-[#:acl acl string? 'N/A]
 [#:cacheControl cacheControl string? 'N/A]
 [#:contentDisposition contentDisposition string? 'N/A]
 [#:contentEncoding contentEncoding string? 'N/A]
 [#:contentLanguage contentLanguage string? 'N/A]
 [#:media media string? 'N/A]
+[#:metadata metadata string? 'N/A]
+[#:acl acl string? 'N/A]
+[#:owner owner string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -772,12 +775,6 @@ Updates a data blob's associated metadata. This method supports patch semantics.
 
 @racket[selfLink]: The link to this object.
 
-@racket[metadata]: User-provided metadata, in key/value pairs.
-
-@racket[owner]: The owner of the object. This will always be the uploader of the object.
-
-@racket[acl]: Access controls on the object.
-
 @racket[cacheControl]: Cache-Control directive for the object data.
 
 @racket[contentDisposition]: Content-Disposition of the object data.
@@ -787,6 +784,12 @@ Updates a data blob's associated metadata. This method supports patch semantics.
 @racket[contentLanguage]: Content-Language of the object data.
 
 @racket[media]: Object media data. Provided on your behalf when uploading raw media or multipart/related with an auxiliary media part.
+
+@racket[metadata]: User-provided metadata, in key/value pairs.
+
+@racket[acl]: Access controls on the object.
+
+@racket[owner]: The owner of the object. This will always be the uploader of the object.
 
 }
 
@@ -798,16 +801,16 @@ Updates a data blob's associated metadata. This method supports patch semantics.
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:metadata metadata string? 'N/A]
-[#:owner owner string? 'N/A]
-[#:acl acl string? 'N/A]
 [#:cacheControl cacheControl string? 'N/A]
 [#:contentDisposition contentDisposition string? 'N/A]
 [#:contentEncoding contentEncoding string? 'N/A]
 [#:contentLanguage contentLanguage string? 'N/A]
 [#:media media string? 'N/A]
+[#:metadata metadata string? 'N/A]
+[#:acl acl string? 'N/A]
+[#:owner owner string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -830,12 +833,6 @@ Updates a data blob's associated metadata.
 
 @racket[selfLink]: The link to this object.
 
-@racket[metadata]: User-provided metadata, in key/value pairs.
-
-@racket[owner]: The owner of the object. This will always be the uploader of the object.
-
-@racket[acl]: Access controls on the object.
-
 @racket[cacheControl]: Cache-Control directive for the object data.
 
 @racket[contentDisposition]: Content-Disposition of the object data.
@@ -846,13 +843,19 @@ Updates a data blob's associated metadata.
 
 @racket[media]: Object media data. Provided on your behalf when uploading raw media or multipart/related with an auxiliary media part.
 
+@racket[metadata]: User-provided metadata, in key/value pairs.
+
+@racket[acl]: Access controls on the object.
+
+@racket[owner]: The owner of the object. This will always be the uploader of the object.
+
 }
 
 @defproc[(storage.objects.delete
 [object string?]
 [bucket string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]

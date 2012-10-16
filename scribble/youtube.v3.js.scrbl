@@ -1,23 +1,25 @@
 #lang scribble/manual
+@(require planet/scribble (for-label racket))
+
 @title{YouTube API v3}
+@margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Programmatic access to YouTube features.
-@hyperlink["https://developers.google.com/youtube" "Documentation link"]
+@hyperlink["https://developers.google.com/youtube" "Google documentation."]
 @table-of-contents{}
+@defmodule[gapi/macro]
+@racket[(require-gapi-doc "youtube.v3.js")]
 @section{API Parameters}
-These optional keyword arguments may be passed to all functions for this API:
-@defproc[(any-function
+The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+@defproc[(_
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
 ) jsexpr?]{
-This is not actually a function. This is just using Scribble's
-defproc form to list the optional keyword arguments that may be passed
-to any function for this API.
-
+@margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
 
 @racket[key]: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
@@ -34,26 +36,27 @@ to any function for this API.
 
 }
 
+@section{Resources}
 
-@section{Functions for the `search' resource}
+@subsection{search}
 @defproc[(youtube.search.list
 [part string?]
-[#:q q string? 'N/A]
 [#:type type string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
-[#:topicId topicId string? 'N/A]
 [#:published published string? 'N/A]
+[#:q q string? 'N/A]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:order order string? 'N/A]
 [#:relatedToVideo relatedToVideo string? 'N/A]
+[#:topicId topicId string? 'N/A]
 [#:videoCaption videoCaption string? 'N/A]
 [#:videoDefinition videoDefinition string? 'N/A]
 [#:videoDimension videoDimension string? 'N/A]
 [#:videoDuration videoDuration string? 'N/A]
 [#:videoLicense videoLicense string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -64,23 +67,23 @@ Universal search for youtube.
 
 @racket[part]: One or more parts to return on the current request.
 
-@racket[q]: Query to search in Youtube.
-
 @racket[type]: Type of resource to search.
 
 @racket[maxResults]: Maximum number of search results to return per page.
 
 @racket[pageToken]: Token for the page selection.
 
-@racket[topicId]: Only search for resources with the specified topic
-
 @racket[published]: Only search for resources uploaded at a specific pediod
+
+@racket[q]: Query to search in Youtube.
 
 @racket[contentOwnerId]: The authenticated user acts on behalf of this content owner.
 
 @racket[order]: Sort order.
 
 @racket[relatedToVideo]: Search for resources related to this video. Need to be used with type set to 'video'
+
+@racket[topicId]: Only search for resources with the specified topic
 
 @racket[videoCaption]: Add a filter on the the presence of captions on the videos.
 
@@ -94,120 +97,7 @@ Universal search for youtube.
 
 }
 
-@section{Functions for the `activities' resource}
-@defproc[(youtube.activities.list
-[part string?]
-[#:maxResults maxResults string? 'N/A]
-[#:pageToken pageToken string? 'N/A]
-[#:channelId channelId string? 'N/A]
-[#:contentOwnerId contentOwnerId string? 'N/A]
-[#:home home string? 'N/A]
-[#:mine mine string? 'N/A]
-[#:publishedAfter publishedAfter string? 'N/A]
-[#:publishedBefore publishedBefore string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Browse the YouTube channel activity collection.
-
-@racket[part]: One or more parts to return on the current request.
-
-@racket[maxResults]: Maximum number of results to return
-
-@racket[pageToken]: Token for the page selection.
-
-@racket[channelId]: YouTube ID of the channel.
-
-@racket[contentOwnerId]: The authenticated user acts on behalf of this content owner.
-
-@racket[home]: Flag indicating to return user's homepage feed.
-
-@racket[mine]: Flag indicating to return user's activities.
-
-@racket[publishedAfter]: Only return activities published after given date (inclusive).
-
-@racket[publishedBefore]: Only return activities published before given date (exclusive).
-
-}
-
-@defproc[(youtube.activities.insert
-[part string?]
-[#:contentOwnerId contentOwnerId string? 'N/A]
-[#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:etag etag string? 'N/A]
-[#:contentDetails contentDetails string? 'N/A]
-[#:snippet snippet string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Post a channel bulletin.
-
-@racket[part]: One or more parts to return on the current request.
-
-@racket[contentOwnerId]: The authenticated user acts on behalf of this content owner.
-
-@racket[id]: The unique ID of the activity.
-
-@racket[kind]: The type of this API response.
-
-@racket[etag]: The eTag of the activity.
-
-@racket[contentDetails]: Type specific information about the activity.
-
-@racket[snippet]: Basic details about the activity: title, description, thumbnails.
-
-}
-
-@section{Functions for the `channels' resource}
-@defproc[(youtube.channels.list
-[part string?]
-[#:id id string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
-[#:pageToken pageToken string? 'N/A]
-[#:categoryId categoryId string? 'N/A]
-[#:contentOwnerId contentOwnerId string? 'N/A]
-[#:mine mine string? 'N/A]
-[#:mySubscribers mySubscribers string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Browse the YouTube channel collection. Either the 'id' or 'mine' parameter must be set.
-
-@racket[part]: One or more parts to return on the current request.
-
-@racket[id]: YouTube IDs of the channels to be returned.
-
-@racket[maxResults]: Maximum number of results to return
-
-@racket[pageToken]: Token for the page selection.
-
-@racket[categoryId]: Filter to retrieve the channels within the given category ID.
-
-@racket[contentOwnerId]: The authenticated user acts on behalf of this content owner.
-
-@racket[mine]: Filter to only channels owned by authenticated user.
-
-@racket[mySubscribers]: Filter to channels that subscribed to the channel of the authenticated user.
-
-}
-
-@section{Functions for the `subscription' resource}
+@subsection{subscription}
 @defproc[(youtube.subscription.list
 [part string?]
 [#:id id string? 'N/A]
@@ -219,7 +109,7 @@ Browse the YouTube channel collection. Either the 'id' or 'mine' parameter must 
 [#:order order string? 'N/A]
 [#:forChannelId forChannelId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -257,7 +147,7 @@ Browse user's subscription collection.
 [#:contentDetails contentDetails string? 'N/A]
 [#:snippet snippet string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -286,7 +176,7 @@ Insert a subscription.
 [id string?]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -301,15 +191,90 @@ Deletes subscriptions by IDs.
 
 }
 
-@section{Functions for the `channelCategories' resource}
+@subsection{activities}
+@defproc[(youtube.activities.list
+[part string?]
+[#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
+[#:channelId channelId string? 'N/A]
+[#:contentOwnerId contentOwnerId string? 'N/A]
+[#:home home string? 'N/A]
+[#:mine mine string? 'N/A]
+[#:publishedAfter publishedAfter string? 'N/A]
+[#:publishedBefore publishedBefore string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Browse the YouTube channel activity collection.
+
+@racket[part]: One or more parts to return on the current request.
+
+@racket[maxResults]: Maximum number of results to return
+
+@racket[pageToken]: Token for the page selection.
+
+@racket[channelId]: YouTube ID of the channel.
+
+@racket[contentOwnerId]: The authenticated user acts on behalf of this content owner.
+
+@racket[home]: Flag indicating to return user's homepage feed.
+
+@racket[mine]: Flag indicating to return user's activities.
+
+@racket[publishedAfter]: Only return activities published after given date (inclusive).
+
+@racket[publishedBefore]: Only return activities published before given date (exclusive).
+
+}
+
+@defproc[(youtube.activities.insert
+[part string?]
+[#:contentOwnerId contentOwnerId string? 'N/A]
+[#:id id string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:etag etag string? 'N/A]
+[#:contentDetails contentDetails string? 'N/A]
+[#:snippet snippet string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Post a channel bulletin.
+
+@racket[part]: One or more parts to return on the current request.
+
+@racket[contentOwnerId]: The authenticated user acts on behalf of this content owner.
+
+@racket[id]: The unique ID of the activity.
+
+@racket[kind]: The type of this API response.
+
+@racket[etag]: The eTag of the activity.
+
+@racket[contentDetails]: Type specific information about the activity.
+
+@racket[snippet]: Basic details about the activity: title, description, thumbnails.
+
+}
+
+@subsection{channelCategories}
 @defproc[(youtube.channelCategories.list
 [part string?]
 [#:id id string? 'N/A]
-[#:hl hl string? 'N/A]
 [#:contentOwnerId contentOwnerId string? 'N/A]
+[#:hl hl string? 'N/A]
 [#:regionCode regionCode string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -322,15 +287,53 @@ Browse the YouTube guide category collection.
 
 @racket[id]: Comma-separated YouTube IDs of the channelCategories to be returned.
 
-@racket[hl]: Language for the returned channelCategories.
-
 @racket[contentOwnerId]: The authenticated user acts on behalf of this content owner.
+
+@racket[hl]: Language for the returned channelCategories.
 
 @racket[regionCode]: Return the channelCategories in the given region code.
 
 }
 
-@section{Functions for the `playlistItems' resource}
+@subsection{channels}
+@defproc[(youtube.channels.list
+[part string?]
+[#:id id string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
+[#:categoryId categoryId string? 'N/A]
+[#:contentOwnerId contentOwnerId string? 'N/A]
+[#:mine mine string? 'N/A]
+[#:mySubscribers mySubscribers string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Browse the YouTube channel collection. Either the 'id' or 'mine' parameter must be set.
+
+@racket[part]: One or more parts to return on the current request.
+
+@racket[id]: YouTube IDs of the channels to be returned.
+
+@racket[maxResults]: Maximum number of results to return
+
+@racket[pageToken]: Token for the page selection.
+
+@racket[categoryId]: Filter to retrieve the channels within the given category ID.
+
+@racket[contentOwnerId]: The authenticated user acts on behalf of this content owner.
+
+@racket[mine]: Filter to only channels owned by authenticated user.
+
+@racket[mySubscribers]: Filter to channels that subscribed to the channel of the authenticated user.
+
+}
+
+@subsection{playlistItems}
 @defproc[(youtube.playlistItems.list
 [part string?]
 [#:id id string? 'N/A]
@@ -339,7 +342,7 @@ Browse the YouTube guide category collection.
 [#:playlistId playlistId string? 'N/A]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -371,7 +374,7 @@ Browse the YouTube playlist collection.
 [#:contentDetails contentDetails string? 'N/A]
 [#:snippet snippet string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -405,7 +408,7 @@ Insert a resource into a playlist.
 [#:contentDetails contentDetails string? 'N/A]
 [#:snippet snippet string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -434,7 +437,7 @@ Update a playlist item.
 [id string?]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -449,7 +452,7 @@ Deletes playlist items by IDs.
 
 }
 
-@section{Functions for the `playlists' resource}
+@subsection{playlists}
 @defproc[(youtube.playlists.list
 [part string?]
 [#:id id string? 'N/A]
@@ -458,7 +461,7 @@ Deletes playlist items by IDs.
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:mine mine string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -486,11 +489,11 @@ Browse the YouTube playlist collection.
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
-[#:status status string? 'N/A]
 [#:etag etag string? 'N/A]
+[#:status status string? 'N/A]
 [#:snippet snippet string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -507,9 +510,9 @@ Create a playlist.
 
 @racket[kind]: The type of this API resource.
 
-@racket[status]: Status of the playlist: only privacy_status for now.
-
 @racket[etag]: The eTag of the playlist.
+
+@racket[status]: Status of the playlist: only privacy_status for now.
 
 @racket[snippet]: Basic details about the playlist: title, description, thumbnails.
 
@@ -520,11 +523,11 @@ Create a playlist.
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
-[#:status status string? 'N/A]
 [#:etag etag string? 'N/A]
+[#:status status string? 'N/A]
 [#:snippet snippet string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -541,9 +544,9 @@ Update a playlist.
 
 @racket[kind]: The type of this API resource.
 
-@racket[status]: Status of the playlist: only privacy_status for now.
-
 @racket[etag]: The eTag of the playlist.
+
+@racket[status]: Status of the playlist: only privacy_status for now.
 
 @racket[snippet]: Basic details about the playlist: title, description, thumbnails.
 
@@ -553,7 +556,7 @@ Update a playlist.
 [id string?]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -568,13 +571,13 @@ Deletes playlists by IDs.
 
 }
 
-@section{Functions for the `videos' resource}
+@subsection{videos}
 @defproc[(youtube.videos.list
 [id string?]
 [part string?]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -596,14 +599,14 @@ Browse the YouTube video collection.
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
-[#:status status string? 'N/A]
 [#:etag etag string? 'N/A]
+[#:status status string? 'N/A]
 [#:contentDetails contentDetails string? 'N/A]
 [#:snippet snippet string? 'N/A]
 [#:statistics statistics string? 'N/A]
 [#:player player string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -620,9 +623,9 @@ Upload a video to YouTube.
 
 @racket[kind]: The type of this API resource.
 
-@racket[status]: Status of the video upload, privacy status.
-
 @racket[etag]: The eTag of the video.
+
+@racket[status]: Status of the video upload, privacy status.
 
 @racket[contentDetails]: Information about the video content, media file.
 
@@ -639,14 +642,14 @@ Upload a video to YouTube.
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
-[#:status status string? 'N/A]
 [#:etag etag string? 'N/A]
+[#:status status string? 'N/A]
 [#:contentDetails contentDetails string? 'N/A]
 [#:snippet snippet string? 'N/A]
 [#:statistics statistics string? 'N/A]
 [#:player player string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -663,9 +666,9 @@ Update a video.
 
 @racket[kind]: The type of this API resource.
 
-@racket[status]: Status of the video upload, privacy status.
-
 @racket[etag]: The eTag of the video.
+
+@racket[status]: Status of the video upload, privacy status.
 
 @racket[contentDetails]: Information about the video content, media file.
 
@@ -681,7 +684,7 @@ Update a video.
 [id string?]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -696,15 +699,15 @@ Delete a YouTube video.
 
 }
 
-@section{Functions for the `videocategory' resource}
+@subsection{videocategory}
 @defproc[(youtube.videocategory.list
 [part string?]
 [#:id id string? 'N/A]
-[#:hl hl string? 'N/A]
 [#:contentOwnerId contentOwnerId string? 'N/A]
+[#:hl hl string? 'N/A]
 [#:regionCode regionCode string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -717,9 +720,9 @@ Browse list of video categories.
 
 @racket[id]: IDs of the categories to be returned.
 
-@racket[hl]: Language used for the title of the categories.
-
 @racket[contentOwnerId]: The authenticated user acts on behalf of this content owner.
+
+@racket[hl]: Language used for the title of the categories.
 
 @racket[regionCode]: Return all the categories in this region.
 

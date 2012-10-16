@@ -1,23 +1,25 @@
 #lang scribble/manual
+@(require planet/scribble (for-label racket))
+
 @title{AdSense Host API v4.1}
+@margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Gives AdSense Hosts access to report generation, ad code generation, and publisher management capabilities.
-@hyperlink["https://developers.google.com/adsense/host/" "Documentation link"]
+@hyperlink["https://developers.google.com/adsense/host/" "Google documentation."]
 @table-of-contents{}
+@defmodule[gapi/macro]
+@racket[(require-gapi-doc "adsensehost.v4.1.js")]
 @section{API Parameters}
-These optional keyword arguments may be passed to all functions for this API:
-@defproc[(any-function
+The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+@defproc[(_
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
 ) jsexpr?]{
-This is not actually a function. This is just using Scribble's
-defproc form to list the optional keyword arguments that may be passed
-to any function for this API.
-
+@margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
 
 @racket[key]: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
@@ -34,12 +36,14 @@ to any function for this API.
 
 }
 
+@section{Resources}
 
-@section{Functions for the `accounts' resource}
+@subsection{accounts}
+@section{Resources}
 @defproc[(adsensehost.accounts.list
 [filterAdClientId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -55,7 +59,7 @@ List hosted accounts associated with this AdSense account by ad client id.
 @defproc[(adsensehost.accounts.get
 [accountId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -68,49 +72,13 @@ Get information about the selected associated AdSense account.
 
 }
 
-@section{Functions for the `adclients' resource}
-@defproc[(adsensehost.adclients.list
-[#:maxResults maxResults string? 'N/A]
-[#:pageToken pageToken string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-List all host ad clients in this AdSense account.
-
-@racket[maxResults]: The maximum number of ad clients to include in the response, used for paging.
-
-@racket[pageToken]: A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-
-}
-
-@defproc[(adsensehost.adclients.get
-[adClientId string?]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Get information about one of the ad clients in the Host AdSense account.
-
-@racket[adClientId]: Ad client to get.
-
-}
-
-@section{Functions for the `customchannels' resource}
+@subsection{customchannels}
 @defproc[(adsensehost.customchannels.list
 [adClientId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -131,7 +99,7 @@ List all host custom channels in this AdSense account.
 [adClientId string?]
 [customChannelId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -153,7 +121,7 @@ Get a specific custom channel from the host AdSense account.
 [#:name name string? 'N/A]
 [#:code code string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -182,7 +150,7 @@ Add a new custom channel to the host AdSense account.
 [#:name name string? 'N/A]
 [#:code code string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -212,7 +180,7 @@ Update a custom channel in the host AdSense account. This method supports patch 
 [#:name name string? 'N/A]
 [#:code code string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -237,7 +205,7 @@ Update a custom channel in the host AdSense account.
 [adClientId string?]
 [customChannelId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -252,19 +220,55 @@ Delete a specific custom channel from the host AdSense account.
 
 }
 
-@section{Functions for the `reports' resource}
+@subsection{adclients}
+@defproc[(adsensehost.adclients.list
+[#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+List all host ad clients in this AdSense account.
+
+@racket[maxResults]: The maximum number of ad clients to include in the response, used for paging.
+
+@racket[pageToken]: A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+
+}
+
+@defproc[(adsensehost.adclients.get
+[adClientId string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Get information about one of the ad clients in the Host AdSense account.
+
+@racket[adClientId]: Ad client to get.
+
+}
+
+@subsection{reports}
 @defproc[(adsensehost.reports.generate
 [endDate string?]
 [startDate string?]
 [#:sort sort string? 'N/A]
 [#:filter filter string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
-[#:metric metric string? 'N/A]
 [#:dimension dimension string? 'N/A]
 [#:locale locale string? 'N/A]
+[#:metric metric string? 'N/A]
 [#:startIndex startIndex string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -283,23 +287,65 @@ Generate an AdSense report based on the report request sent in the query paramet
 
 @racket[maxResults]: The maximum number of rows of report data to return.
 
-@racket[metric]: Numeric columns to include in the report.
-
 @racket[dimension]: Dimensions to base the report on.
 
 @racket[locale]: Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+
+@racket[metric]: Numeric columns to include in the report.
 
 @racket[startIndex]: Index of the first row of report data to return.
 
 }
 
-@section{Functions for the `urlchannels' resource}
+@subsection{associationsessions}
+@defproc[(adsensehost.associationsessions.start
+[productCode string?]
+[websiteUrl string?]
+[#:userLocale userLocale string? 'N/A]
+[#:websiteLocale websiteLocale string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Create an association session for initiating an association with an AdSense user.
+
+@racket[productCode]: Products to associate with the user.
+
+@racket[websiteUrl]: The URL of the user's hosted website.
+
+@racket[userLocale]: The preferred locale of the user.
+
+@racket[websiteLocale]: The locale of the user's hosted website.
+
+}
+
+@defproc[(adsensehost.associationsessions.verify
+[token string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Verify an association session after the association callback returns from AdSense signup.
+
+@racket[token]: The token returned to the association callback URL.
+
+}
+
+@subsection{urlchannels}
 @defproc[(adsensehost.urlchannels.list
 [adClientId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -322,7 +368,7 @@ List all host URL channels in the host AdSense account.
 [#:kind kind string? 'N/A]
 [#:urlPattern urlPattern string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -345,7 +391,7 @@ Add a new URL channel to the host AdSense account.
 [adClientId string?]
 [urlChannelId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -357,48 +403,6 @@ Delete a URL channel from the host AdSense account.
 @racket[adClientId]: Ad client from which to delete the URL channel.
 
 @racket[urlChannelId]: URL channel to delete.
-
-}
-
-@section{Functions for the `associationsessions' resource}
-@defproc[(adsensehost.associationsessions.start
-[productCode string?]
-[websiteUrl string?]
-[#:userLocale userLocale string? 'N/A]
-[#:websiteLocale websiteLocale string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Create an association session for initiating an association with an AdSense user.
-
-@racket[productCode]: Products to associate with the user.
-
-@racket[websiteUrl]: The URL of the user's hosted website.
-
-@racket[userLocale]: The preferred locale of the user.
-
-@racket[websiteLocale]: The locale of the user's hosted website.
-
-}
-
-@defproc[(adsensehost.associationsessions.verify
-[token string?]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Verify an association session after the association callback returns from AdSense signup.
-
-@racket[token]: The token returned to the association callback URL.
 
 }
 

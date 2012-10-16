@@ -1,23 +1,25 @@
 #lang scribble/manual
+@(require planet/scribble (for-label racket))
+
 @title{Orkut API v2}
+@margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you manage activities, comments and badges in Orkut. More stuff coming in time.
-@hyperlink["http://code.google.com/apis/orkut/v2/reference.html" "Documentation link"]
+@hyperlink["http://code.google.com/apis/orkut/v2/reference.html" "Google documentation."]
 @table-of-contents{}
+@defmodule[gapi/macro]
+@racket[(require-gapi-doc "orkut.v2.js")]
 @section{API Parameters}
-These optional keyword arguments may be passed to all functions for this API:
-@defproc[(any-function
+The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+@defproc[(_
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
 ) jsexpr?]{
-This is not actually a function. This is just using Scribble's
-defproc form to list the optional keyword arguments that may be passed
-to any function for this API.
-
+@margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
 
 @racket[key]: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
@@ -34,53 +36,17 @@ to any function for this API.
 
 }
 
+@section{Resources}
 
-@section{Functions for the `counters' resource}
-@defproc[(orkut.counters.list
-[userId string?]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Retrieves the counters of a user.
-
-@racket[userId]: The ID of the user whose counters will be listed. Can be me to refer to caller.
-
-}
-
-@section{Functions for the `acl' resource}
-@defproc[(orkut.acl.delete
-[activityId string?]
-[userId string?]
-[#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Excludes an element from the ACL of the activity.
-
-@racket[activityId]: ID of the activity.
-
-@racket[userId]: ID of the user to be removed from the activity.
-
-}
-
-@section{Functions for the `activities' resource}
+@subsection{activities}
 @defproc[(orkut.activities.list
-[userId string?]
 [collection string?]
+[userId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -89,9 +55,9 @@ Excludes an element from the ACL of the activity.
 ) jsexpr?]{
 Retrieves a list of activities.
 
-@racket[userId]: The ID of the user whose activities will be listed. Can be me to refer to the viewer (i.e. the authenticated user).
-
 @racket[collection]: The collection of activities to list.
+
+@racket[userId]: The ID of the user whose activities will be listed. Can be me to refer to the viewer (i.e. the authenticated user).
 
 @racket[maxResults]: The maximum number of activities to include in the response.
 
@@ -104,7 +70,7 @@ Retrieves a list of activities.
 @defproc[(orkut.activities.delete
 [activityId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -117,11 +83,11 @@ Deletes an existing activity, if the access controls allow it.
 
 }
 
-@section{Functions for the `activityVisibility' resource}
+@subsection{activityVisibility}
 @defproc[(orkut.activityVisibility.get
 [activityId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -137,10 +103,10 @@ Gets the visibility of an existing activity.
 @defproc[(orkut.activityVisibility.patch
 [activityId string?]
 [#:kind kind string? 'N/A]
-[#:links links string? 'N/A]
 [#:visibility visibility string? 'N/A]
+[#:links links string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -153,21 +119,21 @@ Updates the visibility of an existing activity. This method supports patch seman
 
 @racket[kind]: Identifies this resource as a visibility item. Value: "orkut#visibility"
 
-@racket[links]: List of resources for the visibility item.
-
 @racket[visibility]: The visibility of the resource. Possible values are:  
 - default: not hidden by the user 
 - hidden: hidden
+
+@racket[links]: List of resources for the visibility item.
 
 }
 
 @defproc[(orkut.activityVisibility.update
 [activityId string?]
 [#:kind kind string? 'N/A]
-[#:links links string? 'N/A]
 [#:visibility visibility string? 'N/A]
+[#:links links string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -180,19 +146,19 @@ Updates the visibility of an existing activity.
 
 @racket[kind]: Identifies this resource as a visibility item. Value: "orkut#visibility"
 
-@racket[links]: List of resources for the visibility item.
-
 @racket[visibility]: The visibility of the resource. Possible values are:  
 - default: not hidden by the user 
 - hidden: hidden
 
+@racket[links]: List of resources for the visibility item.
+
 }
 
-@section{Functions for the `badges' resource}
+@subsection{badges}
 @defproc[(orkut.badges.list
 [userId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -206,10 +172,10 @@ Retrieves the list of visible badges of a user.
 }
 
 @defproc[(orkut.badges.get
-[userId string?]
 [badgeId string?]
+[userId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -218,13 +184,13 @@ Retrieves the list of visible badges of a user.
 ) jsexpr?]{
 Retrieves a badge from a user.
 
-@racket[userId]: The ID of the user whose badges will be listed. Can be me to refer to caller.
-
 @racket[badgeId]: The ID of the badge that will be retrieved.
+
+@racket[userId]: The ID of the user whose badges will be listed. Can be me to refer to caller.
 
 }
 
-@section{Functions for the `comments' resource}
+@subsection{comments}
 @defproc[(orkut.comments.list
 [activityId string?]
 [#:maxResults maxResults string? 'N/A]
@@ -232,7 +198,7 @@ Retrieves a badge from a user.
 [#:hl hl string? 'N/A]
 [#:orderBy orderBy string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -257,7 +223,7 @@ Retrieves a list of comments, possibly filtered.
 [commentId string?]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -277,12 +243,12 @@ Retrieves an existing comment.
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:content content string? 'N/A]
-[#:published published string? 'N/A]
-[#:links links string? 'N/A]
 [#:actor actor string? 'N/A]
+[#:published published string? 'N/A]
 [#:inReplyTo inReplyTo string? 'N/A]
+[#:links links string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -299,20 +265,20 @@ Inserts a new comment to an activity.
 
 @racket[content]: The content of the comment in text/html
 
-@racket[published]: The time the comment was initially published, in RFC 3339 format.
-
-@racket[links]: List of resources for the comment.
-
 @racket[actor]: The person who posted the comment.
 
+@racket[published]: The time the comment was initially published, in RFC 3339 format.
+
 @racket[inReplyTo]: Link to the original activity where this comment was posted.
+
+@racket[links]: List of resources for the comment.
 
 }
 
 @defproc[(orkut.comments.delete
 [commentId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -325,14 +291,14 @@ Deletes an existing comment.
 
 }
 
-@section{Functions for the `communities' resource}
+@subsection{communities}
 @defproc[(orkut.communities.list
 [userId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:hl hl string? 'N/A]
 [#:orderBy orderBy string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -355,7 +321,7 @@ Retrieves the list of communities the current user is a member of.
 [communityId string?]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -370,12 +336,12 @@ Retrieves the basic information (aka. profile) of a community.
 
 }
 
-@section{Functions for the `communityFollow' resource}
+@subsection{communityFollow}
 @defproc[(orkut.communityFollow.insert
-[communityId string?]
 [userId string?]
+[communityId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -384,17 +350,17 @@ Retrieves the basic information (aka. profile) of a community.
 ) jsexpr?]{
 Adds a user as a follower of a community.
 
-@racket[communityId]: ID of the community.
-
 @racket[userId]: ID of the user.
+
+@racket[communityId]: ID of the community.
 
 }
 
 @defproc[(orkut.communityFollow.delete
-[communityId string?]
 [userId string?]
+[communityId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -403,13 +369,13 @@ Adds a user as a follower of a community.
 ) jsexpr?]{
 Removes a user from the followers of a community.
 
-@racket[communityId]: ID of the community.
-
 @racket[userId]: ID of the user.
+
+@racket[communityId]: ID of the community.
 
 }
 
-@section{Functions for the `communityMembers' resource}
+@subsection{communityMembers}
 @defproc[(orkut.communityMembers.list
 [communityId string?]
 [#:maxResults maxResults string? 'N/A]
@@ -417,7 +383,7 @@ Removes a user from the followers of a community.
 [#:hl hl string? 'N/A]
 [#:friendsOnly friendsOnly string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -439,11 +405,11 @@ Lists members of a community. Use the pagination tokens to retrieve the full lis
 }
 
 @defproc[(orkut.communityMembers.get
-[communityId string?]
 [userId string?]
+[communityId string?]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -452,19 +418,19 @@ Lists members of a community. Use the pagination tokens to retrieve the full lis
 ) jsexpr?]{
 Retrieves the relationship between a user and a community.
 
-@racket[communityId]: ID of the community.
-
 @racket[userId]: ID of the user.
+
+@racket[communityId]: ID of the community.
 
 @racket[hl]: Specifies the interface language (host language) of your user interface.
 
 }
 
 @defproc[(orkut.communityMembers.insert
-[communityId string?]
 [userId string?]
+[communityId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -473,17 +439,17 @@ Retrieves the relationship between a user and a community.
 ) jsexpr?]{
 Makes the user join a community.
 
-@racket[communityId]: ID of the community.
-
 @racket[userId]: ID of the user.
+
+@racket[communityId]: ID of the community.
 
 }
 
 @defproc[(orkut.communityMembers.delete
-[communityId string?]
 [userId string?]
+[communityId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -492,13 +458,13 @@ Makes the user join a community.
 ) jsexpr?]{
 Makes the user leave a community.
 
-@racket[communityId]: ID of the community.
-
 @racket[userId]: ID of the user.
+
+@racket[communityId]: ID of the community.
 
 }
 
-@section{Functions for the `communityMessages' resource}
+@subsection{communityMessages}
 @defproc[(orkut.communityMessages.list
 [topicId string?]
 [communityId string?]
@@ -506,7 +472,7 @@ Makes the user leave a community.
 [#:pageToken pageToken string? 'N/A]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -539,7 +505,7 @@ Retrieves the messages of a topic of a community.
 [#:isSpam isSpam string? 'N/A]
 [#:subject subject string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -571,11 +537,11 @@ Adds a message to a given community topic.
 }
 
 @defproc[(orkut.communityMessages.delete
+[messageId string?]
 [topicId string?]
 [communityId string?]
-[messageId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -584,23 +550,23 @@ Adds a message to a given community topic.
 ) jsexpr?]{
 Moves a message of the community to the trash folder.
 
+@racket[messageId]: The ID of the message to be moved to the trash folder.
+
 @racket[topicId]: The ID of the topic whose message will be moved to the trash folder.
 
 @racket[communityId]: The ID of the community whose message will be moved to the trash folder.
 
-@racket[messageId]: The ID of the message to be moved to the trash folder.
-
 }
 
-@section{Functions for the `communityPollComments' resource}
+@subsection{communityPollComments}
 @defproc[(orkut.communityPollComments.list
-[communityId string?]
 [pollId string?]
+[communityId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -609,9 +575,9 @@ Moves a message of the community to the trash folder.
 ) jsexpr?]{
 Retrieves the comments of a community poll.
 
-@racket[communityId]: The ID of the community whose poll is having its comments listed.
-
 @racket[pollId]: The ID of the community whose polls will be listed.
+
+@racket[communityId]: The ID of the community whose poll is having its comments listed.
 
 @racket[maxResults]: The maximum number of comments to include in the response.
 
@@ -622,15 +588,15 @@ Retrieves the comments of a community poll.
 }
 
 @defproc[(orkut.communityPollComments.insert
-[communityId string?]
 [pollId string?]
+[communityId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:author author string? 'N/A]
 [#:body body string? 'N/A]
 [#:addedDate addedDate string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -639,9 +605,9 @@ Retrieves the comments of a community poll.
 ) jsexpr?]{
 Adds a comment on a community poll.
 
-@racket[communityId]: The ID of the community whose poll is being commented.
-
 @racket[pollId]: The ID of the poll being commented.
+
+@racket[communityId]: The ID of the community whose poll is being commented.
 
 @racket[id]: The ID of the comment.
 
@@ -655,15 +621,15 @@ Adds a comment on a community poll.
 
 }
 
-@section{Functions for the `communityPollVotes' resource}
+@subsection{communityPollVotes}
 @defproc[(orkut.communityPollVotes.insert
-[communityId string?]
 [pollId string?]
+[communityId string?]
 [#:kind kind string? 'N/A]
 [#:isVotevisible isVotevisible string? 'N/A]
 [#:optionIds optionIds string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -672,9 +638,9 @@ Adds a comment on a community poll.
 ) jsexpr?]{
 Votes on a community poll.
 
-@racket[communityId]: The ID of the community whose poll is being voted.
-
 @racket[pollId]: The ID of the poll being voted.
+
+@racket[communityId]: The ID of the community whose poll is being voted.
 
 @racket[kind]: Identifies this resource as a community poll vote. Value: "orkut#communityPollVote"
 
@@ -684,14 +650,14 @@ Votes on a community poll.
 
 }
 
-@section{Functions for the `communityPolls' resource}
+@subsection{communityPolls}
 @defproc[(orkut.communityPolls.list
 [communityId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -711,11 +677,11 @@ Retrieves the polls of a community.
 }
 
 @defproc[(orkut.communityPolls.get
-[communityId string?]
 [pollId string?]
+[communityId string?]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -724,20 +690,20 @@ Retrieves the polls of a community.
 ) jsexpr?]{
 Retrieves one specific poll of a community.
 
-@racket[communityId]: The ID of the community for whose poll will be retrieved.
-
 @racket[pollId]: The ID of the poll to get.
+
+@racket[communityId]: The ID of the community for whose poll will be retrieved.
 
 @racket[hl]: Specifies the interface language (host language) of your user interface.
 
 }
 
-@section{Functions for the `communityRelated' resource}
+@subsection{communityRelated}
 @defproc[(orkut.communityRelated.list
 [communityId string?]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -752,14 +718,14 @@ Retrieves the communities related to another one.
 
 }
 
-@section{Functions for the `communityTopics' resource}
+@subsection{communityTopics}
 @defproc[(orkut.communityTopics.list
 [communityId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -783,7 +749,7 @@ Retrieves the topics of a community.
 [communityId string?]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -808,14 +774,14 @@ Retrieves a topic of a community.
 [#:title title string? 'N/A]
 [#:author author string? 'N/A]
 [#:body body string? 'N/A]
-[#:links links string? 'N/A]
 [#:isClosed isClosed string? 'N/A]
 [#:lastUpdate lastUpdate string? 'N/A]
 [#:latestMessageSnippet latestMessageSnippet string? 'N/A]
 [#:messages messages string? 'N/A]
 [#:numberOfReplies numberOfReplies string? 'N/A]
+[#:links links string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -838,8 +804,6 @@ Adds a topic to a given community.
 
 @racket[body]: The body of the topic.
 
-@racket[links]: List of resources for the community.
-
 @racket[isClosed]: Whether the topic is closed for new messages.
 
 @racket[lastUpdate]: The timestamp of the last update, in RFC 3339 format.
@@ -850,13 +814,15 @@ Adds a topic to a given community.
 
 @racket[numberOfReplies]: The total number of replies this topic has received.
 
+@racket[links]: List of resources for the community.
+
 }
 
 @defproc[(orkut.communityTopics.delete
 [topicId string?]
 [communityId string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -871,20 +837,20 @@ Moves a topic of the community to the trash folder.
 
 }
 
-@section{Functions for the `scraps' resource}
+@subsection{scraps}
 @defproc[(orkut.scraps.insert
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:title title string? 'N/A]
 [#:object object string? 'N/A]
 [#:updated updated string? 'N/A]
-[#:verb verb string? 'N/A]
-[#:published published string? 'N/A]
-[#:links links string? 'N/A]
-[#:access access string? 'N/A]
 [#:actor actor string? 'N/A]
+[#:access access string? 'N/A]
+[#:published published string? 'N/A]
+[#:verb verb string? 'N/A]
+[#:links links string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -903,6 +869,12 @@ Creates a new scrap.
 
 @racket[updated]: The time at which the activity was last updated.
 
+@racket[actor]: The person who performed the activity.
+
+@racket[access]: Identifies who has access to see this activity.
+
+@racket[published]: The time at which the activity was initially published.
+
 @racket[verb]: This activity's verb, indicating what action was performed. Possible values are:  
 - add - User added new content to profile or album, e.g. video, photo. 
 - post - User publish content to the stream, e.g. status, scrap. 
@@ -910,13 +882,44 @@ Creates a new scrap.
 - make-friend - User added a new friend. 
 - birthday - User has a birthday.
 
-@racket[published]: The time at which the activity was initially published.
-
 @racket[links]: Links to resources related to this activity.
 
-@racket[access]: Identifies who has access to see this activity.
+}
 
-@racket[actor]: The person who performed the activity.
+@subsection{acl}
+@defproc[(orkut.acl.delete
+[activityId string?]
+[userId string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Excludes an element from the ACL of the activity.
+
+@racket[activityId]: ID of the activity.
+
+@racket[userId]: ID of the user to be removed from the activity.
+
+}
+
+@subsection{counters}
+@defproc[(orkut.counters.list
+[userId string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Retrieves the counters of a user.
+
+@racket[userId]: The ID of the user whose counters will be listed. Can be me to refer to caller.
 
 }
 

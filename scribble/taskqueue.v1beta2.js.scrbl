@@ -1,23 +1,25 @@
 #lang scribble/manual
+@(require planet/scribble (for-label racket))
+
 @title{TaskQueue API v1beta2}
+@margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you access a Google App Engine Pull Task Queue over REST.
-@hyperlink["http://code.google.com/appengine/docs/python/taskqueue/rest.html" "Documentation link"]
+@hyperlink["http://code.google.com/appengine/docs/python/taskqueue/rest.html" "Google documentation."]
 @table-of-contents{}
+@defmodule[gapi/macro]
+@racket[(require-gapi-doc "taskqueue.v1beta2.js")]
 @section{API Parameters}
-These optional keyword arguments may be passed to all functions for this API:
-@defproc[(any-function
+The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+@defproc[(_
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
 ) jsexpr?]{
-This is not actually a function. This is just using Scribble's
-defproc form to list the optional keyword arguments that may be passed
-to any function for this API.
-
+@margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
 
 @racket[key]: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
@@ -34,14 +36,15 @@ to any function for this API.
 
 }
 
+@section{Resources}
 
-@section{Functions for the `taskqueues' resource}
+@subsection{taskqueues}
 @defproc[(taskqueue.taskqueues.get
 [project string?]
 [taskqueue string?]
 [#:getStats getStats string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -58,12 +61,12 @@ Get detailed information about a TaskQueue.
 
 }
 
-@section{Functions for the `tasks' resource}
+@subsection{tasks}
 @defproc[(taskqueue.tasks.list
 [project string?]
 [taskqueue string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -83,7 +86,7 @@ List Tasks in a TaskQueue
 [taskqueue string?]
 [task string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -111,7 +114,7 @@ Get a particular task from a TaskQueue.
 [#:payloadBase64 payloadBase64 string? 'N/A]
 [#:queueName queueName string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -153,7 +156,7 @@ Insert a new task in a TaskQueue
 [#:payloadBase64 payloadBase64 string? 'N/A]
 [#:queueName queueName string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -194,7 +197,7 @@ Update tasks that are leased out of a TaskQueue. This method supports patch sema
 [#:tag tag string? 'N/A]
 [#:groupByTag groupByTag string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -230,7 +233,7 @@ Lease 1 or more tasks from a TaskQueue.
 [#:payloadBase64 payloadBase64 string? 'N/A]
 [#:queueName queueName string? 'N/A]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
@@ -268,7 +271,7 @@ Update tasks that are leased out of a TaskQueue.
 [taskqueue string?]
 [task string?]
 [#:fields fields string? 'N/A]
-[#:key key string? 'N/A]
+[#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
