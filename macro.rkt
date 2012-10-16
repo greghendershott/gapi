@@ -104,11 +104,11 @@
       (syntax-case stx ()
         [(_ js-file)
          (string? (syntax-e #'js-file))
-         (let ([src (syntax-source stx)])
-           (define js
-             (parameterize ([current-directory
-                             (build-path (collection-path "gapi") "vendor")])
-               (call-with-input-file (syntax-e #'js-file) read-json)))
+         (let* ([dir (cond [(path-only (syntax-e #'js-file)) => values]
+                           [else (build-path (collection-path "gapi")
+                                             "vendor")])]
+                [js (parameterize ([current-directory dir])
+                      (call-with-input-file (syntax-e #'js-file) read-json))])
            (gen js stx))]))
     m))
 
