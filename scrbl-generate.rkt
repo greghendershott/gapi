@@ -22,7 +22,9 @@
    @string-append{#lang scribble/manual
    @"@"(require planet/scribble (for-label racket))
    @"@"title{@(hash-ref j 'title) @(hash-ref j 'version)}
-   @"@"margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
+   @"@"margin-note{This documentation has been automatically generated
+                        using information supplied by the
+                        Google API Discovery service.}
    @(hash-ref j 'description)
    @"@"hyperlink["@(hash-ref j 'documentationLink)" "Google documentation."]
    @"@"table-of-contents{}
@@ -34,7 +36,8 @@
   (displayln
    @string-append{
    @"@"section{API Parameters}
-   The following optional keyword arguments may be passed to all functions for this web service:
+   The following optional keyword arguments may be passed to
+   @"@"italic{all} functions for this web service:
    @"@"defproc[(_
    @string-append*{
      @(for/list ([(k v) (hash-ref j 'parameters (hasheq))])
@@ -42,7 +45,10 @@
                                                    [else "'N/A"])))
      }
    ) jsexpr?]{
-   @"@"margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @"@"italic{all} functions for this service.}
+   @"@"margin-note{This is not actually a function. This is just using
+                        Scribble's defproc form to list the optional
+                        keyword arguments that may be passed
+                        to @"@"italic{all} functions for this service.}
    @string-append*{
      @(for/list ([(k v) (hash-ref j 'parameters (hasheq))])
         (format "@racket[~a]: ~a\n\n" k (hash-ref v 'description "")))
