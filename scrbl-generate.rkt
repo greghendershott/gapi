@@ -122,42 +122,42 @@
   (displayln "}")
   (newline))
 
-(define (generate src-path dst-path name)
-  (define js-pn (build-path src-path name))
-  (define scrbl-pn (build-path dst-path (string-append name ".scrbl")))
-  (with-output-to-file scrbl-pn
+(define (generate name)
+  (define js-pn (build-path 'same "vendor" name))
+  (define scrb-pn (build-path 'same "genscribs" (string-append name ".scrbl")))
+  (with-output-to-file scrb-pn
     (lambda ()
-      (discovery-document->scribble-code
-       (load-discovery-document js-pn)))
+      (discovery-document->scribble-code (load-discovery-document js-pn)))
     #:mode 'text
     #:exists 'replace))
 
-(define (build dst-path name)
-  (parameterize ([current-directory dst-path])
-    (system (string-append "scribble "
-                           "++xref-in setup/xref load-collections-xref "
-                           name ".scrbl"))))
+(define (build name)
+  (define scrib-pn
+    (path->string (build-path 'same "genscribs" (string-append
+                                                 name ".scrbl"))))
+  (define html-dir (path->string (build-path 'same "planet-docs" "manual")))
+  (system (string-append
+           "scribble "
+           "++xref-in setup/xref load-collections-xref "
+           "--dest " html-dir " "
+           scrib-pn)))
 
-(define (generate-and-build src-path dst-path name)
-  (generate src-path dst-path name)
-  (build dst-path name))
+(define (generate-and-build name)
+  (generate name)
+  (build name))
 
-(define (generate-and-build-all src-path dst-path)
+(define (generate-and-build-all)
   (fold-files
    (lambda (fn what _)
      (cond [(eq? what 'file)
             (displayln fn)
-            (generate-and-build src-path
-                                dst-path
-                                (path->string (file-name-from-path fn)))]))
+            (generate-and-build (path->string (file-name-from-path fn)))]))
    (void)
-   src-path
+   (build-path 'same "vendor")
    #f))
 
-;; (generate-and-build "vendor" "scribble" "urlshortener.v1.js")
-;; (generate-and-build "vendor" "scribble" "plus.v1.js")
-;; (generate-and-build "vendor" "scribble" "licensing.v1.js")
+;; (generate-and-build "urlshortener.v1.js")
+;; (generate-and-build "plus.v1.js")
+;; (generate-and-build "licensing.v1.js")
 
-#;
-(generate-and-build-all (build-path 'same "vendor")
-                        (build-path 'same "scribble"))
+;; (generate-and-build-all)
