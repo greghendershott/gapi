@@ -40,11 +40,11 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @subsection{topic}
 @defproc[(freebase-topic-lookup
-[id string?]
+[#:id id string?]
 [#:filter filter string? 'N/A]
 [#:lang lang string? 'N/A]
-[#:limit limit string? 'N/A]
 [#:dateline dateline string? 'N/A]
+[#:limit limit string? 'N/A]
 [#:raw raw string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -62,9 +62,9 @@ Get properties and meta-data about a topic.
 
 @racket[lang]: The language you 'd like the content in - a freebase /type/lang language key.
 
-@racket[limit]: The maximum number of property values to return for each property.
-
 @racket[dateline]: Determines how up-to-date the data returned is. A unix epoch time, a guid or a 'now'
+
+@racket[limit]: The maximum number of property values to return for each property.
 
 @racket[raw]: Do not apply any constraints, or get any names.
 
@@ -72,7 +72,7 @@ Get properties and meta-data about a topic.
 
 @subsection{text}
 @defproc[(freebase-text-get
-[id string?]
+[#:id id string?]
 [#:format format string? 'N/A]
 [#:maxlength maxlength string? 'N/A]
 [#:fields fields string? 'N/A]

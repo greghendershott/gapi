@@ -40,8 +40,8 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @subsection{tags}
 @defproc[(moderator-tags-list
-[seriesId string?]
-[submissionId string?]
+[#:seriesId seriesId string?]
+[#:submissionId submissionId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -59,8 +59,8 @@ Lists all tags for the specified submission within the specified series.
 }
 
 @defproc[(moderator-tags-insert
-[seriesId string?]
-[submissionId string?]
+[#:seriesId seriesId string?]
+[#:submissionId submissionId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:text text string? 'N/A]
@@ -87,9 +87,9 @@ Inserts a new tag for the specified submission within the specified series.
 }
 
 @defproc[(moderator-tags-delete
-[seriesId string?]
-[submissionId string?]
-[tagId string?]
+[#:seriesId seriesId string?]
+[#:submissionId submissionId string?]
+[#:tagId tagId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -110,8 +110,8 @@ Deletes the specified tag from the specified submission within the specified ser
 
 @subsection{submissions}
 @defproc[(moderator-submissions-get
-[seriesId string?]
-[submissionId string?]
+[#:seriesId seriesId string?]
+[#:submissionId submissionId string?]
 [#:lang lang string? 'N/A]
 [#:includeVotes includeVotes string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -135,17 +135,17 @@ Returns the specified submission within the specified series.
 }
 
 @defproc[(moderator-submissions-insert
-[seriesId string?]
-[topicId string?]
+[#:seriesId seriesId string?]
+[#:topicId topicId string?]
 [#:anonymous anonymous string? 'N/A]
 [#:unauthToken unauthToken string? 'N/A]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:author author string? 'N/A]
 [#:created created string? 'N/A]
-[#:vote vote string? 'N/A]
-[#:geo geo string? 'N/A]
 [#:attribution attribution string? 'N/A]
+[#:geo geo string? 'N/A]
+[#:vote vote string? 'N/A]
 [#:counters counters string? 'N/A]
 [#:attachmentUrl attachmentUrl string? 'N/A]
 [#:parentSubmissionId parentSubmissionId string? 'N/A]
@@ -178,11 +178,11 @@ Inserts a new submission in the specified topic within the specified series.
 
 @racket[created]: 
 
-@racket[vote]: 
+@racket[attribution]: 
 
 @racket[geo]: 
 
-@racket[attribution]: 
+@racket[vote]: 
 
 @racket[counters]: 
 
@@ -200,7 +200,7 @@ Inserts a new submission in the specified topic within the specified series.
 
 @subsection{votes}
 @defproc[(moderator-votes-list
-[seriesId string?]
+[#:seriesId seriesId string?]
 [#:max-results max-results string? 'N/A]
 [#:start-index start-index string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -222,8 +222,8 @@ Lists the votes by the authenticated user for the given series.
 }
 
 @defproc[(moderator-votes-get
-[seriesId string?]
-[submissionId string?]
+[#:seriesId seriesId string?]
+[#:submissionId submissionId string?]
 [#:userId userId string? 'N/A]
 [#:unauthToken unauthToken string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -247,8 +247,8 @@ Returns the votes by the authenticated user for the specified submission within 
 }
 
 @defproc[(moderator-votes-insert
-[seriesId string?]
-[submissionId string?]
+[#:seriesId seriesId string?]
+[#:submissionId submissionId string?]
 [#:unauthToken unauthToken string? 'N/A]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -281,8 +281,8 @@ Inserts a new vote by the authenticated user for the specified submission within
 }
 
 @defproc[(moderator-votes-patch
-[seriesId string?]
-[submissionId string?]
+[#:seriesId seriesId string?]
+[#:submissionId submissionId string?]
 [#:userId userId string? 'N/A]
 [#:unauthToken unauthToken string? 'N/A]
 [#:id id string? 'N/A]
@@ -318,8 +318,8 @@ Updates the votes by the authenticated user for the specified submission within 
 }
 
 @defproc[(moderator-votes-update
-[seriesId string?]
-[submissionId string?]
+[#:seriesId seriesId string?]
+[#:submissionId submissionId string?]
 [#:userId userId string? 'N/A]
 [#:unauthToken unauthToken string? 'N/A]
 [#:id id string? 'N/A]
@@ -357,11 +357,11 @@ Updates the votes by the authenticated user for the specified submission within 
 @subsection{topics}
 @section{Resources}
 @defproc[(moderator-topics-list
-[seriesId string?]
+[#:seriesId seriesId string?]
 [#:mode mode string? 'N/A]
 [#:max-results max-results string? 'N/A]
-[#:start-index start-index string? 'N/A]
 [#:q q string? 'N/A]
+[#:start-index start-index string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -378,15 +378,15 @@ Searches the topics within the specified series and returns the search results.
 
 @racket[max-results]: Maximum number of results to return.
 
-@racket[start-index]: Index of the first result to be retrieved.
-
 @racket[q]: Search query.
+
+@racket[start-index]: Index of the first result to be retrieved.
 
 }
 
 @defproc[(moderator-topics-get
-[seriesId string?]
-[topicId string?]
+[#:seriesId seriesId string?]
+[#:topicId topicId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -404,7 +404,7 @@ Returns the specified topic from the specified series.
 }
 
 @defproc[(moderator-topics-insert
-[seriesId string?]
+[#:seriesId seriesId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
@@ -444,8 +444,8 @@ Inserts a new topic into the specified series.
 }
 
 @defproc[(moderator-topics-update
-[seriesId string?]
-[topicId string?]
+[#:seriesId seriesId string?]
+[#:topicId topicId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
@@ -490,8 +490,8 @@ Updates the specified topic within the specified series.
 @section{Resources}
 @defproc[(moderator-series-list
 [#:max-results max-results string? 'N/A]
-[#:start-index start-index string? 'N/A]
 [#:q q string? 'N/A]
+[#:start-index start-index string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -504,14 +504,14 @@ Searches the series and returns the search results.
 
 @racket[max-results]: Maximum number of results to return.
 
-@racket[start-index]: Index of the first result to be retrieved.
-
 @racket[q]: Search query.
+
+@racket[start-index]: Index of the first result to be retrieved.
 
 }
 
 @defproc[(moderator-series-get
-[seriesId string?]
+[#:seriesId seriesId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -573,7 +573,7 @@ Inserts a new series.
 }
 
 @defproc[(moderator-series-patch
-[seriesId string?]
+[#:seriesId seriesId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
@@ -622,7 +622,7 @@ Updates the specified series. This method supports patch semantics.
 }
 
 @defproc[(moderator-series-update
-[seriesId string?]
+[#:seriesId seriesId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
@@ -672,13 +672,13 @@ Updates the specified series.
 
 @subsection{responses}
 @defproc[(moderator-responses-list
-[seriesId string?]
-[submissionId string?]
+[#:seriesId seriesId string?]
+[#:submissionId submissionId string?]
 [#:sort sort string? 'N/A]
 [#:author author string? 'N/A]
 [#:max-results max-results string? 'N/A]
-[#:start-index start-index string? 'N/A]
 [#:q q string? 'N/A]
+[#:start-index start-index string? 'N/A]
 [#:hasAttachedVideo hasAttachedVideo string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -700,27 +700,27 @@ Lists or searches the responses for the specified submission within the specifie
 
 @racket[max-results]: Maximum number of results to return.
 
-@racket[start-index]: Index of the first result to be retrieved.
-
 @racket[q]: Search query.
+
+@racket[start-index]: Index of the first result to be retrieved.
 
 @racket[hasAttachedVideo]: Specifies whether to restrict to submissions that have videos attached.
 
 }
 
 @defproc[(moderator-responses-insert
-[seriesId string?]
-[topicId string?]
-[parentSubmissionId string?]
+[#:seriesId seriesId string?]
+[#:topicId topicId string?]
+[#:parentSubmissionId parentSubmissionId string?]
 [#:anonymous anonymous string? 'N/A]
 [#:unauthToken unauthToken string? 'N/A]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:author author string? 'N/A]
 [#:created created string? 'N/A]
-[#:vote vote string? 'N/A]
-[#:geo geo string? 'N/A]
 [#:attribution attribution string? 'N/A]
+[#:geo geo string? 'N/A]
+[#:vote vote string? 'N/A]
 [#:counters counters string? 'N/A]
 [#:attachmentUrl attachmentUrl string? 'N/A]
 [#:topics topics string? 'N/A]
@@ -754,11 +754,11 @@ Inserts a response for the specified submission in the specified topic within th
 
 @racket[created]: 
 
-@racket[vote]: 
+@racket[attribution]: 
 
 @racket[geo]: 
 
-@racket[attribution]: 
+@racket[vote]: 
 
 @racket[counters]: 
 

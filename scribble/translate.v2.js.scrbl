@@ -40,7 +40,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @subsection{detections}
 @defproc[(language-detections-list
-[q string?]
+[#:q q string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -74,11 +74,11 @@ List the source/target languages supported by the API
 
 @subsection{translations}
 @defproc[(language-translations-list
-[target string?]
-[q string?]
+[#:q q string?]
+[#:target target string?]
 [#:format format string? 'N/A]
-[#:source source string? 'N/A]
 [#:cid cid string? 'N/A]
+[#:source source string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -89,15 +89,15 @@ List the source/target languages supported by the API
 ) jsexpr?]{
 Returns text translations from one language to another.
 
-@racket[target]: The target language into which the text should be translated
-
 @racket[q]: The text to translate
+
+@racket[target]: The target language into which the text should be translated
 
 @racket[format]: The format of the text
 
-@racket[source]: The source language of the text
-
 @racket[cid]: The customization id for translate
+
+@racket[source]: The source language of the text
 
 }
 

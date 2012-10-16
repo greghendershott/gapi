@@ -41,7 +41,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @subsection{accounts}
 @section{Resources}
 @defproc[(adsensehost-accounts-list
-[filterAdClientId string?]
+[#:filterAdClientId filterAdClientId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -57,7 +57,7 @@ List hosted accounts associated with this AdSense account by ad client id.
 }
 
 @defproc[(adsensehost-accounts-get
-[accountId string?]
+[#:accountId accountId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -74,9 +74,9 @@ Get information about the selected associated AdSense account.
 
 @subsection{customchannels}
 @defproc[(adsensehost-customchannels-list
-[adClientId string?]
-[#:pageToken pageToken string? 'N/A]
+[#:adClientId adClientId string?]
 [#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -89,15 +89,15 @@ List all host custom channels in this AdSense account.
 
 @racket[adClientId]: Ad client for which to list custom channels.
 
-@racket[pageToken]: A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-
 @racket[maxResults]: The maximum number of custom channels to include in the response, used for paging.
+
+@racket[pageToken]: A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
 
 }
 
 @defproc[(adsensehost-customchannels-get
-[adClientId string?]
-[customChannelId string?]
+[#:adClientId adClientId string?]
+[#:customChannelId customChannelId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -115,7 +115,7 @@ Get a specific custom channel from the host AdSense account.
 }
 
 @defproc[(adsensehost-customchannels-insert
-[adClientId string?]
+[#:adClientId adClientId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
@@ -143,8 +143,8 @@ Add a new custom channel to the host AdSense account.
 }
 
 @defproc[(adsensehost-customchannels-patch
-[adClientId string?]
-[customChannelId string?]
+[#:adClientId adClientId string?]
+[#:customChannelId customChannelId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
@@ -174,7 +174,7 @@ Update a custom channel in the host AdSense account. This method supports patch 
 }
 
 @defproc[(adsensehost-customchannels-update
-[adClientId string?]
+[#:adClientId adClientId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
@@ -202,8 +202,8 @@ Update a custom channel in the host AdSense account.
 }
 
 @defproc[(adsensehost-customchannels-delete
-[adClientId string?]
-[customChannelId string?]
+[#:adClientId adClientId string?]
+[#:customChannelId customChannelId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -222,8 +222,8 @@ Delete a specific custom channel from the host AdSense account.
 
 @subsection{adclients}
 @defproc[(adsensehost-adclients-list
-[#:pageToken pageToken string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -234,14 +234,14 @@ Delete a specific custom channel from the host AdSense account.
 ) jsexpr?]{
 List all host ad clients in this AdSense account.
 
-@racket[pageToken]: A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-
 @racket[maxResults]: The maximum number of ad clients to include in the response, used for paging.
+
+@racket[pageToken]: A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
 
 }
 
 @defproc[(adsensehost-adclients-get
-[adClientId string?]
+[#:adClientId adClientId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -258,8 +258,8 @@ Get information about one of the ad clients in the Host AdSense account.
 
 @subsection{reports}
 @defproc[(adsensehost-reports-generate
-[endDate string?]
-[startDate string?]
+[#:endDate endDate string?]
+[#:startDate startDate string?]
 [#:sort sort string? 'N/A]
 [#:filter filter string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
@@ -299,9 +299,9 @@ Generate an AdSense report based on the report request sent in the query paramet
 
 @subsection{urlchannels}
 @defproc[(adsensehost-urlchannels-list
-[adClientId string?]
-[#:pageToken pageToken string? 'N/A]
+[#:adClientId adClientId string?]
 [#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -314,14 +314,14 @@ List all host URL channels in the host AdSense account.
 
 @racket[adClientId]: Ad client for which to list URL channels.
 
-@racket[pageToken]: A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-
 @racket[maxResults]: The maximum number of URL channels to include in the response, used for paging.
+
+@racket[pageToken]: A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
 
 }
 
 @defproc[(adsensehost-urlchannels-insert
-[adClientId string?]
+[#:adClientId adClientId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:urlPattern urlPattern string? 'N/A]
@@ -346,8 +346,8 @@ Add a new URL channel to the host AdSense account.
 }
 
 @defproc[(adsensehost-urlchannels-delete
-[adClientId string?]
-[urlChannelId string?]
+[#:adClientId adClientId string?]
+[#:urlChannelId urlChannelId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -366,8 +366,8 @@ Delete a URL channel from the host AdSense account.
 
 @subsection{associationsessions}
 @defproc[(adsensehost-associationsessions-start
-[productCode string?]
-[websiteUrl string?]
+[#:productCode productCode string?]
+[#:websiteUrl websiteUrl string?]
 [#:userLocale userLocale string? 'N/A]
 [#:websiteLocale websiteLocale string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -391,7 +391,7 @@ Create an association session for initiating an association with an AdSense user
 }
 
 @defproc[(adsensehost-associationsessions-verify
-[token string?]
+[#:token token string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]

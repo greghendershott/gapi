@@ -59,7 +59,7 @@ Retrieves a list of URLs shortened by a user.
 }
 
 @defproc[(urlshortener-url-get
-[shortUrl string?]
+[#:shortUrl shortUrl string?]
 [#:projection projection string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -81,9 +81,9 @@ Expands a short URL or gets creation time and analytics.
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:longUrl longUrl string? 'N/A]
+[#:analytics analytics string? 'N/A]
 [#:created created string? 'N/A]
 [#:status status string? 'N/A]
-[#:analytics analytics string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -100,11 +100,11 @@ Creates a new short URL.
 
 @racket[longUrl]: Long URL, e.g. "http://www.google.com/". Might not be present if the status is "REMOVED".
 
+@racket[analytics]: A summary of the click analytics for the short and long URL. Might not be present if not requested or currently unavailable.
+
 @racket[created]: Time the short URL was created; ISO 8601 representation using the yyyy-MM-dd'T'HH:mm:ss.SSSZZ format, e.g. "2010-10-14T19:01:24.944+00:00".
 
 @racket[status]: Status of the target URL. Possible values: "OK", "MALWARE", "PHISHING", or "REMOVED". A URL might be marked "REMOVED" if it was flagged as spam, for example.
-
-@racket[analytics]: A summary of the click analytics for the short and long URL. Might not be present if not requested or currently unavailable.
 
 }
 

@@ -40,8 +40,8 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @subsection{taskqueues}
 @defproc[(taskqueue-taskqueues-get
-[project string?]
-[taskqueue string?]
+[#:project project string?]
+[#:taskqueue taskqueue string?]
 [#:getStats getStats string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -63,8 +63,8 @@ Get detailed information about a TaskQueue.
 
 @subsection{tasks}
 @defproc[(taskqueue-tasks-list
-[project string?]
-[taskqueue string?]
+[#:project project string?]
+[#:taskqueue taskqueue string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -82,9 +82,9 @@ List Tasks in a TaskQueue
 }
 
 @defproc[(taskqueue-tasks-get
-[project string?]
-[taskqueue string?]
-[task string?]
+[#:project project string?]
+[#:taskqueue taskqueue string?]
+[#:task task string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -104,8 +104,8 @@ Get a particular task from a TaskQueue.
 }
 
 @defproc[(taskqueue-tasks-insert
-[project string?]
-[taskqueue string?]
+[#:project project string?]
+[#:taskqueue taskqueue string?]
 [#:id id string? 'N/A]
 [#:tag tag string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -143,11 +143,42 @@ Insert a new task in a TaskQueue
 
 }
 
+@defproc[(taskqueue-tasks-lease
+[#:project project string?]
+[#:taskqueue taskqueue string?]
+[#:leaseSecs leaseSecs string?]
+[#:numTasks numTasks string?]
+[#:tag tag string? 'N/A]
+[#:groupByTag groupByTag string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Lease 1 or more tasks from a TaskQueue.
+
+@racket[project]: The project under which the queue lies.
+
+@racket[taskqueue]: The taskqueue to lease a task from.
+
+@racket[leaseSecs]: The lease in seconds.
+
+@racket[numTasks]: The number of tasks to lease.
+
+@racket[tag]: The tag allowed for tasks in the response. Must only be specified if group_by_tag is true. If group_by_tag is true and tag is not specified the tag will be that of the oldest task by eta, i.e. the first available tag
+
+@racket[groupByTag]: When true, all returned tasks will have the same tag
+
+}
+
 @defproc[(taskqueue-tasks-patch
-[project string?]
-[taskqueue string?]
-[task string?]
-[newLeaseSeconds string?]
+[#:project project string?]
+[#:taskqueue taskqueue string?]
+[#:task task string?]
+[#:newLeaseSeconds newLeaseSeconds string?]
 [#:id id string? 'N/A]
 [#:tag tag string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -189,42 +220,11 @@ Update tasks that are leased out of a TaskQueue. This method supports patch sema
 
 }
 
-@defproc[(taskqueue-tasks-lease
-[project string?]
-[taskqueue string?]
-[leaseSecs string?]
-[numTasks string?]
-[#:tag tag string? 'N/A]
-[#:groupByTag groupByTag string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Lease 1 or more tasks from a TaskQueue.
-
-@racket[project]: The project under which the queue lies.
-
-@racket[taskqueue]: The taskqueue to lease a task from.
-
-@racket[leaseSecs]: The lease in seconds.
-
-@racket[numTasks]: The number of tasks to lease.
-
-@racket[tag]: The tag allowed for tasks in the response. Must only be specified if group_by_tag is true. If group_by_tag is true and tag is not specified the tag will be that of the oldest task by eta, i.e. the first available tag
-
-@racket[groupByTag]: When true, all returned tasks will have the same tag
-
-}
-
 @defproc[(taskqueue-tasks-update
-[project string?]
-[taskqueue string?]
-[task string?]
-[newLeaseSeconds string?]
+[#:project project string?]
+[#:taskqueue taskqueue string?]
+[#:task task string?]
+[#:newLeaseSeconds newLeaseSeconds string?]
 [#:id id string? 'N/A]
 [#:tag tag string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -267,9 +267,9 @@ Update tasks that are leased out of a TaskQueue.
 }
 
 @defproc[(taskqueue-tasks-delete
-[project string?]
-[taskqueue string?]
-[task string?]
+[#:project project string?]
+[#:taskqueue taskqueue string?]
+[#:task task string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]

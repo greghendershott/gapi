@@ -40,7 +40,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @subsection{hostedmodels}
 @defproc[(prediction-hostedmodels-predict
-[hostedModelName string?]
+[#:hostedModelName hostedModelName string?]
 [#:input input string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -60,8 +60,8 @@ Submit input and request an output against a hosted model.
 
 @subsection{trainedmodels}
 @defproc[(prediction-trainedmodels-list
-[#:pageToken pageToken string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -72,14 +72,14 @@ Submit input and request an output against a hosted model.
 ) jsexpr?]{
 List available models.
 
-@racket[pageToken]: Pagination token
-
 @racket[maxResults]: Maximum number of results to return
+
+@racket[pageToken]: Pagination token
 
 }
 
 @defproc[(prediction-trainedmodels-get
-[id string?]
+[#:id id string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -141,7 +141,7 @@ Begin training your model.
 }
 
 @defproc[(prediction-trainedmodels-predict
-[id string?]
+[#:id id string?]
 [#:input input string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -160,7 +160,7 @@ Submit model id and request a prediction.
 }
 
 @defproc[(prediction-trainedmodels-analyze
-[id string?]
+[#:id id string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -176,7 +176,7 @@ Get analysis of the model and the data the model was trained on.
 }
 
 @defproc[(prediction-trainedmodels-update
-[id string?]
+[#:id id string?]
 [#:label label string? 'N/A]
 [#:csvInstance csvInstance string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -198,7 +198,7 @@ Add new data to a trained model.
 }
 
 @defproc[(prediction-trainedmodels-delete
-[id string?]
+[#:id id string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]

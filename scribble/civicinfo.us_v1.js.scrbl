@@ -53,7 +53,7 @@ List of available elections to query.
 }
 
 @defproc[(civicinfo-elections-voterInfoQuery
-[electionId string?]
+[#:electionId electionId string?]
 [#:officialOnly officialOnly string? 'N/A]
 [#:address address string? 'N/A]
 [#:fields fields string? 'N/A]

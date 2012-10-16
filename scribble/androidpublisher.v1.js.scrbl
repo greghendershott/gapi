@@ -40,9 +40,9 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @subsection{purchases}
 @defproc[(androidpublisher-purchases-get
-[packageName string?]
-[subscriptionId string?]
-[token string?]
+[#:token token string?]
+[#:packageName packageName string?]
+[#:subscriptionId subscriptionId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -53,18 +53,18 @@ The following optional keyword arguments may be passed to @italic{all} functions
 ) jsexpr?]{
 Checks whether a user's subscription purchase is valid and returns its expiry time.
 
+@racket[token]: The token provided to the user's device when the subscription was purchased.
+
 @racket[packageName]: The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
 
 @racket[subscriptionId]: The purchased subscription ID (for example, 'monthly001').
 
-@racket[token]: The token provided to the user's device when the subscription was purchased.
-
 }
 
 @defproc[(androidpublisher-purchases-cancel
-[packageName string?]
-[subscriptionId string?]
-[token string?]
+[#:token token string?]
+[#:packageName packageName string?]
+[#:subscriptionId subscriptionId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -75,11 +75,11 @@ Checks whether a user's subscription purchase is valid and returns its expiry ti
 ) jsexpr?]{
 Cancels a user's subscription purchase. The subscription remains valid until its expiration time.
 
+@racket[token]: The token provided to the user's device when the subscription was purchased.
+
 @racket[packageName]: The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
 
 @racket[subscriptionId]: The purchased subscription ID (for example, 'monthly001').
-
-@racket[token]: The token provided to the user's device when the subscription was purchased.
 
 }
 

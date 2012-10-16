@@ -41,19 +41,19 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @subsection{volumes}
 @section{Resources}
 @defproc[(books-volumes-list
-[q string?]
+[#:q q string?]
 [#:filter filter string? 'N/A]
 [#:projection projection string? 'N/A]
-[#:source source string? 'N/A]
-[#:download download string? 'N/A]
-[#:startIndex startIndex string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
+[#:orderBy orderBy string? 'N/A]
+[#:source source string? 'N/A]
 [#:printType printType string? 'N/A]
 [#:showPreorders showPreorders string? 'N/A]
+[#:startIndex startIndex string? 'N/A]
 [#:partner partner string? 'N/A]
+[#:download download string? 'N/A]
 [#:langRestrict langRestrict string? 'N/A]
 [#:libraryRestrict libraryRestrict string? 'N/A]
-[#:orderBy orderBy string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -70,33 +70,33 @@ Performs a book search.
 
 @racket[projection]: Restrict information returned to a set of selected fields.
 
-@racket[source]: String to identify the originator of this request.
-
-@racket[download]: Restrict to volumes by download availability.
-
-@racket[startIndex]: Index of the first result to return (starts at 0)
-
 @racket[maxResults]: Maximum number of results to return.
+
+@racket[orderBy]: Sort search results.
+
+@racket[source]: String to identify the originator of this request.
 
 @racket[printType]: Restrict to books or magazines.
 
 @racket[showPreorders]: Set to true to show books available for preorder. Defaults to false.
 
+@racket[startIndex]: Index of the first result to return (starts at 0)
+
 @racket[partner]: Restrict and brand results for partner ID.
+
+@racket[download]: Restrict to volumes by download availability.
 
 @racket[langRestrict]: Restrict results to books with this language code.
 
 @racket[libraryRestrict]: Restrict search to this user's library.
 
-@racket[orderBy]: Sort search results.
-
 }
 
 @defproc[(books-volumes-get
-[volumeId string?]
+[#:volumeId volumeId string?]
 [#:projection projection string? 'N/A]
-[#:source source string? 'N/A]
 [#:country country string? 'N/A]
+[#:source source string? 'N/A]
 [#:partner partner string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -112,9 +112,9 @@ Gets volume information for a single volume.
 
 @racket[projection]: Restrict information returned to a set of selected fields.
 
-@racket[source]: String to identify the originator of this request.
-
 @racket[country]: ISO-3166-1 code to override the IP-based location.
+
+@racket[source]: String to identify the originator of this request.
 
 @racket[partner]: Brand results for partner ID.
 
@@ -123,7 +123,7 @@ Gets volume information for a single volume.
 @subsection{bookshelves}
 @section{Resources}
 @defproc[(books-bookshelves-list
-[userId string?]
+[#:userId userId string?]
 [#:source source string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -142,8 +142,8 @@ Retrieves a list of public bookshelves for the specified user.
 }
 
 @defproc[(books-bookshelves-get
-[userId string?]
-[shelf string?]
+[#:userId userId string?]
+[#:shelf shelf string?]
 [#:source source string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -166,11 +166,11 @@ Retrieves metadata for a specific bookshelf for the specified user.
 @subsection{layers}
 @section{Resources}
 @defproc[(books-layers-list
-[volumeId string?]
-[#:source source string? 'N/A]
-[#:pageToken pageToken string? 'N/A]
+[#:volumeId volumeId string?]
 [#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
 [#:contentVersion contentVersion string? 'N/A]
+[#:source source string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -183,21 +183,21 @@ List the layer summaries for a volume.
 
 @racket[volumeId]: The volume to retrieve layers for.
 
-@racket[source]: String to identify the originator of this request.
+@racket[maxResults]: Maximum number of results to return
 
 @racket[pageToken]: The value of the nextToken from the previous page.
 
-@racket[maxResults]: Maximum number of results to return
-
 @racket[contentVersion]: The content version for the requested volume.
+
+@racket[source]: String to identify the originator of this request.
 
 }
 
 @defproc[(books-layers-get
-[volumeId string?]
-[summaryId string?]
-[#:source source string? 'N/A]
+[#:volumeId volumeId string?]
+[#:summaryId summaryId string?]
 [#:contentVersion contentVersion string? 'N/A]
+[#:source source string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -212,16 +212,16 @@ Gets the layer summary for a volume.
 
 @racket[summaryId]: The ID for the layer to get the summary for.
 
-@racket[source]: String to identify the originator of this request.
-
 @racket[contentVersion]: The content version for the requested volume.
+
+@racket[source]: String to identify the originator of this request.
 
 }
 
 @subsection{myconfig}
 @defproc[(books-myconfig-releaseDownloadAccess
-[cpksver string?]
-[volumeIds string?]
+[#:cpksver cpksver string?]
+[#:volumeIds volumeIds string?]
 [#:source source string? 'N/A]
 [#:locale locale string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -245,10 +245,10 @@ Release downloaded content access restriction.
 }
 
 @defproc[(books-myconfig-requestAccess
-[source string?]
-[volumeId string?]
-[nonce string?]
-[cpksver string?]
+[#:volumeId volumeId string?]
+[#:source source string?]
+[#:nonce nonce string?]
+[#:cpksver cpksver string?]
 [#:locale locale string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -260,9 +260,9 @@ Release downloaded content access restriction.
 ) jsexpr?]{
 Request concurrent and download access restrictions.
 
-@racket[source]: String to identify the originator of this request.
-
 @racket[volumeId]: The volume to request concurrent/download restrictions for.
+
+@racket[source]: String to identify the originator of this request.
 
 @racket[nonce]: The client nonce value.
 
@@ -273,11 +273,11 @@ Request concurrent and download access restrictions.
 }
 
 @defproc[(books-myconfig-syncVolumeLicenses
-[source string?]
-[nonce string?]
-[cpksver string?]
-[#:locale locale string? 'N/A]
+[#:source source string?]
+[#:nonce nonce string?]
+[#:cpksver cpksver string?]
 [#:showPreorders showPreorders string? 'N/A]
+[#:locale locale string? 'N/A]
 [#:volumeIds volumeIds string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -295,9 +295,9 @@ Request downloaded content access for specified volumes on the My eBooks shelf.
 
 @racket[cpksver]: The device/version ID from which to release the restriction.
 
-@racket[locale]: ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
-
 @racket[showPreorders]: Set to true to show pre-ordered books. Defaults to false.
+
+@racket[locale]: ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
 
 @racket[volumeIds]: The volume(s) to request download restrictions for.
 

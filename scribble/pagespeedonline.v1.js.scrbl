@@ -40,7 +40,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @subsection{pagespeedapi}
 @defproc[(pagespeedonline-pagespeedapi-runpagespeed
-[url string?]
+[#:url url string?]
 [#:locale locale string? 'N/A]
 [#:rule rule string? 'N/A]
 [#:strategy strategy string? 'N/A]

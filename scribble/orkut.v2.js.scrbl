@@ -38,9 +38,155 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @section{Resources}
 
+@subsection{activities}
+@defproc[(orkut-activities-list
+[#:collection collection string?]
+[#:userId userId string?]
+[#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
+[#:hl hl string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Retrieves a list of activities.
+
+@racket[collection]: The collection of activities to list.
+
+@racket[userId]: The ID of the user whose activities will be listed. Can be me to refer to the viewer (i.e. the authenticated user).
+
+@racket[maxResults]: The maximum number of activities to include in the response.
+
+@racket[pageToken]: A continuation token that allows pagination.
+
+@racket[hl]: Specifies the interface language (host language) of your user interface.
+
+}
+
+@defproc[(orkut-activities-delete
+[#:activityId activityId string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Deletes an existing activity, if the access controls allow it.
+
+@racket[activityId]: ID of the activity to remove.
+
+}
+
+@subsection{comments}
+@defproc[(orkut-comments-list
+[#:activityId activityId string?]
+[#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
+[#:orderBy orderBy string? 'N/A]
+[#:hl hl string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Retrieves a list of comments, possibly filtered.
+
+@racket[activityId]: The ID of the activity containing the comments.
+
+@racket[maxResults]: The maximum number of activities to include in the response.
+
+@racket[pageToken]: A continuation token that allows pagination.
+
+@racket[orderBy]: Sort search results.
+
+@racket[hl]: Specifies the interface language (host language) of your user interface.
+
+}
+
+@defproc[(orkut-comments-get
+[#:commentId commentId string?]
+[#:hl hl string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Retrieves an existing comment.
+
+@racket[commentId]: ID of the comment to get.
+
+@racket[hl]: Specifies the interface language (host language) of your user interface.
+
+}
+
+@defproc[(orkut-comments-insert
+[#:activityId activityId string?]
+[#:id id string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:content content string? 'N/A]
+[#:actor actor string? 'N/A]
+[#:published published string? 'N/A]
+[#:inReplyTo inReplyTo string? 'N/A]
+[#:links links string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Inserts a new comment to an activity.
+
+@racket[activityId]: The ID of the activity to contain the new comment.
+
+@racket[id]: The unique ID for the comment.
+
+@racket[kind]: Identifies this resource as a comment. Value: "orkut#comment"
+
+@racket[content]: The content of the comment in text/html
+
+@racket[actor]: The person who posted the comment.
+
+@racket[published]: The time the comment was initially published, in RFC 3339 format.
+
+@racket[inReplyTo]: Link to the original activity where this comment was posted.
+
+@racket[links]: List of resources for the comment.
+
+}
+
+@defproc[(orkut-comments-delete
+[#:commentId commentId string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Deletes an existing comment.
+
+@racket[commentId]: ID of the comment to remove.
+
+}
+
 @subsection{counters}
 @defproc[(orkut-counters-list
-[userId string?]
+[#:userId userId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -57,8 +203,8 @@ Retrieves the counters of a user.
 
 @subsection{acl}
 @defproc[(orkut-acl-delete
-[activityId string?]
-[userId string?]
+[#:activityId activityId string?]
+[#:userId userId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -75,54 +221,9 @@ Excludes an element from the ACL of the activity.
 
 }
 
-@subsection{activities}
-@defproc[(orkut-activities-list
-[userId string?]
-[collection string?]
-[#:pageToken pageToken string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
-[#:hl hl string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Retrieves a list of activities.
-
-@racket[userId]: The ID of the user whose activities will be listed. Can be me to refer to the viewer (i.e. the authenticated user).
-
-@racket[collection]: The collection of activities to list.
-
-@racket[pageToken]: A continuation token that allows pagination.
-
-@racket[maxResults]: The maximum number of activities to include in the response.
-
-@racket[hl]: Specifies the interface language (host language) of your user interface.
-
-}
-
-@defproc[(orkut-activities-delete
-[activityId string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Deletes an existing activity, if the access controls allow it.
-
-@racket[activityId]: ID of the activity to remove.
-
-}
-
 @subsection{activityVisibility}
 @defproc[(orkut-activityVisibility-get
-[activityId string?]
+[#:activityId activityId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -138,7 +239,7 @@ Gets the visibility of an existing activity.
 }
 
 @defproc[(orkut-activityVisibility-patch
-[activityId string?]
+[#:activityId activityId string?]
 [#:kind kind string? 'N/A]
 [#:links links string? 'N/A]
 [#:visibility visibility string? 'N/A]
@@ -165,7 +266,7 @@ Updates the visibility of an existing activity. This method supports patch seman
 }
 
 @defproc[(orkut-activityVisibility-update
-[activityId string?]
+[#:activityId activityId string?]
 [#:kind kind string? 'N/A]
 [#:links links string? 'N/A]
 [#:visibility visibility string? 'N/A]
@@ -193,7 +294,7 @@ Updates the visibility of an existing activity.
 
 @subsection{badges}
 @defproc[(orkut-badges-list
-[userId string?]
+[#:userId userId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -209,8 +310,8 @@ Retrieves the list of visible badges of a user.
 }
 
 @defproc[(orkut-badges-get
-[userId string?]
-[badgeId string?]
+[#:userId userId string?]
+[#:badgeId badgeId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -227,113 +328,12 @@ Retrieves a badge from a user.
 
 }
 
-@subsection{comments}
-@defproc[(orkut-comments-list
-[activityId string?]
-[#:pageToken pageToken string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
-[#:hl hl string? 'N/A]
-[#:orderBy orderBy string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Retrieves a list of comments, possibly filtered.
-
-@racket[activityId]: The ID of the activity containing the comments.
-
-@racket[pageToken]: A continuation token that allows pagination.
-
-@racket[maxResults]: The maximum number of activities to include in the response.
-
-@racket[hl]: Specifies the interface language (host language) of your user interface.
-
-@racket[orderBy]: Sort search results.
-
-}
-
-@defproc[(orkut-comments-get
-[commentId string?]
-[#:hl hl string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Retrieves an existing comment.
-
-@racket[commentId]: ID of the comment to get.
-
-@racket[hl]: Specifies the interface language (host language) of your user interface.
-
-}
-
-@defproc[(orkut-comments-insert
-[activityId string?]
-[#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:content content string? 'N/A]
-[#:links links string? 'N/A]
-[#:actor actor string? 'N/A]
-[#:published published string? 'N/A]
-[#:inReplyTo inReplyTo string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Inserts a new comment to an activity.
-
-@racket[activityId]: The ID of the activity to contain the new comment.
-
-@racket[id]: The unique ID for the comment.
-
-@racket[kind]: Identifies this resource as a comment. Value: "orkut#comment"
-
-@racket[content]: The content of the comment in text/html
-
-@racket[links]: List of resources for the comment.
-
-@racket[actor]: The person who posted the comment.
-
-@racket[published]: The time the comment was initially published, in RFC 3339 format.
-
-@racket[inReplyTo]: Link to the original activity where this comment was posted.
-
-}
-
-@defproc[(orkut-comments-delete
-[commentId string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Deletes an existing comment.
-
-@racket[commentId]: ID of the comment to remove.
-
-}
-
 @subsection{communities}
 @defproc[(orkut-communities-list
-[userId string?]
+[#:userId userId string?]
 [#:maxResults maxResults string? 'N/A]
-[#:hl hl string? 'N/A]
 [#:orderBy orderBy string? 'N/A]
+[#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -348,14 +348,14 @@ Retrieves the list of communities the current user is a member of.
 
 @racket[maxResults]: The maximum number of communities to include in the response.
 
-@racket[hl]: Specifies the interface language (host language) of your user interface.
-
 @racket[orderBy]: How to order the communities by.
+
+@racket[hl]: Specifies the interface language (host language) of your user interface.
 
 }
 
 @defproc[(orkut-communities-get
-[communityId string?]
+[#:communityId communityId string?]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -375,8 +375,8 @@ Retrieves the basic information (aka. profile) of a community.
 
 @subsection{communityFollow}
 @defproc[(orkut-communityFollow-insert
-[userId string?]
-[communityId string?]
+[#:userId userId string?]
+[#:communityId communityId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -394,8 +394,8 @@ Adds a user as a follower of a community.
 }
 
 @defproc[(orkut-communityFollow-delete
-[userId string?]
-[communityId string?]
+[#:userId userId string?]
+[#:communityId communityId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -414,9 +414,9 @@ Removes a user from the followers of a community.
 
 @subsection{communityMembers}
 @defproc[(orkut-communityMembers-list
-[communityId string?]
-[#:pageToken pageToken string? 'N/A]
+[#:communityId communityId string?]
 [#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
 [#:hl hl string? 'N/A]
 [#:friendsOnly friendsOnly string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -431,9 +431,9 @@ Lists members of a community. Use the pagination tokens to retrieve the full lis
 
 @racket[communityId]: The ID of the community whose members will be listed.
 
-@racket[pageToken]: A continuation token that allows pagination.
-
 @racket[maxResults]: The maximum number of members to include in the response.
+
+@racket[pageToken]: A continuation token that allows pagination.
 
 @racket[hl]: Specifies the interface language (host language) of your user interface.
 
@@ -442,8 +442,8 @@ Lists members of a community. Use the pagination tokens to retrieve the full lis
 }
 
 @defproc[(orkut-communityMembers-get
-[userId string?]
-[communityId string?]
+[#:userId userId string?]
+[#:communityId communityId string?]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -464,8 +464,8 @@ Retrieves the relationship between a user and a community.
 }
 
 @defproc[(orkut-communityMembers-insert
-[userId string?]
-[communityId string?]
+[#:userId userId string?]
+[#:communityId communityId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -483,8 +483,8 @@ Makes the user join a community.
 }
 
 @defproc[(orkut-communityMembers-delete
-[userId string?]
-[communityId string?]
+[#:userId userId string?]
+[#:communityId communityId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -503,10 +503,10 @@ Makes the user leave a community.
 
 @subsection{communityMessages}
 @defproc[(orkut-communityMessages-list
-[topicId string?]
-[communityId string?]
-[#:pageToken pageToken string? 'N/A]
+[#:topicId topicId string?]
+[#:communityId communityId string?]
 [#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -522,17 +522,17 @@ Retrieves the messages of a topic of a community.
 
 @racket[communityId]: The ID of the community which messages will be listed.
 
-@racket[pageToken]: A continuation token that allows pagination.
-
 @racket[maxResults]: The maximum number of messages to include in the response.
+
+@racket[pageToken]: A continuation token that allows pagination.
 
 @racket[hl]: Specifies the interface language (host language) of your user interface.
 
 }
 
 @defproc[(orkut-communityMessages-insert
-[topicId string?]
-[communityId string?]
+[#:topicId topicId string?]
+[#:communityId communityId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:author author string? 'N/A]
@@ -574,9 +574,9 @@ Adds a message to a given community topic.
 }
 
 @defproc[(orkut-communityMessages-delete
-[topicId string?]
-[communityId string?]
-[messageId string?]
+[#:topicId topicId string?]
+[#:communityId communityId string?]
+[#:messageId messageId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -597,10 +597,10 @@ Moves a message of the community to the trash folder.
 
 @subsection{communityPollComments}
 @defproc[(orkut-communityPollComments-list
-[communityId string?]
-[pollId string?]
-[#:pageToken pageToken string? 'N/A]
+[#:communityId communityId string?]
+[#:pollId pollId string?]
 [#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -616,17 +616,17 @@ Retrieves the comments of a community poll.
 
 @racket[pollId]: The ID of the community whose polls will be listed.
 
-@racket[pageToken]: A continuation token that allows pagination.
-
 @racket[maxResults]: The maximum number of comments to include in the response.
+
+@racket[pageToken]: A continuation token that allows pagination.
 
 @racket[hl]: Specifies the interface language (host language) of your user interface.
 
 }
 
 @defproc[(orkut-communityPollComments-insert
-[communityId string?]
-[pollId string?]
+[#:communityId communityId string?]
+[#:pollId pollId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:author author string? 'N/A]
@@ -660,8 +660,8 @@ Adds a comment on a community poll.
 
 @subsection{communityPollVotes}
 @defproc[(orkut-communityPollVotes-insert
-[communityId string?]
-[pollId string?]
+[#:communityId communityId string?]
+[#:pollId pollId string?]
 [#:kind kind string? 'N/A]
 [#:isVotevisible isVotevisible string? 'N/A]
 [#:optionIds optionIds string? 'N/A]
@@ -689,9 +689,9 @@ Votes on a community poll.
 
 @subsection{communityPolls}
 @defproc[(orkut-communityPolls-list
-[communityId string?]
-[#:pageToken pageToken string? 'N/A]
+[#:communityId communityId string?]
 [#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -705,17 +705,17 @@ Retrieves the polls of a community.
 
 @racket[communityId]: The ID of the community which polls will be listed.
 
-@racket[pageToken]: A continuation token that allows pagination.
-
 @racket[maxResults]: The maximum number of polls to include in the response.
+
+@racket[pageToken]: A continuation token that allows pagination.
 
 @racket[hl]: Specifies the interface language (host language) of your user interface.
 
 }
 
 @defproc[(orkut-communityPolls-get
-[communityId string?]
-[pollId string?]
+[#:communityId communityId string?]
+[#:pollId pollId string?]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -737,7 +737,7 @@ Retrieves one specific poll of a community.
 
 @subsection{communityRelated}
 @defproc[(orkut-communityRelated-list
-[communityId string?]
+[#:communityId communityId string?]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -757,9 +757,9 @@ Retrieves the communities related to another one.
 
 @subsection{communityTopics}
 @defproc[(orkut-communityTopics-list
-[communityId string?]
-[#:pageToken pageToken string? 'N/A]
+[#:communityId communityId string?]
 [#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -773,17 +773,17 @@ Retrieves the topics of a community.
 
 @racket[communityId]: The ID of the community which topics will be listed.
 
-@racket[pageToken]: A continuation token that allows pagination.
-
 @racket[maxResults]: The maximum number of topics to include in the response.
+
+@racket[pageToken]: A continuation token that allows pagination.
 
 @racket[hl]: Specifies the interface language (host language) of your user interface.
 
 }
 
 @defproc[(orkut-communityTopics-get
-[topicId string?]
-[communityId string?]
+[#:topicId topicId string?]
+[#:communityId communityId string?]
 [#:hl hl string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -804,7 +804,7 @@ Retrieves a topic of a community.
 }
 
 @defproc[(orkut-communityTopics-insert
-[communityId string?]
+[#:communityId communityId string?]
 [#:isShout isShout string? 'N/A]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -856,8 +856,8 @@ Adds a topic to a given community.
 }
 
 @defproc[(orkut-communityTopics-delete
-[topicId string?]
-[communityId string?]
+[#:topicId topicId string?]
+[#:communityId communityId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -879,13 +879,13 @@ Moves a topic of the community to the trash folder.
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:title title string? 'N/A]
-[#:object object string? 'N/A]
-[#:updated updated string? 'N/A]
-[#:links links string? 'N/A]
-[#:access access string? 'N/A]
 [#:actor actor string? 'N/A]
+[#:access access string? 'N/A]
+[#:object object string? 'N/A]
 [#:published published string? 'N/A]
+[#:updated updated string? 'N/A]
 [#:verb verb string? 'N/A]
+[#:links links string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -902,17 +902,15 @@ Creates a new scrap.
 
 @racket[title]: Title of the activity.
 
-@racket[object]: The activity's object.
-
-@racket[updated]: The time at which the activity was last updated.
-
-@racket[links]: Links to resources related to this activity.
+@racket[actor]: The person who performed the activity.
 
 @racket[access]: Identifies who has access to see this activity.
 
-@racket[actor]: The person who performed the activity.
+@racket[object]: The activity's object.
 
 @racket[published]: The time at which the activity was initially published.
+
+@racket[updated]: The time at which the activity was last updated.
 
 @racket[verb]: This activity's verb, indicating what action was performed. Possible values are:  
 - add - User added new content to profile or album, e.g. video, photo. 
@@ -920,6 +918,8 @@ Creates a new scrap.
 - update - User commented on an activity. 
 - make-friend - User added a new friend. 
 - birthday - User has a birthday.
+
+@racket[links]: Links to resources related to this activity.
 
 }
 

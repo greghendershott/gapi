@@ -40,16 +40,16 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @subsection{products}
 @defproc[(shopping-products-list
-[source string?]
+[#:source source string?]
 [#:location location string? 'N/A]
-[#:startIndex startIndex string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
-[#:availability availability string? 'N/A]
-[#:q q string? 'N/A]
 [#:language language string? 'N/A]
-[#:thumbnails thumbnails string? 'N/A]
-[#:currency currency string? 'N/A]
 [#:country country string? 'N/A]
+[#:q q string? 'N/A]
+[#:startIndex startIndex string? 'N/A]
+[#:thumbnails thumbnails string? 'N/A]
+[#:availability availability string? 'N/A]
+[#:currency currency string? 'N/A]
 [#:attributeFilter attributeFilter string? 'N/A]
 [#:categories.enabled categories.enabled string? 'N/A]
 [#:categories.include categories.include string? 'N/A]
@@ -97,21 +97,21 @@ Returns a list of products and content modules
 
 @racket[location]: Location used to determine tax and shipping
 
-@racket[startIndex]: Index (1-based) of first product to return
-
 @racket[maxResults]: Maximum number of results to return
-
-@racket[availability]: Comma separated list of availabilities (outOfStock, limited, inStock, backOrder, preOrder, onDisplayToOrder) to return
-
-@racket[q]: Search query
 
 @racket[language]: Language restriction (BCP 47)
 
+@racket[country]: Country restriction (ISO 3166)
+
+@racket[q]: Search query
+
+@racket[startIndex]: Index (1-based) of first product to return
+
 @racket[thumbnails]: Image thumbnails specification
 
-@racket[currency]: Currency restriction (ISO 4217)
+@racket[availability]: Comma separated list of availabilities (outOfStock, limited, inStock, backOrder, preOrder, onDisplayToOrder) to return
 
-@racket[country]: Country restriction (ISO 3166)
+@racket[currency]: Currency restriction (ISO 4217)
 
 @racket[attributeFilter]: Comma separated list of attributes to return
 
@@ -182,10 +182,10 @@ Returns a list of products and content modules
 }
 
 @defproc[(shopping-products-get
-[source string?]
-[accountId string?]
-[productId string?]
-[productIdType string?]
+[#:source source string?]
+[#:accountId accountId string?]
+[#:productId productId string?]
+[#:productIdType productIdType string?]
 [#:location location string? 'N/A]
 [#:thumbnails thumbnails string? 'N/A]
 [#:attributeFilter attributeFilter string? 'N/A]

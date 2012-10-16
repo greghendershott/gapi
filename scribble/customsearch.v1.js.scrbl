@@ -40,7 +40,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @subsection{cse}
 @defproc[(search-cse-list
-[q string?]
+[#:q q string?]
 [#:sort sort string? 'N/A]
 [#:filter filter string? 'N/A]
 [#:start start string? 'N/A]

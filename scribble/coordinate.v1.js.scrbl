@@ -40,7 +40,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @subsection{customFieldDef}
 @defproc[(coordinate-customFieldDef-list
-[teamId string?]
+[#:teamId teamId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -57,9 +57,9 @@ Retrieves a list of custom field definitions for a team.
 
 @subsection{jobs}
 @defproc[(coordinate-jobs-list
-[teamId string?]
-[#:pageToken pageToken string? 'N/A]
+[#:teamId teamId string?]
 [#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
 [#:minModifiedTimestampMs minModifiedTimestampMs string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -73,17 +73,17 @@ Retrieves jobs created or modified since the given timestamp.
 
 @racket[teamId]: Team ID
 
-@racket[pageToken]: Continuation token
-
 @racket[maxResults]: Maximum number of results to return in one page.
+
+@racket[pageToken]: Continuation token
 
 @racket[minModifiedTimestampMs]: Minimum time a job was modified in milliseconds since epoch.
 
 }
 
 @defproc[(coordinate-jobs-get
-[teamId string?]
-[jobId string?]
+[#:teamId teamId string?]
+[#:jobId jobId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -101,11 +101,11 @@ Retrieves a job, including all the changes made to the job.
 }
 
 @defproc[(coordinate-jobs-insert
-[title string?]
-[address string?]
-[lat string?]
-[lng string?]
-[teamId string?]
+[#:title title string?]
+[#:address address string?]
+[#:lat lat string?]
+[#:lng lng string?]
+[#:teamId teamId string?]
 [#:customField customField string? 'N/A]
 [#:assignee assignee string? 'N/A]
 [#:customerName customerName string? 'N/A]
@@ -113,8 +113,8 @@ Retrieves a job, including all the changes made to the job.
 [#:note note string? 'N/A]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
-[#:jobChange jobChange string? 'N/A]
 [#:state state string? 'N/A]
+[#:jobChange jobChange string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -149,15 +149,15 @@ Inserts a new job. Only the state field of the job should be set.
 
 @racket[kind]: Identifies this object as a job.
 
-@racket[jobChange]: List of job changes since it was created. The first change corresponds to the state of the job when it was created.
-
 @racket[state]: Current job state.
+
+@racket[jobChange]: List of job changes since it was created. The first change corresponds to the state of the job when it was created.
 
 }
 
 @defproc[(coordinate-jobs-patch
-[teamId string?]
-[jobId string?]
+[#:teamId teamId string?]
+[#:jobId jobId string?]
 [#:title title string? 'N/A]
 [#:address address string? 'N/A]
 [#:progress progress string? 'N/A]
@@ -170,8 +170,8 @@ Inserts a new job. Only the state field of the job should be set.
 [#:lng lng string? 'N/A]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
-[#:jobChange jobChange string? 'N/A]
 [#:state state string? 'N/A]
+[#:jobChange jobChange string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -210,15 +210,15 @@ Updates a job. Fields that are set in the job state will be updated. This method
 
 @racket[kind]: Identifies this object as a job.
 
-@racket[jobChange]: List of job changes since it was created. The first change corresponds to the state of the job when it was created.
-
 @racket[state]: Current job state.
+
+@racket[jobChange]: List of job changes since it was created. The first change corresponds to the state of the job when it was created.
 
 }
 
 @defproc[(coordinate-jobs-update
-[teamId string?]
-[jobId string?]
+[#:teamId teamId string?]
+[#:jobId jobId string?]
 [#:title title string? 'N/A]
 [#:address address string? 'N/A]
 [#:progress progress string? 'N/A]
@@ -231,8 +231,8 @@ Updates a job. Fields that are set in the job state will be updated. This method
 [#:lng lng string? 'N/A]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
-[#:jobChange jobChange string? 'N/A]
 [#:state state string? 'N/A]
+[#:jobChange jobChange string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -271,9 +271,9 @@ Updates a job. Fields that are set in the job state will be updated.
 
 @racket[kind]: Identifies this object as a job.
 
-@racket[jobChange]: List of job changes since it was created. The first change corresponds to the state of the job when it was created.
-
 @racket[state]: Current job state.
+
+@racket[jobChange]: List of job changes since it was created. The first change corresponds to the state of the job when it was created.
 
 }
 

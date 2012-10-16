@@ -40,9 +40,9 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @subsection{licenseAssignments}
 @defproc[(licensing-licenseAssignments-get
-[productId string?]
-[skuId string?]
-[userId string?]
+[#:userId userId string?]
+[#:productId productId string?]
+[#:skuId skuId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -53,17 +53,17 @@ The following optional keyword arguments may be passed to @italic{all} functions
 ) jsexpr?]{
 Get license assignment of a particular product and sku for a user
 
+@racket[userId]: email id or unique Id of the user
+
 @racket[productId]: Name for product
 
 @racket[skuId]: Name for sku
 
-@racket[userId]: email id or unique Id of the user
-
 }
 
 @defproc[(licensing-licenseAssignments-insert
-[productId string?]
-[skuId string?]
+[#:productId productId string?]
+[#:skuId skuId string?]
 [#:userId userId string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -84,9 +84,9 @@ Assign License.
 }
 
 @defproc[(licensing-licenseAssignments-patch
-[productId string?]
-[skuId string?]
-[userId string?]
+[#:userId userId string?]
+[#:productId productId string?]
+[#:skuId skuId string?]
 [#:kind kind string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
 [#:etags etags string? 'N/A]
@@ -100,11 +100,11 @@ Assign License.
 ) jsexpr?]{
 Assign License. This method supports patch semantics.
 
+@racket[userId]: email id or unique Id of the user
+
 @racket[productId]: Name for product
 
 @racket[skuId]: Name for sku for which license would be revoked
-
-@racket[userId]: email id or unique Id of the user
 
 @racket[kind]: Identifies the resource as a LicenseAssignment.
 
@@ -115,10 +115,10 @@ Assign License. This method supports patch semantics.
 }
 
 @defproc[(licensing-licenseAssignments-listForProduct
-[productId string?]
-[customerId string?]
-[#:pageToken pageToken string? 'N/A]
+[#:productId productId string?]
+[#:customerId customerId string?]
 [#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -133,18 +133,18 @@ List license assignments for given product of the customer.
 
 @racket[customerId]: CustomerId represents the customer for whom licenseassignments are queried
 
-@racket[pageToken]: Token to fetch the next page.Optional. By default server will return first page
-
 @racket[maxResults]: Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
+
+@racket[pageToken]: Token to fetch the next page.Optional. By default server will return first page
 
 }
 
 @defproc[(licensing-licenseAssignments-listForProductAndSku
-[productId string?]
-[skuId string?]
-[customerId string?]
-[#:pageToken pageToken string? 'N/A]
+[#:productId productId string?]
+[#:skuId skuId string?]
+[#:customerId customerId string?]
 [#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -161,16 +161,16 @@ List license assignments for given product and sku of the customer.
 
 @racket[customerId]: CustomerId represents the customer for whom licenseassignments are queried
 
-@racket[pageToken]: Token to fetch the next page.Optional. By default server will return first page
-
 @racket[maxResults]: Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
+
+@racket[pageToken]: Token to fetch the next page.Optional. By default server will return first page
 
 }
 
 @defproc[(licensing-licenseAssignments-update
-[productId string?]
-[skuId string?]
-[userId string?]
+[#:userId userId string?]
+[#:productId productId string?]
+[#:skuId skuId string?]
 [#:kind kind string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
 [#:etags etags string? 'N/A]
@@ -184,11 +184,11 @@ List license assignments for given product and sku of the customer.
 ) jsexpr?]{
 Assign License.
 
+@racket[userId]: email id or unique Id of the user
+
 @racket[productId]: Name for product
 
 @racket[skuId]: Name for sku for which license would be revoked
-
-@racket[userId]: email id or unique Id of the user
 
 @racket[kind]: Identifies the resource as a LicenseAssignment.
 
@@ -199,9 +199,9 @@ Assign License.
 }
 
 @defproc[(licensing-licenseAssignments-delete
-[productId string?]
-[skuId string?]
-[userId string?]
+[#:userId userId string?]
+[#:productId productId string?]
+[#:skuId skuId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -212,11 +212,11 @@ Assign License.
 ) jsexpr?]{
 Revoke License.
 
+@racket[userId]: email id or unique Id of the user
+
 @racket[productId]: Name for product
 
 @racket[skuId]: Name for sku
-
-@racket[userId]: email id or unique Id of the user
 
 }
 

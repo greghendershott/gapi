@@ -40,8 +40,8 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @subsection{location}
 @defproc[(latitude-location-list
-[#:max-results max-results string? 'N/A]
 [#:granularity granularity string? 'N/A]
+[#:max-results max-results string? 'N/A]
 [#:max-time max-time string? 'N/A]
 [#:min-time min-time string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -54,9 +54,9 @@ The following optional keyword arguments may be passed to @italic{all} functions
 ) jsexpr?]{
 Lists the user's location history.
 
-@racket[max-results]: Maximum number of locations to return.
-
 @racket[granularity]: Granularity of the requested locations.
+
+@racket[max-results]: Maximum number of locations to return.
 
 @racket[max-time]: Maximum timestamp of locations to return (ms since epoch).
 
@@ -65,7 +65,7 @@ Lists the user's location history.
 }
 
 @defproc[(latitude-location-get
-[locationId string?]
+[#:locationId locationId string?]
 [#:granularity granularity string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -85,13 +85,13 @@ Reads a location from the user's location history.
 
 @defproc[(latitude-location-insert
 [#:kind kind string? 'N/A]
-[#:accuracy accuracy string? 'N/A]
 [#:activityId activityId string? 'N/A]
-[#:altitude altitude string? 'N/A]
-[#:altitudeAccuracy altitudeAccuracy string? 'N/A]
-[#:heading heading string? 'N/A]
 [#:latitude latitude string? 'N/A]
 [#:longitude longitude string? 'N/A]
+[#:altitude altitude string? 'N/A]
+[#:accuracy accuracy string? 'N/A]
+[#:altitudeAccuracy altitudeAccuracy string? 'N/A]
+[#:heading heading string? 'N/A]
 [#:speed speed string? 'N/A]
 [#:timestampMs timestampMs string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -106,19 +106,19 @@ Inserts or updates a location in the user's location history.
 
 @racket[kind]: Kind of this item.
 
-@racket[accuracy]: Accuracy of the latitude and longitude coordinates, in non-negative meters. Optional.
-
 @racket[activityId]: Unique ID of the Buzz message that corresponds to the check-in associated with this location. Available only for check-in locations. Optional.
-
-@racket[altitude]: Altitude of the location, in meters. Optional.
-
-@racket[altitudeAccuracy]: Accuracy of the altitude value, in meters. Optional.
-
-@racket[heading]: Direction of travel of the user when this location was recorded. In degrees, clockwise relative to true north. Optional.
 
 @racket[latitude]: Latitude of the location, in decimal degrees.
 
 @racket[longitude]: Longitude of the location, in decimal degrees.
+
+@racket[altitude]: Altitude of the location, in meters. Optional.
+
+@racket[accuracy]: Accuracy of the latitude and longitude coordinates, in non-negative meters. Optional.
+
+@racket[altitudeAccuracy]: Accuracy of the altitude value, in meters. Optional.
+
+@racket[heading]: Direction of travel of the user when this location was recorded. In degrees, clockwise relative to true north. Optional.
 
 @racket[speed]: Ground speed of the user at the time this location was recorded, in meters per second. Non-negative. Optional.
 
@@ -127,7 +127,7 @@ Inserts or updates a location in the user's location history.
 }
 
 @defproc[(latitude-location-delete
-[locationId string?]
+[#:locationId locationId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]

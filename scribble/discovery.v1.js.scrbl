@@ -62,8 +62,8 @@ Retrieve the list of APIs supported at this endpoint.
 }
 
 @defproc[(discovery-apis-getRest
-[version string?]
-[api string?]
+[#:version version string?]
+[#:api api string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
