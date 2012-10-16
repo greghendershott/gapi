@@ -54,10 +54,14 @@
                                         body-param-names
                                         api-param-names))
     (define qps (append req-param-names opt-param-names api-param-names))
+    (define symbol->keyword (compose1 string->keyword symbol->string))
     #`(define (#,(datum->syntax stx name)
-               #,@req-param-names
                #,@(append* (map (lambda (x)
-                                  (list (string->keyword (symbol->string x))
+                                  (list (symbol->keyword x)
+                                        x))
+                                req-param-names))
+               #,@(append* (map (lambda (x)
+                                  (list (symbol->keyword x)
                                         (list x
                                               (cond [(eq? x 'key)
                                                      #'(api-key)]

@@ -83,7 +83,7 @@
   (define body-param-names (hash-keys body-params))
   (printf "@defproc[(~a\n" name)
   (for ([(k v) req-params])
-    (printf "[~a string?]\n" k))
+    (printf "[#:~a ~a string?]\n" k k))
   (for ([(k v) opt-params]
         #:when (not (hash-has-key? req-params k)))
     (printf "[#:~a ~a string? 'N/A]\n" k k))
