@@ -2,7 +2,7 @@
 
 @(require planet/scribble
           (for-label racket)
-          (for-lebel (this-package-in main))
+          (for-label (this-package-in main))
           (for-label (this-package-in dynamic))
           (for-label (this-package-in macro))
           (for-label (this-package-in code-generate))
@@ -17,7 +17,7 @@
 
 @section{Dynamic}
 
-@defmodule[dynamic]
+@defmodule/this-package[dynamic]
 
 @defproc[(discovery-document->service [discovery-document jsexpr?]) service?]{
 
@@ -76,7 +76,7 @@ and retrieve the information, for example @racket[(hash-ref js
 
 @section{Macro}
 
-@defmodule[macro]
+@defmodule/this-package[macro]
 
 @defform[(require-gapi-doc discovery-document-name)]{
 
@@ -104,54 +104,51 @@ As another convenience, see the @racket[paged] form which simplifies
 making repeated calls to a service that returns results in small
 "pages" (batches of results).
 
-Documentation for the functions is in Scribble-generated HTML files,
-one per web service. As I type this, I have no fricking idea how you
-will find it, but hopefully I will come back and revise this so you
-will know. :)
+@hyperlink["./adexchangebuyer.v1.1.js.html" "AdExchange"]
 
 The currently available service documents are:
 
 @itemize[
-@item{@tt{adexchangebuyer.v1.1.js}: Lets you manage your Ad Exchange Buyer account.}
-@item{@tt{adsense.v1.1.js}: Gives AdSense publishers access to their inventory and the ability to generate reports}
-@item{@tt{adsensehost.v4.1.js}: Gives AdSense Hosts access to report generation, ad code generation, and publisher management capabilities.}
-@item{@tt{analytics.v3.js}: View and manage your Google Analytics data}
-@item{@tt{androidpublisher.v1.js}: Lets Android application developers access their Google Play accounts.}
-@item{@tt{audit.v1.js}: Lets you access user activities in your enterprise made through various applications.}
-@item{@tt{bigquery.v2.js}: A data platform for customers to create, manage, share and query data.}
-@item{@tt{blogger.v3.js}: API for access to the data within Blogger.}
-@item{@tt{books.v1.js}: Lets you search for books and manage your Google Books library.}
-@item{@tt{calendar.v3.js}: Lets you manipulate events and other calendar data.}
-@item{@tt{civicinfo.us_v1.js}: An API for accessing civic information.}
-@item{@tt{compute.v1beta12.js}: API for the Google Compute Engine service.}
-@item{@tt{coordinate.v1.js}: Lets you view and manage jobs in a Coordinate team.}
-@item{@tt{customsearch.v1.js}: Lets you search over a website or collection of websites}
-@item{@tt{dfareporting.v1.1.js}: Lets you create, run and download reports.}
-@item{@tt{discovery.v1.js}: Lets you discover information about other Google APIs, such as what APIs are available, the resource and method details for each API}
-@item{@tt{drive.v2.js}: The API to interact with Drive.}
-@item{@tt{freebase.v1.js}: Lets you access the Freebase repository of open data.}
-@item{@tt{fusiontables.v1.js}: API for working with Fusion Tables data.}
-@item{@tt{gan.v1beta1.js}: Lets you have programmatic access to your Google Affiliate Network data.}
-@item{@tt{groupssettings.v1.js}: Lets you manage permission levels and related settings of a group.}
-@item{@tt{latitude.v1.js}: Lets you read and update your current location and work with your location history}
-@item{@tt{licensing.v1.js}: Licensing API to view and manage license for your domain.}
-@item{@tt{moderator.v1.js}: Moderator API}
-@item{@tt{oauth2.v2.js}: Lets you access OAuth2 protocol related APIs.}
-@item{@tt{orkut.v2.js}: Lets you manage activities, comments and badges in Orkut. More stuff coming in time.}
-@item{@tt{pagespeedonline.v1.js}: Lets you analyze the performance of a web page and get tailored suggestions to make that page faster.}
-@item{@tt{plus.v1.js}: The Google+ API enables developers to build on top of the Google+ platform.}
-@item{@tt{prediction.v1.5.js}: Lets you access a cloud hosted machine learning service that makes it easy to build smart apps}
-@item{@tt{reseller.v1.js}: Lets you create and manage your customers and their subscriptions.}
-@item{@tt{shopping.v1.js}: Lets you search over product data.}
-@item{@tt{siteVerification.v1.js}: Lets you programatically verify ownership of websites or domains with Google.}
-@item{@tt{storage.v1beta1.js}: Lets you store and retrieve potentially-large, immutable data objects.}
-@item{@tt{taskqueue.v1beta2.js}: Lets you access a Google App Engine Pull Task Queue over REST.}
-@item{@tt{tasks.v1.js}: Lets you manage your tasks and task lists.}
-@item{@tt{translate.v2.js}: Lets you translate text from one language to another}
-@item{@tt{urlshortener.v1.js}: Lets you create, inspect, and manage goo.gl short URLs}
-@item{@tt{webfonts.v1.js}: The Google Web Fonts Developer API.}
-@item{@tt{youtube.v3.js}: Programmatic access to YouTube features.}
-@item{@tt{youtubeAnalytics.v1.js}: Retrieve your YouTube Analytics reports.}
+@item{@hyperlink["adexchangebuyer.v1.1.js.html" "adexchangebuyer.v1.1.js"] : Lets you manage your Ad Exchange Buyer account.}
+@item{@hyperlink["adsense.v1.1.js.html" "adsense.v1.1.js"] : Gives AdSense publishers access to their inventory and the ability to generate reports}
+@item{@hyperlink["adsensehost.v4.1.js.html" "adsensehost.v4.1.js"] : Gives AdSense Hosts access to report generation, ad code generation, and publisher management capabilities.}
+@item{@hyperlink["analytics.v3.js.html" "analytics.v3.js"] : View and manage your Google Analytics data}
+@item{@hyperlink["androidpublisher.v1.js.html" "androidpublisher.v1.js"] : Lets Android application developers access their Google Play accounts.}
+@item{@hyperlink["audit.v1.js.html" "audit.v1.js"] : Lets you access user activities in your enterprise made through various applications.}
+@item{@hyperlink["bigquery.v2.js.html" "bigquery.v2.js"] : A data platform for customers to create, manage, share and query data.}
+@item{@hyperlink["blogger.v3.js.html" "blogger.v3.js"] : API for access to the data within Blogger.}
+@item{@hyperlink["books.v1.js.html" "books.v1.js"] : Lets you search for books and manage your Google Books library.}
+@item{@hyperlink["calendar.v3.js.html" "calendar.v3.js"] : Lets you manipulate events and other calendar data.}
+@item{@hyperlink["civicinfo.us_v1.js.html" "civicinfo.us_v1.js"] : An API for accessing civic information.}
+@item{@hyperlink["compute.v1beta12.js.html" "compute.v1beta12.js"] : API for the Google Compute Engine service.}
+@item{@hyperlink["coordinate.v1.js.html" "coordinate.v1.js"] : Lets you view and manage jobs in a Coordinate team.}
+@item{@hyperlink["customsearch.v1.js.html" "customsearch.v1.js"] : Lets you search over a website or collection of websites}
+@item{@hyperlink["dfareporting.v1.1.js.html" "dfareporting.v1.1.js"] : Lets you create, run and download reports.}
+@item{@hyperlink["discovery.v1.js.html" "discovery.v1.js"] : Lets you discover information about other Google APIs, such as what APIs are available, the resource and method details for each API}
+@item{@hyperlink["drive.v2.js.html" "drive.v2.js"] : The API to interact with Drive.}
+@item{@hyperlink["freebase.v1.js.html" "freebase.v1.js"] : Lets you access the Freebase repository of open data.}
+@item{@hyperlink["fusiontables.v1.js.html" "fusiontables.v1.js"] : API for working with Fusion Tables data.}
+@item{@hyperlink["gan.v1beta1.js.html" "gan.v1beta1.js"] : Lets you have programmatic access to your Google Affiliate Network data.}
+@item{@hyperlink["groupssettings.v1.js.html" "groupssettings.v1.js"] : Lets you manage permission levels and related settings of a group.}
+@item{@hyperlink["latitude.v1.js.html" "latitude.v1.js"] : Lets you read and update your current location and work with your location history}
+@item{@hyperlink["licensing.v1.js.html" "licensing.v1.js"] : Licensing API to view and manage license for your domain.}
+@item{@hyperlink["moderator.v1.js.html" "moderator.v1.js"] : Moderator API}
+@item{@hyperlink["oauth2.v2.js.html" "oauth2.v2.js"] : Lets you access OAuth2 protocol related APIs.}
+@item{@hyperlink["orkut.v2.js.html" "orkut.v2.js"] : Lets you manage activities, comments and badges in Orkut. More stuff coming in time.}
+@item{@hyperlink["pagespeedonline.v1.js.html" "pagespeedonline.v1.js"] : Lets you analyze the performance of a web page and get tailored suggestions to make that page faster.}
+@item{@hyperlink["plus.v1.js.html" "plus.v1.js"] : The Google+ API enables developers to build on top of the Google+ platform.}
+@item{@hyperlink["prediction.v1.5.js.html" "prediction.v1.5.js"] : Lets you access a cloud hosted machine learning service that makes it easy to build smart apps}
+@item{@hyperlink["reseller.v1.js.html" "reseller.v1.js"] : Lets you create and manage your customers and their subscriptions.}
+@item{@hyperlink["shopping.v1.js.html" "shopping.v1.js"] : Lets you search over product data.}
+@item{@hyperlink["siteVerification.v1.js.html" "siteVerification.v1.js"] : Lets you programatically verify ownership of websites or domains with Google.}
+@item{@hyperlink["storage.v1beta1.js.html" "storage.v1beta1.js"] : Lets you store and retrieve potentially-large, immutable data objects.}
+@item{@hyperlink["taskqueue.v1beta2.js.html" "taskqueue.v1beta2.js"] : Lets you access a Google App Engine Pull Task Queue over REST.}
+@item{@hyperlink["tasks.v1.js.html" "tasks.v1.js"] : Lets you manage your tasks and task lists.}
+@item{@hyperlink["translate.v2.js.html" "translate.v2.js"] : Lets you translate text from one language to another}
+@item{@hyperlink["urlshortener.v1.js.html" "urlshortener.v1.js"] : Lets you create, inspect, and manage goo.gl short URLs}
+@item{@hyperlink["webfonts.v1.js.html" "webfonts.v1.js"] : The Google Web Fonts Developer API.}
+@item{@hyperlink["youtube.v3.js.html" "youtube.v3.js"] : Programmatic access to YouTube features.}
+@item{@hyperlink["youtubeAnalytics.v1.js.html" "youtubeAnalytics.v1.js"] : Retrieve your YouTube Analytics reports.}
 ]
 
 }
@@ -175,4 +172,4 @@ form.
 
 @section{Generating .RKT files}
 
-@defmodule[code-generate]
+@defmodule/this-package[code-generate]
