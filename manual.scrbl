@@ -14,10 +14,116 @@
 
 @section{Introduction}
 
+TO-DO
+
+
+@section{General}
+
+@defmodule/this-package[main]
+
+These are provided by both the @racket[gapi/dynamic] and
+@racket[gapi/macro] modules.
+
+@defparam[api-key key string?]{
+
+Your Google API key.
+
+Get an API key from Google's
+@hyperlink["https://code.google.com/apis/console/" "API Console"].
+
+Put your Google API key in a @tt{~/.google-api-key} file.
+
+
+}
+
+
+@defproc[(list-services
+[#:name name (or/c string? 'N/A) 'N/A]
+[#:label label (or/c string? 'N/A) 'N/A]
+[#:only-preferred? only-preferred? boolean? #t]
+) jsexpr?]{
+
+Make a request to the Google API Discovery service to list available
+services. Supplying @racket[#t] for @racket[only-preferred?] limits
+the results to non-deprecated services or only the latest version of
+services.
+
+}
+
+
+@defproc[(get-discovery-document
+[name string?]
+[ver string?]
+) jsexpr?]{
+
+Get the discovery document for the service @racket[name] and
+@racket[ver]. Parse the JSON discovery document using
+@racket[bytes->jsexpr] and return the resultng @racket[jsexpr?].
+
+}
+
+
+@defproc[(download-discovery-document
+[name string?]
+[ver string?]
+[path path-string? (string-append name ".js")]
+) any]{
+
+Download the discovery document for the service @racket[name] and
+@racket[ver] to the local file @racket[path].
+
+}
+
+
+@defproc[(load-discovery-document
+[path path-string?]
+) jsexpr?]{
+
+Load the discovery document.
+
+}
+
+@defform[(paged (function arguments ...))]{
+
+Make repeated calls to @racket[function] with @racket[arguments] if
+necessary to obtain additional results. If the web service includes a
+@tt{nextPageToken} value in the results---indicating that more results
+are available---then @racket[function] is called again with
+@racket[arguments] plus the additional argument
+@racket[#:pageToken]. This repeats until the service no longer returns
+a @tt{nextPageToken}.  In the returned @racket[jsexpr?], the total
+results are appended into the value for the @racket['items] key.
+
+Keep in mind that you may @italic{want} to make the calls individually
+and process the results in small batches. You may want to do this if
+the total results might be too large to fit in memory, or if you are
+relaying the results to some other web service that would prefer to
+take them in small batches, too.  However if you really want the
+results accumuluated for you, use this form.
+
+}
+
 
 @section{Dynamic}
 
 @defmodule/this-package[dynamic]
+
+One way to use the API discovery service is to query it at runtime, or
+to parse locally stored discovery files at runtime. This may be
+desirable if you want to be able to discover newly-added services, for
+example. But in general, you may prefer to use the @racket[macro]
+approach described later.
+
+
+@defproc[(service? [v any/c]) boolean?]{
+
+Returns @racket[#t] if @racket[v] is a service, @racket[#f] otherwise.
+
+A @racket[service?] is a @racket[jsexpr?] to which procedures have
+been added.
+
+}
+
 
 @defproc[(discovery-document->service [discovery-document jsexpr?]) service?]{
 
@@ -37,7 +143,7 @@ by the JSON file @racket[filename].
 }
 
 
-@defproc[(get-discovery-document->service
+@defproc[(online-discovery-document->service
 [name string?]
 [ver string?]
 ) service?]{
@@ -153,22 +259,6 @@ The currently available service documents are:
 
 }
 
-
-@defform[(paged (function arguments ...))]{
-
-Makes repeated calls to @racket[function] with @racket[arguments] if
-necessary to obtain additional results. If a set of results from the
-web service includes a @tt{nextPageToken} value, indicating that more
-results are available, then @racket[function] is called again with
-@racket[arguments] plus the additional argument @racket[#:pageToken].
-
-If a service will return a very large amount of results, you may
-@italic{want} to make the calls individually and process the results
-in small batches.  However if you would rather get the all of the
-results in one, albeit potentially very large, list of items, use this
-form.
-
-}
 
 @section{Generating .RKT files}
 
