@@ -1,4 +1,4 @@
-#lang racket
+#lang at-exp racket
 
 
 ;; @"@"something{foo}
@@ -18,30 +18,37 @@
   (do-resources root root))
 
 (define (do-intro j)
-  (displayln "#lang scribble/manual")
-  (displayln "@(require planet/scribble (for-label racket))\n")
-  (printf "@title{~a ~a}\n" (hash-ref j 'title) (hash-ref j 'version))
-  (displayln "@margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}")
-  (displayln (hash-ref j 'description))
-  (printf "@hyperlink[\"~a\" \"Google documentation.\"]\n"
-          (hash-ref j 'documentationLink))
-  (displayln "@table-of-contents{}")
-  (printf "@defmodule[gapi/macro]\n")
-  (printf "@racket[(require-gapi-doc \"~a.~a.js\")]\n" (hash-ref j 'name) (hash-ref j 'version)))
+  (displayln
+   @string-append{#lang scribble/manual
+   @"@"(require planet/scribble (for-label racket))
+   @"@"title{@(hash-ref j 'title) @(hash-ref j 'version)}
+   @"@"margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
+   @(hash-ref j 'description)
+   @"@"hyperlink["@(hash-ref j 'documentationLink)" "Google documentation."]
+   @"@"table-of-contents{}
+   @"@"defmodule[gapi/macro]
+   @"@"racket[(require-gapi-doc "@(hash-ref j 'name).@(hash-ref j 'version).js")]
+   }))
 
 (define (do-api-parameters j)
-  (displayln "@section{API Parameters}")
-  (displayln "The following optional keyword arguments may be passed to @italic{all} functions for this web service:")
-    (printf "@defproc[(_\n")
-  (for ([(k v) (hash-ref j 'parameters (hasheq))])
-    (printf "[#:~a ~a string? ~a]\n" k k (cond [(eq? k 'key) "(api-key)"]
-                                                 [else "'N/A"])))
-  (displayln ") jsexpr?]{")
-  (displayln "@margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}")
-  (for ([(k v) (hash-ref j 'parameters (hasheq))])
-    (printf "@racket[~a]: ~a\n\n" k (hash-ref v 'description "")))
-  (displayln "}")
-  (newline))
+  (displayln
+   @string-append{
+   @"@"section{API Parameters}
+   The following optional keyword arguments may be passed to all functions for this web service:
+   @"@"defproc[(_
+   @string-append*{
+     @(for/list ([(k v) (hash-ref j 'parameters (hasheq))])
+        (format "[#:~a ~a string? ~a]\n" k k (cond [(eq? k 'key) "(api-key)"]
+                                                   [else "'N/A"])))
+     }
+   ) jsexpr?]{
+   @"@"margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @"@"italic{all} functions for this service.}
+   @string-append*{
+     @(for/list ([(k v) (hash-ref j 'parameters (hasheq))])
+        (format "@racket[~a]: ~a\n\n" k (hash-ref v 'description "")))
+     }
+   }
+   }))
 
 (define (do-resources root j)
   (displayln "@section{Resources}")
@@ -145,5 +152,6 @@
 ;; (generate-and-build "vendor" "scribble" "plus.v1.js")
 ;; (generate-and-build "vendor" "scribble" "licensing.v1.js")
 
+#;
 (generate-and-build-all (build-path 'same "vendor")
                         (build-path 'same "scribble"))
