@@ -56,7 +56,10 @@
                #,@req-param-names
                #,@(append* (map (lambda (x)
                                   (list (string->keyword (symbol->string x))
-                                        (list x ''NONE)))
+                                        (list x
+                                              (cond [(eq? x 'key)
+                                                     #'(api-key)]
+                                                    [else ''NONE]))))
                                 all-opt-param-names)))
         (define base-uri #,(hash-ref root 'baseUrl))
         (define res-path #,(hash-ref mv 'path))
