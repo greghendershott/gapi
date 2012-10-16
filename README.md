@@ -8,20 +8,23 @@ the discovery tool in any of three ways:
    
    ```
    (require gapi/dynamic)
+   ;; Create a `service?' from an API discovery document
    (define goo.gl (local-discovery-document->service
                    "vendor/urlshortener.v1.js"))
+   ;; Extract some procedures from the service
    (define url-insert (method-proc goo.gl 'url 'insert))
    (define url-get (method-proc goo.gl 'url 'get))
-
+   
+   ;; Use them
    (define orig-url "http://www.racket-lang.org/")
-   (define shrink (url-insert #:longUrl long-url))
-   (define short-url (dict-ref shrink 'id))
-   (define expand (url-get #:shortUrl short-url))
-   (define long-url (dict-ref expand 'longUrl))
+   (define js-insert (urlshortener-url-insert #:longUrl orig-url))
+   (define short-url (dict-ref js-insert 'id))
+   (define js-get (urlshortener-url-get #:shortUrl short-url))
+   (define long-url (dict-ref js-get 'longUrl))
    (printf "~s was shortened to ~s, which expanded back to ~s: ~a"
            orig-url short-url long-url
            (if (equal? orig-url long-url) "Yay!" "Boo!"))
-
+   
    => "http://www.racket-lang.org/" was shortened
       to "http://goo.gl/uAKH9", which expanded back to
       "http://www.racket-lang.org/": Yay!
@@ -35,8 +38,12 @@ the discovery tool in any of three ways:
    
    ```
    (require gapi/macro)
+   ;; Define procedures for the service in the discovery document.
+   ;; This happens at compile time, not at run time.
    (require-gapi-doc "urlshortener.v1.js")
-
+   
+   ;; Use them:
+   ;; The remaining code is exactly the same as the dynamic example:
    (define orig-url "http://www.racket-lang.org/")
    (define js-insert (urlshortener-url-insert #:longUrl orig-url))
    (define short-url (dict-ref js-insert 'id))
