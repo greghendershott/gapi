@@ -7,7 +7,8 @@
          "dict-merge.rkt"
          )
 
-(provide discovery-document->service
+(provide service?
+         discovery-document->service
          local-discovery-document->service
          online-discovery-document->service
          (all-from-out "main.rkt")
