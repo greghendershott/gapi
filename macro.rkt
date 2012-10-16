@@ -65,14 +65,14 @@
                                         (list x
                                               (cond [(eq? x 'key)
                                                      #'(api-key)]
-                                                    [else ''NONE]))))
+                                                    [else ''N/A]))))
                                 all-opt-param-names)))
         (define base-uri #,(hash-ref root 'baseUrl))
         (define res-path #,(hash-ref mv 'path))
         (define _qpstr (alist->form-urlencoded
                         (filter-map
                          (lambda (k v)
-                           (cond [(eq? v 'NONE) #f]
+                           (cond [(eq? v 'N/A) #f]
                                  [else (cons (string->symbol k) v)]))
                          (list #,@(map symbol->string qps))
                          (list #,@qps))))
@@ -84,7 +84,7 @@
           (jsexpr->bytes
            (for/hasheq ([k (list #,@(map symbol->string body-param-names))]
                         [v (list #,@body-param-names)]
-                        #:when (not (eq? v 'NONE)))
+                        #:when (not (eq? v 'N/A)))
              (values (string->symbol k) v)))) 
         (define in
           #,(match (hash-ref mv 'httpMethod)
