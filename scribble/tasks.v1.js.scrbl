@@ -39,18 +39,18 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{tasks}
-@defproc[(tasks.tasks.list
+@defproc[(tasks-tasks-list
 [tasklist string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:completedMax completedMax string? 'N/A]
 [#:completedMin completedMin string? 'N/A]
 [#:dueMax dueMax string? 'N/A]
 [#:dueMin dueMin string? 'N/A]
 [#:showCompleted showCompleted string? 'N/A]
 [#:showDeleted showDeleted string? 'N/A]
-[#:updatedMin updatedMin string? 'N/A]
 [#:showHidden showHidden string? 'N/A]
+[#:updatedMin updatedMin string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -63,9 +63,9 @@ Returns all tasks in the specified task list.
 
 @racket[tasklist]: Task list identifier.
 
-@racket[maxResults]: Maximum number of task lists returned on one page. Optional. The default is 100.
-
 @racket[pageToken]: Token specifying the result page to return. Optional.
+
+@racket[maxResults]: Maximum number of task lists returned on one page. Optional. The default is 100.
 
 @racket[completedMax]: Upper bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
 
@@ -79,13 +79,13 @@ Returns all tasks in the specified task list.
 
 @racket[showDeleted]: Flag indicating whether deleted tasks are returned in the result. Optional. The default is False.
 
-@racket[updatedMin]: Lower bound for a task's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
-
 @racket[showHidden]: Flag indicating whether hidden tasks are returned in the result. Optional. The default is False.
+
+@racket[updatedMin]: Lower bound for a task's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
 
 }
 
-@defproc[(tasks.tasks.get
+@defproc[(tasks-tasks-get
 [task string?]
 [tasklist string?]
 [#:fields fields string? 'N/A]
@@ -104,7 +104,7 @@ Returns the specified task.
 
 }
 
-@defproc[(tasks.tasks.insert
+@defproc[(tasks-tasks-insert
 [tasklist string?]
 [#:parent parent string? 'N/A]
 [#:previous previous string? 'N/A]
@@ -115,10 +115,10 @@ Returns the specified task.
 [#:etag etag string? 'N/A]
 [#:hidden hidden string? 'N/A]
 [#:parent parent string? 'N/A]
-[#:status status string? 'N/A]
 [#:updated updated string? 'N/A]
-[#:deleted deleted string? 'N/A]
+[#:status status string? 'N/A]
 [#:completed completed string? 'N/A]
+[#:deleted deleted string? 'N/A]
 [#:due due string? 'N/A]
 [#:links links string? 'N/A]
 [#:notes notes string? 'N/A]
@@ -153,13 +153,13 @@ Creates a new task on the specified task list.
 
 @racket[parent]: Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the "move" method to move the task under a different parent or to the top level.
 
-@racket[status]: Status of the task. This is either "needsAction" or "completed".
-
 @racket[updated]: Last modification time of the task (as a RFC 3339 timestamp).
 
-@racket[deleted]: Flag indicating whether the task has been deleted. The default if False.
+@racket[status]: Status of the task. This is either "needsAction" or "completed".
 
 @racket[completed]: Completion date of the task (as a RFC 3339 timestamp). This field is omitted if the task has not been completed.
+
+@racket[deleted]: Flag indicating whether the task has been deleted. The default if False.
 
 @racket[due]: Due date of the task (as a RFC 3339 timestamp). Optional.
 
@@ -171,7 +171,7 @@ Creates a new task on the specified task list.
 
 }
 
-@defproc[(tasks.tasks.patch
+@defproc[(tasks-tasks-patch
 [task string?]
 [tasklist string?]
 [#:id id string? 'N/A]
@@ -181,10 +181,10 @@ Creates a new task on the specified task list.
 [#:etag etag string? 'N/A]
 [#:hidden hidden string? 'N/A]
 [#:parent parent string? 'N/A]
-[#:status status string? 'N/A]
 [#:updated updated string? 'N/A]
-[#:deleted deleted string? 'N/A]
+[#:status status string? 'N/A]
 [#:completed completed string? 'N/A]
+[#:deleted deleted string? 'N/A]
 [#:due due string? 'N/A]
 [#:links links string? 'N/A]
 [#:notes notes string? 'N/A]
@@ -217,13 +217,13 @@ Updates the specified task. This method supports patch semantics.
 
 @racket[parent]: Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the "move" method to move the task under a different parent or to the top level.
 
-@racket[status]: Status of the task. This is either "needsAction" or "completed".
-
 @racket[updated]: Last modification time of the task (as a RFC 3339 timestamp).
 
-@racket[deleted]: Flag indicating whether the task has been deleted. The default if False.
+@racket[status]: Status of the task. This is either "needsAction" or "completed".
 
 @racket[completed]: Completion date of the task (as a RFC 3339 timestamp). This field is omitted if the task has not been completed.
+
+@racket[deleted]: Flag indicating whether the task has been deleted. The default if False.
 
 @racket[due]: Due date of the task (as a RFC 3339 timestamp). Optional.
 
@@ -235,7 +235,23 @@ Updates the specified task. This method supports patch semantics.
 
 }
 
-@defproc[(tasks.tasks.move
+@defproc[(tasks-tasks-clear
+[tasklist string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Clears all completed tasks from the specified task list. The affected tasks will be marked as 'hidden' and no longer be returned by default when retrieving all tasks for a task list.
+
+@racket[tasklist]: Task list identifier.
+
+}
+
+@defproc[(tasks-tasks-move
 [task string?]
 [tasklist string?]
 [#:parent parent string? 'N/A]
@@ -260,23 +276,7 @@ Moves the specified task to another position in the task list. This can include 
 
 }
 
-@defproc[(tasks.tasks.clear
-[tasklist string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Clears all completed tasks from the specified task list. The affected tasks will be marked as 'hidden' and no longer be returned by default when retrieving all tasks for a task list.
-
-@racket[tasklist]: Task list identifier.
-
-}
-
-@defproc[(tasks.tasks.update
+@defproc[(tasks-tasks-update
 [task string?]
 [tasklist string?]
 [#:id id string? 'N/A]
@@ -286,10 +286,10 @@ Clears all completed tasks from the specified task list. The affected tasks will
 [#:etag etag string? 'N/A]
 [#:hidden hidden string? 'N/A]
 [#:parent parent string? 'N/A]
-[#:status status string? 'N/A]
 [#:updated updated string? 'N/A]
-[#:deleted deleted string? 'N/A]
+[#:status status string? 'N/A]
 [#:completed completed string? 'N/A]
+[#:deleted deleted string? 'N/A]
 [#:due due string? 'N/A]
 [#:links links string? 'N/A]
 [#:notes notes string? 'N/A]
@@ -322,13 +322,13 @@ Updates the specified task.
 
 @racket[parent]: Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the "move" method to move the task under a different parent or to the top level.
 
-@racket[status]: Status of the task. This is either "needsAction" or "completed".
-
 @racket[updated]: Last modification time of the task (as a RFC 3339 timestamp).
 
-@racket[deleted]: Flag indicating whether the task has been deleted. The default if False.
+@racket[status]: Status of the task. This is either "needsAction" or "completed".
 
 @racket[completed]: Completion date of the task (as a RFC 3339 timestamp). This field is omitted if the task has not been completed.
+
+@racket[deleted]: Flag indicating whether the task has been deleted. The default if False.
 
 @racket[due]: Due date of the task (as a RFC 3339 timestamp). Optional.
 
@@ -340,7 +340,7 @@ Updates the specified task.
 
 }
 
-@defproc[(tasks.tasks.delete
+@defproc[(tasks-tasks-delete
 [task string?]
 [tasklist string?]
 [#:fields fields string? 'N/A]
@@ -360,9 +360,9 @@ Deletes the specified task from the task list.
 }
 
 @subsection{tasklists}
-@defproc[(tasks.tasklists.list
-[#:maxResults maxResults string? 'N/A]
+@defproc[(tasks-tasklists-list
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -373,13 +373,13 @@ Deletes the specified task from the task list.
 ) jsexpr?]{
 Returns all the authenticated user's task lists.
 
-@racket[maxResults]: Maximum number of task lists returned on one page. Optional. The default is 100.
-
 @racket[pageToken]: Token specifying the result page to return. Optional.
+
+@racket[maxResults]: Maximum number of task lists returned on one page. Optional. The default is 100.
 
 }
 
-@defproc[(tasks.tasklists.get
+@defproc[(tasks-tasklists-get
 [tasklist string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -395,7 +395,7 @@ Returns the authenticated user's specified task list.
 
 }
 
-@defproc[(tasks.tasklists.insert
+@defproc[(tasks-tasklists-insert
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:title title string? 'N/A]
@@ -426,7 +426,7 @@ Creates a new task list and adds it to the authenticated user's task lists.
 
 }
 
-@defproc[(tasks.tasklists.patch
+@defproc[(tasks-tasklists-patch
 [tasklist string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -460,7 +460,7 @@ Updates the authenticated user's specified task list. This method supports patch
 
 }
 
-@defproc[(tasks.tasklists.update
+@defproc[(tasks-tasklists-update
 [tasklist string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -494,7 +494,7 @@ Updates the authenticated user's specified task list.
 
 }
 
-@defproc[(tasks.tasklists.delete
+@defproc[(tasks-tasklists-delete
 [tasklist string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]

@@ -40,9 +40,9 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @subsection{accounts}
 @section{Resources}
-@defproc[(adsense.accounts.list
-[#:maxResults maxResults string? 'N/A]
+@defproc[(adsense-accounts-list
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -53,13 +53,13 @@ The following optional keyword arguments may be passed to @italic{all} functions
 ) jsexpr?]{
 List all accounts available to this AdSense account.
 
-@racket[maxResults]: The maximum number of accounts to include in the response, used for paging.
-
 @racket[pageToken]: A continuation token, used to page through accounts. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+
+@racket[maxResults]: The maximum number of accounts to include in the response, used for paging.
 
 }
 
-@defproc[(adsense.accounts.get
+@defproc[(adsense-accounts-get
 [accountId string?]
 [#:tree tree string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -80,10 +80,10 @@ Get information about the selected AdSense account.
 
 @subsection{customchannels}
 @section{Resources}
-@defproc[(adsense.customchannels.list
+@defproc[(adsense-customchannels-list
 [adClientId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -96,13 +96,13 @@ List all custom channels in the specified ad client for this AdSense account.
 
 @racket[adClientId]: Ad client for which to list custom channels.
 
-@racket[maxResults]: The maximum number of custom channels to include in the response, used for paging.
-
 @racket[pageToken]: A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+
+@racket[maxResults]: The maximum number of custom channels to include in the response, used for paging.
 
 }
 
-@defproc[(adsense.customchannels.get
+@defproc[(adsense-customchannels-get
 [adClientId string?]
 [customChannelId string?]
 [#:fields fields string? 'N/A]
@@ -123,10 +123,10 @@ Get the specified custom channel from the specified ad client.
 
 @subsection{adunits}
 @section{Resources}
-@defproc[(adsense.adunits.list
+@defproc[(adsense-adunits-list
 [adClientId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:includeInactive includeInactive string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -140,15 +140,15 @@ List all ad units in the specified ad client for this AdSense account.
 
 @racket[adClientId]: Ad client for which to list ad units.
 
-@racket[maxResults]: The maximum number of ad units to include in the response, used for paging.
-
 @racket[pageToken]: A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+
+@racket[maxResults]: The maximum number of ad units to include in the response, used for paging.
 
 @racket[includeInactive]: Whether to include inactive ad units. Default: true.
 
 }
 
-@defproc[(adsense.adunits.get
+@defproc[(adsense-adunits-get
 [adClientId string?]
 [adUnitId string?]
 [#:fields fields string? 'N/A]
@@ -168,9 +168,9 @@ Gets the specified ad unit in the specified ad client.
 }
 
 @subsection{adclients}
-@defproc[(adsense.adclients.list
-[#:maxResults maxResults string? 'N/A]
+@defproc[(adsense-adclients-list
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -181,14 +181,14 @@ Gets the specified ad unit in the specified ad client.
 ) jsexpr?]{
 List all ad clients in this AdSense account.
 
-@racket[maxResults]: The maximum number of ad clients to include in the response, used for paging.
-
 @racket[pageToken]: A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+
+@racket[maxResults]: The maximum number of ad clients to include in the response, used for paging.
 
 }
 
 @subsection{reports}
-@defproc[(adsense.reports.generate
+@defproc[(adsense-reports-generate
 [endDate string?]
 [startDate string?]
 [#:sort sort string? 'N/A]
@@ -235,10 +235,10 @@ Generate an AdSense report based on the report request sent in the query paramet
 }
 
 @subsection{urlchannels}
-@defproc[(adsense.urlchannels.list
+@defproc[(adsense-urlchannels-list
 [adClientId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -251,9 +251,9 @@ List all URL channels in the specified ad client for this AdSense account.
 
 @racket[adClientId]: Ad client for which to list URL channels.
 
-@racket[maxResults]: The maximum number of URL channels to include in the response, used for paging.
-
 @racket[pageToken]: A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+
+@racket[maxResults]: The maximum number of URL channels to include in the response, used for paging.
 
 }
 

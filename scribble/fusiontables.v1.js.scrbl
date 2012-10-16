@@ -39,9 +39,9 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{table}
-@defproc[(fusiontables.table.list
-[#:maxResults maxResults string? 'N/A]
+@defproc[(fusiontables-table-list
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -52,13 +52,13 @@ The following optional keyword arguments may be passed to @italic{all} functions
 ) jsexpr?]{
 Retrieves a list of tables a user owns.
 
-@racket[maxResults]: Maximum number of styles to return. Optional. Default is 5.
-
 @racket[pageToken]: Continuation token specifying which result page to return. Optional.
+
+@racket[maxResults]: Maximum number of styles to return. Optional. Default is 5.
 
 }
 
-@defproc[(fusiontables.table.get
+@defproc[(fusiontables-table-get
 [tableId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -74,12 +74,12 @@ Retrieves a specific table by its id.
 
 }
 
-@defproc[(fusiontables.table.insert
+@defproc[(fusiontables-table-insert
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
 [#:description description string? 'N/A]
-[#:columns columns string? 'N/A]
 [#:tableId tableId string? 'N/A]
+[#:columns columns string? 'N/A]
 [#:attribution attribution string? 'N/A]
 [#:attributionLink attributionLink string? 'N/A]
 [#:baseTableIds baseTableIds string? 'N/A]
@@ -101,9 +101,9 @@ Creates a new table.
 
 @racket[description]: Optional description assigned to the table.
 
-@racket[columns]: Columns in the table.
-
 @racket[tableId]: Encrypted unique alphanumeric identifier for the table.
+
+@racket[columns]: Columns in the table.
 
 @racket[attribution]: Optional attribution assigned to the table.
 
@@ -117,7 +117,7 @@ Creates a new table.
 
 }
 
-@defproc[(fusiontables.table.patch
+@defproc[(fusiontables-table-patch
 [tableId string?]
 [#:replaceViewDefinition replaceViewDefinition string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -163,7 +163,7 @@ Updates an existing table. Unless explicitly requested, only the name, descripti
 
 }
 
-@defproc[(fusiontables.table.copy
+@defproc[(fusiontables-table-copy
 [tableId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -179,7 +179,7 @@ Copies a table.
 
 }
 
-@defproc[(fusiontables.table.update
+@defproc[(fusiontables-table-update
 [tableId string?]
 [#:replaceViewDefinition replaceViewDefinition string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -225,7 +225,7 @@ Updates an existing table. Unless explicitly requested, only the name, descripti
 
 }
 
-@defproc[(fusiontables.table.delete
+@defproc[(fusiontables-table-delete
 [tableId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -242,7 +242,7 @@ Deletes a table.
 }
 
 @subsection{import}
-@defproc[(fusiontables.import.insert
+@defproc[(fusiontables-import-insert
 [tableId string?]
 [#:delimiter delimiter string? 'N/A]
 [#:encoding encoding string? 'N/A]
@@ -274,7 +274,7 @@ Import more rows into a table.
 }
 
 @subsection{query}
-@defproc[(fusiontables.query.sql
+@defproc[(fusiontables-query-sql
 [sql string?]
 [#:hdrs hdrs string? 'N/A]
 [#:typed typed string? 'N/A]
@@ -296,7 +296,7 @@ Executes an SQL SELECT/INSERT/UPDATE/DELETE/SHOW/DESCRIBE/CREATE statement.
 
 }
 
-@defproc[(fusiontables.query.sqlGet
+@defproc[(fusiontables-query-sqlGet
 [sql string?]
 [#:hdrs hdrs string? 'N/A]
 [#:typed typed string? 'N/A]
@@ -319,10 +319,10 @@ Executes an SQL SELECT/SHOW/DESCRIBE statement.
 }
 
 @subsection{style}
-@defproc[(fusiontables.style.list
+@defproc[(fusiontables-style-list
 [tableId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -335,15 +335,15 @@ Retrieves a list of styles.
 
 @racket[tableId]: Table whose styles are being listed
 
-@racket[maxResults]: Maximum number of styles to return. Optional. Default is 5.
-
 @racket[pageToken]: Continuation token specifying which result page to return. Optional.
+
+@racket[maxResults]: Maximum number of styles to return. Optional. Default is 5.
 
 }
 
-@defproc[(fusiontables.style.get
-[styleId string?]
+@defproc[(fusiontables-style-get
 [tableId string?]
+[styleId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -354,13 +354,13 @@ Retrieves a list of styles.
 ) jsexpr?]{
 Gets a specific style.
 
-@racket[styleId]: Identifier (integer) for a specific style in a table
-
 @racket[tableId]: Table to which the requested style belongs
+
+@racket[styleId]: Identifier (integer) for a specific style in a table
 
 }
 
-@defproc[(fusiontables.style.insert
+@defproc[(fusiontables-style-insert
 [tableId string?]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
@@ -397,9 +397,9 @@ Adds a new style for the table.
 
 }
 
-@defproc[(fusiontables.style.patch
-[styleId string?]
+@defproc[(fusiontables-style-patch
 [tableId string?]
+[styleId string?]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
 [#:isDefaultForTable isDefaultForTable string? 'N/A]
@@ -416,9 +416,9 @@ Adds a new style for the table.
 ) jsexpr?]{
 Updates an existing style. This method supports patch semantics.
 
-@racket[styleId]: Identifier (within a table) for the style being updated.
-
 @racket[tableId]: Table whose style is being updated.
+
+@racket[styleId]: Identifier (within a table) for the style being updated.
 
 @racket[kind]: Type name: an individual style setting. A StyleSetting contains the style defintions for points, lines, and polygons in a table. Since a table can have any one or all of them, a style definition can have point, line and polygon style definitions.
 
@@ -434,9 +434,9 @@ Updates an existing style. This method supports patch semantics.
 
 }
 
-@defproc[(fusiontables.style.update
-[styleId string?]
+@defproc[(fusiontables-style-update
 [tableId string?]
+[styleId string?]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
 [#:isDefaultForTable isDefaultForTable string? 'N/A]
@@ -453,9 +453,9 @@ Updates an existing style. This method supports patch semantics.
 ) jsexpr?]{
 Updates an existing style.
 
-@racket[styleId]: Identifier (within a table) for the style being updated.
-
 @racket[tableId]: Table whose style is being updated.
+
+@racket[styleId]: Identifier (within a table) for the style being updated.
 
 @racket[kind]: Type name: an individual style setting. A StyleSetting contains the style defintions for points, lines, and polygons in a table. Since a table can have any one or all of them, a style definition can have point, line and polygon style definitions.
 
@@ -471,9 +471,9 @@ Updates an existing style.
 
 }
 
-@defproc[(fusiontables.style.delete
-[styleId string?]
+@defproc[(fusiontables-style-delete
 [tableId string?]
+[styleId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -484,17 +484,17 @@ Updates an existing style.
 ) jsexpr?]{
 Deletes a style.
 
-@racket[styleId]: Identifier (within a table) for the style being deleted
-
 @racket[tableId]: Table from which the style is being deleted
+
+@racket[styleId]: Identifier (within a table) for the style being deleted
 
 }
 
 @subsection{template}
-@defproc[(fusiontables.template.list
+@defproc[(fusiontables-template-list
 [tableId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -507,13 +507,13 @@ Retrieves a list of templates.
 
 @racket[tableId]: Identifier for the table whose templates are being requested
 
-@racket[maxResults]: Maximum number of templates to return. Optional. Default is 5.
-
 @racket[pageToken]: Continuation token specifying which results page to return. Optional.
+
+@racket[maxResults]: Maximum number of templates to return. Optional. Default is 5.
 
 }
 
-@defproc[(fusiontables.template.get
+@defproc[(fusiontables-template-get
 [tableId string?]
 [templateId string?]
 [#:fields fields string? 'N/A]
@@ -532,7 +532,7 @@ Retrieves a specific template by its id
 
 }
 
-@defproc[(fusiontables.template.insert
+@defproc[(fusiontables-template-insert
 [tableId string?]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
@@ -566,7 +566,7 @@ Creates a new template for the table.
 
 }
 
-@defproc[(fusiontables.template.patch
+@defproc[(fusiontables-template-patch
 [tableId string?]
 [templateId string?]
 [#:kind kind string? 'N/A]
@@ -600,7 +600,7 @@ Updates an existing template. This method supports patch semantics.
 
 }
 
-@defproc[(fusiontables.template.update
+@defproc[(fusiontables-template-update
 [tableId string?]
 [templateId string?]
 [#:kind kind string? 'N/A]
@@ -634,7 +634,7 @@ Updates an existing template
 
 }
 
-@defproc[(fusiontables.template.delete
+@defproc[(fusiontables-template-delete
 [tableId string?]
 [templateId string?]
 [#:fields fields string? 'N/A]
@@ -654,10 +654,10 @@ Deletes a template
 }
 
 @subsection{column}
-@defproc[(fusiontables.column.list
+@defproc[(fusiontables-column-list
 [tableId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -670,15 +670,15 @@ Retrieves a list of columns.
 
 @racket[tableId]: Table whose columns are being listed.
 
-@racket[maxResults]: Maximum number of columns to return. Optional. Default is 5.
-
 @racket[pageToken]: Continuation token specifying which result page to return. Optional.
+
+@racket[maxResults]: Maximum number of columns to return. Optional. Default is 5.
 
 }
 
-@defproc[(fusiontables.column.get
-[columnId string?]
+@defproc[(fusiontables-column-get
 [tableId string?]
+[columnId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -689,13 +689,13 @@ Retrieves a list of columns.
 ) jsexpr?]{
 Retrieves a specific column by its id.
 
-@racket[columnId]: Name or identifier for the column that is being requested.
-
 @racket[tableId]: Table to which the column belongs.
+
+@racket[columnId]: Name or identifier for the column that is being requested.
 
 }
 
-@defproc[(fusiontables.column.insert
+@defproc[(fusiontables-column-insert
 [tableId string?]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
@@ -726,9 +726,9 @@ Adds a new column to the table.
 
 }
 
-@defproc[(fusiontables.column.patch
-[columnId string?]
+@defproc[(fusiontables-column-patch
 [tableId string?]
+[columnId string?]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
 [#:type type string? 'N/A]
@@ -743,9 +743,9 @@ Adds a new column to the table.
 ) jsexpr?]{
 Updates the name or type of an existing column. This method supports patch semantics.
 
-@racket[columnId]: Name or identifier for the column that is being updated.
-
 @racket[tableId]: Table for which the column is being updated.
+
+@racket[columnId]: Name or identifier for the column that is being updated.
 
 @racket[kind]: Type name: a template for an individual column.
 
@@ -757,9 +757,9 @@ Updates the name or type of an existing column. This method supports patch seman
 
 }
 
-@defproc[(fusiontables.column.update
-[columnId string?]
+@defproc[(fusiontables-column-update
 [tableId string?]
+[columnId string?]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
 [#:type type string? 'N/A]
@@ -774,9 +774,9 @@ Updates the name or type of an existing column. This method supports patch seman
 ) jsexpr?]{
 Updates the name or type of an existing column.
 
-@racket[columnId]: Name or identifier for the column that is being updated.
-
 @racket[tableId]: Table for which the column is being updated.
+
+@racket[columnId]: Name or identifier for the column that is being updated.
 
 @racket[kind]: Type name: a template for an individual column.
 
@@ -788,9 +788,9 @@ Updates the name or type of an existing column.
 
 }
 
-@defproc[(fusiontables.column.delete
-[columnId string?]
+@defproc[(fusiontables-column-delete
 [tableId string?]
+[columnId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -801,9 +801,9 @@ Updates the name or type of an existing column.
 ) jsexpr?]{
 Deletes the column.
 
-@racket[columnId]: Name or identifier for the column being deleted.
-
 @racket[tableId]: Table from which the column is being deleted.
+
+@racket[columnId]: Name or identifier for the column being deleted.
 
 }
 

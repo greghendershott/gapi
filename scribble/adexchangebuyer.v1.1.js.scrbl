@@ -38,8 +38,38 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @section{Resources}
 
+@subsection{directDeals}
+@defproc[(adexchangebuyer-directDeals-list
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Retrieves the authenticated user's list of direct deals.
+
+}
+
+@defproc[(adexchangebuyer-directDeals-get
+[id string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Gets one direct deal by ID.
+
+@racket[id]: The direct deal id
+
+}
+
 @subsection{accounts}
-@defproc[(adexchangebuyer.accounts.list
+@defproc[(adexchangebuyer-accounts-list
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -52,7 +82,7 @@ Retrieves the authenticated user's list of accounts.
 
 }
 
-@defproc[(adexchangebuyer.accounts.get
+@defproc[(adexchangebuyer-accounts-get
 [id string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -68,7 +98,7 @@ Gets one account by ID.
 
 }
 
-@defproc[(adexchangebuyer.accounts.patch
+@defproc[(adexchangebuyer-accounts-patch
 [id string?]
 [#:kind kind string? 'N/A]
 [#:bidderLocation bidderLocation string? 'N/A]
@@ -99,7 +129,7 @@ Updates an existing account. This method supports patch semantics.
 
 }
 
-@defproc[(adexchangebuyer.accounts.update
+@defproc[(adexchangebuyer-accounts-update
 [id string?]
 [#:kind kind string? 'N/A]
 [#:bidderLocation bidderLocation string? 'N/A]
@@ -130,40 +160,10 @@ Updates an existing account.
 
 }
 
-@subsection{directDeals}
-@defproc[(adexchangebuyer.directDeals.list
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Retrieves the authenticated user's list of direct deals.
-
-}
-
-@defproc[(adexchangebuyer.directDeals.get
-[id string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Gets one direct deal by ID.
-
-@racket[id]: The direct deal id
-
-}
-
 @subsection{creatives}
-@defproc[(adexchangebuyer.creatives.list
-[#:maxResults maxResults string? 'N/A]
+@defproc[(adexchangebuyer-creatives-list
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:statusFilter statusFilter string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -175,15 +175,15 @@ Gets one direct deal by ID.
 ) jsexpr?]{
 Retrieves a list of the authenticated user's active creatives.
 
-@racket[maxResults]: Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
-
 @racket[pageToken]: A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
+
+@racket[maxResults]: Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
 
 @racket[statusFilter]: When specified, only creatives having the given status are returned.
 
 }
 
-@defproc[(adexchangebuyer.creatives.get
+@defproc[(adexchangebuyer-creatives-get
 [accountId string?]
 [buyerCreativeId string?]
 [#:fields fields string? 'N/A]
@@ -202,23 +202,23 @@ Gets the status for a single creative.
 
 }
 
-@defproc[(adexchangebuyer.creatives.insert
+@defproc[(adexchangebuyer-creatives-insert
 [#:attribute attribute string? 'N/A]
 [#:kind kind string? 'N/A]
-[#:accountId accountId string? 'N/A]
-[#:status status string? 'N/A]
-[#:height height string? 'N/A]
-[#:width width string? 'N/A]
 [#:HTMLSnippet HTMLSnippet string? 'N/A]
+[#:accountId accountId string? 'N/A]
 [#:advertiserId advertiserId string? 'N/A]
 [#:advertiserName advertiserName string? 'N/A]
 [#:buyerCreativeId buyerCreativeId string? 'N/A]
 [#:clickThroughUrl clickThroughUrl string? 'N/A]
 [#:disapprovalReasons disapprovalReasons string? 'N/A]
+[#:height height string? 'N/A]
 [#:productCategories productCategories string? 'N/A]
 [#:sensitiveCategories sensitiveCategories string? 'N/A]
+[#:status status string? 'N/A]
 [#:vendorType vendorType string? 'N/A]
 [#:videoURL videoURL string? 'N/A]
+[#:width width string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -233,15 +233,9 @@ Submit a new creative.
 
 @racket[kind]: Resource type.
 
-@racket[accountId]: Account id.
-
-@racket[status]: Creative serving status. Read-only. This field should not be set in requests.
-
-@racket[height]: Ad height.
-
-@racket[width]: Ad width.
-
 @racket[HTMLSnippet]: The HTML snippet that displays the ad when inserted in the web page. If set, videoURL should not be set.
+
+@racket[accountId]: Account id.
 
 @racket[advertiserId]: Detected advertiser id, if any. Read-only. This field should not be set in requests.
 
@@ -253,13 +247,19 @@ Submit a new creative.
 
 @racket[disapprovalReasons]: The reason for disapproval, if any. Note that not all disapproval reasons may be categorized, so it is possible for the creative to have a status of DISAPPROVED with an empty list for disapproval_reasons. In this case, please reach out to your TAM to help debug the issue. Read-only. This field should not be set in requests.
 
+@racket[height]: Ad height.
+
 @racket[productCategories]: Detected product categories, if any. Read-only. This field should not be set in requests.
 
 @racket[sensitiveCategories]: Detected sensitive categories, if any. Read-only. This field should not be set in requests.
 
+@racket[status]: Creative serving status. Read-only. This field should not be set in requests.
+
 @racket[vendorType]: All vendor types for the ads that may be shown from this snippet.
 
 @racket[videoURL]: The url to fetch a video ad. If set, HTMLSnippet should not be set.
+
+@racket[width]: Ad width.
 
 }
 

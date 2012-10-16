@@ -39,13 +39,16 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{products}
-@defproc[(shopping.products.list
+@defproc[(shopping-products-list
 [source string?]
 [#:location location string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
-[#:currency currency string? 'N/A]
 [#:startIndex startIndex string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
+[#:availability availability string? 'N/A]
+[#:q q string? 'N/A]
+[#:language language string? 'N/A]
 [#:thumbnails thumbnails string? 'N/A]
+[#:currency currency string? 'N/A]
 [#:country country string? 'N/A]
 [#:attributeFilter attributeFilter string? 'N/A]
 [#:categories.enabled categories.enabled string? 'N/A]
@@ -80,9 +83,6 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:spelling.enabled spelling.enabled string? 'N/A]
 [#:spelling.useGcsConfig spelling.useGcsConfig string? 'N/A]
 [#:useCase useCase string? 'N/A]
-[#:availability availability string? 'N/A]
-[#:q q string? 'N/A]
-[#:language language string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -97,13 +97,19 @@ Returns a list of products and content modules
 
 @racket[location]: Location used to determine tax and shipping
 
-@racket[maxResults]: Maximum number of results to return
-
-@racket[currency]: Currency restriction (ISO 4217)
-
 @racket[startIndex]: Index (1-based) of first product to return
 
+@racket[maxResults]: Maximum number of results to return
+
+@racket[availability]: Comma separated list of availabilities (outOfStock, limited, inStock, backOrder, preOrder, onDisplayToOrder) to return
+
+@racket[q]: Search query
+
+@racket[language]: Language restriction (BCP 47)
+
 @racket[thumbnails]: Image thumbnails specification
+
+@racket[currency]: Currency restriction (ISO 4217)
 
 @racket[country]: Country restriction (ISO 3166)
 
@@ -173,19 +179,13 @@ Returns a list of products and content modules
 
 @racket[useCase]: One of CommerceSearchUseCase, ShoppingApiUseCase
 
-@racket[availability]: Comma separated list of availabilities (outOfStock, limited, inStock, backOrder, preOrder, onDisplayToOrder) to return
-
-@racket[q]: Search query
-
-@racket[language]: Language restriction (BCP 47)
-
 }
 
-@defproc[(shopping.products.get
+@defproc[(shopping-products-get
 [source string?]
 [accountId string?]
-[productIdType string?]
 [productId string?]
+[productIdType string?]
 [#:location location string? 'N/A]
 [#:thumbnails thumbnails string? 'N/A]
 [#:attributeFilter attributeFilter string? 'N/A]
@@ -213,9 +213,9 @@ Returns a single product
 
 @racket[accountId]: Merchant center account id
 
-@racket[productIdType]: Type of productId
-
 @racket[productId]: Id of product
+
+@racket[productIdType]: Type of productId
 
 @racket[location]: Location used to determine tax and shipping
 

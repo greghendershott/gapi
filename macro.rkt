@@ -20,7 +20,8 @@
                (do-method stx js k v))))))
  
   (define (do-method stx root mn mv)
-    (define name (string->symbol (hash-ref mv 'id)))
+    (define name (string->symbol
+                  (regexp-replace* #rx"\\." (hash-ref mv 'id) "-")))
     (define api-param-names (hash-keys (hash-ref root 'parameters)))
     (define params (hash-ref mv 'parameters (hash)))
     (define (required? x)

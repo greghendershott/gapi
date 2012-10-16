@@ -39,9 +39,9 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{location}
-@defproc[(latitude.location.list
-[#:granularity granularity string? 'N/A]
+@defproc[(latitude-location-list
 [#:max-results max-results string? 'N/A]
+[#:granularity granularity string? 'N/A]
 [#:max-time max-time string? 'N/A]
 [#:min-time min-time string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -54,9 +54,9 @@ The following optional keyword arguments may be passed to @italic{all} functions
 ) jsexpr?]{
 Lists the user's location history.
 
-@racket[granularity]: Granularity of the requested locations.
-
 @racket[max-results]: Maximum number of locations to return.
+
+@racket[granularity]: Granularity of the requested locations.
 
 @racket[max-time]: Maximum timestamp of locations to return (ms since epoch).
 
@@ -64,7 +64,7 @@ Lists the user's location history.
 
 }
 
-@defproc[(latitude.location.get
+@defproc[(latitude-location-get
 [locationId string?]
 [#:granularity granularity string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -83,7 +83,7 @@ Reads a location from the user's location history.
 
 }
 
-@defproc[(latitude.location.insert
+@defproc[(latitude-location-insert
 [#:kind kind string? 'N/A]
 [#:accuracy accuracy string? 'N/A]
 [#:activityId activityId string? 'N/A]
@@ -126,7 +126,7 @@ Inserts or updates a location in the user's location history.
 
 }
 
-@defproc[(latitude.location.delete
+@defproc[(latitude-location-delete
 [locationId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -143,7 +143,7 @@ Deletes a location from the user's location history.
 }
 
 @subsection{currentLocation}
-@defproc[(latitude.currentLocation.get
+@defproc[(latitude-currentLocation-get
 [#:granularity granularity string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -159,7 +159,7 @@ Returns the authenticated user's current location.
 
 }
 
-@defproc[(latitude.currentLocation.insert
+@defproc[(latitude-currentLocation-insert
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -172,7 +172,7 @@ Updates or creates the user's current location.
 
 }
 
-@defproc[(latitude.currentLocation.delete
+@defproc[(latitude-currentLocation-delete
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]

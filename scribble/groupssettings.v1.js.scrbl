@@ -39,7 +39,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{groups}
-@defproc[(groupsSettings.groups.get
+@defproc[(groupsSettings-groups-get
 [groupUniqueId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -55,7 +55,7 @@ Gets one resource by id.
 
 }
 
-@defproc[(groupsSettings.groups.patch
+@defproc[(groupsSettings-groups-patch
 [groupUniqueId string?]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
@@ -149,7 +149,7 @@ Updates an existing resource. This method supports patch semantics.
 
 }
 
-@defproc[(groupsSettings.groups.update
+@defproc[(groupsSettings-groups-update
 [groupUniqueId string?]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]

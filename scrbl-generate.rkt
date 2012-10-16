@@ -57,7 +57,8 @@
           ['resources (do-resources root v)]))))) ;sub-resources
 
 (define (do-method root mn mv)
-  (define name (string->symbol (hash-ref mv 'id)))
+  (define name (string->symbol
+                (regexp-replace* #rx"\\." (hash-ref mv 'id) "-")))
   (define api-params (hash-ref root 'parameters))
   (define api-param-names (hash-keys api-params))
   (define params (hash-ref mv 'parameters (hash)))

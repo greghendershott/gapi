@@ -39,7 +39,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{topic}
-@defproc[(freebase.topic.lookup
+@defproc[(freebase-topic-lookup
 [id string?]
 [#:filter filter string? 'N/A]
 [#:lang lang string? 'N/A]
@@ -71,7 +71,7 @@ Get properties and meta-data about a topic.
 }
 
 @subsection{text}
-@defproc[(freebase.text.get
+@defproc[(freebase-text-get
 [id string?]
 [#:format format string? 'N/A]
 [#:maxlength maxlength string? 'N/A]

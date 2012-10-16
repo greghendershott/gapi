@@ -39,7 +39,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{licenseAssignments}
-@defproc[(licensing.licenseAssignments.get
+@defproc[(licensing-licenseAssignments-get
 [productId string?]
 [skuId string?]
 [userId string?]
@@ -61,7 +61,7 @@ Get license assignment of a particular product and sku for a user
 
 }
 
-@defproc[(licensing.licenseAssignments.insert
+@defproc[(licensing-licenseAssignments-insert
 [productId string?]
 [skuId string?]
 [#:userId userId string? 'N/A]
@@ -83,7 +83,7 @@ Assign License.
 
 }
 
-@defproc[(licensing.licenseAssignments.patch
+@defproc[(licensing-licenseAssignments-patch
 [productId string?]
 [skuId string?]
 [userId string?]
@@ -114,11 +114,11 @@ Assign License. This method supports patch semantics.
 
 }
 
-@defproc[(licensing.licenseAssignments.listForProduct
+@defproc[(licensing-licenseAssignments-listForProduct
 [productId string?]
 [customerId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -133,18 +133,18 @@ List license assignments for given product of the customer.
 
 @racket[customerId]: CustomerId represents the customer for whom licenseassignments are queried
 
-@racket[maxResults]: Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
-
 @racket[pageToken]: Token to fetch the next page.Optional. By default server will return first page
+
+@racket[maxResults]: Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
 
 }
 
-@defproc[(licensing.licenseAssignments.listForProductAndSku
+@defproc[(licensing-licenseAssignments-listForProductAndSku
 [productId string?]
 [skuId string?]
 [customerId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -161,13 +161,13 @@ List license assignments for given product and sku of the customer.
 
 @racket[customerId]: CustomerId represents the customer for whom licenseassignments are queried
 
-@racket[maxResults]: Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
-
 @racket[pageToken]: Token to fetch the next page.Optional. By default server will return first page
+
+@racket[maxResults]: Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
 
 }
 
-@defproc[(licensing.licenseAssignments.update
+@defproc[(licensing-licenseAssignments-update
 [productId string?]
 [skuId string?]
 [userId string?]
@@ -198,7 +198,7 @@ Assign License.
 
 }
 
-@defproc[(licensing.licenseAssignments.delete
+@defproc[(licensing-licenseAssignments-delete
 [productId string?]
 [skuId string?]
 [userId string?]

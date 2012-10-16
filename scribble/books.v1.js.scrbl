@@ -40,14 +40,14 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @subsection{volumes}
 @section{Resources}
-@defproc[(books.volumes.list
+@defproc[(books-volumes-list
 [q string?]
 [#:filter filter string? 'N/A]
 [#:projection projection string? 'N/A]
 [#:source source string? 'N/A]
 [#:download download string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
 [#:startIndex startIndex string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:printType printType string? 'N/A]
 [#:showPreorders showPreorders string? 'N/A]
 [#:partner partner string? 'N/A]
@@ -74,9 +74,9 @@ Performs a book search.
 
 @racket[download]: Restrict to volumes by download availability.
 
-@racket[maxResults]: Maximum number of results to return.
-
 @racket[startIndex]: Index of the first result to return (starts at 0)
+
+@racket[maxResults]: Maximum number of results to return.
 
 @racket[printType]: Restrict to books or magazines.
 
@@ -92,7 +92,7 @@ Performs a book search.
 
 }
 
-@defproc[(books.volumes.get
+@defproc[(books-volumes-get
 [volumeId string?]
 [#:projection projection string? 'N/A]
 [#:source source string? 'N/A]
@@ -122,7 +122,7 @@ Gets volume information for a single volume.
 
 @subsection{bookshelves}
 @section{Resources}
-@defproc[(books.bookshelves.list
+@defproc[(books-bookshelves-list
 [userId string?]
 [#:source source string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -141,7 +141,7 @@ Retrieves a list of public bookshelves for the specified user.
 
 }
 
-@defproc[(books.bookshelves.get
+@defproc[(books-bookshelves-get
 [userId string?]
 [shelf string?]
 [#:source source string? 'N/A]
@@ -165,11 +165,11 @@ Retrieves metadata for a specific bookshelf for the specified user.
 
 @subsection{layers}
 @section{Resources}
-@defproc[(books.layers.list
+@defproc[(books-layers-list
 [volumeId string?]
 [#:source source string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:contentVersion contentVersion string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -185,15 +185,15 @@ List the layer summaries for a volume.
 
 @racket[source]: String to identify the originator of this request.
 
-@racket[maxResults]: Maximum number of results to return
-
 @racket[pageToken]: The value of the nextToken from the previous page.
+
+@racket[maxResults]: Maximum number of results to return
 
 @racket[contentVersion]: The content version for the requested volume.
 
 }
 
-@defproc[(books.layers.get
+@defproc[(books-layers-get
 [volumeId string?]
 [summaryId string?]
 [#:source source string? 'N/A]
@@ -219,7 +219,7 @@ Gets the layer summary for a volume.
 }
 
 @subsection{myconfig}
-@defproc[(books.myconfig.releaseDownloadAccess
+@defproc[(books-myconfig-releaseDownloadAccess
 [cpksver string?]
 [volumeIds string?]
 [#:source source string? 'N/A]
@@ -244,7 +244,7 @@ Release downloaded content access restriction.
 
 }
 
-@defproc[(books.myconfig.requestAccess
+@defproc[(books-myconfig-requestAccess
 [source string?]
 [volumeId string?]
 [nonce string?]
@@ -272,7 +272,7 @@ Request concurrent and download access restrictions.
 
 }
 
-@defproc[(books.myconfig.syncVolumeLicenses
+@defproc[(books-myconfig-syncVolumeLicenses
 [source string?]
 [nonce string?]
 [cpksver string?]

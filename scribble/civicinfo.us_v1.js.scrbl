@@ -39,7 +39,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{elections}
-@defproc[(civicinfo.elections.electionQuery
+@defproc[(civicinfo-elections-electionQuery
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -52,7 +52,7 @@ List of available elections to query.
 
 }
 
-@defproc[(civicinfo.elections.voterInfoQuery
+@defproc[(civicinfo-elections-voterInfoQuery
 [electionId string?]
 [#:officialOnly officialOnly string? 'N/A]
 [#:address address string? 'N/A]

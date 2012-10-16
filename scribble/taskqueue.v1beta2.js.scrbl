@@ -39,7 +39,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{taskqueues}
-@defproc[(taskqueue.taskqueues.get
+@defproc[(taskqueue-taskqueues-get
 [project string?]
 [taskqueue string?]
 [#:getStats getStats string? 'N/A]
@@ -62,7 +62,7 @@ Get detailed information about a TaskQueue.
 }
 
 @subsection{tasks}
-@defproc[(taskqueue.tasks.list
+@defproc[(taskqueue-tasks-list
 [project string?]
 [taskqueue string?]
 [#:fields fields string? 'N/A]
@@ -81,7 +81,7 @@ List Tasks in a TaskQueue
 
 }
 
-@defproc[(taskqueue.tasks.get
+@defproc[(taskqueue-tasks-get
 [project string?]
 [taskqueue string?]
 [task string?]
@@ -103,7 +103,7 @@ Get a particular task from a TaskQueue.
 
 }
 
-@defproc[(taskqueue.tasks.insert
+@defproc[(taskqueue-tasks-insert
 [project string?]
 [taskqueue string?]
 [#:id id string? 'N/A]
@@ -143,7 +143,7 @@ Insert a new task in a TaskQueue
 
 }
 
-@defproc[(taskqueue.tasks.patch
+@defproc[(taskqueue-tasks-patch
 [project string?]
 [taskqueue string?]
 [task string?]
@@ -189,7 +189,7 @@ Update tasks that are leased out of a TaskQueue. This method supports patch sema
 
 }
 
-@defproc[(taskqueue.tasks.lease
+@defproc[(taskqueue-tasks-lease
 [project string?]
 [taskqueue string?]
 [leaseSecs string?]
@@ -220,7 +220,7 @@ Lease 1 or more tasks from a TaskQueue.
 
 }
 
-@defproc[(taskqueue.tasks.update
+@defproc[(taskqueue-tasks-update
 [project string?]
 [taskqueue string?]
 [task string?]
@@ -266,7 +266,7 @@ Update tasks that are leased out of a TaskQueue.
 
 }
 
-@defproc[(taskqueue.tasks.delete
+@defproc[(taskqueue-tasks-delete
 [project string?]
 [taskqueue string?]
 [task string?]

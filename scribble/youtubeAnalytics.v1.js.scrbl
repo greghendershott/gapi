@@ -39,7 +39,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{reports}
-@defproc[(youtubeAnalytics.reports.query
+@defproc[(youtubeAnalytics-reports-query
 [ids string?]
 [end-date string?]
 [metrics string?]

@@ -39,7 +39,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{cse}
-@defproc[(search.cse.list
+@defproc[(search-cse-list
 [q string?]
 [#:sort sort string? 'N/A]
 [#:filter filter string? 'N/A]

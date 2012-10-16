@@ -39,10 +39,10 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{datasets}
-@defproc[(bigquery.datasets.list
+@defproc[(bigquery-datasets-list
 [projectId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -55,13 +55,13 @@ Lists all the datasets in the specified project to which the caller has read acc
 
 @racket[projectId]: Project ID of the datasets to be listed
 
-@racket[maxResults]: The maximum number of results to return
-
 @racket[pageToken]: Page token, returned by a previous call, to request the next page of results
+
+@racket[maxResults]: The maximum number of results to return
 
 }
 
-@defproc[(bigquery.datasets.get
+@defproc[(bigquery-datasets-get
 [datasetId string?]
 [projectId string?]
 [#:fields fields string? 'N/A]
@@ -80,7 +80,7 @@ Returns the dataset specified by datasetID.
 
 }
 
-@defproc[(bigquery.datasets.insert
+@defproc[(bigquery-datasets-insert
 [projectId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -130,7 +130,7 @@ Each access object can have only one of the following members: userByEmail, grou
 
 }
 
-@defproc[(bigquery.datasets.patch
+@defproc[(bigquery-datasets-patch
 [datasetId string?]
 [projectId string?]
 [#:id id string? 'N/A]
@@ -183,7 +183,7 @@ Each access object can have only one of the following members: userByEmail, grou
 
 }
 
-@defproc[(bigquery.datasets.update
+@defproc[(bigquery-datasets-update
 [datasetId string?]
 [projectId string?]
 [#:id id string? 'N/A]
@@ -236,7 +236,7 @@ Each access object can have only one of the following members: userByEmail, grou
 
 }
 
-@defproc[(bigquery.datasets.delete
+@defproc[(bigquery-datasets-delete
 [datasetId string?]
 [projectId string?]
 [#:deleteContents deleteContents string? 'N/A]
@@ -259,11 +259,11 @@ Deletes the dataset specified by datasetId value. Before you can delete a datase
 }
 
 @subsection{jobs}
-@defproc[(bigquery.jobs.list
+@defproc[(bigquery-jobs-list
 [projectId string?]
 [#:projection projection string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:allUsers allUsers string? 'N/A]
 [#:stateFilter stateFilter string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -280,9 +280,9 @@ Lists all the Jobs in the specified project that were started by the user.
 
 @racket[projection]: Restrict information returned to a set of selected fields
 
-@racket[maxResults]: Maximum number of results to return
-
 @racket[pageToken]: Page token, returned by a previous call, to request the next page of results
+
+@racket[maxResults]: Maximum number of results to return
 
 @racket[allUsers]: Whether to display jobs owned by all users in the project. Default false
 
@@ -290,7 +290,7 @@ Lists all the Jobs in the specified project that were started by the user.
 
 }
 
-@defproc[(bigquery.jobs.get
+@defproc[(bigquery-jobs-get
 [projectId string?]
 [jobId string?]
 [#:fields fields string? 'N/A]
@@ -309,7 +309,7 @@ Retrieves the specified job by ID.
 
 }
 
-@defproc[(bigquery.jobs.query
+@defproc[(bigquery-jobs-query
 [projectId string?]
 [#:kind kind string? 'N/A]
 [#:query query string? 'N/A]
@@ -343,16 +343,16 @@ Runs a BigQuery SQL query synchronously and returns query results if the query c
 
 }
 
-@defproc[(bigquery.jobs.insert
+@defproc[(bigquery-jobs-insert
 [projectId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
 [#:etag etag string? 'N/A]
-[#:status status string? 'N/A]
 [#:jobReference jobReference string? 'N/A]
 [#:configuration configuration string? 'N/A]
 [#:statistics statistics string? 'N/A]
+[#:status status string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -373,21 +373,21 @@ Starts a new asynchronous job.
 
 @racket[etag]: [Output-only] A hash of this resource.
 
-@racket[status]: [Output-only] The status of this job. Examine this value when polling an asynchronous job to see if the job is complete.
-
 @racket[jobReference]: [Optional] Reference describing the unique-per-user name of the job.
 
 @racket[configuration]: [Required] Describes the job configuration.
 
 @racket[statistics]: [Output-only] Information about the job, including starting time and ending time of the job.
 
+@racket[status]: [Output-only] The status of this job. Examine this value when polling an asynchronous job to see if the job is complete.
+
 }
 
-@defproc[(bigquery.jobs.getQueryResults
+@defproc[(bigquery-jobs-getQueryResults
 [projectId string?]
 [jobId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:startIndex startIndex string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:timeoutMs timeoutMs string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -403,18 +403,18 @@ Retrieves the results of a query job.
 
 @racket[jobId]: Job ID of the query job
 
-@racket[maxResults]: Maximum number of results to read
-
 @racket[startIndex]: Zero-based index of the starting row
+
+@racket[maxResults]: Maximum number of results to read
 
 @racket[timeoutMs]: How long to wait for the query to complete, in milliseconds, before returning. Default is to return immediately. If the timeout passes before the job completes, the request will fail with a TIMEOUT error
 
 }
 
 @subsection{projects}
-@defproc[(bigquery.projects.list
-[#:maxResults maxResults string? 'N/A]
+@defproc[(bigquery-projects-list
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -425,18 +425,18 @@ Retrieves the results of a query job.
 ) jsexpr?]{
 Lists the projects to which you have at least read access.
 
-@racket[maxResults]: Maximum number of results to return
-
 @racket[pageToken]: Page token, returned by a previous call, to request the next page of results
+
+@racket[maxResults]: Maximum number of results to return
 
 }
 
 @subsection{tables}
-@defproc[(bigquery.tables.list
+@defproc[(bigquery-tables-list
 [datasetId string?]
 [projectId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -451,13 +451,13 @@ Lists all tables in the specified dataset.
 
 @racket[projectId]: Project ID of the tables to list
 
-@racket[maxResults]: Maximum number of results to return
-
 @racket[pageToken]: Page token, returned by a previous call, to request the next page of results
+
+@racket[maxResults]: Maximum number of results to return
 
 }
 
-@defproc[(bigquery.tables.get
+@defproc[(bigquery-tables-get
 [tableId string?]
 [datasetId string?]
 [projectId string?]
@@ -479,7 +479,7 @@ Gets the specified table resource by table ID. This method does not return the d
 
 }
 
-@defproc[(bigquery.tables.insert
+@defproc[(bigquery-tables-insert
 [datasetId string?]
 [projectId string?]
 [#:id id string? 'N/A]
@@ -537,7 +537,7 @@ Creates a new, empty table in the dataset.
 
 }
 
-@defproc[(bigquery.tables.patch
+@defproc[(bigquery-tables-patch
 [tableId string?]
 [datasetId string?]
 [projectId string?]
@@ -598,7 +598,7 @@ Updates information in an existing table, specified by tableId. This method supp
 
 }
 
-@defproc[(bigquery.tables.update
+@defproc[(bigquery-tables-update
 [tableId string?]
 [datasetId string?]
 [projectId string?]
@@ -659,7 +659,7 @@ Updates information in an existing table, specified by tableId.
 
 }
 
-@defproc[(bigquery.tables.delete
+@defproc[(bigquery-tables-delete
 [tableId string?]
 [datasetId string?]
 [projectId string?]
@@ -682,13 +682,13 @@ Deletes the table specified by tableId from the dataset. If the table contains d
 }
 
 @subsection{tabledata}
-@defproc[(bigquery.tabledata.list
+@defproc[(bigquery-tabledata-list
 [tableId string?]
 [datasetId string?]
 [projectId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:startIndex startIndex string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -705,11 +705,11 @@ Retrieves table data from a specified set of rows.
 
 @racket[projectId]: Project ID of the table to read
 
-@racket[maxResults]: Maximum number of results to return
-
 @racket[pageToken]: Page token, returned by a previous call, identifying the result set
 
 @racket[startIndex]: Zero-based index of the starting row to read
+
+@racket[maxResults]: Maximum number of results to return
 
 }
 

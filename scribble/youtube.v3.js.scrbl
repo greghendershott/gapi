@@ -39,15 +39,15 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{search}
-@defproc[(youtube.search.list
+@defproc[(youtube-search-list
 [part string?]
 [#:type type string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
-[#:published published string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:q q string? 'N/A]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:order order string? 'N/A]
+[#:published published string? 'N/A]
 [#:relatedToVideo relatedToVideo string? 'N/A]
 [#:topicId topicId string? 'N/A]
 [#:videoCaption videoCaption string? 'N/A]
@@ -69,17 +69,17 @@ Universal search for youtube.
 
 @racket[type]: Type of resource to search.
 
-@racket[maxResults]: Maximum number of search results to return per page.
-
 @racket[pageToken]: Token for the page selection.
 
-@racket[published]: Only search for resources uploaded at a specific pediod
+@racket[maxResults]: Maximum number of search results to return per page.
 
 @racket[q]: Query to search in Youtube.
 
 @racket[contentOwnerId]: The authenticated user acts on behalf of this content owner.
 
 @racket[order]: Sort order.
+
+@racket[published]: Only search for resources uploaded at a specific pediod
 
 @racket[relatedToVideo]: Search for resources related to this video. Need to be used with type set to 'video'
 
@@ -98,11 +98,11 @@ Universal search for youtube.
 }
 
 @subsection{subscription}
-@defproc[(youtube.subscription.list
+@defproc[(youtube-subscription-list
 [part string?]
 [#:id id string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:channelId channelId string? 'N/A]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:mine mine string? 'N/A]
@@ -122,9 +122,9 @@ Browse user's subscription collection.
 
 @racket[id]: YouTube IDs of the subscriptions to be returned.
 
-@racket[maxResults]: Maximum number of search results to return per page.
-
 @racket[pageToken]: Token for the page selection.
+
+@racket[maxResults]: Maximum number of search results to return per page.
 
 @racket[channelId]: Only return subscriptions to given channelId.
 
@@ -138,7 +138,7 @@ Browse user's subscription collection.
 
 }
 
-@defproc[(youtube.subscription.insert
+@defproc[(youtube-subscription-insert
 [part string?]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:id id string? 'N/A]
@@ -172,7 +172,7 @@ Insert a subscription.
 
 }
 
-@defproc[(youtube.subscription.delete
+@defproc[(youtube-subscription-delete
 [id string?]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -192,10 +192,10 @@ Deletes subscriptions by IDs.
 }
 
 @subsection{activities}
-@defproc[(youtube.activities.list
+@defproc[(youtube-activities-list
 [part string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:channelId channelId string? 'N/A]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:home home string? 'N/A]
@@ -214,9 +214,9 @@ Browse the YouTube channel activity collection.
 
 @racket[part]: One or more parts to return on the current request.
 
-@racket[maxResults]: Maximum number of results to return
-
 @racket[pageToken]: Token for the page selection.
+
+@racket[maxResults]: Maximum number of results to return
 
 @racket[channelId]: YouTube ID of the channel.
 
@@ -232,7 +232,7 @@ Browse the YouTube channel activity collection.
 
 }
 
-@defproc[(youtube.activities.insert
+@defproc[(youtube-activities-insert
 [part string?]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:id id string? 'N/A]
@@ -267,7 +267,7 @@ Post a channel bulletin.
 }
 
 @subsection{channelCategories}
-@defproc[(youtube.channelCategories.list
+@defproc[(youtube-channelCategories-list
 [part string?]
 [#:id id string? 'N/A]
 [#:contentOwnerId contentOwnerId string? 'N/A]
@@ -296,11 +296,11 @@ Browse the YouTube guide category collection.
 }
 
 @subsection{channels}
-@defproc[(youtube.channels.list
+@defproc[(youtube-channels-list
 [part string?]
 [#:id id string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:categoryId categoryId string? 'N/A]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:mine mine string? 'N/A]
@@ -319,9 +319,9 @@ Browse the YouTube channel collection. Either the 'id' or 'mine' parameter must 
 
 @racket[id]: YouTube IDs of the channels to be returned.
 
-@racket[maxResults]: Maximum number of results to return
-
 @racket[pageToken]: Token for the page selection.
+
+@racket[maxResults]: Maximum number of results to return
 
 @racket[categoryId]: Filter to retrieve the channels within the given category ID.
 
@@ -334,11 +334,11 @@ Browse the YouTube channel collection. Either the 'id' or 'mine' parameter must 
 }
 
 @subsection{playlistItems}
-@defproc[(youtube.playlistItems.list
+@defproc[(youtube-playlistItems-list
 [part string?]
 [#:id id string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:playlistId playlistId string? 'N/A]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -355,9 +355,9 @@ Browse the YouTube playlist collection.
 
 @racket[id]: YouTube IDs of the playlist items to be returned.
 
-@racket[maxResults]: Maximum number of results to return
-
 @racket[pageToken]: Token for the page selection.
+
+@racket[maxResults]: Maximum number of results to return
 
 @racket[playlistId]: Retrieves playlist items from the given playlist id.
 
@@ -365,7 +365,7 @@ Browse the YouTube playlist collection.
 
 }
 
-@defproc[(youtube.playlistItems.insert
+@defproc[(youtube-playlistItems-insert
 [part string?]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:id id string? 'N/A]
@@ -399,7 +399,7 @@ Insert a resource into a playlist.
 
 }
 
-@defproc[(youtube.playlistItems.update
+@defproc[(youtube-playlistItems-update
 [part string?]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:id id string? 'N/A]
@@ -433,7 +433,7 @@ Update a playlist item.
 
 }
 
-@defproc[(youtube.playlistItems.delete
+@defproc[(youtube-playlistItems-delete
 [id string?]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -453,11 +453,11 @@ Deletes playlist items by IDs.
 }
 
 @subsection{playlists}
-@defproc[(youtube.playlists.list
+@defproc[(youtube-playlists-list
 [part string?]
 [#:id id string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:mine mine string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -474,9 +474,9 @@ Browse the YouTube playlist collection.
 
 @racket[id]: Comma-separated YouTube IDs of the playlists to be returned.
 
-@racket[maxResults]: Maximum number of results to return
-
 @racket[pageToken]: Token for the page selection.
+
+@racket[maxResults]: Maximum number of results to return
 
 @racket[contentOwnerId]: The authenticated user acts on behalf of this content owner.
 
@@ -484,7 +484,7 @@ Browse the YouTube playlist collection.
 
 }
 
-@defproc[(youtube.playlists.insert
+@defproc[(youtube-playlists-insert
 [part string?]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:id id string? 'N/A]
@@ -518,7 +518,7 @@ Create a playlist.
 
 }
 
-@defproc[(youtube.playlists.update
+@defproc[(youtube-playlists-update
 [part string?]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:id id string? 'N/A]
@@ -552,7 +552,7 @@ Update a playlist.
 
 }
 
-@defproc[(youtube.playlists.delete
+@defproc[(youtube-playlists-delete
 [id string?]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -572,7 +572,7 @@ Deletes playlists by IDs.
 }
 
 @subsection{videos}
-@defproc[(youtube.videos.list
+@defproc[(youtube-videos-list
 [id string?]
 [part string?]
 [#:contentOwnerId contentOwnerId string? 'N/A]
@@ -594,7 +594,7 @@ Browse the YouTube video collection.
 
 }
 
-@defproc[(youtube.videos.insert
+@defproc[(youtube-videos-insert
 [part string?]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:id id string? 'N/A]
@@ -637,7 +637,7 @@ Upload a video to YouTube.
 
 }
 
-@defproc[(youtube.videos.update
+@defproc[(youtube-videos-update
 [part string?]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:id id string? 'N/A]
@@ -680,7 +680,7 @@ Update a video.
 
 }
 
-@defproc[(youtube.videos.delete
+@defproc[(youtube-videos-delete
 [id string?]
 [#:contentOwnerId contentOwnerId string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -700,7 +700,7 @@ Delete a YouTube video.
 }
 
 @subsection{videocategory}
-@defproc[(youtube.videocategory.list
+@defproc[(youtube-videocategory-list
 [part string?]
 [#:id id string? 'N/A]
 [#:contentOwnerId contentOwnerId string? 'N/A]

@@ -39,7 +39,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{detections}
-@defproc[(language.detections.list
+@defproc[(language-detections-list
 [q string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -56,7 +56,7 @@ Detect the language of text.
 }
 
 @subsection{languages}
-@defproc[(language.languages.list
+@defproc[(language-languages-list
 [#:target target string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -73,7 +73,7 @@ List the source/target languages supported by the API
 }
 
 @subsection{translations}
-@defproc[(language.translations.list
+@defproc[(language-translations-list
 [target string?]
 [q string?]
 [#:format format string? 'N/A]

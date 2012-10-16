@@ -39,7 +39,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{apis}
-@defproc[(discovery.apis.list
+@defproc[(discovery-apis-list
 [#:name name string? 'N/A]
 [#:label label string? 'N/A]
 [#:preferred preferred string? 'N/A]
@@ -61,7 +61,7 @@ Retrieve the list of APIs supported at this endpoint.
 
 }
 
-@defproc[(discovery.apis.getRest
+@defproc[(discovery-apis-getRest
 [version string?]
 [api string?]
 [#:fields fields string? 'N/A]

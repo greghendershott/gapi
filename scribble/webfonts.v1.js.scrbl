@@ -39,7 +39,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{webfonts}
-@defproc[(webfonts.webfonts.list
+@defproc[(webfonts-webfonts-list
 [#:sort sort string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]

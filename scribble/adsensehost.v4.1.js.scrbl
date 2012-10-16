@@ -40,7 +40,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @subsection{accounts}
 @section{Resources}
-@defproc[(adsensehost.accounts.list
+@defproc[(adsensehost-accounts-list
 [filterAdClientId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -56,7 +56,7 @@ List hosted accounts associated with this AdSense account by ad client id.
 
 }
 
-@defproc[(adsensehost.accounts.get
+@defproc[(adsensehost-accounts-get
 [accountId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -73,10 +73,10 @@ Get information about the selected associated AdSense account.
 }
 
 @subsection{customchannels}
-@defproc[(adsensehost.customchannels.list
+@defproc[(adsensehost-customchannels-list
 [adClientId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -89,13 +89,13 @@ List all host custom channels in this AdSense account.
 
 @racket[adClientId]: Ad client for which to list custom channels.
 
-@racket[maxResults]: The maximum number of custom channels to include in the response, used for paging.
-
 @racket[pageToken]: A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+
+@racket[maxResults]: The maximum number of custom channels to include in the response, used for paging.
 
 }
 
-@defproc[(adsensehost.customchannels.get
+@defproc[(adsensehost-customchannels-get
 [adClientId string?]
 [customChannelId string?]
 [#:fields fields string? 'N/A]
@@ -114,7 +114,7 @@ Get a specific custom channel from the host AdSense account.
 
 }
 
-@defproc[(adsensehost.customchannels.insert
+@defproc[(adsensehost-customchannels-insert
 [adClientId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -142,7 +142,7 @@ Add a new custom channel to the host AdSense account.
 
 }
 
-@defproc[(adsensehost.customchannels.patch
+@defproc[(adsensehost-customchannels-patch
 [adClientId string?]
 [customChannelId string?]
 [#:id id string? 'N/A]
@@ -173,7 +173,7 @@ Update a custom channel in the host AdSense account. This method supports patch 
 
 }
 
-@defproc[(adsensehost.customchannels.update
+@defproc[(adsensehost-customchannels-update
 [adClientId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -201,7 +201,7 @@ Update a custom channel in the host AdSense account.
 
 }
 
-@defproc[(adsensehost.customchannels.delete
+@defproc[(adsensehost-customchannels-delete
 [adClientId string?]
 [customChannelId string?]
 [#:fields fields string? 'N/A]
@@ -221,9 +221,9 @@ Delete a specific custom channel from the host AdSense account.
 }
 
 @subsection{adclients}
-@defproc[(adsensehost.adclients.list
-[#:maxResults maxResults string? 'N/A]
+@defproc[(adsensehost-adclients-list
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -234,13 +234,13 @@ Delete a specific custom channel from the host AdSense account.
 ) jsexpr?]{
 List all host ad clients in this AdSense account.
 
-@racket[maxResults]: The maximum number of ad clients to include in the response, used for paging.
-
 @racket[pageToken]: A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+
+@racket[maxResults]: The maximum number of ad clients to include in the response, used for paging.
 
 }
 
-@defproc[(adsensehost.adclients.get
+@defproc[(adsensehost-adclients-get
 [adClientId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -257,7 +257,7 @@ Get information about one of the ad clients in the Host AdSense account.
 }
 
 @subsection{reports}
-@defproc[(adsensehost.reports.generate
+@defproc[(adsensehost-reports-generate
 [endDate string?]
 [startDate string?]
 [#:sort sort string? 'N/A]
@@ -297,53 +297,11 @@ Generate an AdSense report based on the report request sent in the query paramet
 
 }
 
-@subsection{associationsessions}
-@defproc[(adsensehost.associationsessions.start
-[productCode string?]
-[websiteUrl string?]
-[#:userLocale userLocale string? 'N/A]
-[#:websiteLocale websiteLocale string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Create an association session for initiating an association with an AdSense user.
-
-@racket[productCode]: Products to associate with the user.
-
-@racket[websiteUrl]: The URL of the user's hosted website.
-
-@racket[userLocale]: The preferred locale of the user.
-
-@racket[websiteLocale]: The locale of the user's hosted website.
-
-}
-
-@defproc[(adsensehost.associationsessions.verify
-[token string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Verify an association session after the association callback returns from AdSense signup.
-
-@racket[token]: The token returned to the association callback URL.
-
-}
-
 @subsection{urlchannels}
-@defproc[(adsensehost.urlchannels.list
+@defproc[(adsensehost-urlchannels-list
 [adClientId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -356,13 +314,13 @@ List all host URL channels in the host AdSense account.
 
 @racket[adClientId]: Ad client for which to list URL channels.
 
-@racket[maxResults]: The maximum number of URL channels to include in the response, used for paging.
-
 @racket[pageToken]: A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+
+@racket[maxResults]: The maximum number of URL channels to include in the response, used for paging.
 
 }
 
-@defproc[(adsensehost.urlchannels.insert
+@defproc[(adsensehost-urlchannels-insert
 [adClientId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -387,7 +345,7 @@ Add a new URL channel to the host AdSense account.
 
 }
 
-@defproc[(adsensehost.urlchannels.delete
+@defproc[(adsensehost-urlchannels-delete
 [adClientId string?]
 [urlChannelId string?]
 [#:fields fields string? 'N/A]
@@ -403,6 +361,48 @@ Delete a URL channel from the host AdSense account.
 @racket[adClientId]: Ad client from which to delete the URL channel.
 
 @racket[urlChannelId]: URL channel to delete.
+
+}
+
+@subsection{associationsessions}
+@defproc[(adsensehost-associationsessions-start
+[productCode string?]
+[websiteUrl string?]
+[#:userLocale userLocale string? 'N/A]
+[#:websiteLocale websiteLocale string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Create an association session for initiating an association with an AdSense user.
+
+@racket[productCode]: Products to associate with the user.
+
+@racket[websiteUrl]: The URL of the user's hosted website.
+
+@racket[userLocale]: The preferred locale of the user.
+
+@racket[websiteLocale]: The locale of the user's hosted website.
+
+}
+
+@defproc[(adsensehost-associationsessions-verify
+[token string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Verify an association session after the association callback returns from AdSense signup.
+
+@racket[token]: The token returned to the association callback URL.
 
 }
 

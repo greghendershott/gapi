@@ -39,9 +39,9 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{subscriptions}
-@defproc[(reseller.subscriptions.list
-[#:maxResults maxResults string? 'N/A]
+@defproc[(reseller-subscriptions-list
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:customerNamePrefix customerNamePrefix string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -53,17 +53,17 @@ The following optional keyword arguments may be passed to @italic{all} functions
 ) jsexpr?]{
 Lists subscriptions of a reseller, optionally filtered by a customer name prefix.
 
-@racket[maxResults]: Maximum number of results to return
-
 @racket[pageToken]: Token to specify next page in the list
+
+@racket[maxResults]: Maximum number of results to return
 
 @racket[customerNamePrefix]: Prefix of the customer's domain name by which the subscriptions should be filtered. Optional
 
 }
 
-@defproc[(reseller.subscriptions.get
-[subscriptionId string?]
+@defproc[(reseller-subscriptions-get
 [customerId string?]
+[subscriptionId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -74,16 +74,17 @@ Lists subscriptions of a reseller, optionally filtered by a customer name prefix
 ) jsexpr?]{
 Gets a subscription of the customer.
 
-@racket[subscriptionId]: Id of the subscription, which is unique for a customer
-
 @racket[customerId]: Id of the Customer
+
+@racket[subscriptionId]: Id of the subscription, which is unique for a customer
 
 }
 
-@defproc[(reseller.subscriptions.insert
+@defproc[(reseller-subscriptions-insert
 [customerId string?]
 [#:customerAuthToken customerAuthToken string? 'N/A]
 [#:kind kind string? 'N/A]
+[#:skuId skuId string? 'N/A]
 [#:creationTime creationTime string? 'N/A]
 [#:purchaseOrderId purchaseOrderId string? 'N/A]
 [#:seats seats string? 'N/A]
@@ -91,7 +92,6 @@ Gets a subscription of the customer.
 [#:renewalSettings renewalSettings string? 'N/A]
 [#:subscriptionId subscriptionId string? 'N/A]
 [#:trialSettings trialSettings string? 'N/A]
-[#:skuId skuId string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -108,6 +108,8 @@ Creates/Transfers a subscription for the customer.
 
 @racket[kind]: Identifies the resource as a Subscription.
 
+@racket[skuId]: Name of the sku for which this subscription is purchased.
+
 @racket[creationTime]: Creation time of this subscription in milliseconds since Unix epoch.
 
 @racket[purchaseOrderId]: Purchase order id for your order tracking purposes.
@@ -122,13 +124,11 @@ Creates/Transfers a subscription for the customer.
 
 @racket[trialSettings]: Trial Settings of the subscription.
 
-@racket[skuId]: Name of the sku for which this subscription is purchased.
-
 }
 
-@defproc[(reseller.subscriptions.changePlan
-[subscriptionId string?]
+@defproc[(reseller-subscriptions-changePlan
 [customerId string?]
+[subscriptionId string?]
 [#:kind kind string? 'N/A]
 [#:planName planName string? 'N/A]
 [#:purchaseOrderId purchaseOrderId string? 'N/A]
@@ -143,9 +143,9 @@ Creates/Transfers a subscription for the customer.
 ) jsexpr?]{
 Changes the plan of a subscription
 
-@racket[subscriptionId]: Id of the subscription, which is unique for a customer
-
 @racket[customerId]: Id of the Customer
+
+@racket[subscriptionId]: Id of the subscription, which is unique for a customer
 
 @racket[kind]: Identifies the resource as a subscription change plan request.
 
@@ -157,9 +157,9 @@ Changes the plan of a subscription
 
 }
 
-@defproc[(reseller.subscriptions.changeRenewalSettings
-[subscriptionId string?]
+@defproc[(reseller-subscriptions-changeRenewalSettings
 [customerId string?]
+[subscriptionId string?]
 [#:kind kind string? 'N/A]
 [#:renewalType renewalType string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -172,9 +172,9 @@ Changes the plan of a subscription
 ) jsexpr?]{
 Changes the renewal settings of a subscription
 
-@racket[subscriptionId]: Id of the subscription, which is unique for a customer
-
 @racket[customerId]: Id of the Customer
+
+@racket[subscriptionId]: Id of the subscription, which is unique for a customer
 
 @racket[kind]: Identifies the resource as a subscription renewal setting.
 
@@ -182,9 +182,9 @@ Changes the renewal settings of a subscription
 
 }
 
-@defproc[(reseller.subscriptions.changeSeats
-[subscriptionId string?]
+@defproc[(reseller-subscriptions-changeSeats
 [customerId string?]
+[subscriptionId string?]
 [#:kind kind string? 'N/A]
 [#:maximumNumberOfSeats maximumNumberOfSeats string? 'N/A]
 [#:numberOfSeats numberOfSeats string? 'N/A]
@@ -198,9 +198,9 @@ Changes the renewal settings of a subscription
 ) jsexpr?]{
 Changes the seats configuration of a subscription
 
-@racket[subscriptionId]: Id of the subscription, which is unique for a customer
-
 @racket[customerId]: Id of the Customer
+
+@racket[subscriptionId]: Id of the subscription, which is unique for a customer
 
 @racket[kind]: Identifies the resource as a subscription change plan request.
 
@@ -210,9 +210,9 @@ Changes the seats configuration of a subscription
 
 }
 
-@defproc[(reseller.subscriptions.startPaidService
-[subscriptionId string?]
+@defproc[(reseller-subscriptions-startPaidService
 [customerId string?]
+[subscriptionId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -223,16 +223,16 @@ Changes the seats configuration of a subscription
 ) jsexpr?]{
 Starts paid service of a trial subscription
 
-@racket[subscriptionId]: Id of the subscription, which is unique for a customer
-
 @racket[customerId]: Id of the Customer
+
+@racket[subscriptionId]: Id of the subscription, which is unique for a customer
 
 }
 
-@defproc[(reseller.subscriptions.delete
+@defproc[(reseller-subscriptions-delete
+[customerId string?]
 [subscriptionId string?]
 [deletionType string?]
-[customerId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -243,16 +243,16 @@ Starts paid service of a trial subscription
 ) jsexpr?]{
 Cancels/Downgrades a subscription.
 
+@racket[customerId]: Id of the Customer
+
 @racket[subscriptionId]: Id of the subscription, which is unique for a customer
 
 @racket[deletionType]: Whether the subscription is to be fully cancelled or downgraded
 
-@racket[customerId]: Id of the Customer
-
 }
 
 @subsection{customers}
-@defproc[(reseller.customers.get
+@defproc[(reseller-customers-get
 [customerId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -268,14 +268,14 @@ Gets a customer resource if one exists and is owned by the reseller.
 
 }
 
-@defproc[(reseller.customers.insert
+@defproc[(reseller-customers-insert
 [#:customerAuthToken customerAuthToken string? 'N/A]
 [#:kind kind string? 'N/A]
+[#:customerId customerId string? 'N/A]
 [#:alternateEmail alternateEmail string? 'N/A]
 [#:customerDomain customerDomain string? 'N/A]
 [#:phoneNumber phoneNumber string? 'N/A]
 [#:postalAddress postalAddress string? 'N/A]
-[#:customerId customerId string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -290,6 +290,8 @@ Creates a customer resource if one does not already exist.
 
 @racket[kind]: Identifies the resource as a customer.
 
+@racket[customerId]: The id of the customer.
+
 @racket[alternateEmail]: The alternate email of the customer.
 
 @racket[customerDomain]: The domain name of the customer.
@@ -298,11 +300,9 @@ Creates a customer resource if one does not already exist.
 
 @racket[postalAddress]: The postal address of the customer.
 
-@racket[customerId]: The id of the customer.
-
 }
 
-@defproc[(reseller.customers.patch
+@defproc[(reseller-customers-patch
 [customerId string?]
 [#:kind kind string? 'N/A]
 [#:alternateEmail alternateEmail string? 'N/A]
@@ -333,7 +333,7 @@ Update a customer resource if one it exists and is owned by the reseller. This m
 
 }
 
-@defproc[(reseller.customers.update
+@defproc[(reseller-customers-update
 [customerId string?]
 [#:kind kind string? 'N/A]
 [#:alternateEmail alternateEmail string? 'N/A]

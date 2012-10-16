@@ -39,19 +39,19 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{activities}
-@defproc[(audit.activities.list
+@defproc[(audit-activities-list
 [applicationId string?]
 [customerId string?]
 [#:parameters parameters string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
-[#:endTime endTime string? 'N/A]
-[#:startTime startTime string? 'N/A]
 [#:actorApplicationId actorApplicationId string? 'N/A]
 [#:actorEmail actorEmail string? 'N/A]
 [#:actorIpAddress actorIpAddress string? 'N/A]
 [#:caller caller string? 'N/A]
 [#:continuationToken continuationToken string? 'N/A]
+[#:endTime endTime string? 'N/A]
 [#:eventName eventName string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
+[#:startTime startTime string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -68,12 +68,6 @@ Retrieves a list of activities for a specific customer and application.
 
 @racket[parameters]: Event parameters in the form [parameter1 name]:[parameter1 value],[parameter2 name]:[parameter2 value],...
 
-@racket[maxResults]: Number of activity records to be shown in each page.
-
-@racket[endTime]: Return events which occured at or before this time.
-
-@racket[startTime]: Return events which occured at or after this time.
-
 @racket[actorApplicationId]: Application ID of the application which interacted on behalf of the user while performing the event.
 
 @racket[actorEmail]: Email address of the user who performed the action.
@@ -84,7 +78,13 @@ Retrieves a list of activities for a specific customer and application.
 
 @racket[continuationToken]: Next page URL.
 
+@racket[endTime]: Return events which occured at or before this time.
+
 @racket[eventName]: Name of the event being queried.
+
+@racket[maxResults]: Number of activity records to be shown in each page.
+
+@racket[startTime]: Return events which occured at or after this time.
 
 }
 

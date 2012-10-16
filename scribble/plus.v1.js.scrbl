@@ -39,11 +39,11 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{activities}
-@defproc[(plus.activities.list
-[collection string?]
+@defproc[(plus-activities-list
 [userId string?]
-[#:maxResults maxResults string? 'N/A]
+[collection string?]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -54,17 +54,17 @@ The following optional keyword arguments may be passed to @italic{all} functions
 ) jsexpr?]{
 List all of the activities in the specified collection for a particular user.
 
-@racket[collection]: The collection of activities to list.
-
 @racket[userId]: The ID of the user to get activities for. The special value "me" can be used to indicate the authenticated user.
 
-@racket[maxResults]: The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+@racket[collection]: The collection of activities to list.
 
 @racket[pageToken]: The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
 
+@racket[maxResults]: The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+
 }
 
-@defproc[(plus.activities.get
+@defproc[(plus-activities-get
 [activityId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -80,12 +80,12 @@ Get an activity.
 
 }
 
-@defproc[(plus.activities.search
+@defproc[(plus-activities-search
 [query string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
-[#:orderBy orderBy string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:language language string? 'N/A]
+[#:orderBy orderBy string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -98,21 +98,21 @@ Search public activities.
 
 @racket[query]: Full-text search query string.
 
-@racket[maxResults]: The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-
 @racket[pageToken]: The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
 
-@racket[orderBy]: Specifies how to order search results.
+@racket[maxResults]: The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
 
 @racket[language]: Specify the preferred language to search with. See search language codes for available values.
+
+@racket[orderBy]: Specifies how to order search results.
 
 }
 
 @subsection{comments}
-@defproc[(plus.comments.list
+@defproc[(plus-comments-list
 [activityId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:sortOrder sortOrder string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -126,15 +126,15 @@ List all of the comments for an activity.
 
 @racket[activityId]: The ID of the activity to get comments for.
 
-@racket[maxResults]: The maximum number of comments to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-
 @racket[pageToken]: The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+
+@racket[maxResults]: The maximum number of comments to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
 
 @racket[sortOrder]: The order in which to sort the list of comments.
 
 }
 
-@defproc[(plus.comments.get
+@defproc[(plus-comments-get
 [commentId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -151,7 +151,7 @@ Get a comment.
 }
 
 @subsection{people}
-@defproc[(plus.people.get
+@defproc[(plus-people-get
 [userId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -167,10 +167,10 @@ Get a person's profile.
 
 }
 
-@defproc[(plus.people.search
+@defproc[(plus-people-search
 [query string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:language language string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -184,19 +184,19 @@ Search all public profiles.
 
 @racket[query]: Specify a query string for full text search of public text in all profiles.
 
-@racket[maxResults]: The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-
 @racket[pageToken]: The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
+
+@racket[maxResults]: The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
 
 @racket[language]: Specify the preferred language to search with. See search language codes for available values.
 
 }
 
-@defproc[(plus.people.listByActivity
-[collection string?]
+@defproc[(plus-people-listByActivity
 [activityId string?]
-[#:maxResults maxResults string? 'N/A]
+[collection string?]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -207,13 +207,13 @@ Search all public profiles.
 ) jsexpr?]{
 List all of the people in the specified collection for a particular activity.
 
-@racket[collection]: The collection of people to list.
-
 @racket[activityId]: The ID of the activity to get the list of people for.
 
-@racket[maxResults]: The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+@racket[collection]: The collection of people to list.
 
 @racket[pageToken]: The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+
+@racket[maxResults]: The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
 
 }
 

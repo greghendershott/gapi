@@ -38,12 +38,455 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @section{Resources}
 
-@subsection{instances}
-@defproc[(compute.instances.list
+@subsection{disks}
+@defproc[(compute-disks-list
 [project string?]
 [#:filter filter string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Retrieves the list of persistent disk resources contained within the specified project.
+
+@racket[project]: Name of the project scoping this request.
+
+@racket[filter]: Optional. Filter expression for filtering listed resources.
+
+@racket[pageToken]: Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+
+@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
+
+}
+
+@defproc[(compute-disks-get
+[disk string?]
+[project string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Returns the specified persistent disk resource.
+
+@racket[disk]: Name of the persistent disk resource to return.
+
+@racket[project]: Name of the project scoping this request.
+
+}
+
+@defproc[(compute-disks-insert
+[project string?]
+[#:options options string? 'N/A]
+[#:id id string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:name name string? 'N/A]
+[#:description description string? 'N/A]
+[#:selfLink selfLink string? 'N/A]
+[#:status status string? 'N/A]
+[#:creationTimestamp creationTimestamp string? 'N/A]
+[#:sizeGb sizeGb string? 'N/A]
+[#:sourceSnapshot sourceSnapshot string? 'N/A]
+[#:sourceSnapshotId sourceSnapshotId string? 'N/A]
+[#:zone zone string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Creates a persistent disk resource in the specified project using the data included in the request.
+
+@racket[project]: Name of the project scoping this request.
+
+@racket[options]: Internal use only.
+
+@racket[id]: Unique identifier for the resource; defined by the server (output only).
+
+@racket[kind]: Type of the resource.
+
+@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
+
+@racket[description]: An optional textual description of the resource; provided by the client when the resource is created.
+
+@racket[selfLink]: Server defined URL for the resource (output only).
+
+@racket[status]: The status of disk creation (output only).
+
+@racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
+
+@racket[sizeGb]: Size of the persistent disk, specified in GB.
+
+@racket[sourceSnapshot]: The source snapshot used to create this disk. Once the source snapshot has been deleted from the system, this field will be cleared, and will not be set even if a snapshot with the same name has been re-created.
+
+@racket[sourceSnapshotId]: The 'id' value of the snapshot used to create this disk. This value may be used to determine whether the disk was created from the current or a previous instance of a given disk snapshot.
+
+@racket[zone]: URL for the zone where the persistent disk resides; provided by the client when the disk is created. A persistent disk must reside in the same zone as the instance to which it is attached.
+
+}
+
+@defproc[(compute-disks-delete
+[disk string?]
+[project string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Deletes the specified persistent disk resource.
+
+@racket[disk]: Name of the persistent disk resource to delete.
+
+@racket[project]: Name of the project scoping this request.
+
+}
+
+@subsection{firewalls}
+@defproc[(compute-firewalls-list
+[project string?]
+[#:filter filter string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Retrieves the list of firewall resources available to the specified project.
+
+@racket[project]: Name of the project scoping this request.
+
+@racket[filter]: Optional. Filter expression for filtering listed resources.
+
+@racket[pageToken]: Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+
+@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
+
+}
+
+@defproc[(compute-firewalls-get
+[project string?]
+[firewall string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Returns the specified firewall resource.
+
+@racket[project]: Name of the project scoping this request.
+
+@racket[firewall]: Name of the firewall resource to return.
+
+}
+
+@defproc[(compute-firewalls-insert
+[project string?]
+[#:id id string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:name name string? 'N/A]
+[#:description description string? 'N/A]
+[#:selfLink selfLink string? 'N/A]
+[#:creationTimestamp creationTimestamp string? 'N/A]
+[#:allowed allowed string? 'N/A]
+[#:network network string? 'N/A]
+[#:sourceRanges sourceRanges string? 'N/A]
+[#:sourceTags sourceTags string? 'N/A]
+[#:targetTags targetTags string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Creates a firewall resource in the specified project using the data included in the request.
+
+@racket[project]: Name of the project scoping this request.
+
+@racket[id]: Unique identifier for the resource; defined by the server (output only).
+
+@racket[kind]: Type of the resource.
+
+@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
+
+@racket[description]: An optional textual description of the resource; provided by the client when the resource is created.
+
+@racket[selfLink]: Server defined URL for the resource (output only).
+
+@racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
+
+@racket[allowed]: The list of rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
+
+@racket[network]: URL of the network to which this firewall is applied; provided by the client when the firewall is created.
+
+@racket[sourceRanges]: A list of IP address blocks expressed in CIDR format which this rule applies to. One or both of sourceRanges and sourceTags may be set; an inbound connection is allowed if either the range or the tag of the source matches.
+
+@racket[sourceTags]: A list of instance tags which this rule applies to. One or both of sourceRanges and sourceTags may be set; an inbound connection is allowed if either the range or the tag of the source matches.
+
+@racket[targetTags]: A list of instance tags indicating sets of instances located on network which may make network connections as specified in allowed. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
+
+}
+
+@defproc[(compute-firewalls-patch
+[project string?]
+[firewall string?]
+[#:id id string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:name name string? 'N/A]
+[#:description description string? 'N/A]
+[#:selfLink selfLink string? 'N/A]
+[#:creationTimestamp creationTimestamp string? 'N/A]
+[#:allowed allowed string? 'N/A]
+[#:network network string? 'N/A]
+[#:sourceRanges sourceRanges string? 'N/A]
+[#:sourceTags sourceTags string? 'N/A]
+[#:targetTags targetTags string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Updates the specified firewall resource with the data included in the request. This method supports patch semantics.
+
+@racket[project]: Name of the project scoping this request.
+
+@racket[firewall]: Name of the firewall resource to update.
+
+@racket[id]: Unique identifier for the resource; defined by the server (output only).
+
+@racket[kind]: Type of the resource.
+
+@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
+
+@racket[description]: An optional textual description of the resource; provided by the client when the resource is created.
+
+@racket[selfLink]: Server defined URL for the resource (output only).
+
+@racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
+
+@racket[allowed]: The list of rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
+
+@racket[network]: URL of the network to which this firewall is applied; provided by the client when the firewall is created.
+
+@racket[sourceRanges]: A list of IP address blocks expressed in CIDR format which this rule applies to. One or both of sourceRanges and sourceTags may be set; an inbound connection is allowed if either the range or the tag of the source matches.
+
+@racket[sourceTags]: A list of instance tags which this rule applies to. One or both of sourceRanges and sourceTags may be set; an inbound connection is allowed if either the range or the tag of the source matches.
+
+@racket[targetTags]: A list of instance tags indicating sets of instances located on network which may make network connections as specified in allowed. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
+
+}
+
+@defproc[(compute-firewalls-update
+[project string?]
+[firewall string?]
+[#:id id string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:name name string? 'N/A]
+[#:description description string? 'N/A]
+[#:selfLink selfLink string? 'N/A]
+[#:creationTimestamp creationTimestamp string? 'N/A]
+[#:allowed allowed string? 'N/A]
+[#:network network string? 'N/A]
+[#:sourceRanges sourceRanges string? 'N/A]
+[#:sourceTags sourceTags string? 'N/A]
+[#:targetTags targetTags string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Updates the specified firewall resource with the data included in the request.
+
+@racket[project]: Name of the project scoping this request.
+
+@racket[firewall]: Name of the firewall resource to update.
+
+@racket[id]: Unique identifier for the resource; defined by the server (output only).
+
+@racket[kind]: Type of the resource.
+
+@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
+
+@racket[description]: An optional textual description of the resource; provided by the client when the resource is created.
+
+@racket[selfLink]: Server defined URL for the resource (output only).
+
+@racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
+
+@racket[allowed]: The list of rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
+
+@racket[network]: URL of the network to which this firewall is applied; provided by the client when the firewall is created.
+
+@racket[sourceRanges]: A list of IP address blocks expressed in CIDR format which this rule applies to. One or both of sourceRanges and sourceTags may be set; an inbound connection is allowed if either the range or the tag of the source matches.
+
+@racket[sourceTags]: A list of instance tags which this rule applies to. One or both of sourceRanges and sourceTags may be set; an inbound connection is allowed if either the range or the tag of the source matches.
+
+@racket[targetTags]: A list of instance tags indicating sets of instances located on network which may make network connections as specified in allowed. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
+
+}
+
+@defproc[(compute-firewalls-delete
+[project string?]
+[firewall string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Deletes the specified firewall resource.
+
+@racket[project]: Name of the project scoping this request.
+
+@racket[firewall]: Name of the firewall resource to delete.
+
+}
+
+@subsection{images}
+@defproc[(compute-images-list
+[project string?]
+[#:filter filter string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Retrieves the list of image resources available to the specified project.
+
+@racket[project]: Name of the project scoping this request.
+
+@racket[filter]: Optional. Filter expression for filtering listed resources.
+
+@racket[pageToken]: Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+
+@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
+
+}
+
+@defproc[(compute-images-get
+[image string?]
+[project string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Returns the specified image resource.
+
+@racket[image]: Name of the image resource to return.
+
+@racket[project]: Name of the project scoping this request.
+
+}
+
+@defproc[(compute-images-insert
+[project string?]
+[#:id id string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:name name string? 'N/A]
+[#:description description string? 'N/A]
+[#:selfLink selfLink string? 'N/A]
+[#:creationTimestamp creationTimestamp string? 'N/A]
+[#:diskSnapshot diskSnapshot string? 'N/A]
+[#:preferredKernel preferredKernel string? 'N/A]
+[#:rawDisk rawDisk string? 'N/A]
+[#:sourceType sourceType string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Creates an image resource in the specified project using the data included in the request.
+
+@racket[project]: Name of the project scoping this request.
+
+@racket[id]: Unique identifier for the resource; defined by the server (output only).
+
+@racket[kind]: Type of the resource.
+
+@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
+
+@racket[description]: Textual description of the resource; provided by the client when the resource is created.
+
+@racket[selfLink]: Server defined URL for the resource (output only).
+
+@racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
+
+@racket[diskSnapshot]: Not yet implemented.
+
+@racket[preferredKernel]: An optional URL of the preferred kernel for use with this disk image. If not specified, a server defined default kernel will be used.
+
+@racket[rawDisk]: The raw disk image parameters.
+
+@racket[sourceType]: Must be "RAW"; provided by the client when the disk image is created.
+
+}
+
+@defproc[(compute-images-delete
+[image string?]
+[project string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Deletes the specified image resource.
+
+@racket[image]: Name of the image resource to delete.
+
+@racket[project]: Name of the project scoping this request.
+
+}
+
+@subsection{instances}
+@defproc[(compute-instances-list
+[project string?]
+[#:filter filter string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -58,13 +501,13 @@ Retrieves the list of instance resources contained within the specified project.
 
 @racket[filter]: Optional. Filter expression for filtering listed resources.
 
-@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
-
 @racket[pageToken]: Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+
+@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
 
 }
 
-@defproc[(compute.instances.get
+@defproc[(compute-instances-get
 [project string?]
 [instance string?]
 [#:fields fields string? 'N/A]
@@ -83,7 +526,7 @@ Returns the specified instance resource.
 
 }
 
-@defproc[(compute.instances.insert
+@defproc[(compute-instances-insert
 [project string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -147,7 +590,7 @@ Creates an instance resource in the specified project using the data included in
 
 }
 
-@defproc[(compute.instances.addAccessConfig
+@defproc[(compute-instances-addAccessConfig
 [project string?]
 [instance string?]
 [network_interface string?]
@@ -181,7 +624,7 @@ Adds an access config to an instance's network interface.
 
 }
 
-@defproc[(compute.instances.deleteAccessConfig
+@defproc[(compute-instances-deleteAccessConfig
 [project string?]
 [instance string?]
 [network_interface string?]
@@ -206,7 +649,7 @@ Deletes an access config from an instance's network interface.
 
 }
 
-@defproc[(compute.instances.delete
+@defproc[(compute-instances-delete
 [project string?]
 [instance string?]
 [#:fields fields string? 'N/A]
@@ -225,455 +668,12 @@ Deletes the specified instance resource.
 
 }
 
-@subsection{disks}
-@defproc[(compute.disks.list
-[project string?]
-[#:filter filter string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
-[#:pageToken pageToken string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Retrieves the list of persistent disk resources contained within the specified project.
-
-@racket[project]: Name of the project scoping this request.
-
-@racket[filter]: Optional. Filter expression for filtering listed resources.
-
-@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
-
-@racket[pageToken]: Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-
-}
-
-@defproc[(compute.disks.get
-[disk string?]
-[project string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Returns the specified persistent disk resource.
-
-@racket[disk]: Name of the persistent disk resource to return.
-
-@racket[project]: Name of the project scoping this request.
-
-}
-
-@defproc[(compute.disks.insert
-[project string?]
-[#:options options string? 'N/A]
-[#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
-[#:description description string? 'N/A]
-[#:selfLink selfLink string? 'N/A]
-[#:status status string? 'N/A]
-[#:creationTimestamp creationTimestamp string? 'N/A]
-[#:sizeGb sizeGb string? 'N/A]
-[#:sourceSnapshot sourceSnapshot string? 'N/A]
-[#:sourceSnapshotId sourceSnapshotId string? 'N/A]
-[#:zone zone string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Creates a persistent disk resource in the specified project using the data included in the request.
-
-@racket[project]: Name of the project scoping this request.
-
-@racket[options]: Internal use only.
-
-@racket[id]: Unique identifier for the resource; defined by the server (output only).
-
-@racket[kind]: Type of the resource.
-
-@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
-
-@racket[description]: An optional textual description of the resource; provided by the client when the resource is created.
-
-@racket[selfLink]: Server defined URL for the resource (output only).
-
-@racket[status]: The status of disk creation (output only).
-
-@racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
-
-@racket[sizeGb]: Size of the persistent disk, specified in GB.
-
-@racket[sourceSnapshot]: The source snapshot used to create this disk. Once the source snapshot has been deleted from the system, this field will be cleared, and will not be set even if a snapshot with the same name has been re-created.
-
-@racket[sourceSnapshotId]: The 'id' value of the snapshot used to create this disk. This value may be used to determine whether the disk was created from the current or a previous instance of a given disk snapshot.
-
-@racket[zone]: URL for the zone where the persistent disk resides; provided by the client when the disk is created. A persistent disk must reside in the same zone as the instance to which it is attached.
-
-}
-
-@defproc[(compute.disks.delete
-[disk string?]
-[project string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Deletes the specified persistent disk resource.
-
-@racket[disk]: Name of the persistent disk resource to delete.
-
-@racket[project]: Name of the project scoping this request.
-
-}
-
-@subsection{firewalls}
-@defproc[(compute.firewalls.list
-[project string?]
-[#:filter filter string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
-[#:pageToken pageToken string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Retrieves the list of firewall resources available to the specified project.
-
-@racket[project]: Name of the project scoping this request.
-
-@racket[filter]: Optional. Filter expression for filtering listed resources.
-
-@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
-
-@racket[pageToken]: Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-
-}
-
-@defproc[(compute.firewalls.get
-[project string?]
-[firewall string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Returns the specified firewall resource.
-
-@racket[project]: Name of the project scoping this request.
-
-@racket[firewall]: Name of the firewall resource to return.
-
-}
-
-@defproc[(compute.firewalls.insert
-[project string?]
-[#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
-[#:description description string? 'N/A]
-[#:selfLink selfLink string? 'N/A]
-[#:creationTimestamp creationTimestamp string? 'N/A]
-[#:allowed allowed string? 'N/A]
-[#:network network string? 'N/A]
-[#:sourceRanges sourceRanges string? 'N/A]
-[#:sourceTags sourceTags string? 'N/A]
-[#:targetTags targetTags string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Creates a firewall resource in the specified project using the data included in the request.
-
-@racket[project]: Name of the project scoping this request.
-
-@racket[id]: Unique identifier for the resource; defined by the server (output only).
-
-@racket[kind]: Type of the resource.
-
-@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
-
-@racket[description]: An optional textual description of the resource; provided by the client when the resource is created.
-
-@racket[selfLink]: Server defined URL for the resource (output only).
-
-@racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
-
-@racket[allowed]: The list of rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
-
-@racket[network]: URL of the network to which this firewall is applied; provided by the client when the firewall is created.
-
-@racket[sourceRanges]: A list of IP address blocks expressed in CIDR format which this rule applies to. One or both of sourceRanges and sourceTags may be set; an inbound connection is allowed if either the range or the tag of the source matches.
-
-@racket[sourceTags]: A list of instance tags which this rule applies to. One or both of sourceRanges and sourceTags may be set; an inbound connection is allowed if either the range or the tag of the source matches.
-
-@racket[targetTags]: A list of instance tags indicating sets of instances located on network which may make network connections as specified in allowed. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
-
-}
-
-@defproc[(compute.firewalls.patch
-[project string?]
-[firewall string?]
-[#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
-[#:description description string? 'N/A]
-[#:selfLink selfLink string? 'N/A]
-[#:creationTimestamp creationTimestamp string? 'N/A]
-[#:allowed allowed string? 'N/A]
-[#:network network string? 'N/A]
-[#:sourceRanges sourceRanges string? 'N/A]
-[#:sourceTags sourceTags string? 'N/A]
-[#:targetTags targetTags string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Updates the specified firewall resource with the data included in the request. This method supports patch semantics.
-
-@racket[project]: Name of the project scoping this request.
-
-@racket[firewall]: Name of the firewall resource to update.
-
-@racket[id]: Unique identifier for the resource; defined by the server (output only).
-
-@racket[kind]: Type of the resource.
-
-@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
-
-@racket[description]: An optional textual description of the resource; provided by the client when the resource is created.
-
-@racket[selfLink]: Server defined URL for the resource (output only).
-
-@racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
-
-@racket[allowed]: The list of rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
-
-@racket[network]: URL of the network to which this firewall is applied; provided by the client when the firewall is created.
-
-@racket[sourceRanges]: A list of IP address blocks expressed in CIDR format which this rule applies to. One or both of sourceRanges and sourceTags may be set; an inbound connection is allowed if either the range or the tag of the source matches.
-
-@racket[sourceTags]: A list of instance tags which this rule applies to. One or both of sourceRanges and sourceTags may be set; an inbound connection is allowed if either the range or the tag of the source matches.
-
-@racket[targetTags]: A list of instance tags indicating sets of instances located on network which may make network connections as specified in allowed. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
-
-}
-
-@defproc[(compute.firewalls.update
-[project string?]
-[firewall string?]
-[#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
-[#:description description string? 'N/A]
-[#:selfLink selfLink string? 'N/A]
-[#:creationTimestamp creationTimestamp string? 'N/A]
-[#:allowed allowed string? 'N/A]
-[#:network network string? 'N/A]
-[#:sourceRanges sourceRanges string? 'N/A]
-[#:sourceTags sourceTags string? 'N/A]
-[#:targetTags targetTags string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Updates the specified firewall resource with the data included in the request.
-
-@racket[project]: Name of the project scoping this request.
-
-@racket[firewall]: Name of the firewall resource to update.
-
-@racket[id]: Unique identifier for the resource; defined by the server (output only).
-
-@racket[kind]: Type of the resource.
-
-@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
-
-@racket[description]: An optional textual description of the resource; provided by the client when the resource is created.
-
-@racket[selfLink]: Server defined URL for the resource (output only).
-
-@racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
-
-@racket[allowed]: The list of rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
-
-@racket[network]: URL of the network to which this firewall is applied; provided by the client when the firewall is created.
-
-@racket[sourceRanges]: A list of IP address blocks expressed in CIDR format which this rule applies to. One or both of sourceRanges and sourceTags may be set; an inbound connection is allowed if either the range or the tag of the source matches.
-
-@racket[sourceTags]: A list of instance tags which this rule applies to. One or both of sourceRanges and sourceTags may be set; an inbound connection is allowed if either the range or the tag of the source matches.
-
-@racket[targetTags]: A list of instance tags indicating sets of instances located on network which may make network connections as specified in allowed. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
-
-}
-
-@defproc[(compute.firewalls.delete
-[project string?]
-[firewall string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Deletes the specified firewall resource.
-
-@racket[project]: Name of the project scoping this request.
-
-@racket[firewall]: Name of the firewall resource to delete.
-
-}
-
-@subsection{images}
-@defproc[(compute.images.list
-[project string?]
-[#:filter filter string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
-[#:pageToken pageToken string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Retrieves the list of image resources available to the specified project.
-
-@racket[project]: Name of the project scoping this request.
-
-@racket[filter]: Optional. Filter expression for filtering listed resources.
-
-@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
-
-@racket[pageToken]: Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
-
-}
-
-@defproc[(compute.images.get
-[image string?]
-[project string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Returns the specified image resource.
-
-@racket[image]: Name of the image resource to return.
-
-@racket[project]: Name of the project scoping this request.
-
-}
-
-@defproc[(compute.images.insert
-[project string?]
-[#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
-[#:description description string? 'N/A]
-[#:selfLink selfLink string? 'N/A]
-[#:creationTimestamp creationTimestamp string? 'N/A]
-[#:diskSnapshot diskSnapshot string? 'N/A]
-[#:preferredKernel preferredKernel string? 'N/A]
-[#:rawDisk rawDisk string? 'N/A]
-[#:sourceType sourceType string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Creates an image resource in the specified project using the data included in the request.
-
-@racket[project]: Name of the project scoping this request.
-
-@racket[id]: Unique identifier for the resource; defined by the server (output only).
-
-@racket[kind]: Type of the resource.
-
-@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
-
-@racket[description]: Textual description of the resource; provided by the client when the resource is created.
-
-@racket[selfLink]: Server defined URL for the resource (output only).
-
-@racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
-
-@racket[diskSnapshot]: Not yet implemented.
-
-@racket[preferredKernel]: An optional URL of the preferred kernel for use with this disk image. If not specified, a server defined default kernel will be used.
-
-@racket[rawDisk]: The raw disk image parameters.
-
-@racket[sourceType]: Must be "RAW"; provided by the client when the disk image is created.
-
-}
-
-@defproc[(compute.images.delete
-[image string?]
-[project string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Deletes the specified image resource.
-
-@racket[image]: Name of the image resource to delete.
-
-@racket[project]: Name of the project scoping this request.
-
-}
-
 @subsection{kernels}
-@defproc[(compute.kernels.list
+@defproc[(compute-kernels-list
 [project string?]
 [#:filter filter string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -688,13 +688,13 @@ Retrieves the list of kernel resources available to the specified project.
 
 @racket[filter]: Optional. Filter expression for filtering listed resources.
 
-@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
-
 @racket[pageToken]: Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+
+@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
 
 }
 
-@defproc[(compute.kernels.get
+@defproc[(compute-kernels-get
 [project string?]
 [kernel string?]
 [#:fields fields string? 'N/A]
@@ -714,11 +714,11 @@ Returns the specified kernel resource.
 }
 
 @subsection{machineTypes}
-@defproc[(compute.machineTypes.list
+@defproc[(compute-machineTypes-list
 [project string?]
 [#:filter filter string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -733,13 +733,13 @@ Retrieves the list of machine type resources available to the specified project.
 
 @racket[filter]: Optional. Filter expression for filtering listed resources.
 
-@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
-
 @racket[pageToken]: Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+
+@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
 
 }
 
-@defproc[(compute.machineTypes.get
+@defproc[(compute-machineTypes-get
 [machineType string?]
 [project string?]
 [#:fields fields string? 'N/A]
@@ -759,11 +759,11 @@ Returns the specified machine type resource.
 }
 
 @subsection{networks}
-@defproc[(compute.networks.list
+@defproc[(compute-networks-list
 [project string?]
 [#:filter filter string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -778,13 +778,13 @@ Retrieves the list of network resources available to the specified project.
 
 @racket[filter]: Optional. Filter expression for filtering listed resources.
 
-@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
-
 @racket[pageToken]: Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+
+@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
 
 }
 
-@defproc[(compute.networks.get
+@defproc[(compute-networks-get
 [network string?]
 [project string?]
 [#:fields fields string? 'N/A]
@@ -803,7 +803,7 @@ Returns the specified network resource.
 
 }
 
-@defproc[(compute.networks.insert
+@defproc[(compute-networks-insert
 [project string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -843,7 +843,7 @@ Creates a network resource in the specified project using the data included in t
 
 }
 
-@defproc[(compute.networks.delete
+@defproc[(compute-networks-delete
 [network string?]
 [project string?]
 [#:fields fields string? 'N/A]
@@ -863,11 +863,11 @@ Deletes the specified network resource.
 }
 
 @subsection{operations}
-@defproc[(compute.operations.list
+@defproc[(compute-operations-list
 [project string?]
 [#:filter filter string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -882,13 +882,13 @@ Retrieves the list of operation resources contained within the specified project
 
 @racket[filter]: Optional. Filter expression for filtering listed resources.
 
-@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
-
 @racket[pageToken]: Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+
+@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
 
 }
 
-@defproc[(compute.operations.get
+@defproc[(compute-operations-get
 [project string?]
 [operation string?]
 [#:fields fields string? 'N/A]
@@ -907,7 +907,7 @@ Retrieves the specified operation resource.
 
 }
 
-@defproc[(compute.operations.delete
+@defproc[(compute-operations-delete
 [project string?]
 [operation string?]
 [#:fields fields string? 'N/A]
@@ -927,7 +927,7 @@ Deletes the specified operation resource.
 }
 
 @subsection{projects}
-@defproc[(compute.projects.get
+@defproc[(compute-projects-get
 [project string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -943,7 +943,7 @@ Returns the specified project resource.
 
 }
 
-@defproc[(compute.projects.setCommonInstanceMetadata
+@defproc[(compute-projects-setCommonInstanceMetadata
 [project string?]
 [#:kind kind string? 'N/A]
 [#:items items string? 'N/A]
@@ -966,11 +966,11 @@ Sets metadata common to all instances within the specified project using the dat
 }
 
 @subsection{snapshots}
-@defproc[(compute.snapshots.list
+@defproc[(compute-snapshots-list
 [project string?]
 [#:filter filter string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -985,13 +985,13 @@ Retrieves the list of persistent disk snapshot resources contained within the sp
 
 @racket[filter]: Optional. Filter expression for filtering listed resources.
 
-@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
-
 @racket[pageToken]: Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+
+@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
 
 }
 
-@defproc[(compute.snapshots.get
+@defproc[(compute-snapshots-get
 [project string?]
 [snapshot string?]
 [#:fields fields string? 'N/A]
@@ -1010,7 +1010,7 @@ Returns the specified persistent disk snapshot resource.
 
 }
 
-@defproc[(compute.snapshots.insert
+@defproc[(compute-snapshots-insert
 [project string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -1056,7 +1056,7 @@ Creates a persistent disk snapshot resource in the specified project using the d
 
 }
 
-@defproc[(compute.snapshots.delete
+@defproc[(compute-snapshots-delete
 [project string?]
 [snapshot string?]
 [#:fields fields string? 'N/A]
@@ -1076,11 +1076,11 @@ Deletes the specified persistent disk snapshot resource.
 }
 
 @subsection{zones}
-@defproc[(compute.zones.list
+@defproc[(compute-zones-list
 [project string?]
 [#:filter filter string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -1095,13 +1095,13 @@ Retrieves the list of zone resources available to the specified project.
 
 @racket[filter]: Optional. Filter expression for filtering listed resources.
 
-@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
-
 @racket[pageToken]: Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
+
+@racket[maxResults]: Optional. Maximum count of results to be returned. Maximum and default value is 100.
 
 }
 
-@defproc[(compute.zones.get
+@defproc[(compute-zones-get
 [zone string?]
 [project string?]
 [#:fields fields string? 'N/A]

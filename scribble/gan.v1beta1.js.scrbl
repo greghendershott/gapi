@@ -39,11 +39,11 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{advertisers}
-@defproc[(gan.advertisers.list
+@defproc[(gan-advertisers-list
 [role string?]
 [roleId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:advertiserCategory advertiserCategory string? 'N/A]
 [#:minNinetyDayEpc minNinetyDayEpc string? 'N/A]
 [#:minPayoutRank minPayoutRank string? 'N/A]
@@ -63,9 +63,9 @@ Retrieves data about all advertisers that the requesting advertiser/publisher ha
 
 @racket[roleId]: The ID of the requesting advertiser or publisher.
 
-@racket[maxResults]: Max number of items to return in this page. Optional. Defaults to 20.
-
 @racket[pageToken]: The value of 'nextPageToken' from the previous page. Optional.
+
+@racket[maxResults]: Max number of items to return in this page. Optional. Defaults to 20.
 
 @racket[advertiserCategory]: Caret(^) delimted list of advertiser categories. Valid categories are defined here: http://www.google.com/support/affiliatenetwork/advertiser/bin/answer.py?hl=en&answer=107581. Filters out all advertisers not in one of the given advertiser categories. Optional.
 
@@ -79,7 +79,7 @@ Retrieves data about all advertisers that the requesting advertiser/publisher ha
 
 }
 
-@defproc[(gan.advertisers.get
+@defproc[(gan-advertisers-get
 [role string?]
 [roleId string?]
 [#:advertiserId advertiserId string? 'N/A]
@@ -102,7 +102,7 @@ Retrieves data about a single advertiser if that the requesting advertiser/publi
 }
 
 @subsection{ccOffers}
-@defproc[(gan.ccOffers.list
+@defproc[(gan-ccOffers-list
 [publisher string?]
 [#:projection projection string? 'N/A]
 [#:advertiser advertiser string? 'N/A]
@@ -125,13 +125,13 @@ Retrieves credit card offers for the given publisher.
 }
 
 @subsection{events}
-@defproc[(gan.events.list
+@defproc[(gan-events-list
 [role string?]
 [roleId string?]
 [#:type type string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
 [#:status status string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
-[#:pageToken pageToken string? 'N/A]
 [#:sku sku string? 'N/A]
 [#:advertiserId advertiserId string? 'N/A]
 [#:chargeType chargeType string? 'N/A]
@@ -160,11 +160,11 @@ Retrieves event data for a given advertiser/publisher.
 
 @racket[type]: Filters out all events that are not of the given type. Valid values: 'action', 'transaction', 'charge'. Optional.
 
+@racket[pageToken]: The value of 'nextPageToken' from the previous page. Optional.
+
 @racket[status]: Filters out all events that do not have the given status. Valid values: 'active', 'canceled'. Optional.
 
 @racket[maxResults]: Max number of offers to return in this page. Optional. Defaults to 20.
-
-@racket[pageToken]: The value of 'nextPageToken' from the previous page. Optional.
 
 @racket[sku]: Caret(^) delimited list of SKUs. Filters out all events that do not reference one of the given SKU. Optional.
 
@@ -193,11 +193,11 @@ Retrieves event data for a given advertiser/publisher.
 }
 
 @subsection{links}
-@defproc[(gan.links.list
+@defproc[(gan-links-list
 [role string?]
 [roleId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:advertiserId advertiserId string? 'N/A]
 [#:authorship authorship string? 'N/A]
 [#:linkType linkType string? 'N/A]
@@ -221,9 +221,9 @@ Retrieves all links that match the query parameters.
 
 @racket[roleId]: The ID of the requesting advertiser or publisher.
 
-@racket[maxResults]: Max number of items to return in this page. Optional. Defaults to 20.
-
 @racket[pageToken]: The value of 'nextPageToken' from the previous page. Optional.
+
+@racket[maxResults]: Max number of items to return in this page. Optional. Defaults to 20.
 
 @racket[advertiserId]: Limits the resulting links to the ones belonging to the listed advertisers.
 
@@ -245,7 +245,7 @@ Retrieves all links that match the query parameters.
 
 }
 
-@defproc[(gan.links.get
+@defproc[(gan-links-get
 [role string?]
 [roleId string?]
 [linkId string?]
@@ -267,7 +267,7 @@ Retrieves data about a single link if the requesting advertiser/publisher has ac
 
 }
 
-@defproc[(gan.links.insert
+@defproc[(gan-links-insert
 [role string?]
 [roleId string?]
 [#:id id string? 'N/A]
@@ -341,11 +341,11 @@ Inserts a new link.
 }
 
 @subsection{publishers}
-@defproc[(gan.publishers.list
+@defproc[(gan-publishers-list
 [role string?]
 [roleId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:minNinetyDayEpc minNinetyDayEpc string? 'N/A]
 [#:minPayoutRank minPayoutRank string? 'N/A]
 [#:minSevenDayEpc minSevenDayEpc string? 'N/A]
@@ -365,9 +365,9 @@ Retrieves data about all publishers that the requesting advertiser/publisher has
 
 @racket[roleId]: The ID of the requesting advertiser or publisher.
 
-@racket[maxResults]: Max number of items to return in this page. Optional. Defaults to 20.
-
 @racket[pageToken]: The value of 'nextPageToken' from the previous page. Optional.
+
+@racket[maxResults]: Max number of items to return in this page. Optional. Defaults to 20.
 
 @racket[minNinetyDayEpc]: Filters out all publishers that have a ninety day EPC average lower than the given value (inclusive). Min value: 0.0. Optional.
 
@@ -381,7 +381,7 @@ Retrieves data about all publishers that the requesting advertiser/publisher has
 
 }
 
-@defproc[(gan.publishers.get
+@defproc[(gan-publishers-get
 [role string?]
 [roleId string?]
 [#:publisherId publisherId string? 'N/A]

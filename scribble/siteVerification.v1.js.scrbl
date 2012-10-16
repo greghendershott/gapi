@@ -39,7 +39,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{webResource}
-@defproc[(siteVerification.webResource.list
+@defproc[(siteVerification-webResource-list
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -52,7 +52,7 @@ Get the list of your verified websites and domains.
 
 }
 
-@defproc[(siteVerification.webResource.get
+@defproc[(siteVerification-webResource-get
 [id string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -68,7 +68,7 @@ Get the most current data for a website or domain.
 
 }
 
-@defproc[(siteVerification.webResource.insert
+@defproc[(siteVerification-webResource-insert
 [verificationMethod string?]
 [#:id id string? 'N/A]
 [#:site site string? 'N/A]
@@ -93,7 +93,7 @@ Attempt verification of a website or domain.
 
 }
 
-@defproc[(siteVerification.webResource.patch
+@defproc[(siteVerification-webResource-patch
 [id string?]
 [#:site site string? 'N/A]
 [#:owners owners string? 'N/A]
@@ -115,7 +115,7 @@ Modify the list of owners for your website or domain. This method supports patch
 
 }
 
-@defproc[(siteVerification.webResource.getToken
+@defproc[(siteVerification-webResource-getToken
 [#:site site string? 'N/A]
 [#:verificationMethod verificationMethod string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -134,7 +134,7 @@ Get a verification token for placing on a website or domain.
 
 }
 
-@defproc[(siteVerification.webResource.update
+@defproc[(siteVerification-webResource-update
 [id string?]
 [#:site site string? 'N/A]
 [#:owners owners string? 'N/A]
@@ -156,7 +156,7 @@ Modify the list of owners for your website or domain.
 
 }
 
-@defproc[(siteVerification.webResource.delete
+@defproc[(siteVerification-webResource-delete
 [id string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]

@@ -39,7 +39,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @section{Resources}
 
 @subsection{parents}
-@defproc[(drive.parents.list
+@defproc[(drive-parents-list
 [fileId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -55,7 +55,7 @@ Lists a file's parents.
 
 }
 
-@defproc[(drive.parents.get
+@defproc[(drive-parents-get
 [fileId string?]
 [parentId string?]
 [#:fields fields string? 'N/A]
@@ -74,13 +74,13 @@ Gets a specific parent reference.
 
 }
 
-@defproc[(drive.parents.insert
+@defproc[(drive-parents-insert
 [fileId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:isRoot isRoot string? 'N/A]
 [#:parentLink parentLink string? 'N/A]
+[#:isRoot isRoot string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -99,13 +99,13 @@ Adds a parent folder for a file.
 
 @racket[selfLink]: A link back to this reference.
 
-@racket[isRoot]: Whether or not the parent is the root folder.
-
 @racket[parentLink]: A link to the parent.
+
+@racket[isRoot]: Whether or not the parent is the root folder.
 
 }
 
-@defproc[(drive.parents.delete
+@defproc[(drive-parents-delete
 [fileId string?]
 [parentId string?]
 [#:fields fields string? 'N/A]
@@ -125,10 +125,10 @@ Removes a parent from a file.
 }
 
 @subsection{children}
-@defproc[(drive.children.list
+@defproc[(drive-children-list
 [folderId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:q q string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -142,15 +142,15 @@ Lists a folder's children.
 
 @racket[folderId]: The ID of the folder.
 
-@racket[maxResults]: Maximum number of children to return.
-
 @racket[pageToken]: Page token for children.
+
+@racket[maxResults]: Maximum number of children to return.
 
 @racket[q]: Query string for searching children.
 
 }
 
-@defproc[(drive.children.get
+@defproc[(drive-children-get
 [childId string?]
 [folderId string?]
 [#:fields fields string? 'N/A]
@@ -169,7 +169,7 @@ Gets a specific child reference.
 
 }
 
-@defproc[(drive.children.insert
+@defproc[(drive-children-insert
 [folderId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -197,7 +197,7 @@ Inserts a file into a folder.
 
 }
 
-@defproc[(drive.children.delete
+@defproc[(drive-children-delete
 [childId string?]
 [folderId string?]
 [#:fields fields string? 'N/A]
@@ -216,225 +216,11 @@ Removes a child from a folder.
 
 }
 
-@subsection{replies}
-@defproc[(drive.replies.list
-[fileId string?]
-[commentId string?]
-[#:maxResults maxResults string? 'N/A]
-[#:pageToken pageToken string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Lists all of the replies to a comment.
-
-@racket[fileId]: The ID of the file.
-
-@racket[commentId]: The ID of the comment.
-
-@racket[maxResults]: The maximum number of replies to include in the response, used for paging.
-
-@racket[pageToken]: The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-
-}
-
-@defproc[(drive.replies.get
-[fileId string?]
-[commentId string?]
-[replyId string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Gets a reply.
-
-@racket[fileId]: The ID of the file.
-
-@racket[commentId]: The ID of the comment.
-
-@racket[replyId]: The ID of the reply.
-
-}
-
-@defproc[(drive.replies.insert
-[fileId string?]
-[commentId string?]
-[#:kind kind string? 'N/A]
-[#:author author string? 'N/A]
-[#:content content string? 'N/A]
-[#:deleted deleted string? 'N/A]
-[#:createdDate createdDate string? 'N/A]
-[#:htmlContent htmlContent string? 'N/A]
-[#:modifiedDate modifiedDate string? 'N/A]
-[#:replyId replyId string? 'N/A]
-[#:verb verb string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Creates a new reply to the given comment.
-
-@racket[fileId]: The ID of the file.
-
-@racket[commentId]: The ID of the comment.
-
-@racket[kind]: This is always drive#commentReply.
-
-@racket[author]: The user who wrote this reply.
-
-@racket[content]: The plain text content used to create this reply. This is not HTML safe and should only be used as a starting point to make edits to a reply's content. This field is required on inserts if no verb is specified (resolve/reopen).
-
-@racket[deleted]: Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.
-
-@racket[createdDate]: The date when this reply was first created.
-
-@racket[htmlContent]: HTML formatted content for this reply.
-
-@racket[modifiedDate]: The date when this reply was last modified.
-
-@racket[replyId]: The ID of the reply.
-
-@racket[verb]: The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are:  
-- "resolve" - To resolve a comment. 
-- "reopen" - To reopen (un-resolve) a comment.
-
-}
-
-@defproc[(drive.replies.patch
-[fileId string?]
-[commentId string?]
-[replyId string?]
-[#:kind kind string? 'N/A]
-[#:author author string? 'N/A]
-[#:content content string? 'N/A]
-[#:deleted deleted string? 'N/A]
-[#:createdDate createdDate string? 'N/A]
-[#:htmlContent htmlContent string? 'N/A]
-[#:modifiedDate modifiedDate string? 'N/A]
-[#:verb verb string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Updates an existing reply. This method supports patch semantics.
-
-@racket[fileId]: The ID of the file.
-
-@racket[commentId]: The ID of the comment.
-
-@racket[replyId]: The ID of the reply.
-
-@racket[kind]: This is always drive#commentReply.
-
-@racket[author]: The user who wrote this reply.
-
-@racket[content]: The plain text content used to create this reply. This is not HTML safe and should only be used as a starting point to make edits to a reply's content. This field is required on inserts if no verb is specified (resolve/reopen).
-
-@racket[deleted]: Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.
-
-@racket[createdDate]: The date when this reply was first created.
-
-@racket[htmlContent]: HTML formatted content for this reply.
-
-@racket[modifiedDate]: The date when this reply was last modified.
-
-@racket[verb]: The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are:  
-- "resolve" - To resolve a comment. 
-- "reopen" - To reopen (un-resolve) a comment.
-
-}
-
-@defproc[(drive.replies.update
-[fileId string?]
-[commentId string?]
-[replyId string?]
-[#:kind kind string? 'N/A]
-[#:author author string? 'N/A]
-[#:content content string? 'N/A]
-[#:deleted deleted string? 'N/A]
-[#:createdDate createdDate string? 'N/A]
-[#:htmlContent htmlContent string? 'N/A]
-[#:modifiedDate modifiedDate string? 'N/A]
-[#:verb verb string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Updates an existing reply.
-
-@racket[fileId]: The ID of the file.
-
-@racket[commentId]: The ID of the comment.
-
-@racket[replyId]: The ID of the reply.
-
-@racket[kind]: This is always drive#commentReply.
-
-@racket[author]: The user who wrote this reply.
-
-@racket[content]: The plain text content used to create this reply. This is not HTML safe and should only be used as a starting point to make edits to a reply's content. This field is required on inserts if no verb is specified (resolve/reopen).
-
-@racket[deleted]: Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.
-
-@racket[createdDate]: The date when this reply was first created.
-
-@racket[htmlContent]: HTML formatted content for this reply.
-
-@racket[modifiedDate]: The date when this reply was last modified.
-
-@racket[verb]: The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are:  
-- "resolve" - To resolve a comment. 
-- "reopen" - To reopen (un-resolve) a comment.
-
-}
-
-@defproc[(drive.replies.delete
-[fileId string?]
-[commentId string?]
-[replyId string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Deletes a reply.
-
-@racket[fileId]: The ID of the file.
-
-@racket[commentId]: The ID of the comment.
-
-@racket[replyId]: The ID of the reply.
-
-}
-
 @subsection{files}
-@defproc[(drive.files.list
+@defproc[(drive-files-list
 [#:projection projection string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:q q string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -448,15 +234,15 @@ Lists the user's files.
 
 @racket[projection]: This parameter is deprecated and has no function.
 
-@racket[maxResults]: Maximum number of files to return.
-
 @racket[pageToken]: Page token for files.
+
+@racket[maxResults]: Maximum number of files to return.
 
 @racket[q]: Query string for searching files.
 
 }
 
-@defproc[(drive.files.touch
+@defproc[(drive-files-touch
 [fileId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -472,7 +258,7 @@ Set the file's updated time to the current server time.
 
 }
 
-@defproc[(drive.files.get
+@defproc[(drive-files-get
 [fileId string?]
 [#:projection projection string? 'N/A]
 [#:updateViewedDate updateViewedDate string? 'N/A]
@@ -494,7 +280,7 @@ Gets a file's metadata by ID.
 
 }
 
-@defproc[(drive.files.insert
+@defproc[(drive-files-insert
 [#:convert convert string? 'N/A]
 [#:pinned pinned string? 'N/A]
 [#:ocr ocr string? 'N/A]
@@ -510,15 +296,15 @@ Gets a file's metadata by ID.
 [#:selfLink selfLink string? 'N/A]
 [#:etag etag string? 'N/A]
 [#:parents parents string? 'N/A]
+[#:labels labels string? 'N/A]
+[#:thumbnailLink thumbnailLink string? 'N/A]
 [#:quotaBytesUsed quotaBytesUsed string? 'N/A]
 [#:createdDate createdDate string? 'N/A]
 [#:modifiedDate modifiedDate string? 'N/A]
+[#:mimeType mimeType string? 'N/A]
 [#:alternateLink alternateLink string? 'N/A]
 [#:downloadUrl downloadUrl string? 'N/A]
 [#:editable editable string? 'N/A]
-[#:labels labels string? 'N/A]
-[#:thumbnailLink thumbnailLink string? 'N/A]
-[#:mimeType mimeType string? 'N/A]
 [#:embedLink embedLink string? 'N/A]
 [#:explicitlyTrashed explicitlyTrashed string? 'N/A]
 [#:exportLinks exportLinks string? 'N/A]
@@ -578,23 +364,23 @@ Insert a new file.
 @racket[parents]: Collection of parent folders which contain this file.
 Setting this field will put the file in all of the provided folders. On insert, if no folders are provided, the file will be placed in the default root folder.
 
+@racket[labels]: A group of labels for the file.
+
+@racket[thumbnailLink]: A link to the file's thumbnail.
+
 @racket[quotaBytesUsed]: The number of quota bytes used by this file.
 
 @racket[createdDate]: Create time for this file (formatted ISO8601 timestamp).
 
 @racket[modifiedDate]: Last time this file was modified by anyone (formatted RFC 3339 timestamp). This is only mutable on update when the setModifiedDate parameter is set.
 
+@racket[mimeType]: The MIME type of the file. This is only mutable on update when uploading new content. This field can be left blank, and the mimetype will be determined from the uploaded content's MIME type.
+
 @racket[alternateLink]: A link for opening the file in using a relevant Google editor or viewer.
 
 @racket[downloadUrl]: Short term download URL for the file. This will only be populated on files with content stored in Drive.
 
 @racket[editable]: Whether the file can be edited by the current user.
-
-@racket[labels]: A group of labels for the file.
-
-@racket[thumbnailLink]: A link to the file's thumbnail.
-
-@racket[mimeType]: The MIME type of the file. This is only mutable on update when uploading new content. This field can be left blank, and the mimetype will be determined from the uploaded content's MIME type.
 
 @racket[embedLink]: A link for embedding the file.
 
@@ -634,7 +420,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
 
 }
 
-@defproc[(drive.files.patch
+@defproc[(drive-files-patch
 [fileId string?]
 [#:convert convert string? 'N/A]
 [#:pinned pinned string? 'N/A]
@@ -654,15 +440,15 @@ Setting this field will put the file in all of the provided folders. On insert, 
 [#:selfLink selfLink string? 'N/A]
 [#:etag etag string? 'N/A]
 [#:parents parents string? 'N/A]
+[#:labels labels string? 'N/A]
+[#:thumbnailLink thumbnailLink string? 'N/A]
 [#:quotaBytesUsed quotaBytesUsed string? 'N/A]
 [#:createdDate createdDate string? 'N/A]
 [#:modifiedDate modifiedDate string? 'N/A]
+[#:mimeType mimeType string? 'N/A]
 [#:alternateLink alternateLink string? 'N/A]
 [#:downloadUrl downloadUrl string? 'N/A]
 [#:editable editable string? 'N/A]
-[#:labels labels string? 'N/A]
-[#:thumbnailLink thumbnailLink string? 'N/A]
-[#:mimeType mimeType string? 'N/A]
 [#:embedLink embedLink string? 'N/A]
 [#:explicitlyTrashed explicitlyTrashed string? 'N/A]
 [#:exportLinks exportLinks string? 'N/A]
@@ -730,23 +516,23 @@ Updates file metadata and/or content. This method supports patch semantics.
 @racket[parents]: Collection of parent folders which contain this file.
 Setting this field will put the file in all of the provided folders. On insert, if no folders are provided, the file will be placed in the default root folder.
 
+@racket[labels]: A group of labels for the file.
+
+@racket[thumbnailLink]: A link to the file's thumbnail.
+
 @racket[quotaBytesUsed]: The number of quota bytes used by this file.
 
 @racket[createdDate]: Create time for this file (formatted ISO8601 timestamp).
 
 @racket[modifiedDate]: Last time this file was modified by anyone (formatted RFC 3339 timestamp). This is only mutable on update when the setModifiedDate parameter is set.
 
+@racket[mimeType]: The MIME type of the file. This is only mutable on update when uploading new content. This field can be left blank, and the mimetype will be determined from the uploaded content's MIME type.
+
 @racket[alternateLink]: A link for opening the file in using a relevant Google editor or viewer.
 
 @racket[downloadUrl]: Short term download URL for the file. This will only be populated on files with content stored in Drive.
 
 @racket[editable]: Whether the file can be edited by the current user.
-
-@racket[labels]: A group of labels for the file.
-
-@racket[thumbnailLink]: A link to the file's thumbnail.
-
-@racket[mimeType]: The MIME type of the file. This is only mutable on update when uploading new content. This field can be left blank, and the mimetype will be determined from the uploaded content's MIME type.
 
 @racket[embedLink]: A link for embedding the file.
 
@@ -786,7 +572,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
 
 }
 
-@defproc[(drive.files.copy
+@defproc[(drive-files-copy
 [fileId string?]
 [#:convert convert string? 'N/A]
 [#:pinned pinned string? 'N/A]
@@ -803,15 +589,15 @@ Setting this field will put the file in all of the provided folders. On insert, 
 [#:selfLink selfLink string? 'N/A]
 [#:etag etag string? 'N/A]
 [#:parents parents string? 'N/A]
+[#:labels labels string? 'N/A]
+[#:thumbnailLink thumbnailLink string? 'N/A]
 [#:quotaBytesUsed quotaBytesUsed string? 'N/A]
 [#:createdDate createdDate string? 'N/A]
 [#:modifiedDate modifiedDate string? 'N/A]
+[#:mimeType mimeType string? 'N/A]
 [#:alternateLink alternateLink string? 'N/A]
 [#:downloadUrl downloadUrl string? 'N/A]
 [#:editable editable string? 'N/A]
-[#:labels labels string? 'N/A]
-[#:thumbnailLink thumbnailLink string? 'N/A]
-[#:mimeType mimeType string? 'N/A]
 [#:embedLink embedLink string? 'N/A]
 [#:explicitlyTrashed explicitlyTrashed string? 'N/A]
 [#:exportLinks exportLinks string? 'N/A]
@@ -873,23 +659,23 @@ Creates a copy of the specified file.
 @racket[parents]: Collection of parent folders which contain this file.
 Setting this field will put the file in all of the provided folders. On insert, if no folders are provided, the file will be placed in the default root folder.
 
+@racket[labels]: A group of labels for the file.
+
+@racket[thumbnailLink]: A link to the file's thumbnail.
+
 @racket[quotaBytesUsed]: The number of quota bytes used by this file.
 
 @racket[createdDate]: Create time for this file (formatted ISO8601 timestamp).
 
 @racket[modifiedDate]: Last time this file was modified by anyone (formatted RFC 3339 timestamp). This is only mutable on update when the setModifiedDate parameter is set.
 
+@racket[mimeType]: The MIME type of the file. This is only mutable on update when uploading new content. This field can be left blank, and the mimetype will be determined from the uploaded content's MIME type.
+
 @racket[alternateLink]: A link for opening the file in using a relevant Google editor or viewer.
 
 @racket[downloadUrl]: Short term download URL for the file. This will only be populated on files with content stored in Drive.
 
 @racket[editable]: Whether the file can be edited by the current user.
-
-@racket[labels]: A group of labels for the file.
-
-@racket[thumbnailLink]: A link to the file's thumbnail.
-
-@racket[mimeType]: The MIME type of the file. This is only mutable on update when uploading new content. This field can be left blank, and the mimetype will be determined from the uploaded content's MIME type.
 
 @racket[embedLink]: A link for embedding the file.
 
@@ -929,7 +715,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
 
 }
 
-@defproc[(drive.files.trash
+@defproc[(drive-files-trash
 [fileId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -945,7 +731,7 @@ Moves a file to the trash.
 
 }
 
-@defproc[(drive.files.untrash
+@defproc[(drive-files-untrash
 [fileId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -961,7 +747,7 @@ Restores a file from the trash.
 
 }
 
-@defproc[(drive.files.update
+@defproc[(drive-files-update
 [fileId string?]
 [#:convert convert string? 'N/A]
 [#:pinned pinned string? 'N/A]
@@ -981,15 +767,15 @@ Restores a file from the trash.
 [#:selfLink selfLink string? 'N/A]
 [#:etag etag string? 'N/A]
 [#:parents parents string? 'N/A]
+[#:labels labels string? 'N/A]
+[#:thumbnailLink thumbnailLink string? 'N/A]
 [#:quotaBytesUsed quotaBytesUsed string? 'N/A]
 [#:createdDate createdDate string? 'N/A]
 [#:modifiedDate modifiedDate string? 'N/A]
+[#:mimeType mimeType string? 'N/A]
 [#:alternateLink alternateLink string? 'N/A]
 [#:downloadUrl downloadUrl string? 'N/A]
 [#:editable editable string? 'N/A]
-[#:labels labels string? 'N/A]
-[#:thumbnailLink thumbnailLink string? 'N/A]
-[#:mimeType mimeType string? 'N/A]
 [#:embedLink embedLink string? 'N/A]
 [#:explicitlyTrashed explicitlyTrashed string? 'N/A]
 [#:exportLinks exportLinks string? 'N/A]
@@ -1057,23 +843,23 @@ Updates file metadata and/or content
 @racket[parents]: Collection of parent folders which contain this file.
 Setting this field will put the file in all of the provided folders. On insert, if no folders are provided, the file will be placed in the default root folder.
 
+@racket[labels]: A group of labels for the file.
+
+@racket[thumbnailLink]: A link to the file's thumbnail.
+
 @racket[quotaBytesUsed]: The number of quota bytes used by this file.
 
 @racket[createdDate]: Create time for this file (formatted ISO8601 timestamp).
 
 @racket[modifiedDate]: Last time this file was modified by anyone (formatted RFC 3339 timestamp). This is only mutable on update when the setModifiedDate parameter is set.
 
+@racket[mimeType]: The MIME type of the file. This is only mutable on update when uploading new content. This field can be left blank, and the mimetype will be determined from the uploaded content's MIME type.
+
 @racket[alternateLink]: A link for opening the file in using a relevant Google editor or viewer.
 
 @racket[downloadUrl]: Short term download URL for the file. This will only be populated on files with content stored in Drive.
 
 @racket[editable]: Whether the file can be edited by the current user.
-
-@racket[labels]: A group of labels for the file.
-
-@racket[thumbnailLink]: A link to the file's thumbnail.
-
-@racket[mimeType]: The MIME type of the file. This is only mutable on update when uploading new content. This field can be left blank, and the mimetype will be determined from the uploaded content's MIME type.
 
 @racket[embedLink]: A link for embedding the file.
 
@@ -1113,7 +899,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
 
 }
 
-@defproc[(drive.files.delete
+@defproc[(drive-files-delete
 [fileId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -1129,8 +915,222 @@ Permanently deletes a file by ID. Skips the trash.
 
 }
 
+@subsection{replies}
+@defproc[(drive-replies-list
+[fileId string?]
+[commentId string?]
+[#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Lists all of the replies to a comment.
+
+@racket[fileId]: The ID of the file.
+
+@racket[commentId]: The ID of the comment.
+
+@racket[pageToken]: The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+
+@racket[maxResults]: The maximum number of replies to include in the response, used for paging.
+
+}
+
+@defproc[(drive-replies-get
+[fileId string?]
+[commentId string?]
+[replyId string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Gets a reply.
+
+@racket[fileId]: The ID of the file.
+
+@racket[commentId]: The ID of the comment.
+
+@racket[replyId]: The ID of the reply.
+
+}
+
+@defproc[(drive-replies-insert
+[fileId string?]
+[commentId string?]
+[#:kind kind string? 'N/A]
+[#:author author string? 'N/A]
+[#:content content string? 'N/A]
+[#:deleted deleted string? 'N/A]
+[#:createdDate createdDate string? 'N/A]
+[#:htmlContent htmlContent string? 'N/A]
+[#:modifiedDate modifiedDate string? 'N/A]
+[#:replyId replyId string? 'N/A]
+[#:verb verb string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Creates a new reply to the given comment.
+
+@racket[fileId]: The ID of the file.
+
+@racket[commentId]: The ID of the comment.
+
+@racket[kind]: This is always drive#commentReply.
+
+@racket[author]: The user who wrote this reply.
+
+@racket[content]: The plain text content used to create this reply. This is not HTML safe and should only be used as a starting point to make edits to a reply's content. This field is required on inserts if no verb is specified (resolve/reopen).
+
+@racket[deleted]: Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.
+
+@racket[createdDate]: The date when this reply was first created.
+
+@racket[htmlContent]: HTML formatted content for this reply.
+
+@racket[modifiedDate]: The date when this reply was last modified.
+
+@racket[replyId]: The ID of the reply.
+
+@racket[verb]: The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are:  
+- "resolve" - To resolve a comment. 
+- "reopen" - To reopen (un-resolve) a comment.
+
+}
+
+@defproc[(drive-replies-patch
+[fileId string?]
+[commentId string?]
+[replyId string?]
+[#:kind kind string? 'N/A]
+[#:author author string? 'N/A]
+[#:content content string? 'N/A]
+[#:deleted deleted string? 'N/A]
+[#:createdDate createdDate string? 'N/A]
+[#:htmlContent htmlContent string? 'N/A]
+[#:modifiedDate modifiedDate string? 'N/A]
+[#:verb verb string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Updates an existing reply. This method supports patch semantics.
+
+@racket[fileId]: The ID of the file.
+
+@racket[commentId]: The ID of the comment.
+
+@racket[replyId]: The ID of the reply.
+
+@racket[kind]: This is always drive#commentReply.
+
+@racket[author]: The user who wrote this reply.
+
+@racket[content]: The plain text content used to create this reply. This is not HTML safe and should only be used as a starting point to make edits to a reply's content. This field is required on inserts if no verb is specified (resolve/reopen).
+
+@racket[deleted]: Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.
+
+@racket[createdDate]: The date when this reply was first created.
+
+@racket[htmlContent]: HTML formatted content for this reply.
+
+@racket[modifiedDate]: The date when this reply was last modified.
+
+@racket[verb]: The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are:  
+- "resolve" - To resolve a comment. 
+- "reopen" - To reopen (un-resolve) a comment.
+
+}
+
+@defproc[(drive-replies-update
+[fileId string?]
+[commentId string?]
+[replyId string?]
+[#:kind kind string? 'N/A]
+[#:author author string? 'N/A]
+[#:content content string? 'N/A]
+[#:deleted deleted string? 'N/A]
+[#:createdDate createdDate string? 'N/A]
+[#:htmlContent htmlContent string? 'N/A]
+[#:modifiedDate modifiedDate string? 'N/A]
+[#:verb verb string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Updates an existing reply.
+
+@racket[fileId]: The ID of the file.
+
+@racket[commentId]: The ID of the comment.
+
+@racket[replyId]: The ID of the reply.
+
+@racket[kind]: This is always drive#commentReply.
+
+@racket[author]: The user who wrote this reply.
+
+@racket[content]: The plain text content used to create this reply. This is not HTML safe and should only be used as a starting point to make edits to a reply's content. This field is required on inserts if no verb is specified (resolve/reopen).
+
+@racket[deleted]: Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.
+
+@racket[createdDate]: The date when this reply was first created.
+
+@racket[htmlContent]: HTML formatted content for this reply.
+
+@racket[modifiedDate]: The date when this reply was last modified.
+
+@racket[verb]: The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are:  
+- "resolve" - To resolve a comment. 
+- "reopen" - To reopen (un-resolve) a comment.
+
+}
+
+@defproc[(drive-replies-delete
+[fileId string?]
+[commentId string?]
+[replyId string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Deletes a reply.
+
+@racket[fileId]: The ID of the file.
+
+@racket[commentId]: The ID of the comment.
+
+@racket[replyId]: The ID of the reply.
+
+}
+
 @subsection{about}
-@defproc[(drive.about.get
+@defproc[(drive-about-get
 [#:includeSubscribed includeSubscribed string? 'N/A]
 [#:maxChangeIdCount maxChangeIdCount string? 'N/A]
 [#:startChangeId startChangeId string? 'N/A]
@@ -1153,7 +1153,7 @@ Gets the information about the current user along with Drive API settings
 }
 
 @subsection{apps}
-@defproc[(drive.apps.list
+@defproc[(drive-apps-list
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -1166,7 +1166,7 @@ Lists a user's apps.
 
 }
 
-@defproc[(drive.apps.get
+@defproc[(drive-apps-get
 [appId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -1183,9 +1183,9 @@ Gets a specific app.
 }
 
 @subsection{changes}
-@defproc[(drive.changes.list
-[#:maxResults maxResults string? 'N/A]
+@defproc[(drive-changes-list
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:includeSubscribed includeSubscribed string? 'N/A]
 [#:startChangeId startChangeId string? 'N/A]
 [#:includeDeleted includeDeleted string? 'N/A]
@@ -1199,9 +1199,9 @@ Gets a specific app.
 ) jsexpr?]{
 Lists the changes for a user.
 
-@racket[maxResults]: Maximum number of changes to return.
-
 @racket[pageToken]: Page token for changes.
+
+@racket[maxResults]: Maximum number of changes to return.
 
 @racket[includeSubscribed]: Whether to include subscribed items.
 
@@ -1211,7 +1211,7 @@ Lists the changes for a user.
 
 }
 
-@defproc[(drive.changes.get
+@defproc[(drive-changes-get
 [changeId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -1228,12 +1228,12 @@ Gets a specific change.
 }
 
 @subsection{comments}
-@defproc[(drive.comments.list
+@defproc[(drive-comments-list
 [fileId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
-[#:updatedMin updatedMin string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:includeDeleted includeDeleted string? 'N/A]
+[#:updatedMin updatedMin string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -1246,17 +1246,17 @@ Lists a file's comments.
 
 @racket[fileId]: The ID of the file.
 
-@racket[maxResults]: The maximum number of discussions to include in the response, used for paging.
-
 @racket[pageToken]: The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
 
-@racket[updatedMin]: Only discussions that were updated after this timestamp will be returned. Formatted as an RFC 3339 timestamp.
+@racket[maxResults]: The maximum number of discussions to include in the response, used for paging.
 
 @racket[includeDeleted]: If set, all comments, including deleted comments (with content stripped) will be returned.
 
+@racket[updatedMin]: Only discussions that were updated after this timestamp will be returned. Formatted as an RFC 3339 timestamp.
+
 }
 
-@defproc[(drive.comments.get
+@defproc[(drive-comments-get
 [fileId string?]
 [commentId string?]
 [#:fields fields string? 'N/A]
@@ -1275,7 +1275,7 @@ Gets a comment by ID.
 
 }
 
-@defproc[(drive.comments.insert
+@defproc[(drive-comments-insert
 [fileId string?]
 [#:anchor anchor string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -1335,7 +1335,7 @@ Creates a new comment on the given file.
 
 }
 
-@defproc[(drive.comments.patch
+@defproc[(drive-comments-patch
 [fileId string?]
 [commentId string?]
 [#:anchor anchor string? 'N/A]
@@ -1395,7 +1395,7 @@ Updates an existing comment. This method supports patch semantics.
 
 }
 
-@defproc[(drive.comments.update
+@defproc[(drive-comments-update
 [fileId string?]
 [commentId string?]
 [#:anchor anchor string? 'N/A]
@@ -1455,7 +1455,7 @@ Updates an existing comment.
 
 }
 
-@defproc[(drive.comments.delete
+@defproc[(drive-comments-delete
 [fileId string?]
 [commentId string?]
 [#:fields fields string? 'N/A]
@@ -1475,7 +1475,7 @@ Deletes a comment.
 }
 
 @subsection{permissions}
-@defproc[(drive.permissions.list
+@defproc[(drive-permissions-list
 [fileId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -1491,7 +1491,7 @@ Lists a file's permissions.
 
 }
 
-@defproc[(drive.permissions.get
+@defproc[(drive-permissions-get
 [fileId string?]
 [permissionId string?]
 [#:fields fields string? 'N/A]
@@ -1510,7 +1510,7 @@ Gets a permission by ID.
 
 }
 
-@defproc[(drive.permissions.insert
+@defproc[(drive-permissions-insert
 [fileId string?]
 [#:sendNotificationEmails sendNotificationEmails string? 'N/A]
 [#:id id string? 'N/A]
@@ -1572,7 +1572,7 @@ Inserts a permission for a file.
 
 }
 
-@defproc[(drive.permissions.patch
+@defproc[(drive-permissions-patch
 [fileId string?]
 [permissionId string?]
 [#:id id string? 'N/A]
@@ -1634,7 +1634,7 @@ Updates a permission. This method supports patch semantics.
 
 }
 
-@defproc[(drive.permissions.update
+@defproc[(drive-permissions-update
 [fileId string?]
 [permissionId string?]
 [#:id id string? 'N/A]
@@ -1696,7 +1696,7 @@ Updates a permission.
 
 }
 
-@defproc[(drive.permissions.delete
+@defproc[(drive-permissions-delete
 [fileId string?]
 [permissionId string?]
 [#:fields fields string? 'N/A]
@@ -1716,7 +1716,7 @@ Deletes a permission from a file.
 }
 
 @subsection{revisions}
-@defproc[(drive.revisions.list
+@defproc[(drive-revisions-list
 [fileId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -1732,7 +1732,7 @@ Lists a file's revisions.
 
 }
 
-@defproc[(drive.revisions.get
+@defproc[(drive-revisions-get
 [fileId string?]
 [revisionId string?]
 [#:fields fields string? 'N/A]
@@ -1751,17 +1751,16 @@ Gets a specific revision.
 
 }
 
-@defproc[(drive.revisions.patch
+@defproc[(drive-revisions-patch
 [fileId string?]
 [revisionId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
 [#:etag etag string? 'N/A]
-[#:published published string? 'N/A]
 [#:modifiedDate modifiedDate string? 'N/A]
-[#:downloadUrl downloadUrl string? 'N/A]
 [#:mimeType mimeType string? 'N/A]
+[#:downloadUrl downloadUrl string? 'N/A]
 [#:exportLinks exportLinks string? 'N/A]
 [#:fileSize fileSize string? 'N/A]
 [#:lastModifyingUserName lastModifyingUserName string? 'N/A]
@@ -1769,6 +1768,7 @@ Gets a specific revision.
 [#:originalFilename originalFilename string? 'N/A]
 [#:pinned pinned string? 'N/A]
 [#:publishAuto publishAuto string? 'N/A]
+[#:published published string? 'N/A]
 [#:publishedLink publishedLink string? 'N/A]
 [#:publishedOutsideDomain publishedOutsideDomain string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -1793,13 +1793,11 @@ Updates a revision. This method supports patch semantics.
 
 @racket[etag]: The ETag of the revision.
 
-@racket[published]: Whether this revision is published. This is only populated and can only be modified for Google Docs.
-
 @racket[modifiedDate]: Last time this revision was modified (formatted RFC 3339 timestamp).
 
-@racket[downloadUrl]: Short term download URL for the file. This will only be populated on files with content stored in Drive.
-
 @racket[mimeType]: The MIME type of the revision.
+
+@racket[downloadUrl]: Short term download URL for the file. This will only be populated on files with content stored in Drive.
 
 @racket[exportLinks]: Links for exporting Google Docs to specific formats.
 
@@ -1815,23 +1813,24 @@ Updates a revision. This method supports patch semantics.
 
 @racket[publishAuto]: Whether subsequent revisions will be automatically republished. This is only populated and can only be modified for Google Docs.
 
+@racket[published]: Whether this revision is published. This is only populated and can only be modified for Google Docs.
+
 @racket[publishedLink]: A link to the published revision.
 
 @racket[publishedOutsideDomain]: Whether this revision is published outside the domain. This is only populated and can only be modified for Google Docs.
 
 }
 
-@defproc[(drive.revisions.update
+@defproc[(drive-revisions-update
 [fileId string?]
 [revisionId string?]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
 [#:etag etag string? 'N/A]
-[#:published published string? 'N/A]
 [#:modifiedDate modifiedDate string? 'N/A]
-[#:downloadUrl downloadUrl string? 'N/A]
 [#:mimeType mimeType string? 'N/A]
+[#:downloadUrl downloadUrl string? 'N/A]
 [#:exportLinks exportLinks string? 'N/A]
 [#:fileSize fileSize string? 'N/A]
 [#:lastModifyingUserName lastModifyingUserName string? 'N/A]
@@ -1839,6 +1838,7 @@ Updates a revision. This method supports patch semantics.
 [#:originalFilename originalFilename string? 'N/A]
 [#:pinned pinned string? 'N/A]
 [#:publishAuto publishAuto string? 'N/A]
+[#:published published string? 'N/A]
 [#:publishedLink publishedLink string? 'N/A]
 [#:publishedOutsideDomain publishedOutsideDomain string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -1863,13 +1863,11 @@ Updates a revision.
 
 @racket[etag]: The ETag of the revision.
 
-@racket[published]: Whether this revision is published. This is only populated and can only be modified for Google Docs.
-
 @racket[modifiedDate]: Last time this revision was modified (formatted RFC 3339 timestamp).
 
-@racket[downloadUrl]: Short term download URL for the file. This will only be populated on files with content stored in Drive.
-
 @racket[mimeType]: The MIME type of the revision.
+
+@racket[downloadUrl]: Short term download URL for the file. This will only be populated on files with content stored in Drive.
 
 @racket[exportLinks]: Links for exporting Google Docs to specific formats.
 
@@ -1885,13 +1883,15 @@ Updates a revision.
 
 @racket[publishAuto]: Whether subsequent revisions will be automatically republished. This is only populated and can only be modified for Google Docs.
 
+@racket[published]: Whether this revision is published. This is only populated and can only be modified for Google Docs.
+
 @racket[publishedLink]: A link to the published revision.
 
 @racket[publishedOutsideDomain]: Whether this revision is published outside the domain. This is only populated and can only be modified for Google Docs.
 
 }
 
-@defproc[(drive.revisions.delete
+@defproc[(drive-revisions-delete
 [fileId string?]
 [revisionId string?]
 [#:fields fields string? 'N/A]

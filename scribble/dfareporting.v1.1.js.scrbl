@@ -38,12 +38,79 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @section{Resources}
 
+@subsection{files}
+@defproc[(dfareporting-files-list
+[profileId string?]
+[#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
+[#:sortOrder sortOrder string? 'N/A]
+[#:sortField sortField string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Lists files for a user profile.
+
+@racket[profileId]: The DFA profile ID.
+
+@racket[pageToken]: The value of the nextToken from the previous result page.
+
+@racket[maxResults]: Maximum number of results to return.
+
+@racket[sortOrder]: Order of sorted results, default is 'DESCENDING'.
+
+@racket[sortField]: The field by which to sort the list.
+
+}
+
+@subsection{dimensionValues}
+@defproc[(dfareporting-dimensionValues-query
+[profileId string?]
+[#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:filters filters string? 'N/A]
+[#:endDate endDate string? 'N/A]
+[#:startDate startDate string? 'N/A]
+[#:dimensionName dimensionName string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Retrieves list of report dimension values for a list of filters.
+
+@racket[profileId]: The DFA user profile ID.
+
+@racket[pageToken]: The value of the nextToken from the previous result page.
+
+@racket[maxResults]: Maximum number of results to return.
+
+@racket[kind]: The kind of request this is, in this case dfareporting#dimensionValueRequest.
+
+@racket[filters]: The list of filters by which to filter values. The filters are ANDed.
+
+@racket[endDate]: The end date of the date range for which to retrieve dimension values. A string of the format: "yyyy-MM-dd".
+
+@racket[startDate]: The start date of the date range for which to retrieve dimension values. A string of the format: "yyyy-MM-dd".
+
+@racket[dimensionName]: The name of the dimension for which values should be requested.
+
+}
+
 @subsection{reports}
 @section{Resources}
-@defproc[(dfareporting.reports.list
+@defproc[(dfareporting-reports-list
 [profileId string?]
-[#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:sortOrder sortOrder string? 'N/A]
 [#:sortField sortField string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -58,9 +125,9 @@ Retrieves list of reports.
 
 @racket[profileId]: The DFA user profile ID.
 
-@racket[maxResults]: Maximum number of results to return.
-
 @racket[pageToken]: The value of the nextToken from the previous result page.
+
+@racket[maxResults]: Maximum number of results to return.
 
 @racket[sortOrder]: Order of sorted results, default is 'DESCENDING'.
 
@@ -68,9 +135,9 @@ Retrieves list of reports.
 
 }
 
-@defproc[(dfareporting.reports.get
-[reportId string?]
+@defproc[(dfareporting-reports-get
 [profileId string?]
+[reportId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -81,13 +148,13 @@ Retrieves list of reports.
 ) jsexpr?]{
 Retrieves a report by its ID.
 
-@racket[reportId]: The ID of the report.
-
 @racket[profileId]: The DFA user profile ID.
+
+@racket[reportId]: The ID of the report.
 
 }
 
-@defproc[(dfareporting.reports.insert
+@defproc[(dfareporting-reports-insert
 [profileId string?]
 [#:format format string? 'N/A]
 [#:id id string? 'N/A]
@@ -166,9 +233,9 @@ Creates a report.
 
 }
 
-@defproc[(dfareporting.reports.run
-[reportId string?]
+@defproc[(dfareporting-reports-run
 [profileId string?]
+[reportId string?]
 [#:synchronous synchronous string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -180,17 +247,17 @@ Creates a report.
 ) jsexpr?]{
 Runs a report.
 
-@racket[reportId]: The ID of the report.
-
 @racket[profileId]: The DFA profile ID.
+
+@racket[reportId]: The ID of the report.
 
 @racket[synchronous]: If set and true, tries to run the report synchronously.
 
 }
 
-@defproc[(dfareporting.reports.patch
-[reportId string?]
+@defproc[(dfareporting-reports-patch
 [profileId string?]
+[reportId string?]
 [#:format format string? 'N/A]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -220,9 +287,9 @@ Runs a report.
 ) jsexpr?]{
 Updates a report. This method supports patch semantics.
 
-@racket[reportId]: The ID of the report.
-
 @racket[profileId]: The DFA user profile ID.
+
+@racket[reportId]: The ID of the report.
 
 @racket[format]: The output format of the report, currently only "CSV" is supported. If not specified, default format is "CSV". Note that the actual format in the completed report file might differ if for instance the report's size exceeds the format's capabilities. "CSV" will then be the fallback format.
 
@@ -270,9 +337,9 @@ Updates a report. This method supports patch semantics.
 
 }
 
-@defproc[(dfareporting.reports.update
-[reportId string?]
+@defproc[(dfareporting-reports-update
 [profileId string?]
+[reportId string?]
 [#:format format string? 'N/A]
 [#:id id string? 'N/A]
 [#:kind kind string? 'N/A]
@@ -302,9 +369,9 @@ Updates a report. This method supports patch semantics.
 ) jsexpr?]{
 Updates a report.
 
-@racket[reportId]: The ID of the report.
-
 @racket[profileId]: The DFA user profile ID.
+
+@racket[reportId]: The ID of the report.
 
 @racket[format]: The output format of the report, currently only "CSV" is supported. If not specified, default format is "CSV". Note that the actual format in the completed report file might differ if for instance the report's size exceeds the format's capabilities. "CSV" will then be the fallback format.
 
@@ -352,9 +419,9 @@ Updates a report.
 
 }
 
-@defproc[(dfareporting.reports.delete
-[reportId string?]
+@defproc[(dfareporting-reports-delete
 [profileId string?]
+[reportId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -365,81 +432,14 @@ Updates a report.
 ) jsexpr?]{
 Deletes a report by its ID.
 
+@racket[profileId]: The DFA user profile ID.
+
 @racket[reportId]: The ID of the report.
-
-@racket[profileId]: The DFA user profile ID.
-
-}
-
-@subsection{files}
-@defproc[(dfareporting.files.list
-[profileId string?]
-[#:maxResults maxResults string? 'N/A]
-[#:pageToken pageToken string? 'N/A]
-[#:sortOrder sortOrder string? 'N/A]
-[#:sortField sortField string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Lists files for a user profile.
-
-@racket[profileId]: The DFA profile ID.
-
-@racket[maxResults]: Maximum number of results to return.
-
-@racket[pageToken]: The value of the nextToken from the previous result page.
-
-@racket[sortOrder]: Order of sorted results, default is 'DESCENDING'.
-
-@racket[sortField]: The field by which to sort the list.
-
-}
-
-@subsection{dimensionValues}
-@defproc[(dfareporting.dimensionValues.query
-[profileId string?]
-[#:maxResults maxResults string? 'N/A]
-[#:pageToken pageToken string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:endDate endDate string? 'N/A]
-[#:startDate startDate string? 'N/A]
-[#:filters filters string? 'N/A]
-[#:dimensionName dimensionName string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Retrieves list of report dimension values for a list of filters.
-
-@racket[profileId]: The DFA user profile ID.
-
-@racket[maxResults]: Maximum number of results to return.
-
-@racket[pageToken]: The value of the nextToken from the previous result page.
-
-@racket[kind]: The kind of request this is, in this case dfareporting#dimensionValueRequest.
-
-@racket[endDate]: The end date of the date range for which to retrieve dimension values. A string of the format: "yyyy-MM-dd".
-
-@racket[startDate]: The start date of the date range for which to retrieve dimension values. A string of the format: "yyyy-MM-dd".
-
-@racket[filters]: The list of filters by which to filter values. The filters are ANDed.
-
-@racket[dimensionName]: The name of the dimension for which values should be requested.
 
 }
 
 @subsection{userProfiles}
-@defproc[(dfareporting.userProfiles.list
+@defproc[(dfareporting-userProfiles-list
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -452,7 +452,7 @@ Retrieves list of user profiles for a user.
 
 }
 
-@defproc[(dfareporting.userProfiles.get
+@defproc[(dfareporting-userProfiles-get
 [profileId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]

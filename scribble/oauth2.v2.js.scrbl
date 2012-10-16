@@ -40,7 +40,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @subsection{userinfo}
 @section{Resources}
-@defproc[(oauth2.userinfo.get
+@defproc[(oauth2-userinfo-get
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
