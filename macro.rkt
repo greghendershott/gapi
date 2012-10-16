@@ -1,13 +1,13 @@
 #lang racket
 
-(provide require-gapi-doc
-         require/gapi-doc
-         paged
-         api-key)
-
 (require (for-syntax racket/path racket/match racket/list json)
          scribble/base
-         "main.rkt") ;for api-key
+         "main.rkt")
+
+(provide require-gapi-doc
+         require/gapi-doc
+         api-key
+         (all-from-out "main.rkt"))
 
 (begin-for-syntax
 
@@ -110,23 +110,6 @@
 
 (define-syntax require-gapi-doc        (gen gen-racket))
 (define-syntax gapi-doc->scribble-code (gen gen-scribble))
-
-;; Convenience when you don't want to process results in "pages", but
-;; rather want one -- albeit potentially huge -- list of items.
-(define-syntax-rule (paged (func args ...))
-  (let loop ([js (func args ...)])
-    (define page-token (hash-ref js 'nextPageToken #f))
-    (cond [(and page-token
-                (hash-has-key? js 'items))
-           (hash-update js
-                        'items
-                        (lambda (xs)
-                          (append xs
-                                  (hash-ref (loop (func args ... 
-                                                        #:pageToken
-                                                        page-token))
-                                            'items))))]
-          [else js])))
 
 (define-syntax-rule (require/gapi-doc gapi-doc ...)
   (begin (gapi-doc->racket-code gapi-doc) ...))

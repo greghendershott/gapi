@@ -21,6 +21,7 @@
          schema-names
          schema
          api-key
+         paged
          )
 
 (define (list-services #:name [name 'N/A]
@@ -120,35 +121,20 @@
 (define api-key (make-parameter (read-api-key)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; Examples
 
-#|
-
-;; How many preferred (e.g. latest version, not deprecated)  services?
-(length (hash-ref (list-services #:only-preferred? #t) 'items))
-;; All?
-(length (hash-ref (list-services #:only-preferred? #f) 'items))
-
-;; Show all the preferred APIs
-(map (lambda (x)
-       (list (hash-ref x 'name)
-             (hash-ref x 'version)
-             #;(hash-ref x 'description)))
-     (hash-ref (list-services) 'items))
-
-;; Download all to discovery documents in "vendor" subdir
-(define (download-all)
-  (for ([x (hash-ref (list-services #:only-preferred? #t) 'items)])
-    (define name (hash-ref x 'name))
-    (define ver (hash-ref x 'version))
-    (define fname (string-append name "." ver ".js"))
-    (define path (build-path 'same "vendor" fname))
-    (printf "Downloading ~s ~s to ~s.\n" name ver (path->string path))
-    (flush-output)
-    (download-discovery-document name ver path)))
-(download-all)
-
-|#
-
-
+;; Convenience when you don't want to process results in "pages", but
+;; rather want one -- albeit potentially huge -- list of items.
+(define-syntax-rule (paged (func args ...))
+  (let loop ([js (func args ...)])
+    (define page-token (hash-ref js 'nextPageToken #f))
+    (cond [(and page-token
+                (hash-has-key? js 'items))
+           (hash-update js
+                        'items
+                        (lambda (xs)
+                          (append xs
+                                  (hash-ref (loop (func args ... 
+                                                        #:pageToken
+                                                        page-token))
+                                            'items))))]
+          [else js])))
