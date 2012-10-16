@@ -10,63 +10,97 @@
 (provide discovery-document->service
          local-discovery-document->service
          online-discovery-document->service
+         (all-from-out "main.rkt")
          )
 
 (define/contract (create-new-method dd method)
-  (jsexpr? jsexpr? . -> . (dict? . -> . jsexpr?))
+  (jsexpr? jsexpr? . -> . procedure?)
   (define base-uri (string-append (hash-ref dd 'rootUrl)
                                   (hash-ref dd 'servicePath)))
   ;; Parameters are the union of those for entire API and those for
   ;; this method:
   (define params (dict-merge (hash-ref dd 'parameters (hash))
                              (hash-ref method 'parameters (hash))))
+  (define api-params (hash-ref dd 'parameters (hasheq)))
+  (define method-params (hash-ref method 'parameters (hasheq)))
+  (define (required? x)
+    (and (hash-has-key? x 'required)
+         (hash-ref x 'required)))
+  (define req-params (for/hasheq ([(k v) method-params]
+                                  #:when (required? v))
+                       (values k v)))
+  (define opt-params (for/hasheq ([(k v) method-params]
+                                  #:when (not (required? v)))
+                       (values k v)))
+  (define _body-params
+    (hash-ref (hash-ref (hash-ref dd 'schemas)
+                        (string->symbol
+                         (hash-ref (hash-ref method 'request (hash)) '$ref ""))
+                        (hash))
+              'properties
+              (hash)))
+  ;; The "licensing" API has a problem where it duplicates a
+  ;; required parameter (such as "userID" or "productID") in the
+  ;; body parameters. Filter such problems here.
+  (define body-params
+    (for/hasheq ([(k v) _body-params]
+                 #:when (not (hash-has-key? req-params k)))
+      (values k v)))
   (define request
     (match (hash-ref method 'httpMethod)
       ["GET" (lambda (url body h) (get-pure-port url h))]
       ["POST" post-pure-port]
       ["PUT" put-pure-port]))
-  ;; Make a request to the server
-  (define (inner d)
-    (define body (jsexpr->bytes (dict-ref d 'body (hasheq))))
+  ;; A procedure that takes a dict, and does the actual work of making
+  ;; a request to the server.
+  (define/contract (f/dict d)
+    (dict? . -> . jsexpr?)
     (define u (string-append base-uri
                              (template-path (hash-ref method 'path) d)))
-    (define non-path (filter values
-                             (for/list ([(k v) d])
-                               (define p (hash-ref params k #f))
-                               (cond
-                                [(not p) #f]
-                                [else (match (hash-ref p 'location)
-                                        ["path" #f]
-                                        [else (cons k v)])]))))
+    (define qps (filter values
+                        (for/list ([(k v) (in-dict d)])
+                          (define p (hash-ref params k #f))
+                          (cond
+                           [(not p) #f]
+                           [else (match (hash-ref p 'location)
+                                   ["path" #f]
+                                   [else (cons k v)])]))))
     (define url
       (string->url
-       (cond [(empty? non-path) u]
+       (cond [(empty? qps) u]
              [else (string-append u
                                   "?"
-                                  (alist->form-urlencoded non-path))])))
+                                  (alist->form-urlencoded qps))])))
+    (define body
+      (jsexpr->bytes
+       (for/hasheq ([k (hash-keys body-params)])
+         (values k (dict-ref d k "")))))
     (define h (list "Content-Type: application/json"))
     (define in (request url body h))
     (define js (bytes->jsexpr (port->bytes in)))
     (close-input-port in)
     js)
-  ;; Handle nextPageToken and multiple "pages" of results by making
-  ;; multiple requests.
-  (define (outer d)
-    (define js (inner d))
-    (define page-token (hash-ref js 'nextPageToken #f))
-    (cond [(and page-token
-                (hash-has-key? js 'items))
-           (hash-update js
-                        'items
-                        (lambda (xs)
-                          (append xs
-                                  (hash-ref (outer (dict-set* d
-                                                              'pageToken
-                                                              page-token))
-                                            'items))))]
-          [else js]))
-  outer
-  )
+  ;; Wrap f/dict in a procedure that takes keyword arguments instead
+  ;; of a dict.
+  (define symbol->keyword (compose1 string->keyword symbol->string))
+  (define keyword->symbol (compose1 string->symbol keyword->string))
+  (define (keyword<=? a b) (string<=? (keyword->string a) (keyword->string b)))
+  (define (maybe-add-api-key d)
+    (cond [(dict-has-key? d 'key) d]
+          [else (dict-set* d 'key (api-key))]))
+  (define f/kw (make-keyword-procedure
+                (lambda (kws vs . rest)
+                  (f/dict (maybe-add-api-key (map cons
+                                                  (map keyword->symbol kws)
+                                                  vs))))))
+  ;; Tweak that procedure to accept only specific required and
+  ;; optional keyword argumetns.
+  (define req-kws (map symbol->keyword (hash-keys req-params)))
+  (define opt-kws (map symbol->keyword (hash-keys opt-params)))
+  (define body-kws (map symbol->keyword (hash-keys body-params)))
+  (define api-kws (map symbol->keyword (hash-keys api-params)))
+  (define all-kws (sort (append req-kws opt-kws body-kws api-kws) keyword<=?))
+  (procedure-reduce-keyword-arity f/kw 0 req-kws all-kws))
 
 (define (template-path str d)
   (string-join (for/list ([x (regexp-split #rx"/" str)])
@@ -130,11 +164,11 @@
   (define url-insert (method-proc goo.gl 'url 'insert))
   (define url-get (method-proc goo.gl 'url 'get))
   (define orig-url "http://www.racket-lang.org/")
-  (define shrink (url-insert (hasheq 'body (hasheq 'longUrl orig-url)
-                                     'key (api-key))))
+  (define shrink (url-insert #:longUrl orig-url
+                             #:key (api-key)))
   (define short-url (dict-ref shrink 'id))
-  (define expand (url-get (hasheq 'shortUrl short-url
-                                  'key (api-key))))
+  (define expand (url-get #:shortUrl short-url
+                          #:key (api-key)))
   (define long-url (dict-ref expand 'longUrl))
   (check-equal? orig-url long-url)
   )
