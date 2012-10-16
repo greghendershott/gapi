@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{Google Latitude API v1}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you read and update your current location and work with your location history
@@ -9,7 +9,7 @@ Lets you read and update your current location and work with your location histo
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "latitude.v1.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,8 +35,8 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
 
 @subsection{location}
@@ -85,13 +86,13 @@ Reads a location from the user's location history.
 
 @defproc[(latitude-location-insert
 [#:kind kind string? 'N/A]
-[#:activityId activityId string? 'N/A]
-[#:latitude latitude string? 'N/A]
-[#:longitude longitude string? 'N/A]
-[#:altitude altitude string? 'N/A]
 [#:accuracy accuracy string? 'N/A]
+[#:activityId activityId string? 'N/A]
+[#:altitude altitude string? 'N/A]
 [#:altitudeAccuracy altitudeAccuracy string? 'N/A]
 [#:heading heading string? 'N/A]
+[#:latitude latitude string? 'N/A]
+[#:longitude longitude string? 'N/A]
 [#:speed speed string? 'N/A]
 [#:timestampMs timestampMs string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -106,19 +107,19 @@ Inserts or updates a location in the user's location history.
 
 @racket[kind]: Kind of this item.
 
+@racket[accuracy]: Accuracy of the latitude and longitude coordinates, in non-negative meters. Optional.
+
 @racket[activityId]: Unique ID of the Buzz message that corresponds to the check-in associated with this location. Available only for check-in locations. Optional.
 
-@racket[latitude]: Latitude of the location, in decimal degrees.
-
-@racket[longitude]: Longitude of the location, in decimal degrees.
-
 @racket[altitude]: Altitude of the location, in meters. Optional.
-
-@racket[accuracy]: Accuracy of the latitude and longitude coordinates, in non-negative meters. Optional.
 
 @racket[altitudeAccuracy]: Accuracy of the altitude value, in meters. Optional.
 
 @racket[heading]: Direction of travel of the user when this location was recorded. In degrees, clockwise relative to true north. Optional.
+
+@racket[latitude]: Latitude of the location, in decimal degrees.
+
+@racket[longitude]: Longitude of the location, in decimal degrees.
 
 @racket[speed]: Ground speed of the user at the time this location was recorded, in meters per second. Non-negative. Optional.
 

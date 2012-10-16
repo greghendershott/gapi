@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{APIs Discovery Service v1}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you discover information about other Google APIs, such as what APIs are available, the resource and method details for each API
@@ -9,7 +9,7 @@ Lets you discover information about other Google APIs, such as what APIs are ava
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "discovery.v1.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,15 +35,15 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
 
 @subsection{apis}
 @defproc[(discovery-apis-list
-[#:name name string? 'N/A]
 [#:label label string? 'N/A]
 [#:preferred preferred string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -53,11 +54,11 @@ The following optional keyword arguments may be passed to @italic{all} functions
 ) jsexpr?]{
 Retrieve the list of APIs supported at this endpoint.
 
-@racket[name]: Only include APIs with the given name.
-
 @racket[label]: Only include APIs with a matching label, such as 'graduated' or 'labs'.
 
 @racket[preferred]: Return only the preferred version of an API.
+
+@racket[name]: Only include APIs with the given name.
 
 }
 

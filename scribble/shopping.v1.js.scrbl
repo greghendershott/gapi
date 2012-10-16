@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{Search API For Shopping v1}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you search over product data.
@@ -9,7 +9,7 @@ Lets you search over product data.
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "shopping.v1.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,17 +35,17 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
 
 @subsection{products}
 @defproc[(shopping-products-list
 [#:source source string?]
 [#:location location string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
-[#:language language string? 'N/A]
 [#:country country string? 'N/A]
+[#:language language string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:q q string? 'N/A]
 [#:startIndex startIndex string? 'N/A]
 [#:thumbnails thumbnails string? 'N/A]
@@ -97,11 +98,11 @@ Returns a list of products and content modules
 
 @racket[location]: Location used to determine tax and shipping
 
-@racket[maxResults]: Maximum number of results to return
+@racket[country]: Country restriction (ISO 3166)
 
 @racket[language]: Language restriction (BCP 47)
 
-@racket[country]: Country restriction (ISO 3166)
+@racket[maxResults]: Maximum number of results to return
 
 @racket[q]: Search query
 

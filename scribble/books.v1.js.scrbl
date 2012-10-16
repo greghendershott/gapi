@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{Books API v1}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you search for books and manage your Google Books library.
@@ -9,7 +9,7 @@ Lets you search for books and manage your Google Books library.
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "books.v1.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,8 +35,8 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
 
 @subsection{volumes}
@@ -45,7 +46,6 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:filter filter string? 'N/A]
 [#:projection projection string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
-[#:orderBy orderBy string? 'N/A]
 [#:source source string? 'N/A]
 [#:printType printType string? 'N/A]
 [#:showPreorders showPreorders string? 'N/A]
@@ -54,6 +54,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:download download string? 'N/A]
 [#:langRestrict langRestrict string? 'N/A]
 [#:libraryRestrict libraryRestrict string? 'N/A]
+[#:orderBy orderBy string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -72,8 +73,6 @@ Performs a book search.
 
 @racket[maxResults]: Maximum number of results to return.
 
-@racket[orderBy]: Sort search results.
-
 @racket[source]: String to identify the originator of this request.
 
 @racket[printType]: Restrict to books or magazines.
@@ -89,6 +88,8 @@ Performs a book search.
 @racket[langRestrict]: Restrict results to books with this language code.
 
 @racket[libraryRestrict]: Restrict search to this user's library.
+
+@racket[orderBy]: Sort search results.
 
 }
 
@@ -222,8 +223,8 @@ Gets the layer summary for a volume.
 @defproc[(books-myconfig-releaseDownloadAccess
 [#:cpksver cpksver string?]
 [#:volumeIds volumeIds string?]
-[#:source source string? 'N/A]
 [#:locale locale string? 'N/A]
+[#:source source string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -238,9 +239,9 @@ Release downloaded content access restriction.
 
 @racket[volumeIds]: The volume(s) to release restrictions for.
 
-@racket[source]: String to identify the originator of this request.
-
 @racket[locale]: ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
+
+@racket[source]: String to identify the originator of this request.
 
 }
 
@@ -276,8 +277,8 @@ Request concurrent and download access restrictions.
 [#:source source string?]
 [#:nonce nonce string?]
 [#:cpksver cpksver string?]
-[#:showPreorders showPreorders string? 'N/A]
 [#:locale locale string? 'N/A]
+[#:showPreorders showPreorders string? 'N/A]
 [#:volumeIds volumeIds string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -295,9 +296,9 @@ Request downloaded content access for specified volumes on the My eBooks shelf.
 
 @racket[cpksver]: The device/version ID from which to release the restriction.
 
-@racket[showPreorders]: Set to true to show pre-ordered books. Defaults to false.
-
 @racket[locale]: ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
+
+@racket[showPreorders]: Set to true to show pre-ordered books. Defaults to false.
 
 @racket[volumeIds]: The volume(s) to request download restrictions for.
 

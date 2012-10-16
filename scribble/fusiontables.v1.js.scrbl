@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{Fusion Tables API v1}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 API for working with Fusion Tables data.
@@ -9,7 +9,7 @@ API for working with Fusion Tables data.
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "fusiontables.v1.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,8 +35,8 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
 
 @subsection{table}
@@ -75,16 +76,16 @@ Retrieves a specific table by its id.
 }
 
 @defproc[(fusiontables-table-insert
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:description description string? 'N/A]
-[#:attribution attribution string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:columns columns string? 'N/A]
 [#:tableId tableId string? 'N/A]
+[#:attribution attribution string? 'N/A]
 [#:attributionLink attributionLink string? 'N/A]
 [#:baseTableIds baseTableIds string? 'N/A]
 [#:isExportable isExportable string? 'N/A]
 [#:sql sql string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -95,17 +96,15 @@ Retrieves a specific table by its id.
 ) jsexpr?]{
 Creates a new table.
 
-@racket[kind]: Type name: a template for an individual table.
-
-@racket[name]: Name assigned to a table.
-
 @racket[description]: Optional description assigned to the table.
 
-@racket[attribution]: Optional attribution assigned to the table.
+@racket[kind]: Type name: a template for an individual table.
 
 @racket[columns]: Columns in the table.
 
 @racket[tableId]: Encrypted unique alphanumeric identifier for the table.
+
+@racket[attribution]: Optional attribution assigned to the table.
 
 @racket[attributionLink]: Optional link for attribution.
 
@@ -115,20 +114,22 @@ Creates a new table.
 
 @racket[sql]: Optional sql that encodes the table definition for derived tables.
 
+@racket[name]: Name assigned to a table.
+
 }
 
 @defproc[(fusiontables-table-patch
 [#:tableId tableId string?]
 [#:replaceViewDefinition replaceViewDefinition string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:description description string? 'N/A]
-[#:attribution attribution string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:columns columns string? 'N/A]
+[#:attribution attribution string? 'N/A]
 [#:attributionLink attributionLink string? 'N/A]
 [#:baseTableIds baseTableIds string? 'N/A]
 [#:isExportable isExportable string? 'N/A]
 [#:sql sql string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -143,15 +144,13 @@ Updates an existing table. Unless explicitly requested, only the name, descripti
 
 @racket[replaceViewDefinition]: Should the view definition also be updated? The specified view definition replaces the existing one. Only a view can be updated with a new definition.
 
-@racket[kind]: Type name: a template for an individual table.
-
-@racket[name]: Name assigned to a table.
-
 @racket[description]: Optional description assigned to the table.
 
-@racket[attribution]: Optional attribution assigned to the table.
+@racket[kind]: Type name: a template for an individual table.
 
 @racket[columns]: Columns in the table.
+
+@racket[attribution]: Optional attribution assigned to the table.
 
 @racket[attributionLink]: Optional link for attribution.
 
@@ -160,6 +159,8 @@ Updates an existing table. Unless explicitly requested, only the name, descripti
 @racket[isExportable]: Variable for whether table is exportable.
 
 @racket[sql]: Optional sql that encodes the table definition for derived tables.
+
+@racket[name]: Name assigned to a table.
 
 }
 
@@ -182,15 +183,15 @@ Copies a table.
 @defproc[(fusiontables-table-update
 [#:tableId tableId string?]
 [#:replaceViewDefinition replaceViewDefinition string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:description description string? 'N/A]
-[#:attribution attribution string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:columns columns string? 'N/A]
+[#:attribution attribution string? 'N/A]
 [#:attributionLink attributionLink string? 'N/A]
 [#:baseTableIds baseTableIds string? 'N/A]
 [#:isExportable isExportable string? 'N/A]
 [#:sql sql string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -205,15 +206,13 @@ Updates an existing table. Unless explicitly requested, only the name, descripti
 
 @racket[replaceViewDefinition]: Should the view definition also be updated? The specified view definition replaces the existing one. Only a view can be updated with a new definition.
 
-@racket[kind]: Type name: a template for an individual table.
-
-@racket[name]: Name assigned to a table.
-
 @racket[description]: Optional description assigned to the table.
 
-@racket[attribution]: Optional attribution assigned to the table.
+@racket[kind]: Type name: a template for an individual table.
 
 @racket[columns]: Columns in the table.
+
+@racket[attribution]: Optional attribution assigned to the table.
 
 @racket[attributionLink]: Optional link for attribution.
 
@@ -222,6 +221,8 @@ Updates an existing table. Unless explicitly requested, only the name, descripti
 @racket[isExportable]: Variable for whether table is exportable.
 
 @racket[sql]: Optional sql that encodes the table definition for derived tables.
+
+@racket[name]: Name assigned to a table.
 
 }
 
@@ -273,223 +274,6 @@ Import more rows into a table.
 
 }
 
-@subsection{query}
-@defproc[(fusiontables-query-sql
-[#:sql sql string?]
-[#:hdrs hdrs string? 'N/A]
-[#:typed typed string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Executes an SQL SELECT/INSERT/UPDATE/DELETE/SHOW/DESCRIBE/CREATE statement.
-
-@racket[sql]: An SQL SELECT/SHOW/DESCRIBE/INSERT/UPDATE/DELETE/CREATE statement.
-
-@racket[hdrs]: Should column names be included (in the first row)?. Default is true.
-
-@racket[typed]: Should typed values be returned in the (JSON) response -- numbers for numeric values and parsed geometries for KML values? Default is true.
-
-}
-
-@defproc[(fusiontables-query-sqlGet
-[#:sql sql string?]
-[#:hdrs hdrs string? 'N/A]
-[#:typed typed string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Executes an SQL SELECT/SHOW/DESCRIBE statement.
-
-@racket[sql]: An SQL SELECT/SHOW/DESCRIBE statement.
-
-@racket[hdrs]: Should column names be included (in the first row)?. Default is true.
-
-@racket[typed]: Should typed values be returned in the (JSON) response -- numbers for numeric values and parsed geometries for KML values? Default is true.
-
-}
-
-@subsection{style}
-@defproc[(fusiontables-style-list
-[#:tableId tableId string?]
-[#:maxResults maxResults string? 'N/A]
-[#:pageToken pageToken string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Retrieves a list of styles.
-
-@racket[tableId]: Table whose styles are being listed
-
-@racket[maxResults]: Maximum number of styles to return. Optional. Default is 5.
-
-@racket[pageToken]: Continuation token specifying which result page to return. Optional.
-
-}
-
-@defproc[(fusiontables-style-get
-[#:styleId styleId string?]
-[#:tableId tableId string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Gets a specific style.
-
-@racket[styleId]: Identifier (integer) for a specific style in a table
-
-@racket[tableId]: Table to which the requested style belongs
-
-}
-
-@defproc[(fusiontables-style-insert
-[#:tableId tableId string?]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
-[#:isDefaultForTable isDefaultForTable string? 'N/A]
-[#:markerOptions markerOptions string? 'N/A]
-[#:polygonOptions polygonOptions string? 'N/A]
-[#:polylineOptions polylineOptions string? 'N/A]
-[#:styleId styleId string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Adds a new style for the table.
-
-@racket[tableId]: Table for which a new style is being added
-
-@racket[kind]: Type name: an individual style setting. A StyleSetting contains the style defintions for points, lines, and polygons in a table. Since a table can have any one or all of them, a style definition can have point, line and polygon style definitions.
-
-@racket[name]: Optional name for the style setting.
-
-@racket[isDefaultForTable]: Is this the default style for the table.
-
-@racket[markerOptions]: Style definition for points in the table.
-
-@racket[polygonOptions]: Style definition for polygons in the table.
-
-@racket[polylineOptions]: Style definition for lines in the table.
-
-@racket[styleId]: Identifier for the style setting (unique only within tables).
-
-}
-
-@defproc[(fusiontables-style-patch
-[#:styleId styleId string?]
-[#:tableId tableId string?]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
-[#:isDefaultForTable isDefaultForTable string? 'N/A]
-[#:markerOptions markerOptions string? 'N/A]
-[#:polygonOptions polygonOptions string? 'N/A]
-[#:polylineOptions polylineOptions string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Updates an existing style. This method supports patch semantics.
-
-@racket[styleId]: Identifier (within a table) for the style being updated.
-
-@racket[tableId]: Table whose style is being updated.
-
-@racket[kind]: Type name: an individual style setting. A StyleSetting contains the style defintions for points, lines, and polygons in a table. Since a table can have any one or all of them, a style definition can have point, line and polygon style definitions.
-
-@racket[name]: Optional name for the style setting.
-
-@racket[isDefaultForTable]: Is this the default style for the table.
-
-@racket[markerOptions]: Style definition for points in the table.
-
-@racket[polygonOptions]: Style definition for polygons in the table.
-
-@racket[polylineOptions]: Style definition for lines in the table.
-
-}
-
-@defproc[(fusiontables-style-update
-[#:styleId styleId string?]
-[#:tableId tableId string?]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
-[#:isDefaultForTable isDefaultForTable string? 'N/A]
-[#:markerOptions markerOptions string? 'N/A]
-[#:polygonOptions polygonOptions string? 'N/A]
-[#:polylineOptions polylineOptions string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Updates an existing style.
-
-@racket[styleId]: Identifier (within a table) for the style being updated.
-
-@racket[tableId]: Table whose style is being updated.
-
-@racket[kind]: Type name: an individual style setting. A StyleSetting contains the style defintions for points, lines, and polygons in a table. Since a table can have any one or all of them, a style definition can have point, line and polygon style definitions.
-
-@racket[name]: Optional name for the style setting.
-
-@racket[isDefaultForTable]: Is this the default style for the table.
-
-@racket[markerOptions]: Style definition for points in the table.
-
-@racket[polygonOptions]: Style definition for polygons in the table.
-
-@racket[polylineOptions]: Style definition for lines in the table.
-
-}
-
-@defproc[(fusiontables-style-delete
-[#:styleId styleId string?]
-[#:tableId tableId string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Deletes a style.
-
-@racket[styleId]: Identifier (within a table) for the style being deleted
-
-@racket[tableId]: Table from which the style is being deleted
-
-}
-
 @subsection{template}
 @defproc[(fusiontables-template-list
 [#:tableId tableId string?]
@@ -534,12 +318,12 @@ Retrieves a specific template by its id
 
 @defproc[(fusiontables-template-insert
 [#:tableId tableId string?]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:body body string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:isDefaultForTable isDefaultForTable string? 'N/A]
 [#:automaticColumnNames automaticColumnNames string? 'N/A]
 [#:templateId templateId string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -552,11 +336,9 @@ Creates a new template for the table.
 
 @racket[tableId]: Table for which a new template is being created
 
-@racket[kind]: Type name: a template for the info window contents. The template can either include an HTML body or a list of columns from which the template is computed automatically.
-
-@racket[name]: Optional name assigned to a template.
-
 @racket[body]: Body of the template. It contains HTML with {column_name} to insert values from a particular column. The body is sanitized to remove certain tags, e.g., script. Only one of body or automaticColumns can be specified.
+
+@racket[kind]: Type name: a template for the info window contents. The template can either include an HTML body or a list of columns from which the template is computed automatically.
 
 @racket[isDefaultForTable]: Is this the default template for the table.
 
@@ -564,16 +346,18 @@ Creates a new template for the table.
 
 @racket[templateId]: Identifier for the template, unique within the context of a particular table.
 
+@racket[name]: Optional name assigned to a template.
+
 }
 
 @defproc[(fusiontables-template-patch
 [#:tableId tableId string?]
 [#:templateId templateId string?]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:body body string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:isDefaultForTable isDefaultForTable string? 'N/A]
 [#:automaticColumnNames automaticColumnNames string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -588,26 +372,26 @@ Updates an existing template. This method supports patch semantics.
 
 @racket[templateId]: Identifier for the template that is being updated
 
-@racket[kind]: Type name: a template for the info window contents. The template can either include an HTML body or a list of columns from which the template is computed automatically.
-
-@racket[name]: Optional name assigned to a template.
-
 @racket[body]: Body of the template. It contains HTML with {column_name} to insert values from a particular column. The body is sanitized to remove certain tags, e.g., script. Only one of body or automaticColumns can be specified.
+
+@racket[kind]: Type name: a template for the info window contents. The template can either include an HTML body or a list of columns from which the template is computed automatically.
 
 @racket[isDefaultForTable]: Is this the default template for the table.
 
 @racket[automaticColumnNames]: List of columns from which the template is to be automatically constructed. Only one of body or automaticColumns can be specified.
+
+@racket[name]: Optional name assigned to a template.
 
 }
 
 @defproc[(fusiontables-template-update
 [#:tableId tableId string?]
 [#:templateId templateId string?]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:body body string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:isDefaultForTable isDefaultForTable string? 'N/A]
 [#:automaticColumnNames automaticColumnNames string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -622,15 +406,15 @@ Updates an existing template
 
 @racket[templateId]: Identifier for the template that is being updated
 
-@racket[kind]: Type name: a template for the info window contents. The template can either include an HTML body or a list of columns from which the template is computed automatically.
-
-@racket[name]: Optional name assigned to a template.
-
 @racket[body]: Body of the template. It contains HTML with {column_name} to insert values from a particular column. The body is sanitized to remove certain tags, e.g., script. Only one of body or automaticColumns can be specified.
+
+@racket[kind]: Type name: a template for the info window contents. The template can either include an HTML body or a list of columns from which the template is computed automatically.
 
 @racket[isDefaultForTable]: Is this the default template for the table.
 
 @racket[automaticColumnNames]: List of columns from which the template is to be automatically constructed. Only one of body or automaticColumns can be specified.
+
+@racket[name]: Optional name assigned to a template.
 
 }
 
@@ -697,11 +481,11 @@ Retrieves a specific column by its id.
 
 @defproc[(fusiontables-column-insert
 [#:tableId tableId string?]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:type type string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:columnId columnId string? 'N/A]
 [#:baseColumn baseColumn string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -714,25 +498,25 @@ Adds a new column to the table.
 
 @racket[tableId]: Table for which a new column is being added.
 
-@racket[kind]: Type name: a template for an individual column.
-
-@racket[name]: Required name of the column.
-
 @racket[type]: Required type of the column.
+
+@racket[kind]: Type name: a template for an individual column.
 
 @racket[columnId]: Identifier for the column.
 
 @racket[baseColumn]: Optional identifier of the base column. If present, this column is derived from the specified base column.
+
+@racket[name]: Required name of the column.
 
 }
 
 @defproc[(fusiontables-column-patch
 [#:columnId columnId string?]
 [#:tableId tableId string?]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:type type string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:baseColumn baseColumn string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -747,23 +531,23 @@ Updates the name or type of an existing column. This method supports patch seman
 
 @racket[tableId]: Table for which the column is being updated.
 
-@racket[kind]: Type name: a template for an individual column.
-
-@racket[name]: Required name of the column.
-
 @racket[type]: Required type of the column.
 
+@racket[kind]: Type name: a template for an individual column.
+
 @racket[baseColumn]: Optional identifier of the base column. If present, this column is derived from the specified base column.
+
+@racket[name]: Required name of the column.
 
 }
 
 @defproc[(fusiontables-column-update
 [#:columnId columnId string?]
 [#:tableId tableId string?]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:type type string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:baseColumn baseColumn string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -778,13 +562,13 @@ Updates the name or type of an existing column.
 
 @racket[tableId]: Table for which the column is being updated.
 
-@racket[kind]: Type name: a template for an individual column.
-
-@racket[name]: Required name of the column.
-
 @racket[type]: Required type of the column.
 
+@racket[kind]: Type name: a template for an individual column.
+
 @racket[baseColumn]: Optional identifier of the base column. If present, this column is derived from the specified base column.
+
+@racket[name]: Required name of the column.
 
 }
 
@@ -804,6 +588,223 @@ Deletes the column.
 @racket[columnId]: Name or identifier for the column being deleted.
 
 @racket[tableId]: Table from which the column is being deleted.
+
+}
+
+@subsection{style}
+@defproc[(fusiontables-style-list
+[#:tableId tableId string?]
+[#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Retrieves a list of styles.
+
+@racket[tableId]: Table whose styles are being listed
+
+@racket[maxResults]: Maximum number of styles to return. Optional. Default is 5.
+
+@racket[pageToken]: Continuation token specifying which result page to return. Optional.
+
+}
+
+@defproc[(fusiontables-style-get
+[#:styleId styleId string?]
+[#:tableId tableId string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Gets a specific style.
+
+@racket[styleId]: Identifier (integer) for a specific style in a table
+
+@racket[tableId]: Table to which the requested style belongs
+
+}
+
+@defproc[(fusiontables-style-insert
+[#:tableId tableId string?]
+[#:kind kind string? 'N/A]
+[#:isDefaultForTable isDefaultForTable string? 'N/A]
+[#:markerOptions markerOptions string? 'N/A]
+[#:polygonOptions polygonOptions string? 'N/A]
+[#:polylineOptions polylineOptions string? 'N/A]
+[#:styleId styleId string? 'N/A]
+[#:name name string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Adds a new style for the table.
+
+@racket[tableId]: Table for which a new style is being added
+
+@racket[kind]: Type name: an individual style setting. A StyleSetting contains the style defintions for points, lines, and polygons in a table. Since a table can have any one or all of them, a style definition can have point, line and polygon style definitions.
+
+@racket[isDefaultForTable]: Is this the default style for the table.
+
+@racket[markerOptions]: Style definition for points in the table.
+
+@racket[polygonOptions]: Style definition for polygons in the table.
+
+@racket[polylineOptions]: Style definition for lines in the table.
+
+@racket[styleId]: Identifier for the style setting (unique only within tables).
+
+@racket[name]: Optional name for the style setting.
+
+}
+
+@defproc[(fusiontables-style-patch
+[#:styleId styleId string?]
+[#:tableId tableId string?]
+[#:kind kind string? 'N/A]
+[#:isDefaultForTable isDefaultForTable string? 'N/A]
+[#:markerOptions markerOptions string? 'N/A]
+[#:polygonOptions polygonOptions string? 'N/A]
+[#:polylineOptions polylineOptions string? 'N/A]
+[#:name name string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Updates an existing style. This method supports patch semantics.
+
+@racket[styleId]: Identifier (within a table) for the style being updated.
+
+@racket[tableId]: Table whose style is being updated.
+
+@racket[kind]: Type name: an individual style setting. A StyleSetting contains the style defintions for points, lines, and polygons in a table. Since a table can have any one or all of them, a style definition can have point, line and polygon style definitions.
+
+@racket[isDefaultForTable]: Is this the default style for the table.
+
+@racket[markerOptions]: Style definition for points in the table.
+
+@racket[polygonOptions]: Style definition for polygons in the table.
+
+@racket[polylineOptions]: Style definition for lines in the table.
+
+@racket[name]: Optional name for the style setting.
+
+}
+
+@defproc[(fusiontables-style-update
+[#:styleId styleId string?]
+[#:tableId tableId string?]
+[#:kind kind string? 'N/A]
+[#:isDefaultForTable isDefaultForTable string? 'N/A]
+[#:markerOptions markerOptions string? 'N/A]
+[#:polygonOptions polygonOptions string? 'N/A]
+[#:polylineOptions polylineOptions string? 'N/A]
+[#:name name string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Updates an existing style.
+
+@racket[styleId]: Identifier (within a table) for the style being updated.
+
+@racket[tableId]: Table whose style is being updated.
+
+@racket[kind]: Type name: an individual style setting. A StyleSetting contains the style defintions for points, lines, and polygons in a table. Since a table can have any one or all of them, a style definition can have point, line and polygon style definitions.
+
+@racket[isDefaultForTable]: Is this the default style for the table.
+
+@racket[markerOptions]: Style definition for points in the table.
+
+@racket[polygonOptions]: Style definition for polygons in the table.
+
+@racket[polylineOptions]: Style definition for lines in the table.
+
+@racket[name]: Optional name for the style setting.
+
+}
+
+@defproc[(fusiontables-style-delete
+[#:styleId styleId string?]
+[#:tableId tableId string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Deletes a style.
+
+@racket[styleId]: Identifier (within a table) for the style being deleted
+
+@racket[tableId]: Table from which the style is being deleted
+
+}
+
+@subsection{query}
+@defproc[(fusiontables-query-sql
+[#:sql sql string?]
+[#:hdrs hdrs string? 'N/A]
+[#:typed typed string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Executes an SQL SELECT/INSERT/UPDATE/DELETE/SHOW/DESCRIBE/CREATE statement.
+
+@racket[sql]: An SQL SELECT/SHOW/DESCRIBE/INSERT/UPDATE/DELETE/CREATE statement.
+
+@racket[hdrs]: Should column names be included (in the first row)?. Default is true.
+
+@racket[typed]: Should typed values be returned in the (JSON) response -- numbers for numeric values and parsed geometries for KML values? Default is true.
+
+}
+
+@defproc[(fusiontables-query-sqlGet
+[#:sql sql string?]
+[#:hdrs hdrs string? 'N/A]
+[#:typed typed string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Executes an SQL SELECT/SHOW/DESCRIBE statement.
+
+@racket[sql]: An SQL SELECT/SHOW/DESCRIBE statement.
+
+@racket[hdrs]: Should column names be included (in the first row)?. Default is true.
+
+@racket[typed]: Should typed values be returned in the (JSON) response -- numbers for numeric values and parsed geometries for KML values? Default is true.
 
 }
 

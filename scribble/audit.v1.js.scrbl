@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{Enterprise Audit API v1}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you access user activities in your enterprise made through various applications.
@@ -9,7 +9,7 @@ Lets you access user activities in your enterprise made through various applicat
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "audit.v1.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,8 +35,8 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
 
 @subsection{activities}
@@ -44,14 +45,14 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:customerId customerId string?]
 [#:parameters parameters string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
-[#:endTime endTime string? 'N/A]
-[#:startTime startTime string? 'N/A]
 [#:actorApplicationId actorApplicationId string? 'N/A]
 [#:actorEmail actorEmail string? 'N/A]
 [#:actorIpAddress actorIpAddress string? 'N/A]
 [#:caller caller string? 'N/A]
 [#:continuationToken continuationToken string? 'N/A]
+[#:endTime endTime string? 'N/A]
 [#:eventName eventName string? 'N/A]
+[#:startTime startTime string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -70,10 +71,6 @@ Retrieves a list of activities for a specific customer and application.
 
 @racket[maxResults]: Number of activity records to be shown in each page.
 
-@racket[endTime]: Return events which occured at or before this time.
-
-@racket[startTime]: Return events which occured at or after this time.
-
 @racket[actorApplicationId]: Application ID of the application which interacted on behalf of the user while performing the event.
 
 @racket[actorEmail]: Email address of the user who performed the action.
@@ -84,7 +81,11 @@ Retrieves a list of activities for a specific customer and application.
 
 @racket[continuationToken]: Next page URL.
 
+@racket[endTime]: Return events which occured at or before this time.
+
 @racket[eventName]: Name of the event being queried.
+
+@racket[startTime]: Return events which occured at or after this time.
 
 }
 

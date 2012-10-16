@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{Calendar API v3}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you manipulate events and other calendar data.
@@ -9,7 +9,7 @@ Lets you manipulate events and other calendar data.
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "calendar.v3.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,8 +35,8 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
 
 @subsection{calendars}
@@ -57,12 +58,12 @@ Returns metadata for a calendar.
 
 @defproc[(calendar-calendars-insert
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:description description string? 'N/A]
 [#:location location string? 'N/A]
 [#:etag etag string? 'N/A]
 [#:summary summary string? 'N/A]
 [#:timeZone timeZone string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -75,8 +76,6 @@ Creates a secondary calendar.
 
 @racket[id]: Identifier of the calendar.
 
-@racket[kind]: Type of the resource ("calendar#calendar").
-
 @racket[description]: Description of the calendar. Optional.
 
 @racket[location]: Geographic location of the calendar as free-form text. Optional.
@@ -87,17 +86,19 @@ Creates a secondary calendar.
 
 @racket[timeZone]: The time zone of the calendar. Optional.
 
+@racket[kind]: Type of the resource ("calendar#calendar").
+
 }
 
 @defproc[(calendar-calendars-patch
 [#:calendarId calendarId string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:description description string? 'N/A]
 [#:location location string? 'N/A]
 [#:etag etag string? 'N/A]
 [#:summary summary string? 'N/A]
 [#:timeZone timeZone string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -112,8 +113,6 @@ Updates metadata for a calendar. This method supports patch semantics.
 
 @racket[id]: Identifier of the calendar.
 
-@racket[kind]: Type of the resource ("calendar#calendar").
-
 @racket[description]: Description of the calendar. Optional.
 
 @racket[location]: Geographic location of the calendar as free-form text. Optional.
@@ -123,6 +122,8 @@ Updates metadata for a calendar. This method supports patch semantics.
 @racket[summary]: Title of the calendar.
 
 @racket[timeZone]: The time zone of the calendar. Optional.
+
+@racket[kind]: Type of the resource ("calendar#calendar").
 
 }
 
@@ -145,12 +146,12 @@ Clears a primary calendar. This operation deletes all data associated with the p
 @defproc[(calendar-calendars-update
 [#:calendarId calendarId string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:description description string? 'N/A]
 [#:location location string? 'N/A]
 [#:etag etag string? 'N/A]
 [#:summary summary string? 'N/A]
 [#:timeZone timeZone string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -165,8 +166,6 @@ Updates metadata for a calendar.
 
 @racket[id]: Identifier of the calendar.
 
-@racket[kind]: Type of the resource ("calendar#calendar").
-
 @racket[description]: Description of the calendar. Optional.
 
 @racket[location]: Geographic location of the calendar as free-form text. Optional.
@@ -176,6 +175,8 @@ Updates metadata for a calendar.
 @racket[summary]: Title of the calendar.
 
 @racket[timeZone]: The time zone of the calendar. Optional.
+
+@racket[kind]: Type of the resource ("calendar#calendar").
 
 }
 
@@ -234,10 +235,10 @@ Returns an access control rule.
 @defproc[(calendar-acl-insert
 [#:calendarId calendarId string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:role role string? 'N/A]
+[#:etag etag string? 'N/A]
 [#:scope scope string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -252,10 +253,6 @@ Creates an access control rule.
 
 @racket[id]: Identifier of the ACL rule.
 
-@racket[kind]: Type of the resource ("calendar#aclRule").
-
-@racket[etag]: ETag of the resource.
-
 @racket[role]: The role assigned to the scope. Possible values are:  
 - "none" - Provides no access. 
 - "freeBusyReader" - Provides read access to free/busy information. 
@@ -263,7 +260,11 @@ Creates an access control rule.
 - "writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. 
 - "owner" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
 
+@racket[etag]: ETag of the resource.
+
 @racket[scope]: The scope of the rule.
+
+@racket[kind]: Type of the resource ("calendar#aclRule").
 
 }
 
@@ -271,10 +272,10 @@ Creates an access control rule.
 [#:calendarId calendarId string?]
 [#:ruleId ruleId string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:role role string? 'N/A]
+[#:etag etag string? 'N/A]
 [#:scope scope string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -291,10 +292,6 @@ Updates an access control rule. This method supports patch semantics.
 
 @racket[id]: Identifier of the ACL rule.
 
-@racket[kind]: Type of the resource ("calendar#aclRule").
-
-@racket[etag]: ETag of the resource.
-
 @racket[role]: The role assigned to the scope. Possible values are:  
 - "none" - Provides no access. 
 - "freeBusyReader" - Provides read access to free/busy information. 
@@ -302,7 +299,11 @@ Updates an access control rule. This method supports patch semantics.
 - "writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. 
 - "owner" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
 
+@racket[etag]: ETag of the resource.
+
 @racket[scope]: The scope of the rule.
+
+@racket[kind]: Type of the resource ("calendar#aclRule").
 
 }
 
@@ -310,10 +311,10 @@ Updates an access control rule. This method supports patch semantics.
 [#:calendarId calendarId string?]
 [#:ruleId ruleId string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:role role string? 'N/A]
+[#:etag etag string? 'N/A]
 [#:scope scope string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -330,10 +331,6 @@ Updates an access control rule.
 
 @racket[id]: Identifier of the ACL rule.
 
-@racket[kind]: Type of the resource ("calendar#aclRule").
-
-@racket[etag]: ETag of the resource.
-
 @racket[role]: The role assigned to the scope. Possible values are:  
 - "none" - Provides no access. 
 - "freeBusyReader" - Provides read access to free/busy information. 
@@ -341,7 +338,11 @@ Updates an access control rule.
 - "writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. 
 - "owner" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
 
+@racket[etag]: ETag of the resource.
+
 @racket[scope]: The scope of the rule.
+
+@racket[kind]: Type of the resource ("calendar#aclRule").
 
 }
 
@@ -409,7 +410,6 @@ Returns an entry on the user's calendar list.
 @defproc[(calendar-calendarList-insert
 [#:colorRgbFormat colorRgbFormat string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:description description string? 'N/A]
 [#:location location string? 'N/A]
 [#:etag etag string? 'N/A]
@@ -423,6 +423,7 @@ Returns an entry on the user's calendar list.
 [#:hidden hidden string? 'N/A]
 [#:selected selected string? 'N/A]
 [#:summaryOverride summaryOverride string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -436,8 +437,6 @@ Adds an entry to the user's calendar list.
 @racket[colorRgbFormat]: Whether to use the 'frontendColor' and 'backgroundColor' fields to write the calendar colors (RGB). If this feature is used, the index-based 'color' field will be set to the best matching option automatically. Optional. The default is False.
 
 @racket[id]: Identifier of the calendar.
-
-@racket[kind]: Type of the resource ("calendar#calendarListEntry").
 
 @racket[description]: Description of the calendar. Optional. Read-only.
 
@@ -469,13 +468,14 @@ Adds an entry to the user's calendar list.
 
 @racket[summaryOverride]: The summary that the authenticated user has set for this calendar. Optional.
 
+@racket[kind]: Type of the resource ("calendar#calendarListEntry").
+
 }
 
 @defproc[(calendar-calendarList-patch
 [#:calendarId calendarId string?]
 [#:colorRgbFormat colorRgbFormat string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:description description string? 'N/A]
 [#:location location string? 'N/A]
 [#:etag etag string? 'N/A]
@@ -489,6 +489,7 @@ Adds an entry to the user's calendar list.
 [#:hidden hidden string? 'N/A]
 [#:selected selected string? 'N/A]
 [#:summaryOverride summaryOverride string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -505,8 +506,6 @@ Updates an entry on the user's calendar list. This method supports patch semanti
 
 @racket[id]: Identifier of the calendar.
 
-@racket[kind]: Type of the resource ("calendar#calendarListEntry").
-
 @racket[description]: Description of the calendar. Optional. Read-only.
 
 @racket[location]: Geographic location of the calendar as free-form text. Optional. Read-only.
@@ -537,13 +536,14 @@ Updates an entry on the user's calendar list. This method supports patch semanti
 
 @racket[summaryOverride]: The summary that the authenticated user has set for this calendar. Optional.
 
+@racket[kind]: Type of the resource ("calendar#calendarListEntry").
+
 }
 
 @defproc[(calendar-calendarList-update
 [#:calendarId calendarId string?]
 [#:colorRgbFormat colorRgbFormat string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:description description string? 'N/A]
 [#:location location string? 'N/A]
 [#:etag etag string? 'N/A]
@@ -557,6 +557,7 @@ Updates an entry on the user's calendar list. This method supports patch semanti
 [#:hidden hidden string? 'N/A]
 [#:selected selected string? 'N/A]
 [#:summaryOverride summaryOverride string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -573,8 +574,6 @@ Updates an entry on the user's calendar list.
 
 @racket[id]: Identifier of the calendar.
 
-@racket[kind]: Type of the resource ("calendar#calendarListEntry").
-
 @racket[description]: Description of the calendar. Optional. Read-only.
 
 @racket[location]: Geographic location of the calendar as free-form text. Optional. Read-only.
@@ -604,6 +603,8 @@ Updates an entry on the user's calendar list.
 @racket[selected]: Whether the calendar content shows up in the calendar UI. Optional. The default is False.
 
 @racket[summaryOverride]: The summary that the authenticated user has set for this calendar. Optional.
+
+@racket[kind]: Type of the resource ("calendar#calendarListEntry").
 
 }
 
@@ -642,18 +643,18 @@ Returns the color definitions for calendars and events.
 [#:calendarId calendarId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
-[#:orderBy orderBy string? 'N/A]
-[#:updatedMin updatedMin string? 'N/A]
-[#:showDeleted showDeleted string? 'N/A]
-[#:q q string? 'N/A]
 [#:timeZone timeZone string? 'N/A]
 [#:iCalUID iCalUID string? 'N/A]
 [#:timeMax timeMax string? 'N/A]
 [#:timeMin timeMin string? 'N/A]
 [#:alwaysIncludeEmail alwaysIncludeEmail string? 'N/A]
 [#:maxAttendees maxAttendees string? 'N/A]
+[#:showDeleted showDeleted string? 'N/A]
+[#:orderBy orderBy string? 'N/A]
+[#:q q string? 'N/A]
 [#:showHiddenInvitations showHiddenInvitations string? 'N/A]
 [#:singleEvents singleEvents string? 'N/A]
+[#:updatedMin updatedMin string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -670,14 +671,6 @@ Returns events on the specified calendar.
 
 @racket[pageToken]: Token specifying which result page to return. Optional.
 
-@racket[orderBy]: The order of the events returned in the result. Optional. The default is an unspecified, stable order.
-
-@racket[updatedMin]: Lower bound for an event's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
-
-@racket[showDeleted]: Whether to include deleted single events (with 'status' equals 'cancelled') in the result. Cancelled instances of recurring events will still be included if 'singleEvents' is False. Optional. The default is False.
-
-@racket[q]: Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
-
 @racket[timeZone]: Time zone used in the response. Optional. The default is the time zone of the calendar.
 
 @racket[iCalUID]: Specifies iCalendar UID (iCalUID) of events to be included in the response. Optional.
@@ -690,9 +683,17 @@ Returns events on the specified calendar.
 
 @racket[maxAttendees]: The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
 
+@racket[showDeleted]: Whether to include deleted single events (with 'status' equals 'cancelled') in the result. Cancelled instances of recurring events will still be included if 'singleEvents' is False. Optional. The default is False.
+
+@racket[orderBy]: The order of the events returned in the result. Optional. The default is an unspecified, stable order.
+
+@racket[q]: Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
+
 @racket[showHiddenInvitations]: Whether to include hidden invitations in the result. Optional. The default is False.
 
 @racket[singleEvents]: Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
+
+@racket[updatedMin]: Lower bound for an event's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
 
 }
 
@@ -727,13 +728,11 @@ Returns an event.
 @defproc[(calendar-events-import
 [#:calendarId calendarId string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:description description string? 'N/A]
 [#:location location string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:updated updated string? 'N/A]
-[#:start start string? 'N/A]
 [#:created created string? 'N/A]
+[#:etag etag string? 'N/A]
 [#:summary summary string? 'N/A]
 [#:colorId colorId string? 'N/A]
 [#:anyoneCanAddSelf anyoneCanAddSelf string? 'N/A]
@@ -758,9 +757,11 @@ Returns an event.
 [#:recurringEventId recurringEventId string? 'N/A]
 [#:reminders reminders string? 'N/A]
 [#:sequence sequence string? 'N/A]
+[#:start start string? 'N/A]
 [#:status status string? 'N/A]
 [#:transparency transparency string? 'N/A]
 [#:visibility visibility string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -775,19 +776,15 @@ Imports an event.
 
 @racket[id]: Identifier of the event.
 
-@racket[kind]: Type of the resource ("calendar#event").
-
 @racket[description]: Description of the event. Optional.
 
 @racket[location]: Geographic location of the event as free-form text. Optional.
 
-@racket[etag]: ETag of the resource.
-
 @racket[updated]: Last modification time of the event (as a RFC 3339 timestamp). Read-only.
 
-@racket[start]: The (inclusive) start time of the event. For a recurring event, this is the start time of the first instance.
-
 @racket[created]: Creation time of the event (as a RFC 3339 timestamp). Read-only.
+
+@racket[etag]: ETag of the resource.
 
 @racket[summary]: Title of the event.
 
@@ -837,6 +834,8 @@ Imports an event.
 
 @racket[sequence]: Sequence number as per iCalendar.
 
+@racket[start]: The (inclusive) start time of the event. For a recurring event, this is the start time of the first instance.
+
 @racket[status]: Status of the event. Optional. Possible values are:  
 - "confirmed" - The event is confirmed. This is the default status. 
 - "tentative" - The event is tentatively confirmed. 
@@ -852,19 +851,19 @@ Imports an event.
 - "private" - The event is private and only event attendees may view event details. 
 - "confidential" - The event is private. This value is provided for compatibility reasons.
 
+@racket[kind]: Type of the resource ("calendar#event").
+
 }
 
 @defproc[(calendar-events-insert
 [#:calendarId calendarId string?]
 [#:sendNotifications sendNotifications string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:description description string? 'N/A]
 [#:location location string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:updated updated string? 'N/A]
-[#:start start string? 'N/A]
 [#:created created string? 'N/A]
+[#:etag etag string? 'N/A]
 [#:summary summary string? 'N/A]
 [#:colorId colorId string? 'N/A]
 [#:anyoneCanAddSelf anyoneCanAddSelf string? 'N/A]
@@ -889,9 +888,11 @@ Imports an event.
 [#:recurringEventId recurringEventId string? 'N/A]
 [#:reminders reminders string? 'N/A]
 [#:sequence sequence string? 'N/A]
+[#:start start string? 'N/A]
 [#:status status string? 'N/A]
 [#:transparency transparency string? 'N/A]
 [#:visibility visibility string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -908,19 +909,15 @@ Creates an event.
 
 @racket[id]: Identifier of the event.
 
-@racket[kind]: Type of the resource ("calendar#event").
-
 @racket[description]: Description of the event. Optional.
 
 @racket[location]: Geographic location of the event as free-form text. Optional.
 
-@racket[etag]: ETag of the resource.
-
 @racket[updated]: Last modification time of the event (as a RFC 3339 timestamp). Read-only.
 
-@racket[start]: The (inclusive) start time of the event. For a recurring event, this is the start time of the first instance.
-
 @racket[created]: Creation time of the event (as a RFC 3339 timestamp). Read-only.
+
+@racket[etag]: ETag of the resource.
 
 @racket[summary]: Title of the event.
 
@@ -970,6 +967,8 @@ Creates an event.
 
 @racket[sequence]: Sequence number as per iCalendar.
 
+@racket[start]: The (inclusive) start time of the event. For a recurring event, this is the start time of the first instance.
+
 @racket[status]: Status of the event. Optional. Possible values are:  
 - "confirmed" - The event is confirmed. This is the default status. 
 - "tentative" - The event is tentatively confirmed. 
@@ -985,6 +984,8 @@ Creates an event.
 - "private" - The event is private and only event attendees may view event details. 
 - "confidential" - The event is private. This value is provided for compatibility reasons.
 
+@racket[kind]: Type of the resource ("calendar#event").
+
 }
 
 @defproc[(calendar-events-patch
@@ -993,13 +994,11 @@ Creates an event.
 [#:sendNotifications sendNotifications string? 'N/A]
 [#:alwaysIncludeEmail alwaysIncludeEmail string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:description description string? 'N/A]
 [#:location location string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:updated updated string? 'N/A]
-[#:start start string? 'N/A]
 [#:created created string? 'N/A]
+[#:etag etag string? 'N/A]
 [#:summary summary string? 'N/A]
 [#:colorId colorId string? 'N/A]
 [#:anyoneCanAddSelf anyoneCanAddSelf string? 'N/A]
@@ -1024,9 +1023,11 @@ Creates an event.
 [#:recurringEventId recurringEventId string? 'N/A]
 [#:reminders reminders string? 'N/A]
 [#:sequence sequence string? 'N/A]
+[#:start start string? 'N/A]
 [#:status status string? 'N/A]
 [#:transparency transparency string? 'N/A]
 [#:visibility visibility string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -1047,19 +1048,15 @@ Updates an event. This method supports patch semantics.
 
 @racket[id]: Identifier of the event.
 
-@racket[kind]: Type of the resource ("calendar#event").
-
 @racket[description]: Description of the event. Optional.
 
 @racket[location]: Geographic location of the event as free-form text. Optional.
 
-@racket[etag]: ETag of the resource.
-
 @racket[updated]: Last modification time of the event (as a RFC 3339 timestamp). Read-only.
 
-@racket[start]: The (inclusive) start time of the event. For a recurring event, this is the start time of the first instance.
-
 @racket[created]: Creation time of the event (as a RFC 3339 timestamp). Read-only.
+
+@racket[etag]: ETag of the resource.
 
 @racket[summary]: Title of the event.
 
@@ -1109,6 +1106,8 @@ Updates an event. This method supports patch semantics.
 
 @racket[sequence]: Sequence number as per iCalendar.
 
+@racket[start]: The (inclusive) start time of the event. For a recurring event, this is the start time of the first instance.
+
 @racket[status]: Status of the event. Optional. Possible values are:  
 - "confirmed" - The event is confirmed. This is the default status. 
 - "tentative" - The event is tentatively confirmed. 
@@ -1124,6 +1123,8 @@ Updates an event. This method supports patch semantics.
 - "private" - The event is private and only event attendees may view event details. 
 - "confidential" - The event is private. This value is provided for compatibility reasons.
 
+@racket[kind]: Type of the resource ("calendar#event").
+
 }
 
 @defproc[(calendar-events-instances
@@ -1131,11 +1132,11 @@ Updates an event. This method supports patch semantics.
 [#:eventId eventId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
-[#:showDeleted showDeleted string? 'N/A]
 [#:timeZone timeZone string? 'N/A]
 [#:alwaysIncludeEmail alwaysIncludeEmail string? 'N/A]
 [#:maxAttendees maxAttendees string? 'N/A]
 [#:originalStart originalStart string? 'N/A]
+[#:showDeleted showDeleted string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -1154,8 +1155,6 @@ Returns instances of the specified recurring event.
 
 @racket[pageToken]: Token specifying which result page to return. Optional.
 
-@racket[showDeleted]: Whether to include deleted events (with 'eventStatus' equals 'cancelled') in the result. Optional. The default is False.
-
 @racket[timeZone]: Time zone used in the response. Optional. The default is the time zone of the calendar.
 
 @racket[alwaysIncludeEmail]: Whether to always include a value in the "email" field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
@@ -1163,6 +1162,8 @@ Returns instances of the specified recurring event.
 @racket[maxAttendees]: The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
 
 @racket[originalStart]: The original start time of the instance in the result. Optional.
+
+@racket[showDeleted]: Whether to include deleted events (with 'eventStatus' equals 'cancelled') in the result. Optional. The default is False.
 
 }
 
@@ -1219,13 +1220,11 @@ Creates an event based on a simple text string.
 [#:sendNotifications sendNotifications string? 'N/A]
 [#:alwaysIncludeEmail alwaysIncludeEmail string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:description description string? 'N/A]
 [#:location location string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:updated updated string? 'N/A]
-[#:start start string? 'N/A]
 [#:created created string? 'N/A]
+[#:etag etag string? 'N/A]
 [#:summary summary string? 'N/A]
 [#:colorId colorId string? 'N/A]
 [#:anyoneCanAddSelf anyoneCanAddSelf string? 'N/A]
@@ -1250,9 +1249,11 @@ Creates an event based on a simple text string.
 [#:recurringEventId recurringEventId string? 'N/A]
 [#:reminders reminders string? 'N/A]
 [#:sequence sequence string? 'N/A]
+[#:start start string? 'N/A]
 [#:status status string? 'N/A]
 [#:transparency transparency string? 'N/A]
 [#:visibility visibility string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -1273,19 +1274,15 @@ Updates an event.
 
 @racket[id]: Identifier of the event.
 
-@racket[kind]: Type of the resource ("calendar#event").
-
 @racket[description]: Description of the event. Optional.
 
 @racket[location]: Geographic location of the event as free-form text. Optional.
 
-@racket[etag]: ETag of the resource.
-
 @racket[updated]: Last modification time of the event (as a RFC 3339 timestamp). Read-only.
 
-@racket[start]: The (inclusive) start time of the event. For a recurring event, this is the start time of the first instance.
-
 @racket[created]: Creation time of the event (as a RFC 3339 timestamp). Read-only.
+
+@racket[etag]: ETag of the resource.
 
 @racket[summary]: Title of the event.
 
@@ -1335,6 +1332,8 @@ Updates an event.
 
 @racket[sequence]: Sequence number as per iCalendar.
 
+@racket[start]: The (inclusive) start time of the event. For a recurring event, this is the start time of the first instance.
+
 @racket[status]: Status of the event. Optional. Possible values are:  
 - "confirmed" - The event is confirmed. This is the default status. 
 - "tentative" - The event is tentatively confirmed. 
@@ -1349,6 +1348,8 @@ Updates an event.
 - "public" - The event is public and event details are visible to all readers of the calendar. 
 - "private" - The event is private and only event attendees may view event details. 
 - "confidential" - The event is private. This value is provided for compatibility reasons.
+
+@racket[kind]: Type of the resource ("calendar#event").
 
 }
 

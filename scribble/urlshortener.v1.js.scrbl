@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{URL Shortener API v1}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you create, inspect, and manage goo.gl short URLs
@@ -9,7 +9,7 @@ Lets you create, inspect, and manage goo.gl short URLs
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "urlshortener.v1.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,8 +35,8 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
 
 @subsection{url}
@@ -79,11 +80,11 @@ Expands a short URL or gets creation time and analytics.
 
 @defproc[(urlshortener-url-insert
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:longUrl longUrl string? 'N/A]
-[#:analytics analytics string? 'N/A]
 [#:created created string? 'N/A]
 [#:status status string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:analytics analytics string? 'N/A]
+[#:longUrl longUrl string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -96,15 +97,15 @@ Creates a new short URL.
 
 @racket[id]: Short URL, e.g. "http://goo.gl/l6MS".
 
-@racket[kind]: The fixed string "urlshortener#url".
-
-@racket[longUrl]: Long URL, e.g. "http://www.google.com/". Might not be present if the status is "REMOVED".
-
-@racket[analytics]: A summary of the click analytics for the short and long URL. Might not be present if not requested or currently unavailable.
-
 @racket[created]: Time the short URL was created; ISO 8601 representation using the yyyy-MM-dd'T'HH:mm:ss.SSSZZ format, e.g. "2010-10-14T19:01:24.944+00:00".
 
 @racket[status]: Status of the target URL. Possible values: "OK", "MALWARE", "PHISHING", or "REMOVED". A URL might be marked "REMOVED" if it was flagged as spam, for example.
+
+@racket[kind]: The fixed string "urlshortener#url".
+
+@racket[analytics]: A summary of the click analytics for the short and long URL. Might not be present if not requested or currently unavailable.
+
+@racket[longUrl]: Long URL, e.g. "http://www.google.com/". Might not be present if the status is "REMOVED".
 
 }
 

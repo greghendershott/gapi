@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{AdSense Management API v1.1}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Gives AdSense publishers access to their inventory and the ability to generate reports
@@ -9,22 +9,23 @@ Gives AdSense publishers access to their inventory and the ability to generate r
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "adsense.v1.1.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
+[#:alt alt string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
+@racket[alt]: Data format for the response.
+
 @racket[fields]: Selector specifying which fields to include in a partial response.
 
 @racket[key]: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
-
-@racket[alt]: Data format for the response.
 
 @racket[oauth_token]: OAuth 2.0 token for the current user.
 
@@ -34,8 +35,8 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
 
 @subsection{accounts}
@@ -43,9 +44,9 @@ The following optional keyword arguments may be passed to @italic{all} functions
 @defproc[(adsense-accounts-list
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:alt alt string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
@@ -62,9 +63,9 @@ List all accounts available to this AdSense account.
 @defproc[(adsense-accounts-get
 [#:accountId accountId string?]
 [#:tree tree string? 'N/A]
+[#:alt alt string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
@@ -84,9 +85,9 @@ Get information about the selected AdSense account.
 [#:adClientId adClientId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:alt alt string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
@@ -105,9 +106,9 @@ List all custom channels in the specified ad client for this AdSense account.
 @defproc[(adsense-customchannels-get
 [#:adClientId adClientId string?]
 [#:customChannelId customChannelId string?]
+[#:alt alt string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
@@ -128,9 +129,9 @@ Get the specified custom channel from the specified ad client.
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:includeInactive includeInactive string? 'N/A]
+[#:alt alt string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
@@ -151,9 +152,9 @@ List all ad units in the specified ad client for this AdSense account.
 @defproc[(adsense-adunits-get
 [#:adClientId adClientId string?]
 [#:adUnitId adUnitId string?]
+[#:alt alt string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
@@ -171,9 +172,9 @@ Gets the specified ad unit in the specified ad client.
 @defproc[(adsense-adclients-list
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:alt alt string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
@@ -193,16 +194,16 @@ List all ad clients in this AdSense account.
 [#:startDate startDate string?]
 [#:sort sort string? 'N/A]
 [#:filter filter string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
 [#:accountId accountId string? 'N/A]
+[#:maxResults maxResults string? 'N/A]
 [#:currency currency string? 'N/A]
 [#:dimension dimension string? 'N/A]
 [#:locale locale string? 'N/A]
 [#:metric metric string? 'N/A]
 [#:startIndex startIndex string? 'N/A]
+[#:alt alt string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
@@ -218,9 +219,9 @@ Generate an AdSense report based on the report request sent in the query paramet
 
 @racket[filter]: Filters to be run on the report.
 
-@racket[maxResults]: The maximum number of rows of report data to return.
-
 @racket[accountId]: Accounts upon which to report.
+
+@racket[maxResults]: The maximum number of rows of report data to return.
 
 @racket[currency]: Optional currency to use when reporting on monetary metrics. Defaults to the account's currency if not set.
 
@@ -239,9 +240,9 @@ Generate an AdSense report based on the report request sent in the query paramet
 [#:adClientId adClientId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:alt alt string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
 [#:oauth_token oauth_token string? 'N/A]
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]

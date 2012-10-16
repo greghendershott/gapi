@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{TaskQueue API v1beta2}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you access a Google App Engine Pull Task Queue over REST.
@@ -9,7 +9,7 @@ Lets you access a Google App Engine Pull Task Queue over REST.
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "taskqueue.v1beta2.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,8 +35,8 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
 
 @subsection{taskqueues}
@@ -143,37 +144,6 @@ Insert a new task in a TaskQueue
 
 }
 
-@defproc[(taskqueue-tasks-lease
-[#:project project string?]
-[#:taskqueue taskqueue string?]
-[#:leaseSecs leaseSecs string?]
-[#:numTasks numTasks string?]
-[#:tag tag string? 'N/A]
-[#:groupByTag groupByTag string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Lease 1 or more tasks from a TaskQueue.
-
-@racket[project]: The project under which the queue lies.
-
-@racket[taskqueue]: The taskqueue to lease a task from.
-
-@racket[leaseSecs]: The lease in seconds.
-
-@racket[numTasks]: The number of tasks to lease.
-
-@racket[tag]: The tag allowed for tasks in the response. Must only be specified if group_by_tag is true. If group_by_tag is true and tag is not specified the tag will be that of the oldest task by eta, i.e. the first available tag
-
-@racket[groupByTag]: When true, all returned tasks will have the same tag
-
-}
-
 @defproc[(taskqueue-tasks-patch
 [#:project project string?]
 [#:taskqueue taskqueue string?]
@@ -217,6 +187,37 @@ Update tasks that are leased out of a TaskQueue. This method supports patch sema
 @racket[payloadBase64]: A bag of bytes which is the task payload. The payload on the JSON side is always Base64 encoded.
 
 @racket[queueName]: Name of the queue that the task is in.
+
+}
+
+@defproc[(taskqueue-tasks-lease
+[#:project project string?]
+[#:taskqueue taskqueue string?]
+[#:leaseSecs leaseSecs string?]
+[#:numTasks numTasks string?]
+[#:tag tag string? 'N/A]
+[#:groupByTag groupByTag string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Lease 1 or more tasks from a TaskQueue.
+
+@racket[project]: The project under which the queue lies.
+
+@racket[taskqueue]: The taskqueue to lease a task from.
+
+@racket[leaseSecs]: The lease in seconds.
+
+@racket[numTasks]: The number of tasks to lease.
+
+@racket[tag]: The tag allowed for tasks in the response. Must only be specified if group_by_tag is true. If group_by_tag is true and tag is not specified the tag will be that of the oldest task by eta, i.e. the first available tag
+
+@racket[groupByTag]: When true, all returned tasks will have the same tag
 
 }
 

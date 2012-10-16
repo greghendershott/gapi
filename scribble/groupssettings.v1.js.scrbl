@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{Groups Settings API v1}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you manage permission levels and related settings of a group.
@@ -9,7 +9,7 @@ Lets you manage permission levels and related settings of a group.
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "groupssettings.v1.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,8 +35,8 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
 
 @subsection{groups}
@@ -57,10 +58,10 @@ Gets one resource by id.
 
 @defproc[(groupsSettings-groups-patch
 [#:groupUniqueId groupUniqueId string?]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:description description string? 'N/A]
 [#:email email string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:name name string? 'N/A]
 [#:allowExternalMembers allowExternalMembers string? 'N/A]
 [#:allowGoogleCommunication allowGoogleCommunication string? 'N/A]
 [#:allowWebPosting allowWebPosting string? 'N/A]
@@ -95,13 +96,13 @@ Updates an existing resource. This method supports patch semantics.
 
 @racket[groupUniqueId]: The resource ID
 
-@racket[kind]: The type of the resource.
-
-@racket[name]: Name of the Group
-
 @racket[description]: Description of the group
 
 @racket[email]: Email id of the group
+
+@racket[kind]: The type of the resource.
+
+@racket[name]: Name of the Group
 
 @racket[allowExternalMembers]: Are external members allowed to join the group.
 
@@ -151,10 +152,10 @@ Updates an existing resource. This method supports patch semantics.
 
 @defproc[(groupsSettings-groups-update
 [#:groupUniqueId groupUniqueId string?]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:description description string? 'N/A]
 [#:email email string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:name name string? 'N/A]
 [#:allowExternalMembers allowExternalMembers string? 'N/A]
 [#:allowGoogleCommunication allowGoogleCommunication string? 'N/A]
 [#:allowWebPosting allowWebPosting string? 'N/A]
@@ -189,13 +190,13 @@ Updates an existing resource.
 
 @racket[groupUniqueId]: The resource ID
 
-@racket[kind]: The type of the resource.
-
-@racket[name]: Name of the Group
-
 @racket[description]: Description of the group
 
 @racket[email]: Email id of the group
+
+@racket[kind]: The type of the resource.
+
+@racket[name]: Name of the Group
 
 @racket[allowExternalMembers]: Are external members allowed to join the group.
 

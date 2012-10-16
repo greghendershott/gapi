@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{Tasks API v1}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you manage your tasks and task lists.
@@ -9,7 +9,7 @@ Lets you manage your tasks and task lists.
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "tasks.v1.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,8 +35,8 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
 
 @subsection{tasks}
@@ -43,13 +44,13 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:tasklist tasklist string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
+[#:showHidden showHidden string? 'N/A]
 [#:completedMax completedMax string? 'N/A]
 [#:completedMin completedMin string? 'N/A]
 [#:dueMax dueMax string? 'N/A]
 [#:dueMin dueMin string? 'N/A]
 [#:showCompleted showCompleted string? 'N/A]
 [#:showDeleted showDeleted string? 'N/A]
-[#:showHidden showHidden string? 'N/A]
 [#:updatedMin updatedMin string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -67,6 +68,8 @@ Returns all tasks in the specified task list.
 
 @racket[pageToken]: Token specifying the result page to return. Optional.
 
+@racket[showHidden]: Flag indicating whether hidden tasks are returned in the result. Optional. The default is False.
+
 @racket[completedMax]: Upper bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
 
 @racket[completedMin]: Lower bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
@@ -78,8 +81,6 @@ Returns all tasks in the specified task list.
 @racket[showCompleted]: Flag indicating whether completed tasks are returned in the result. Optional. The default is True.
 
 @racket[showDeleted]: Flag indicating whether deleted tasks are returned in the result. Optional. The default is False.
-
-@racket[showHidden]: Flag indicating whether hidden tasks are returned in the result. Optional. The default is False.
 
 @racket[updatedMin]: Lower bound for a task's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
 
@@ -109,20 +110,20 @@ Returns the specified task.
 [#:parent parent string? 'N/A]
 [#:previous previous string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:title title string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:updated updated string? 'N/A]
+[#:etag etag string? 'N/A]
+[#:hidden hidden string? 'N/A]
+[#:status status string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:completed completed string? 'N/A]
+[#:deleted deleted string? 'N/A]
 [#:due due string? 'N/A]
 [#:links links string? 'N/A]
 [#:notes notes string? 'N/A]
 [#:parent parent string? 'N/A]
 [#:position position string? 'N/A]
-[#:deleted deleted string? 'N/A]
-[#:hidden hidden string? 'N/A]
-[#:status status string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -141,17 +142,23 @@ Creates a new task on the specified task list.
 
 @racket[id]: Task identifier.
 
-@racket[kind]: Type of the resource. This is always "tasks#task".
-
 @racket[title]: Title of the task.
 
 @racket[selfLink]: URL pointing to this task. Used to retrieve, update, or delete this task.
 
-@racket[etag]: ETag of the resource.
-
 @racket[updated]: Last modification time of the task (as a RFC 3339 timestamp).
 
+@racket[etag]: ETag of the resource.
+
+@racket[hidden]: Flag indicating whether the task is hidden. This is the case if the task had been marked completed when the task list was last cleared. The default is False. This field is read-only.
+
+@racket[status]: Status of the task. This is either "needsAction" or "completed".
+
+@racket[kind]: Type of the resource. This is always "tasks#task".
+
 @racket[completed]: Completion date of the task (as a RFC 3339 timestamp). This field is omitted if the task has not been completed.
+
+@racket[deleted]: Flag indicating whether the task has been deleted. The default if False.
 
 @racket[due]: Due date of the task (as a RFC 3339 timestamp). Optional.
 
@@ -163,11 +170,69 @@ Creates a new task on the specified task list.
 
 @racket[position]: String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task's corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). This field is read-only. Use the "move" method to move the task to another position.
 
-@racket[deleted]: Flag indicating whether the task has been deleted. The default if False.
+}
+
+@defproc[(tasks-tasks-patch
+[#:task task string?]
+[#:tasklist tasklist string?]
+[#:id id string? 'N/A]
+[#:title title string? 'N/A]
+[#:selfLink selfLink string? 'N/A]
+[#:updated updated string? 'N/A]
+[#:etag etag string? 'N/A]
+[#:hidden hidden string? 'N/A]
+[#:status status string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:completed completed string? 'N/A]
+[#:deleted deleted string? 'N/A]
+[#:due due string? 'N/A]
+[#:links links string? 'N/A]
+[#:notes notes string? 'N/A]
+[#:parent parent string? 'N/A]
+[#:position position string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Updates the specified task. This method supports patch semantics.
+
+@racket[task]: Task identifier.
+
+@racket[tasklist]: Task list identifier.
+
+@racket[id]: Task identifier.
+
+@racket[title]: Title of the task.
+
+@racket[selfLink]: URL pointing to this task. Used to retrieve, update, or delete this task.
+
+@racket[updated]: Last modification time of the task (as a RFC 3339 timestamp).
+
+@racket[etag]: ETag of the resource.
 
 @racket[hidden]: Flag indicating whether the task is hidden. This is the case if the task had been marked completed when the task list was last cleared. The default is False. This field is read-only.
 
 @racket[status]: Status of the task. This is either "needsAction" or "completed".
+
+@racket[kind]: Type of the resource. This is always "tasks#task".
+
+@racket[completed]: Completion date of the task (as a RFC 3339 timestamp). This field is omitted if the task has not been completed.
+
+@racket[deleted]: Flag indicating whether the task has been deleted. The default if False.
+
+@racket[due]: Due date of the task (as a RFC 3339 timestamp). Optional.
+
+@racket[links]: Collection of links. This collection is read-only.
+
+@racket[notes]: Notes describing the task. Optional.
+
+@racket[parent]: Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the "move" method to move the task under a different parent or to the top level.
+
+@racket[position]: String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task's corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). This field is read-only. Use the "move" method to move the task to another position.
 
 }
 
@@ -212,88 +277,24 @@ Moves the specified task to another position in the task list. This can include 
 
 }
 
-@defproc[(tasks-tasks-patch
-[#:task task string?]
-[#:tasklist tasklist string?]
-[#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:title title string? 'N/A]
-[#:selfLink selfLink string? 'N/A]
-[#:etag etag string? 'N/A]
-[#:updated updated string? 'N/A]
-[#:completed completed string? 'N/A]
-[#:due due string? 'N/A]
-[#:links links string? 'N/A]
-[#:notes notes string? 'N/A]
-[#:parent parent string? 'N/A]
-[#:position position string? 'N/A]
-[#:deleted deleted string? 'N/A]
-[#:hidden hidden string? 'N/A]
-[#:status status string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Updates the specified task. This method supports patch semantics.
-
-@racket[task]: Task identifier.
-
-@racket[tasklist]: Task list identifier.
-
-@racket[id]: Task identifier.
-
-@racket[kind]: Type of the resource. This is always "tasks#task".
-
-@racket[title]: Title of the task.
-
-@racket[selfLink]: URL pointing to this task. Used to retrieve, update, or delete this task.
-
-@racket[etag]: ETag of the resource.
-
-@racket[updated]: Last modification time of the task (as a RFC 3339 timestamp).
-
-@racket[completed]: Completion date of the task (as a RFC 3339 timestamp). This field is omitted if the task has not been completed.
-
-@racket[due]: Due date of the task (as a RFC 3339 timestamp). Optional.
-
-@racket[links]: Collection of links. This collection is read-only.
-
-@racket[notes]: Notes describing the task. Optional.
-
-@racket[parent]: Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the "move" method to move the task under a different parent or to the top level.
-
-@racket[position]: String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task's corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). This field is read-only. Use the "move" method to move the task to another position.
-
-@racket[deleted]: Flag indicating whether the task has been deleted. The default if False.
-
-@racket[hidden]: Flag indicating whether the task is hidden. This is the case if the task had been marked completed when the task list was last cleared. The default is False. This field is read-only.
-
-@racket[status]: Status of the task. This is either "needsAction" or "completed".
-
-}
-
 @defproc[(tasks-tasks-update
 [#:task task string?]
 [#:tasklist tasklist string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:title title string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:updated updated string? 'N/A]
+[#:etag etag string? 'N/A]
+[#:hidden hidden string? 'N/A]
+[#:status status string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:completed completed string? 'N/A]
+[#:deleted deleted string? 'N/A]
 [#:due due string? 'N/A]
 [#:links links string? 'N/A]
 [#:notes notes string? 'N/A]
 [#:parent parent string? 'N/A]
 [#:position position string? 'N/A]
-[#:deleted deleted string? 'N/A]
-[#:hidden hidden string? 'N/A]
-[#:status status string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -310,17 +311,23 @@ Updates the specified task.
 
 @racket[id]: Task identifier.
 
-@racket[kind]: Type of the resource. This is always "tasks#task".
-
 @racket[title]: Title of the task.
 
 @racket[selfLink]: URL pointing to this task. Used to retrieve, update, or delete this task.
 
-@racket[etag]: ETag of the resource.
-
 @racket[updated]: Last modification time of the task (as a RFC 3339 timestamp).
 
+@racket[etag]: ETag of the resource.
+
+@racket[hidden]: Flag indicating whether the task is hidden. This is the case if the task had been marked completed when the task list was last cleared. The default is False. This field is read-only.
+
+@racket[status]: Status of the task. This is either "needsAction" or "completed".
+
+@racket[kind]: Type of the resource. This is always "tasks#task".
+
 @racket[completed]: Completion date of the task (as a RFC 3339 timestamp). This field is omitted if the task has not been completed.
+
+@racket[deleted]: Flag indicating whether the task has been deleted. The default if False.
 
 @racket[due]: Due date of the task (as a RFC 3339 timestamp). Optional.
 
@@ -331,12 +338,6 @@ Updates the specified task.
 @racket[parent]: Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the "move" method to move the task under a different parent or to the top level.
 
 @racket[position]: String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task's corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). This field is read-only. Use the "move" method to move the task to another position.
-
-@racket[deleted]: Flag indicating whether the task has been deleted. The default if False.
-
-@racket[hidden]: Flag indicating whether the task is hidden. This is the case if the task had been marked completed when the task list was last cleared. The default is False. This field is read-only.
-
-@racket[status]: Status of the task. This is either "needsAction" or "completed".
 
 }
 
@@ -397,11 +398,11 @@ Returns the authenticated user's specified task list.
 
 @defproc[(tasks-tasklists-insert
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:title title string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:updated updated string? 'N/A]
+[#:etag etag string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -414,26 +415,26 @@ Creates a new task list and adds it to the authenticated user's task lists.
 
 @racket[id]: Task list identifier.
 
-@racket[kind]: Type of the resource. This is always "tasks#taskList".
-
 @racket[title]: Title of the task list.
 
 @racket[selfLink]: URL pointing to this task list. Used to retrieve, update, or delete this task list.
 
+@racket[updated]: Last modification time of the task list (as a RFC 3339 timestamp).
+
 @racket[etag]: ETag of the resource.
 
-@racket[updated]: Last modification time of the task list (as a RFC 3339 timestamp).
+@racket[kind]: Type of the resource. This is always "tasks#taskList".
 
 }
 
 @defproc[(tasks-tasklists-patch
 [#:tasklist tasklist string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:title title string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:updated updated string? 'N/A]
+[#:etag etag string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -448,26 +449,26 @@ Updates the authenticated user's specified task list. This method supports patch
 
 @racket[id]: Task list identifier.
 
-@racket[kind]: Type of the resource. This is always "tasks#taskList".
-
 @racket[title]: Title of the task list.
 
 @racket[selfLink]: URL pointing to this task list. Used to retrieve, update, or delete this task list.
 
+@racket[updated]: Last modification time of the task list (as a RFC 3339 timestamp).
+
 @racket[etag]: ETag of the resource.
 
-@racket[updated]: Last modification time of the task list (as a RFC 3339 timestamp).
+@racket[kind]: Type of the resource. This is always "tasks#taskList".
 
 }
 
 @defproc[(tasks-tasklists-update
 [#:tasklist tasklist string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:title title string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:updated updated string? 'N/A]
+[#:etag etag string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -482,15 +483,15 @@ Updates the authenticated user's specified task list.
 
 @racket[id]: Task list identifier.
 
-@racket[kind]: Type of the resource. This is always "tasks#taskList".
-
 @racket[title]: Title of the task list.
 
 @racket[selfLink]: URL pointing to this task list. Used to retrieve, update, or delete this task list.
 
+@racket[updated]: Last modification time of the task list (as a RFC 3339 timestamp).
+
 @racket[etag]: ETag of the resource.
 
-@racket[updated]: Last modification time of the task list (as a RFC 3339 timestamp).
+@racket[kind]: Type of the resource. This is always "tasks#taskList".
 
 }
 

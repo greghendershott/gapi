@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{Drive API v2}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 The API to interact with Drive.
@@ -9,7 +9,7 @@ The API to interact with Drive.
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "drive.v2.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,470 +35,9 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
-
-@subsection{replies}
-@defproc[(drive-replies-list
-[#:commentId commentId string?]
-[#:fileId fileId string?]
-[#:maxResults maxResults string? 'N/A]
-[#:pageToken pageToken string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Lists all of the replies to a comment.
-
-@racket[commentId]: The ID of the comment.
-
-@racket[fileId]: The ID of the file.
-
-@racket[maxResults]: The maximum number of replies to include in the response, used for paging.
-
-@racket[pageToken]: The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-
-}
-
-@defproc[(drive-replies-get
-[#:commentId commentId string?]
-[#:fileId fileId string?]
-[#:replyId replyId string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Gets a reply.
-
-@racket[commentId]: The ID of the comment.
-
-@racket[fileId]: The ID of the file.
-
-@racket[replyId]: The ID of the reply.
-
-}
-
-@defproc[(drive-replies-insert
-[#:commentId commentId string?]
-[#:fileId fileId string?]
-[#:kind kind string? 'N/A]
-[#:author author string? 'N/A]
-[#:content content string? 'N/A]
-[#:verb verb string? 'N/A]
-[#:deleted deleted string? 'N/A]
-[#:createdDate createdDate string? 'N/A]
-[#:htmlContent htmlContent string? 'N/A]
-[#:modifiedDate modifiedDate string? 'N/A]
-[#:replyId replyId string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Creates a new reply to the given comment.
-
-@racket[commentId]: The ID of the comment.
-
-@racket[fileId]: The ID of the file.
-
-@racket[kind]: This is always drive#commentReply.
-
-@racket[author]: The user who wrote this reply.
-
-@racket[content]: The plain text content used to create this reply. This is not HTML safe and should only be used as a starting point to make edits to a reply's content. This field is required on inserts if no verb is specified (resolve/reopen).
-
-@racket[verb]: The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are:  
-- "resolve" - To resolve a comment. 
-- "reopen" - To reopen (un-resolve) a comment.
-
-@racket[deleted]: Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.
-
-@racket[createdDate]: The date when this reply was first created.
-
-@racket[htmlContent]: HTML formatted content for this reply.
-
-@racket[modifiedDate]: The date when this reply was last modified.
-
-@racket[replyId]: The ID of the reply.
-
-}
-
-@defproc[(drive-replies-patch
-[#:commentId commentId string?]
-[#:fileId fileId string?]
-[#:replyId replyId string?]
-[#:kind kind string? 'N/A]
-[#:author author string? 'N/A]
-[#:content content string? 'N/A]
-[#:verb verb string? 'N/A]
-[#:deleted deleted string? 'N/A]
-[#:createdDate createdDate string? 'N/A]
-[#:htmlContent htmlContent string? 'N/A]
-[#:modifiedDate modifiedDate string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Updates an existing reply. This method supports patch semantics.
-
-@racket[commentId]: The ID of the comment.
-
-@racket[fileId]: The ID of the file.
-
-@racket[replyId]: The ID of the reply.
-
-@racket[kind]: This is always drive#commentReply.
-
-@racket[author]: The user who wrote this reply.
-
-@racket[content]: The plain text content used to create this reply. This is not HTML safe and should only be used as a starting point to make edits to a reply's content. This field is required on inserts if no verb is specified (resolve/reopen).
-
-@racket[verb]: The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are:  
-- "resolve" - To resolve a comment. 
-- "reopen" - To reopen (un-resolve) a comment.
-
-@racket[deleted]: Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.
-
-@racket[createdDate]: The date when this reply was first created.
-
-@racket[htmlContent]: HTML formatted content for this reply.
-
-@racket[modifiedDate]: The date when this reply was last modified.
-
-}
-
-@defproc[(drive-replies-update
-[#:commentId commentId string?]
-[#:fileId fileId string?]
-[#:replyId replyId string?]
-[#:kind kind string? 'N/A]
-[#:author author string? 'N/A]
-[#:content content string? 'N/A]
-[#:verb verb string? 'N/A]
-[#:deleted deleted string? 'N/A]
-[#:createdDate createdDate string? 'N/A]
-[#:htmlContent htmlContent string? 'N/A]
-[#:modifiedDate modifiedDate string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Updates an existing reply.
-
-@racket[commentId]: The ID of the comment.
-
-@racket[fileId]: The ID of the file.
-
-@racket[replyId]: The ID of the reply.
-
-@racket[kind]: This is always drive#commentReply.
-
-@racket[author]: The user who wrote this reply.
-
-@racket[content]: The plain text content used to create this reply. This is not HTML safe and should only be used as a starting point to make edits to a reply's content. This field is required on inserts if no verb is specified (resolve/reopen).
-
-@racket[verb]: The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are:  
-- "resolve" - To resolve a comment. 
-- "reopen" - To reopen (un-resolve) a comment.
-
-@racket[deleted]: Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.
-
-@racket[createdDate]: The date when this reply was first created.
-
-@racket[htmlContent]: HTML formatted content for this reply.
-
-@racket[modifiedDate]: The date when this reply was last modified.
-
-}
-
-@defproc[(drive-replies-delete
-[#:commentId commentId string?]
-[#:fileId fileId string?]
-[#:replyId replyId string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Deletes a reply.
-
-@racket[commentId]: The ID of the comment.
-
-@racket[fileId]: The ID of the file.
-
-@racket[replyId]: The ID of the reply.
-
-}
-
-@subsection{comments}
-@defproc[(drive-comments-list
-[#:fileId fileId string?]
-[#:maxResults maxResults string? 'N/A]
-[#:pageToken pageToken string? 'N/A]
-[#:includeDeleted includeDeleted string? 'N/A]
-[#:updatedMin updatedMin string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Lists a file's comments.
-
-@racket[fileId]: The ID of the file.
-
-@racket[maxResults]: The maximum number of discussions to include in the response, used for paging.
-
-@racket[pageToken]: The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-
-@racket[includeDeleted]: If set, all comments, including deleted comments (with content stripped) will be returned.
-
-@racket[updatedMin]: Only discussions that were updated after this timestamp will be returned. Formatted as an RFC 3339 timestamp.
-
-}
-
-@defproc[(drive-comments-get
-[#:commentId commentId string?]
-[#:fileId fileId string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Gets a comment by ID.
-
-@racket[commentId]: The ID of the comment.
-
-@racket[fileId]: The ID of the file.
-
-}
-
-@defproc[(drive-comments-insert
-[#:fileId fileId string?]
-[#:anchor anchor string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:author author string? 'N/A]
-[#:content content string? 'N/A]
-[#:selfLink selfLink string? 'N/A]
-[#:replies replies string? 'N/A]
-[#:commentId commentId string? 'N/A]
-[#:deleted deleted string? 'N/A]
-[#:status status string? 'N/A]
-[#:context context string? 'N/A]
-[#:createdDate createdDate string? 'N/A]
-[#:fileTitle fileTitle string? 'N/A]
-[#:htmlContent htmlContent string? 'N/A]
-[#:modifiedDate modifiedDate string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Creates a new comment on the given file.
-
-@racket[fileId]: The ID of the file.
-
-@racket[anchor]: A region of the document represented as a JSON string. See anchor documentation for details on how to define and interpret anchor properties.
-
-@racket[kind]: This is always drive#comment.
-
-@racket[author]: The user who wrote this comment.
-
-@racket[content]: The plain text content used to create this comment. This is not HTML safe and should only be used as a starting point to make edits to a comment's content.
-
-@racket[selfLink]: A link back to this comment.
-
-@racket[replies]: Replies to this post.
-
-@racket[commentId]: The ID of the comment.
-
-@racket[deleted]: Whether this comment has been deleted. If a comment has been deleted the content will be cleared and this will only represent a comment that once existed.
-
-@racket[status]: The status of this comment. Status can be changed by posting a reply to a comment with the desired status.  
-- "open" - The comment is still open. 
-- "resolved" - The comment has been resolved by one of its replies.
-
-@racket[context]: The context of the file which is being commented on.
-
-@racket[createdDate]: The date when this comment was first created.
-
-@racket[fileTitle]: The title of the file which this comment is addressing.
-
-@racket[htmlContent]: HTML formatted content for this comment.
-
-@racket[modifiedDate]: The date when this comment or any of its replies were last modified.
-
-}
-
-@defproc[(drive-comments-patch
-[#:commentId commentId string?]
-[#:fileId fileId string?]
-[#:anchor anchor string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:author author string? 'N/A]
-[#:content content string? 'N/A]
-[#:selfLink selfLink string? 'N/A]
-[#:replies replies string? 'N/A]
-[#:deleted deleted string? 'N/A]
-[#:status status string? 'N/A]
-[#:context context string? 'N/A]
-[#:createdDate createdDate string? 'N/A]
-[#:fileTitle fileTitle string? 'N/A]
-[#:htmlContent htmlContent string? 'N/A]
-[#:modifiedDate modifiedDate string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Updates an existing comment. This method supports patch semantics.
-
-@racket[commentId]: The ID of the comment.
-
-@racket[fileId]: The ID of the file.
-
-@racket[anchor]: A region of the document represented as a JSON string. See anchor documentation for details on how to define and interpret anchor properties.
-
-@racket[kind]: This is always drive#comment.
-
-@racket[author]: The user who wrote this comment.
-
-@racket[content]: The plain text content used to create this comment. This is not HTML safe and should only be used as a starting point to make edits to a comment's content.
-
-@racket[selfLink]: A link back to this comment.
-
-@racket[replies]: Replies to this post.
-
-@racket[deleted]: Whether this comment has been deleted. If a comment has been deleted the content will be cleared and this will only represent a comment that once existed.
-
-@racket[status]: The status of this comment. Status can be changed by posting a reply to a comment with the desired status.  
-- "open" - The comment is still open. 
-- "resolved" - The comment has been resolved by one of its replies.
-
-@racket[context]: The context of the file which is being commented on.
-
-@racket[createdDate]: The date when this comment was first created.
-
-@racket[fileTitle]: The title of the file which this comment is addressing.
-
-@racket[htmlContent]: HTML formatted content for this comment.
-
-@racket[modifiedDate]: The date when this comment or any of its replies were last modified.
-
-}
-
-@defproc[(drive-comments-update
-[#:commentId commentId string?]
-[#:fileId fileId string?]
-[#:anchor anchor string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:author author string? 'N/A]
-[#:content content string? 'N/A]
-[#:selfLink selfLink string? 'N/A]
-[#:replies replies string? 'N/A]
-[#:deleted deleted string? 'N/A]
-[#:status status string? 'N/A]
-[#:context context string? 'N/A]
-[#:createdDate createdDate string? 'N/A]
-[#:fileTitle fileTitle string? 'N/A]
-[#:htmlContent htmlContent string? 'N/A]
-[#:modifiedDate modifiedDate string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Updates an existing comment.
-
-@racket[commentId]: The ID of the comment.
-
-@racket[fileId]: The ID of the file.
-
-@racket[anchor]: A region of the document represented as a JSON string. See anchor documentation for details on how to define and interpret anchor properties.
-
-@racket[kind]: This is always drive#comment.
-
-@racket[author]: The user who wrote this comment.
-
-@racket[content]: The plain text content used to create this comment. This is not HTML safe and should only be used as a starting point to make edits to a comment's content.
-
-@racket[selfLink]: A link back to this comment.
-
-@racket[replies]: Replies to this post.
-
-@racket[deleted]: Whether this comment has been deleted. If a comment has been deleted the content will be cleared and this will only represent a comment that once existed.
-
-@racket[status]: The status of this comment. Status can be changed by posting a reply to a comment with the desired status.  
-- "open" - The comment is still open. 
-- "resolved" - The comment has been resolved by one of its replies.
-
-@racket[context]: The context of the file which is being commented on.
-
-@racket[createdDate]: The date when this comment was first created.
-
-@racket[fileTitle]: The title of the file which this comment is addressing.
-
-@racket[htmlContent]: HTML formatted content for this comment.
-
-@racket[modifiedDate]: The date when this comment or any of its replies were last modified.
-
-}
-
-@defproc[(drive-comments-delete
-[#:commentId commentId string?]
-[#:fileId fileId string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Deletes a comment.
-
-@racket[commentId]: The ID of the comment.
-
-@racket[fileId]: The ID of the file.
-
-}
 
 @subsection{files}
 @defproc[(drive-files-list
@@ -564,8 +104,8 @@ Gets a file's metadata by ID.
 }
 
 @defproc[(drive-files-insert
-[#:convert convert string? 'N/A]
 [#:pinned pinned string? 'N/A]
+[#:convert convert string? 'N/A]
 [#:ocr ocr string? 'N/A]
 [#:ocrLanguage ocrLanguage string? 'N/A]
 [#:sourceLanguage sourceLanguage string? 'N/A]
@@ -573,12 +113,12 @@ Gets a file's metadata by ID.
 [#:timedTextLanguage timedTextLanguage string? 'N/A]
 [#:timedTextTrackName timedTextTrackName string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:title title string? 'N/A]
 [#:description description string? 'N/A]
+[#:title title string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:labels labels string? 'N/A]
+[#:etag etag string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:quotaBytesUsed quotaBytesUsed string? 'N/A]
 [#:createdDate createdDate string? 'N/A]
 [#:modifiedDate modifiedDate string? 'N/A]
@@ -616,9 +156,9 @@ Gets a file's metadata by ID.
 ) jsexpr?]{
 Insert a new file.
 
-@racket[convert]: Whether to convert this file to the corresponding Google Docs format.
-
 @racket[pinned]: Whether to pin the head revision of the uploaded file.
+
+@racket[convert]: Whether to convert this file to the corresponding Google Docs format.
 
 @racket[ocr]: Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
 
@@ -634,17 +174,17 @@ Insert a new file.
 
 @racket[id]: The id of the file.
 
-@racket[kind]: The type of file. This is always drive#file.
+@racket[description]: A short description of the file.
 
 @racket[title]: The title of this file.
 
-@racket[description]: A short description of the file.
-
 @racket[selfLink]: A link back to this file.
+
+@racket[labels]: A group of labels for the file.
 
 @racket[etag]: ETag of the file.
 
-@racket[labels]: A group of labels for the file.
+@racket[kind]: The type of file. This is always drive#file.
 
 @racket[quotaBytesUsed]: The number of quota bytes used by this file.
 
@@ -705,8 +245,8 @@ Setting this field will put the file in all of the provided folders. On insert, 
 
 @defproc[(drive-files-patch
 [#:fileId fileId string?]
-[#:convert convert string? 'N/A]
 [#:pinned pinned string? 'N/A]
+[#:convert convert string? 'N/A]
 [#:ocr ocr string? 'N/A]
 [#:ocrLanguage ocrLanguage string? 'N/A]
 [#:sourceLanguage sourceLanguage string? 'N/A]
@@ -717,12 +257,12 @@ Setting this field will put the file in all of the provided folders. On insert, 
 [#:newRevision newRevision string? 'N/A]
 [#:setModifiedDate setModifiedDate string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:title title string? 'N/A]
 [#:description description string? 'N/A]
+[#:title title string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:labels labels string? 'N/A]
+[#:etag etag string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:quotaBytesUsed quotaBytesUsed string? 'N/A]
 [#:createdDate createdDate string? 'N/A]
 [#:modifiedDate modifiedDate string? 'N/A]
@@ -762,9 +302,9 @@ Updates file metadata and/or content. This method supports patch semantics.
 
 @racket[fileId]: The ID of the file to update.
 
-@racket[convert]: Whether to convert this file to the corresponding Google Docs format.
-
 @racket[pinned]: Whether to pin the new revision.
+
+@racket[convert]: Whether to convert this file to the corresponding Google Docs format.
 
 @racket[ocr]: Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
 
@@ -786,17 +326,17 @@ Updates file metadata and/or content. This method supports patch semantics.
 
 @racket[id]: The id of the file.
 
-@racket[kind]: The type of file. This is always drive#file.
+@racket[description]: A short description of the file.
 
 @racket[title]: The title of this file.
 
-@racket[description]: A short description of the file.
-
 @racket[selfLink]: A link back to this file.
+
+@racket[labels]: A group of labels for the file.
 
 @racket[etag]: ETag of the file.
 
-@racket[labels]: A group of labels for the file.
+@racket[kind]: The type of file. This is always drive#file.
 
 @racket[quotaBytesUsed]: The number of quota bytes used by this file.
 
@@ -857,8 +397,8 @@ Setting this field will put the file in all of the provided folders. On insert, 
 
 @defproc[(drive-files-copy
 [#:fileId fileId string?]
-[#:convert convert string? 'N/A]
 [#:pinned pinned string? 'N/A]
+[#:convert convert string? 'N/A]
 [#:ocr ocr string? 'N/A]
 [#:ocrLanguage ocrLanguage string? 'N/A]
 [#:sourceLanguage sourceLanguage string? 'N/A]
@@ -866,12 +406,12 @@ Setting this field will put the file in all of the provided folders. On insert, 
 [#:timedTextLanguage timedTextLanguage string? 'N/A]
 [#:timedTextTrackName timedTextTrackName string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:title title string? 'N/A]
 [#:description description string? 'N/A]
+[#:title title string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:labels labels string? 'N/A]
+[#:etag etag string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:quotaBytesUsed quotaBytesUsed string? 'N/A]
 [#:createdDate createdDate string? 'N/A]
 [#:modifiedDate modifiedDate string? 'N/A]
@@ -911,9 +451,9 @@ Creates a copy of the specified file.
 
 @racket[fileId]: The ID of the file to copy.
 
-@racket[convert]: Whether to convert this file to the corresponding Google Docs format.
-
 @racket[pinned]: Whether to pin the head revision of the new copy.
+
+@racket[convert]: Whether to convert this file to the corresponding Google Docs format.
 
 @racket[ocr]: Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
 
@@ -929,17 +469,17 @@ Creates a copy of the specified file.
 
 @racket[id]: The id of the file.
 
-@racket[kind]: The type of file. This is always drive#file.
+@racket[description]: A short description of the file.
 
 @racket[title]: The title of this file.
 
-@racket[description]: A short description of the file.
-
 @racket[selfLink]: A link back to this file.
+
+@racket[labels]: A group of labels for the file.
 
 @racket[etag]: ETag of the file.
 
-@racket[labels]: A group of labels for the file.
+@racket[kind]: The type of file. This is always drive#file.
 
 @racket[quotaBytesUsed]: The number of quota bytes used by this file.
 
@@ -1032,8 +572,8 @@ Restores a file from the trash.
 
 @defproc[(drive-files-update
 [#:fileId fileId string?]
-[#:convert convert string? 'N/A]
 [#:pinned pinned string? 'N/A]
+[#:convert convert string? 'N/A]
 [#:ocr ocr string? 'N/A]
 [#:ocrLanguage ocrLanguage string? 'N/A]
 [#:sourceLanguage sourceLanguage string? 'N/A]
@@ -1044,12 +584,12 @@ Restores a file from the trash.
 [#:newRevision newRevision string? 'N/A]
 [#:setModifiedDate setModifiedDate string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:title title string? 'N/A]
 [#:description description string? 'N/A]
+[#:title title string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:labels labels string? 'N/A]
+[#:etag etag string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:quotaBytesUsed quotaBytesUsed string? 'N/A]
 [#:createdDate createdDate string? 'N/A]
 [#:modifiedDate modifiedDate string? 'N/A]
@@ -1089,9 +629,9 @@ Updates file metadata and/or content
 
 @racket[fileId]: The ID of the file to update.
 
-@racket[convert]: Whether to convert this file to the corresponding Google Docs format.
-
 @racket[pinned]: Whether to pin the new revision.
+
+@racket[convert]: Whether to convert this file to the corresponding Google Docs format.
 
 @racket[ocr]: Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
 
@@ -1113,17 +653,17 @@ Updates file metadata and/or content
 
 @racket[id]: The id of the file.
 
-@racket[kind]: The type of file. This is always drive#file.
+@racket[description]: A short description of the file.
 
 @racket[title]: The title of this file.
 
-@racket[description]: A short description of the file.
-
 @racket[selfLink]: A link back to this file.
+
+@racket[labels]: A group of labels for the file.
 
 @racket[etag]: ETag of the file.
 
-@racket[labels]: A group of labels for the file.
+@racket[kind]: The type of file. This is always drive#file.
 
 @racket[quotaBytesUsed]: The number of quota bytes used by this file.
 
@@ -1198,6 +738,220 @@ Permanently deletes a file by ID. Skips the trash.
 
 }
 
+@subsection{replies}
+@defproc[(drive-replies-list
+[#:fileId fileId string?]
+[#:commentId commentId string?]
+[#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Lists all of the replies to a comment.
+
+@racket[fileId]: The ID of the file.
+
+@racket[commentId]: The ID of the comment.
+
+@racket[maxResults]: The maximum number of replies to include in the response, used for paging.
+
+@racket[pageToken]: The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+
+}
+
+@defproc[(drive-replies-get
+[#:fileId fileId string?]
+[#:commentId commentId string?]
+[#:replyId replyId string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Gets a reply.
+
+@racket[fileId]: The ID of the file.
+
+@racket[commentId]: The ID of the comment.
+
+@racket[replyId]: The ID of the reply.
+
+}
+
+@defproc[(drive-replies-insert
+[#:fileId fileId string?]
+[#:commentId commentId string?]
+[#:author author string? 'N/A]
+[#:content content string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:deleted deleted string? 'N/A]
+[#:createdDate createdDate string? 'N/A]
+[#:htmlContent htmlContent string? 'N/A]
+[#:modifiedDate modifiedDate string? 'N/A]
+[#:replyId replyId string? 'N/A]
+[#:verb verb string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Creates a new reply to the given comment.
+
+@racket[fileId]: The ID of the file.
+
+@racket[commentId]: The ID of the comment.
+
+@racket[author]: The user who wrote this reply.
+
+@racket[content]: The plain text content used to create this reply. This is not HTML safe and should only be used as a starting point to make edits to a reply's content. This field is required on inserts if no verb is specified (resolve/reopen).
+
+@racket[kind]: This is always drive#commentReply.
+
+@racket[deleted]: Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.
+
+@racket[createdDate]: The date when this reply was first created.
+
+@racket[htmlContent]: HTML formatted content for this reply.
+
+@racket[modifiedDate]: The date when this reply was last modified.
+
+@racket[replyId]: The ID of the reply.
+
+@racket[verb]: The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are:  
+- "resolve" - To resolve a comment. 
+- "reopen" - To reopen (un-resolve) a comment.
+
+}
+
+@defproc[(drive-replies-patch
+[#:fileId fileId string?]
+[#:commentId commentId string?]
+[#:replyId replyId string?]
+[#:author author string? 'N/A]
+[#:content content string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:deleted deleted string? 'N/A]
+[#:createdDate createdDate string? 'N/A]
+[#:htmlContent htmlContent string? 'N/A]
+[#:modifiedDate modifiedDate string? 'N/A]
+[#:verb verb string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Updates an existing reply. This method supports patch semantics.
+
+@racket[fileId]: The ID of the file.
+
+@racket[commentId]: The ID of the comment.
+
+@racket[replyId]: The ID of the reply.
+
+@racket[author]: The user who wrote this reply.
+
+@racket[content]: The plain text content used to create this reply. This is not HTML safe and should only be used as a starting point to make edits to a reply's content. This field is required on inserts if no verb is specified (resolve/reopen).
+
+@racket[kind]: This is always drive#commentReply.
+
+@racket[deleted]: Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.
+
+@racket[createdDate]: The date when this reply was first created.
+
+@racket[htmlContent]: HTML formatted content for this reply.
+
+@racket[modifiedDate]: The date when this reply was last modified.
+
+@racket[verb]: The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are:  
+- "resolve" - To resolve a comment. 
+- "reopen" - To reopen (un-resolve) a comment.
+
+}
+
+@defproc[(drive-replies-update
+[#:fileId fileId string?]
+[#:commentId commentId string?]
+[#:replyId replyId string?]
+[#:author author string? 'N/A]
+[#:content content string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:deleted deleted string? 'N/A]
+[#:createdDate createdDate string? 'N/A]
+[#:htmlContent htmlContent string? 'N/A]
+[#:modifiedDate modifiedDate string? 'N/A]
+[#:verb verb string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Updates an existing reply.
+
+@racket[fileId]: The ID of the file.
+
+@racket[commentId]: The ID of the comment.
+
+@racket[replyId]: The ID of the reply.
+
+@racket[author]: The user who wrote this reply.
+
+@racket[content]: The plain text content used to create this reply. This is not HTML safe and should only be used as a starting point to make edits to a reply's content. This field is required on inserts if no verb is specified (resolve/reopen).
+
+@racket[kind]: This is always drive#commentReply.
+
+@racket[deleted]: Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.
+
+@racket[createdDate]: The date when this reply was first created.
+
+@racket[htmlContent]: HTML formatted content for this reply.
+
+@racket[modifiedDate]: The date when this reply was last modified.
+
+@racket[verb]: The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are:  
+- "resolve" - To resolve a comment. 
+- "reopen" - To reopen (un-resolve) a comment.
+
+}
+
+@defproc[(drive-replies-delete
+[#:fileId fileId string?]
+[#:commentId commentId string?]
+[#:replyId replyId string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Deletes a reply.
+
+@racket[fileId]: The ID of the file.
+
+@racket[commentId]: The ID of the comment.
+
+@racket[replyId]: The ID of the reply.
+
+}
+
 @subsection{parents}
 @defproc[(drive-parents-list
 [#:fileId fileId string?]
@@ -1237,8 +991,8 @@ Gets a specific parent reference.
 @defproc[(drive-parents-insert
 [#:fileId fileId string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:isRoot isRoot string? 'N/A]
 [#:parentLink parentLink string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -1255,9 +1009,9 @@ Adds a parent folder for a file.
 
 @racket[id]: The ID of the parent.
 
-@racket[kind]: This is always drive#parentReference.
-
 @racket[selfLink]: A link back to this reference.
+
+@racket[kind]: This is always drive#parentReference.
 
 @racket[isRoot]: Whether or not the parent is the root folder.
 
@@ -1430,8 +1184,8 @@ Gets a specific child reference.
 @defproc[(drive-children-insert
 [#:folderId folderId string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:childLink childLink string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -1447,9 +1201,9 @@ Inserts a file into a folder.
 
 @racket[id]: The ID of the child.
 
-@racket[kind]: This is always drive#childReference.
-
 @racket[selfLink]: A link back to this reference.
+
+@racket[kind]: This is always drive#childReference.
 
 @racket[childLink]: A link to the child.
 
@@ -1471,6 +1225,253 @@ Removes a child from a folder.
 @racket[childId]: The ID of the child.
 
 @racket[folderId]: The ID of the folder.
+
+}
+
+@subsection{comments}
+@defproc[(drive-comments-list
+[#:fileId fileId string?]
+[#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
+[#:includeDeleted includeDeleted string? 'N/A]
+[#:updatedMin updatedMin string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Lists a file's comments.
+
+@racket[fileId]: The ID of the file.
+
+@racket[maxResults]: The maximum number of discussions to include in the response, used for paging.
+
+@racket[pageToken]: The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+
+@racket[includeDeleted]: If set, all comments, including deleted comments (with content stripped) will be returned.
+
+@racket[updatedMin]: Only discussions that were updated after this timestamp will be returned. Formatted as an RFC 3339 timestamp.
+
+}
+
+@defproc[(drive-comments-get
+[#:fileId fileId string?]
+[#:commentId commentId string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Gets a comment by ID.
+
+@racket[fileId]: The ID of the file.
+
+@racket[commentId]: The ID of the comment.
+
+}
+
+@defproc[(drive-comments-insert
+[#:fileId fileId string?]
+[#:anchor anchor string? 'N/A]
+[#:selfLink selfLink string? 'N/A]
+[#:author author string? 'N/A]
+[#:content content string? 'N/A]
+[#:status status string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:context context string? 'N/A]
+[#:deleted deleted string? 'N/A]
+[#:commentId commentId string? 'N/A]
+[#:createdDate createdDate string? 'N/A]
+[#:fileTitle fileTitle string? 'N/A]
+[#:htmlContent htmlContent string? 'N/A]
+[#:modifiedDate modifiedDate string? 'N/A]
+[#:replies replies string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Creates a new comment on the given file.
+
+@racket[fileId]: The ID of the file.
+
+@racket[anchor]: A region of the document represented as a JSON string. See anchor documentation for details on how to define and interpret anchor properties.
+
+@racket[selfLink]: A link back to this comment.
+
+@racket[author]: The user who wrote this comment.
+
+@racket[content]: The plain text content used to create this comment. This is not HTML safe and should only be used as a starting point to make edits to a comment's content.
+
+@racket[status]: The status of this comment. Status can be changed by posting a reply to a comment with the desired status.  
+- "open" - The comment is still open. 
+- "resolved" - The comment has been resolved by one of its replies.
+
+@racket[kind]: This is always drive#comment.
+
+@racket[context]: The context of the file which is being commented on.
+
+@racket[deleted]: Whether this comment has been deleted. If a comment has been deleted the content will be cleared and this will only represent a comment that once existed.
+
+@racket[commentId]: The ID of the comment.
+
+@racket[createdDate]: The date when this comment was first created.
+
+@racket[fileTitle]: The title of the file which this comment is addressing.
+
+@racket[htmlContent]: HTML formatted content for this comment.
+
+@racket[modifiedDate]: The date when this comment or any of its replies were last modified.
+
+@racket[replies]: Replies to this post.
+
+}
+
+@defproc[(drive-comments-patch
+[#:fileId fileId string?]
+[#:commentId commentId string?]
+[#:anchor anchor string? 'N/A]
+[#:selfLink selfLink string? 'N/A]
+[#:author author string? 'N/A]
+[#:content content string? 'N/A]
+[#:status status string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:context context string? 'N/A]
+[#:deleted deleted string? 'N/A]
+[#:createdDate createdDate string? 'N/A]
+[#:fileTitle fileTitle string? 'N/A]
+[#:htmlContent htmlContent string? 'N/A]
+[#:modifiedDate modifiedDate string? 'N/A]
+[#:replies replies string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Updates an existing comment. This method supports patch semantics.
+
+@racket[fileId]: The ID of the file.
+
+@racket[commentId]: The ID of the comment.
+
+@racket[anchor]: A region of the document represented as a JSON string. See anchor documentation for details on how to define and interpret anchor properties.
+
+@racket[selfLink]: A link back to this comment.
+
+@racket[author]: The user who wrote this comment.
+
+@racket[content]: The plain text content used to create this comment. This is not HTML safe and should only be used as a starting point to make edits to a comment's content.
+
+@racket[status]: The status of this comment. Status can be changed by posting a reply to a comment with the desired status.  
+- "open" - The comment is still open. 
+- "resolved" - The comment has been resolved by one of its replies.
+
+@racket[kind]: This is always drive#comment.
+
+@racket[context]: The context of the file which is being commented on.
+
+@racket[deleted]: Whether this comment has been deleted. If a comment has been deleted the content will be cleared and this will only represent a comment that once existed.
+
+@racket[createdDate]: The date when this comment was first created.
+
+@racket[fileTitle]: The title of the file which this comment is addressing.
+
+@racket[htmlContent]: HTML formatted content for this comment.
+
+@racket[modifiedDate]: The date when this comment or any of its replies were last modified.
+
+@racket[replies]: Replies to this post.
+
+}
+
+@defproc[(drive-comments-update
+[#:fileId fileId string?]
+[#:commentId commentId string?]
+[#:anchor anchor string? 'N/A]
+[#:selfLink selfLink string? 'N/A]
+[#:author author string? 'N/A]
+[#:content content string? 'N/A]
+[#:status status string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:context context string? 'N/A]
+[#:deleted deleted string? 'N/A]
+[#:createdDate createdDate string? 'N/A]
+[#:fileTitle fileTitle string? 'N/A]
+[#:htmlContent htmlContent string? 'N/A]
+[#:modifiedDate modifiedDate string? 'N/A]
+[#:replies replies string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Updates an existing comment.
+
+@racket[fileId]: The ID of the file.
+
+@racket[commentId]: The ID of the comment.
+
+@racket[anchor]: A region of the document represented as a JSON string. See anchor documentation for details on how to define and interpret anchor properties.
+
+@racket[selfLink]: A link back to this comment.
+
+@racket[author]: The user who wrote this comment.
+
+@racket[content]: The plain text content used to create this comment. This is not HTML safe and should only be used as a starting point to make edits to a comment's content.
+
+@racket[status]: The status of this comment. Status can be changed by posting a reply to a comment with the desired status.  
+- "open" - The comment is still open. 
+- "resolved" - The comment has been resolved by one of its replies.
+
+@racket[kind]: This is always drive#comment.
+
+@racket[context]: The context of the file which is being commented on.
+
+@racket[deleted]: Whether this comment has been deleted. If a comment has been deleted the content will be cleared and this will only represent a comment that once existed.
+
+@racket[createdDate]: The date when this comment was first created.
+
+@racket[fileTitle]: The title of the file which this comment is addressing.
+
+@racket[htmlContent]: HTML formatted content for this comment.
+
+@racket[modifiedDate]: The date when this comment or any of its replies were last modified.
+
+@racket[replies]: Replies to this post.
+
+}
+
+@defproc[(drive-comments-delete
+[#:fileId fileId string?]
+[#:commentId commentId string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Deletes a comment.
+
+@racket[fileId]: The ID of the file.
+
+@racket[commentId]: The ID of the comment.
 
 }
 
@@ -1514,17 +1515,17 @@ Gets a permission by ID.
 [#:fileId fileId string?]
 [#:sendNotificationEmails sendNotificationEmails string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:type type string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:value value string? 'N/A]
 [#:role role string? 'N/A]
+[#:etag etag string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:additionalRoles additionalRoles string? 'N/A]
 [#:authKey authKey string? 'N/A]
 [#:photoLink photoLink string? 'N/A]
 [#:withLink withLink string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -1541,10 +1542,6 @@ Inserts a permission for a file.
 
 @racket[id]: The ID of the permission.
 
-@racket[kind]: This is always drive#permission.
-
-@racket[name]: The name for this permission.
-
 @racket[type]: The account type. Allowed values are:  
 - user 
 - group 
@@ -1553,14 +1550,16 @@ Inserts a permission for a file.
 
 @racket[selfLink]: A link back to this permission.
 
-@racket[etag]: The ETag of the permission.
-
 @racket[value]: The email address or domain name for the entity. This is not populated in responses.
 
 @racket[role]: The primary role for this user. Allowed values are:  
 - owner 
 - reader 
 - writer
+
+@racket[etag]: The ETag of the permission.
+
+@racket[kind]: This is always drive#permission.
 
 @racket[additionalRoles]: Additional roles for this user. Only commenter is currently allowed.
 
@@ -1570,23 +1569,25 @@ Inserts a permission for a file.
 
 @racket[withLink]: Whether the link is required for this permission.
 
+@racket[name]: The name for this permission.
+
 }
 
 @defproc[(drive-permissions-patch
 [#:fileId fileId string?]
 [#:permissionId permissionId string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:type type string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:value value string? 'N/A]
 [#:role role string? 'N/A]
+[#:etag etag string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:additionalRoles additionalRoles string? 'N/A]
 [#:authKey authKey string? 'N/A]
 [#:photoLink photoLink string? 'N/A]
 [#:withLink withLink string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -1603,10 +1604,6 @@ Updates a permission. This method supports patch semantics.
 
 @racket[id]: The ID of the permission.
 
-@racket[kind]: This is always drive#permission.
-
-@racket[name]: The name for this permission.
-
 @racket[type]: The account type. Allowed values are:  
 - user 
 - group 
@@ -1615,14 +1612,16 @@ Updates a permission. This method supports patch semantics.
 
 @racket[selfLink]: A link back to this permission.
 
-@racket[etag]: The ETag of the permission.
-
 @racket[value]: The email address or domain name for the entity. This is not populated in responses.
 
 @racket[role]: The primary role for this user. Allowed values are:  
 - owner 
 - reader 
 - writer
+
+@racket[etag]: The ETag of the permission.
+
+@racket[kind]: This is always drive#permission.
 
 @racket[additionalRoles]: Additional roles for this user. Only commenter is currently allowed.
 
@@ -1632,23 +1631,25 @@ Updates a permission. This method supports patch semantics.
 
 @racket[withLink]: Whether the link is required for this permission.
 
+@racket[name]: The name for this permission.
+
 }
 
 @defproc[(drive-permissions-update
 [#:fileId fileId string?]
 [#:permissionId permissionId string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:type type string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:value value string? 'N/A]
 [#:role role string? 'N/A]
+[#:etag etag string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:additionalRoles additionalRoles string? 'N/A]
 [#:authKey authKey string? 'N/A]
 [#:photoLink photoLink string? 'N/A]
 [#:withLink withLink string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -1665,10 +1666,6 @@ Updates a permission.
 
 @racket[id]: The ID of the permission.
 
-@racket[kind]: This is always drive#permission.
-
-@racket[name]: The name for this permission.
-
 @racket[type]: The account type. Allowed values are:  
 - user 
 - group 
@@ -1677,14 +1674,16 @@ Updates a permission.
 
 @racket[selfLink]: A link back to this permission.
 
-@racket[etag]: The ETag of the permission.
-
 @racket[value]: The email address or domain name for the entity. This is not populated in responses.
 
 @racket[role]: The primary role for this user. Allowed values are:  
 - owner 
 - reader 
 - writer
+
+@racket[etag]: The ETag of the permission.
+
+@racket[kind]: This is always drive#permission.
 
 @racket[additionalRoles]: Additional roles for this user. Only commenter is currently allowed.
 
@@ -1693,6 +1692,8 @@ Updates a permission.
 @racket[photoLink]: A link to the profile photo, if available.
 
 @racket[withLink]: Whether the link is required for this permission.
+
+@racket[name]: The name for this permission.
 
 }
 
@@ -1755,10 +1756,10 @@ Gets a specific revision.
 [#:fileId fileId string?]
 [#:revisionId revisionId string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:published published string? 'N/A]
+[#:etag etag string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:modifiedDate modifiedDate string? 'N/A]
 [#:mimeType mimeType string? 'N/A]
 [#:downloadUrl downloadUrl string? 'N/A]
@@ -1787,13 +1788,13 @@ Updates a revision. This method supports patch semantics.
 
 @racket[id]: The ID of the revision.
 
-@racket[kind]: This is always drive#revision.
-
 @racket[selfLink]: A link back to this revision.
+
+@racket[published]: Whether this revision is published. This is only populated and can only be modified for Google Docs.
 
 @racket[etag]: The ETag of the revision.
 
-@racket[published]: Whether this revision is published. This is only populated and can only be modified for Google Docs.
+@racket[kind]: This is always drive#revision.
 
 @racket[modifiedDate]: Last time this revision was modified (formatted RFC 3339 timestamp).
 
@@ -1825,10 +1826,10 @@ Updates a revision. This method supports patch semantics.
 [#:fileId fileId string?]
 [#:revisionId revisionId string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
-[#:etag etag string? 'N/A]
 [#:published published string? 'N/A]
+[#:etag etag string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:modifiedDate modifiedDate string? 'N/A]
 [#:mimeType mimeType string? 'N/A]
 [#:downloadUrl downloadUrl string? 'N/A]
@@ -1857,13 +1858,13 @@ Updates a revision.
 
 @racket[id]: The ID of the revision.
 
-@racket[kind]: This is always drive#revision.
-
 @racket[selfLink]: A link back to this revision.
+
+@racket[published]: Whether this revision is published. This is only populated and can only be modified for Google Docs.
 
 @racket[etag]: The ETag of the revision.
 
-@racket[published]: Whether this revision is published. This is only populated and can only be modified for Google Docs.
+@racket[kind]: This is always drive#revision.
 
 @racket[modifiedDate]: Last time this revision was modified (formatted RFC 3339 timestamp).
 

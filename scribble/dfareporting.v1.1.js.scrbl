@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{DFA Reporting API v1.1}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you create, run and download reports.
@@ -9,7 +9,7 @@ Lets you create, run and download reports.
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "dfareporting.v1.1.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,8 +35,8 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
 
 @subsection{files}
@@ -72,9 +73,9 @@ Lists files for a user profile.
 [#:profileId profileId string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:endDate endDate string? 'N/A]
 [#:startDate startDate string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:filters filters string? 'N/A]
 [#:dimensionName dimensionName string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -93,11 +94,11 @@ Retrieves list of report dimension values for a list of filters.
 
 @racket[pageToken]: The value of the nextToken from the previous result page.
 
-@racket[kind]: The kind of request this is, in this case dfareporting#dimensionValueRequest.
-
 @racket[endDate]: The end date of the date range for which to retrieve dimension values. A string of the format: "yyyy-MM-dd".
 
 @racket[startDate]: The start date of the date range for which to retrieve dimension values. A string of the format: "yyyy-MM-dd".
+
+@racket[kind]: The kind of request this is, in this case dfareporting#dimensionValueRequest.
 
 @racket[filters]: The list of filters by which to filter values. The filters are ANDed.
 
@@ -158,10 +159,9 @@ Retrieves a report by its ID.
 [#:profileId profileId string?]
 [#:format format string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:type type string? 'N/A]
 [#:etag etag string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fileName fileName string? 'N/A]
 [#:lastModifiedTime lastModifiedTime string? 'N/A]
 [#:accountId accountId string? 'N/A]
@@ -175,6 +175,7 @@ Retrieves a report by its ID.
 [#:reachCriteria reachCriteria string? 'N/A]
 [#:schedule schedule string? 'N/A]
 [#:subAccountId subAccountId string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -191,10 +192,6 @@ Creates a report.
 
 @racket[id]: The unique ID identifying this report resource.
 
-@racket[kind]: The kind of resource this is, in this case dfareporting#report.
-
-@racket[name]: The name of the report.
-
 @racket[type]: The type of the report, one of:  
 - STANDARD 
 - REACH 
@@ -204,6 +201,8 @@ Creates a report.
 - CROSS_DIMENSION_REACH
 
 @racket[etag]: The eTag of this response for caching purposes.
+
+@racket[kind]: The kind of resource this is, in this case dfareporting#report.
 
 @racket[fileName]: The file name used when generating report files for this report.
 
@@ -231,6 +230,8 @@ Creates a report.
 
 @racket[subAccountId]: The subbaccount ID to which this report belongs if applicable.
 
+@racket[name]: The name of the report.
+
 }
 
 @defproc[(dfareporting-reports-patch
@@ -238,10 +239,9 @@ Creates a report.
 [#:profileId profileId string?]
 [#:format format string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:type type string? 'N/A]
 [#:etag etag string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fileName fileName string? 'N/A]
 [#:lastModifiedTime lastModifiedTime string? 'N/A]
 [#:accountId accountId string? 'N/A]
@@ -255,6 +255,7 @@ Creates a report.
 [#:reachCriteria reachCriteria string? 'N/A]
 [#:schedule schedule string? 'N/A]
 [#:subAccountId subAccountId string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -273,10 +274,6 @@ Updates a report. This method supports patch semantics.
 
 @racket[id]: The unique ID identifying this report resource.
 
-@racket[kind]: The kind of resource this is, in this case dfareporting#report.
-
-@racket[name]: The name of the report.
-
 @racket[type]: The type of the report, one of:  
 - STANDARD 
 - REACH 
@@ -286,6 +283,8 @@ Updates a report. This method supports patch semantics.
 - CROSS_DIMENSION_REACH
 
 @racket[etag]: The eTag of this response for caching purposes.
+
+@racket[kind]: The kind of resource this is, in this case dfareporting#report.
 
 @racket[fileName]: The file name used when generating report files for this report.
 
@@ -312,6 +311,8 @@ Updates a report. This method supports patch semantics.
 @racket[schedule]: The report's schedule. Can only be set if the report's 'dateRange' is a relative date range and the relative date range is not "TODAY".
 
 @racket[subAccountId]: The subbaccount ID to which this report belongs if applicable.
+
+@racket[name]: The name of the report.
 
 }
 
@@ -342,10 +343,9 @@ Runs a report.
 [#:profileId profileId string?]
 [#:format format string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:type type string? 'N/A]
 [#:etag etag string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fileName fileName string? 'N/A]
 [#:lastModifiedTime lastModifiedTime string? 'N/A]
 [#:accountId accountId string? 'N/A]
@@ -359,6 +359,7 @@ Runs a report.
 [#:reachCriteria reachCriteria string? 'N/A]
 [#:schedule schedule string? 'N/A]
 [#:subAccountId subAccountId string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -377,10 +378,6 @@ Updates a report.
 
 @racket[id]: The unique ID identifying this report resource.
 
-@racket[kind]: The kind of resource this is, in this case dfareporting#report.
-
-@racket[name]: The name of the report.
-
 @racket[type]: The type of the report, one of:  
 - STANDARD 
 - REACH 
@@ -390,6 +387,8 @@ Updates a report.
 - CROSS_DIMENSION_REACH
 
 @racket[etag]: The eTag of this response for caching purposes.
+
+@racket[kind]: The kind of resource this is, in this case dfareporting#report.
 
 @racket[fileName]: The file name used when generating report files for this report.
 
@@ -416,6 +415,8 @@ Updates a report.
 @racket[schedule]: The report's schedule. Can only be set if the report's 'dateRange' is a relative date range and the relative date range is not "TODAY".
 
 @racket[subAccountId]: The subbaccount ID to which this report belongs if applicable.
+
+@racket[name]: The name of the report.
 
 }
 

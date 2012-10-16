@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{Enterprise License Manager API v1}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Licensing API to view and manage license for your domain.
@@ -9,7 +9,7 @@ Licensing API to view and manage license for your domain.
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "licensing.v1.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,15 +35,15 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
 
 @subsection{licenseAssignments}
 @defproc[(licensing-licenseAssignments-get
-[#:userId userId string?]
 [#:productId productId string?]
 [#:skuId skuId string?]
+[#:userId userId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -53,11 +54,11 @@ The following optional keyword arguments may be passed to @italic{all} functions
 ) jsexpr?]{
 Get license assignment of a particular product and sku for a user
 
-@racket[userId]: email id or unique Id of the user
-
 @racket[productId]: Name for product
 
 @racket[skuId]: Name for sku
+
+@racket[userId]: email id or unique Id of the user
 
 }
 
@@ -84,11 +85,11 @@ Assign License.
 }
 
 @defproc[(licensing-licenseAssignments-patch
-[#:userId userId string?]
 [#:productId productId string?]
 [#:skuId skuId string?]
-[#:kind kind string? 'N/A]
+[#:userId userId string?]
 [#:selfLink selfLink string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:etags etags string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -100,15 +101,15 @@ Assign License.
 ) jsexpr?]{
 Assign License. This method supports patch semantics.
 
-@racket[userId]: email id or unique Id of the user
-
 @racket[productId]: Name for product
 
 @racket[skuId]: Name for sku for which license would be revoked
 
-@racket[kind]: Identifies the resource as a LicenseAssignment.
+@racket[userId]: email id or unique Id of the user
 
 @racket[selfLink]: Link to this page.
+
+@racket[kind]: Identifies the resource as a LicenseAssignment.
 
 @racket[etags]: ETag of the resource.
 
@@ -168,11 +169,11 @@ List license assignments for given product and sku of the customer.
 }
 
 @defproc[(licensing-licenseAssignments-update
-[#:userId userId string?]
 [#:productId productId string?]
 [#:skuId skuId string?]
-[#:kind kind string? 'N/A]
+[#:userId userId string?]
 [#:selfLink selfLink string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:etags etags string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -184,24 +185,24 @@ List license assignments for given product and sku of the customer.
 ) jsexpr?]{
 Assign License.
 
-@racket[userId]: email id or unique Id of the user
-
 @racket[productId]: Name for product
 
 @racket[skuId]: Name for sku for which license would be revoked
 
-@racket[kind]: Identifies the resource as a LicenseAssignment.
+@racket[userId]: email id or unique Id of the user
 
 @racket[selfLink]: Link to this page.
+
+@racket[kind]: Identifies the resource as a LicenseAssignment.
 
 @racket[etags]: ETag of the resource.
 
 }
 
 @defproc[(licensing-licenseAssignments-delete
-[#:userId userId string?]
 [#:productId productId string?]
 [#:skuId skuId string?]
+[#:userId userId string?]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -212,11 +213,11 @@ Assign License.
 ) jsexpr?]{
 Revoke License.
 
-@racket[userId]: email id or unique Id of the user
-
 @racket[productId]: Name for product
 
 @racket[skuId]: Name for sku
+
+@racket[userId]: email id or unique Id of the user
 
 }
 

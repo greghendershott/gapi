@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{Moderator API v1}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Moderator API
@@ -9,7 +9,7 @@ Moderator API
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "moderator.v1.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,79 +35,9 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
-
-@subsection{tags}
-@defproc[(moderator-tags-list
-[#:seriesId seriesId string?]
-[#:submissionId submissionId string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Lists all tags for the specified submission within the specified series.
-
-@racket[seriesId]: The decimal ID of the Series.
-
-@racket[submissionId]: The decimal ID of the Submission within the Series.
-
-}
-
-@defproc[(moderator-tags-insert
-[#:seriesId seriesId string?]
-[#:submissionId submissionId string?]
-[#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:text text string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Inserts a new tag for the specified submission within the specified series.
-
-@racket[seriesId]: The decimal ID of the Series.
-
-@racket[submissionId]: The decimal ID of the Submission within the Series.
-
-@racket[id]: 
-
-@racket[kind]: 
-
-@racket[text]: 
-
-}
-
-@defproc[(moderator-tags-delete
-[#:seriesId seriesId string?]
-[#:submissionId submissionId string?]
-[#:tagId tagId string?]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Deletes the specified tag from the specified submission within the specified series.
-
-@racket[seriesId]: The decimal ID of the Series.
-
-@racket[submissionId]: The decimal ID of the Submission within the Series.
-
-@racket[tagId]: 
-
-}
 
 @subsection{submissions}
 @defproc[(moderator-submissions-get
@@ -140,12 +71,12 @@ Returns the specified submission within the specified series.
 [#:anonymous anonymous string? 'N/A]
 [#:unauthToken unauthToken string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:author author string? 'N/A]
 [#:created created string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:attribution attribution string? 'N/A]
-[#:geo geo string? 'N/A]
 [#:vote vote string? 'N/A]
+[#:geo geo string? 'N/A]
 [#:counters counters string? 'N/A]
 [#:attachmentUrl attachmentUrl string? 'N/A]
 [#:parentSubmissionId parentSubmissionId string? 'N/A]
@@ -172,17 +103,17 @@ Inserts a new submission in the specified topic within the specified series.
 
 @racket[id]: 
 
-@racket[kind]: 
-
 @racket[author]: 
 
 @racket[created]: 
 
+@racket[kind]: 
+
 @racket[attribution]: 
 
-@racket[geo]: 
-
 @racket[vote]: 
+
+@racket[geo]: 
 
 @racket[counters]: 
 
@@ -406,9 +337,9 @@ Returns the specified topic from the specified series.
 @defproc[(moderator-topics-insert
 [#:seriesId seriesId string?]
 [#:id id string? 'N/A]
+[#:description description string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
-[#:description description string? 'N/A]
 [#:counters counters string? 'N/A]
 [#:rules rules string? 'N/A]
 [#:featuredSubmission featuredSubmission string? 'N/A]
@@ -427,11 +358,11 @@ Inserts a new topic into the specified series.
 
 @racket[id]: 
 
+@racket[description]: 
+
 @racket[kind]: 
 
 @racket[name]: 
-
-@racket[description]: 
 
 @racket[counters]: 
 
@@ -447,9 +378,9 @@ Inserts a new topic into the specified series.
 [#:seriesId seriesId string?]
 [#:topicId topicId string?]
 [#:id id string? 'N/A]
+[#:description description string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
-[#:description description string? 'N/A]
 [#:counters counters string? 'N/A]
 [#:rules rules string? 'N/A]
 [#:featuredSubmission featuredSubmission string? 'N/A]
@@ -470,11 +401,11 @@ Updates the specified topic within the specified series.
 
 @racket[id]: 
 
+@racket[description]: 
+
 @racket[kind]: 
 
 @racket[name]: 
-
-@racket[description]: 
 
 @racket[counters]: 
 
@@ -528,9 +459,9 @@ Returns the specified series.
 
 @defproc[(moderator-series-insert
 [#:id id string? 'N/A]
+[#:description description string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
-[#:description description string? 'N/A]
 [#:anonymousSubmissionAllowed anonymousSubmissionAllowed string? 'N/A]
 [#:counters counters string? 'N/A]
 [#:numTopics numTopics string? 'N/A]
@@ -550,11 +481,11 @@ Inserts a new series.
 
 @racket[id]: 
 
+@racket[description]: 
+
 @racket[kind]: 
 
 @racket[name]: 
-
-@racket[description]: 
 
 @racket[anonymousSubmissionAllowed]: 
 
@@ -575,9 +506,9 @@ Inserts a new series.
 @defproc[(moderator-series-patch
 [#:seriesId seriesId string?]
 [#:id id string? 'N/A]
+[#:description description string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
-[#:description description string? 'N/A]
 [#:anonymousSubmissionAllowed anonymousSubmissionAllowed string? 'N/A]
 [#:counters counters string? 'N/A]
 [#:numTopics numTopics string? 'N/A]
@@ -599,11 +530,11 @@ Updates the specified series. This method supports patch semantics.
 
 @racket[id]: 
 
+@racket[description]: 
+
 @racket[kind]: 
 
 @racket[name]: 
-
-@racket[description]: 
 
 @racket[anonymousSubmissionAllowed]: 
 
@@ -624,9 +555,9 @@ Updates the specified series. This method supports patch semantics.
 @defproc[(moderator-series-update
 [#:seriesId seriesId string?]
 [#:id id string? 'N/A]
+[#:description description string? 'N/A]
 [#:kind kind string? 'N/A]
 [#:name name string? 'N/A]
-[#:description description string? 'N/A]
 [#:anonymousSubmissionAllowed anonymousSubmissionAllowed string? 'N/A]
 [#:counters counters string? 'N/A]
 [#:numTopics numTopics string? 'N/A]
@@ -648,11 +579,11 @@ Updates the specified series.
 
 @racket[id]: 
 
+@racket[description]: 
+
 @racket[kind]: 
 
 @racket[name]: 
-
-@racket[description]: 
 
 @racket[anonymousSubmissionAllowed]: 
 
@@ -715,12 +646,12 @@ Lists or searches the responses for the specified submission within the specifie
 [#:anonymous anonymous string? 'N/A]
 [#:unauthToken unauthToken string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:author author string? 'N/A]
 [#:created created string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:attribution attribution string? 'N/A]
-[#:geo geo string? 'N/A]
 [#:vote vote string? 'N/A]
+[#:geo geo string? 'N/A]
 [#:counters counters string? 'N/A]
 [#:attachmentUrl attachmentUrl string? 'N/A]
 [#:topics topics string? 'N/A]
@@ -748,17 +679,17 @@ Inserts a response for the specified submission in the specified topic within th
 
 @racket[id]: 
 
-@racket[kind]: 
-
 @racket[author]: 
 
 @racket[created]: 
 
+@racket[kind]: 
+
 @racket[attribution]: 
 
-@racket[geo]: 
-
 @racket[vote]: 
+
+@racket[geo]: 
 
 @racket[counters]: 
 
@@ -835,6 +766,76 @@ Updates the profile information for the authenticated user.
 @racket[kind]: 
 
 @racket[attribution]: 
+
+}
+
+@subsection{tags}
+@defproc[(moderator-tags-list
+[#:seriesId seriesId string?]
+[#:submissionId submissionId string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Lists all tags for the specified submission within the specified series.
+
+@racket[seriesId]: The decimal ID of the Series.
+
+@racket[submissionId]: The decimal ID of the Submission within the Series.
+
+}
+
+@defproc[(moderator-tags-insert
+[#:seriesId seriesId string?]
+[#:submissionId submissionId string?]
+[#:id id string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:text text string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Inserts a new tag for the specified submission within the specified series.
+
+@racket[seriesId]: The decimal ID of the Series.
+
+@racket[submissionId]: The decimal ID of the Submission within the Series.
+
+@racket[id]: 
+
+@racket[kind]: 
+
+@racket[text]: 
+
+}
+
+@defproc[(moderator-tags-delete
+[#:seriesId seriesId string?]
+[#:submissionId submissionId string?]
+[#:tagId tagId string?]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Deletes the specified tag from the specified submission within the specified series.
+
+@racket[seriesId]: The decimal ID of the Series.
+
+@racket[submissionId]: The decimal ID of the Submission within the Series.
+
+@racket[tagId]: 
 
 }
 

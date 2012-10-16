@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{Compute Engine API v1beta12}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 API for the Google Compute Engine service.
@@ -9,7 +9,7 @@ API for the Google Compute Engine service.
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "compute.v1beta12.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,8 +35,8 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
 
 @subsection{instances}
@@ -86,12 +87,11 @@ Returns the specified instance resource.
 @defproc[(compute-instances-insert
 [#:project project string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:image image string? 'N/A]
-[#:name name string? 'N/A]
 [#:description description string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:image image string? 'N/A]
 [#:status status string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:creationTimestamp creationTimestamp string? 'N/A]
 [#:zone zone string? 'N/A]
 [#:disks disks string? 'N/A]
@@ -101,6 +101,7 @@ Returns the specified instance resource.
 [#:serviceAccounts serviceAccounts string? 'N/A]
 [#:statusMessage statusMessage string? 'N/A]
 [#:tags tags string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -115,17 +116,15 @@ Creates an instance resource in the specified project using the data included in
 
 @racket[id]: Unique identifier for the resource; defined by the server (output only).
 
-@racket[kind]: Type of the resource.
-
-@racket[image]: An optional URL of the disk image resource to be to be installed on this instance; provided by the client when the instance is created. If not specified, the server will choose a default image.
-
-@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
-
 @racket[description]: An optional textual description of the resource; provided by the client when the resource is created.
 
 @racket[selfLink]: Server defined URL for the resource (output only).
 
+@racket[image]: An optional URL of the disk image resource to be to be installed on this instance; provided by the client when the instance is created. If not specified, the server will choose a default image.
+
 @racket[status]: Instance status. One of the following values: "PROVISIONING", "STAGING", "RUNNING" (output only).
+
+@racket[kind]: Type of the resource.
 
 @racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
 
@@ -145,16 +144,18 @@ Creates an instance resource in the specified project using the data included in
 
 @racket[tags]: An optional set of tags applied to this instance. Used to identify valid sources or targets for network firewalls. Provided by the client when the instance is created. Each tag must be 1-63 characters long, and comply with RFC1035.
 
+@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
+
 }
 
 @defproc[(compute-instances-addAccessConfig
 [#:project project string?]
 [#:instance instance string?]
 [#:network_interface network_interface string?]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:type type string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:natIP natIP string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -171,13 +172,13 @@ Adds an access config to an instance's network interface.
 
 @racket[network_interface]: Network interface name.
 
-@racket[kind]: Type of the resource.
-
-@racket[name]: Name of this access configuration.
-
 @racket[type]: Type of configuration. Must be set to "ONE_TO_ONE_NAT". This configures port-for-port NAT to the internet.
 
+@racket[kind]: Type of the resource.
+
 @racket[natIP]: An external IP address associated with this instance. Specify an unused static IP address available to the project. If left blank, the external IP will be drawn from a shared ephemeral pool.
+
+@racket[name]: Name of this access configuration.
 
 }
 
@@ -274,16 +275,16 @@ Returns the specified persistent disk resource.
 [#:project project string?]
 [#:options options string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:description description string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
 [#:status status string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:creationTimestamp creationTimestamp string? 'N/A]
 [#:sizeGb sizeGb string? 'N/A]
 [#:sourceSnapshot sourceSnapshot string? 'N/A]
 [#:sourceSnapshotId sourceSnapshotId string? 'N/A]
 [#:zone zone string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -300,15 +301,13 @@ Creates a persistent disk resource in the specified project using the data inclu
 
 @racket[id]: Unique identifier for the resource; defined by the server (output only).
 
-@racket[kind]: Type of the resource.
-
-@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
-
 @racket[description]: An optional textual description of the resource; provided by the client when the resource is created.
 
 @racket[selfLink]: Server defined URL for the resource (output only).
 
 @racket[status]: The status of disk creation (output only).
+
+@racket[kind]: Type of the resource.
 
 @racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
 
@@ -319,6 +318,8 @@ Creates a persistent disk resource in the specified project using the data inclu
 @racket[sourceSnapshotId]: The 'id' value of the snapshot used to create this disk. This value may be used to determine whether the disk was created from the current or a previous instance of a given disk snapshot.
 
 @racket[zone]: URL for the zone where the persistent disk resides; provided by the client when the disk is created. A persistent disk must reside in the same zone as the instance to which it is attached.
+
+@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
 
 }
 
@@ -389,16 +390,16 @@ Returns the specified firewall resource.
 @defproc[(compute-firewalls-insert
 [#:project project string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:description description string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:creationTimestamp creationTimestamp string? 'N/A]
 [#:allowed allowed string? 'N/A]
 [#:network network string? 'N/A]
 [#:sourceRanges sourceRanges string? 'N/A]
 [#:sourceTags sourceTags string? 'N/A]
 [#:targetTags targetTags string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -413,13 +414,11 @@ Creates a firewall resource in the specified project using the data included in 
 
 @racket[id]: Unique identifier for the resource; defined by the server (output only).
 
-@racket[kind]: Type of the resource.
-
-@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
-
 @racket[description]: An optional textual description of the resource; provided by the client when the resource is created.
 
 @racket[selfLink]: Server defined URL for the resource (output only).
+
+@racket[kind]: Type of the resource.
 
 @racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
 
@@ -433,22 +432,24 @@ Creates a firewall resource in the specified project using the data included in 
 
 @racket[targetTags]: A list of instance tags indicating sets of instances located on network which may make network connections as specified in allowed. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
 
+@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
+
 }
 
 @defproc[(compute-firewalls-patch
 [#:project project string?]
 [#:firewall firewall string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:description description string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:creationTimestamp creationTimestamp string? 'N/A]
 [#:allowed allowed string? 'N/A]
 [#:network network string? 'N/A]
 [#:sourceRanges sourceRanges string? 'N/A]
 [#:sourceTags sourceTags string? 'N/A]
 [#:targetTags targetTags string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -465,13 +466,11 @@ Updates the specified firewall resource with the data included in the request. T
 
 @racket[id]: Unique identifier for the resource; defined by the server (output only).
 
-@racket[kind]: Type of the resource.
-
-@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
-
 @racket[description]: An optional textual description of the resource; provided by the client when the resource is created.
 
 @racket[selfLink]: Server defined URL for the resource (output only).
+
+@racket[kind]: Type of the resource.
 
 @racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
 
@@ -485,22 +484,24 @@ Updates the specified firewall resource with the data included in the request. T
 
 @racket[targetTags]: A list of instance tags indicating sets of instances located on network which may make network connections as specified in allowed. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
 
+@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
+
 }
 
 @defproc[(compute-firewalls-update
 [#:project project string?]
 [#:firewall firewall string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:description description string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:creationTimestamp creationTimestamp string? 'N/A]
 [#:allowed allowed string? 'N/A]
 [#:network network string? 'N/A]
 [#:sourceRanges sourceRanges string? 'N/A]
 [#:sourceTags sourceTags string? 'N/A]
 [#:targetTags targetTags string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -517,13 +518,11 @@ Updates the specified firewall resource with the data included in the request.
 
 @racket[id]: Unique identifier for the resource; defined by the server (output only).
 
-@racket[kind]: Type of the resource.
-
-@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
-
 @racket[description]: An optional textual description of the resource; provided by the client when the resource is created.
 
 @racket[selfLink]: Server defined URL for the resource (output only).
+
+@racket[kind]: Type of the resource.
 
 @racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
 
@@ -536,6 +535,8 @@ Updates the specified firewall resource with the data included in the request.
 @racket[sourceTags]: A list of instance tags which this rule applies to. One or both of sourceRanges and sourceTags may be set; an inbound connection is allowed if either the range or the tag of the source matches.
 
 @racket[targetTags]: A list of instance tags indicating sets of instances located on network which may make network connections as specified in allowed. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
+
+@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
 
 }
 
@@ -606,15 +607,15 @@ Returns the specified image resource.
 @defproc[(compute-images-insert
 [#:project project string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:description description string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:creationTimestamp creationTimestamp string? 'N/A]
 [#:diskSnapshot diskSnapshot string? 'N/A]
 [#:preferredKernel preferredKernel string? 'N/A]
 [#:rawDisk rawDisk string? 'N/A]
 [#:sourceType sourceType string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -629,13 +630,11 @@ Creates an image resource in the specified project using the data included in th
 
 @racket[id]: Unique identifier for the resource; defined by the server (output only).
 
-@racket[kind]: Type of the resource.
-
-@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
-
 @racket[description]: Textual description of the resource; provided by the client when the resource is created.
 
 @racket[selfLink]: Server defined URL for the resource (output only).
+
+@racket[kind]: Type of the resource.
 
 @racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
 
@@ -646,6 +645,8 @@ Creates an image resource in the specified project using the data included in th
 @racket[rawDisk]: The raw disk image parameters.
 
 @racket[sourceType]: Must be "RAW"; provided by the client when the disk image is created.
+
+@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
 
 }
 
@@ -806,13 +807,13 @@ Returns the specified network resource.
 @defproc[(compute-networks-insert
 [#:project project string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:description description string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:creationTimestamp creationTimestamp string? 'N/A]
 [#:IPv4Range IPv4Range string? 'N/A]
 [#:gatewayIPv4 gatewayIPv4 string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -827,19 +828,19 @@ Creates a network resource in the specified project using the data included in t
 
 @racket[id]: Unique identifier for the resource; defined by the server (output only).
 
-@racket[kind]: Type of the resource.
-
-@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
-
 @racket[description]: An optional textual description of the resource; provided by the client when the resource is created.
 
 @racket[selfLink]: Server defined URL for the resource (output only).
+
+@racket[kind]: Type of the resource.
 
 @racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
 
 @racket[IPv4Range]: Required; The range of internal addresses that are legal on this network. This range is a CIDR specification, for example: 192.168.0.0/16. Provided by the client when the network is created.
 
 @racket[gatewayIPv4]: An optional address that is used for default routing to other networks. This must be within the range specified by IPv4Range, and is typically the first usable address in that range. If not specified, the default value is the first usable address in IPv4Range.
+
+@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
 
 }
 
@@ -945,8 +946,8 @@ Returns the specified project resource.
 
 @defproc[(compute-projects-setCommonInstanceMetadata
 [#:project project string?]
-[#:kind kind string? 'N/A]
 [#:items items string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -959,9 +960,9 @@ Sets metadata common to all instances within the specified project using the dat
 
 @racket[project]: Name of the project scoping this request.
 
-@racket[kind]: Type of the resource.
-
 @racket[items]: Array of key/value pairs. The total size of all keys and values must be less than 512 KB.
+
+@racket[kind]: Type of the resource.
 
 }
 
@@ -1013,15 +1014,15 @@ Returns the specified persistent disk snapshot resource.
 @defproc[(compute-snapshots-insert
 [#:project project string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:description description string? 'N/A]
 [#:selfLink selfLink string? 'N/A]
 [#:status status string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:creationTimestamp creationTimestamp string? 'N/A]
 [#:diskSizeGb diskSizeGb string? 'N/A]
 [#:sourceDisk sourceDisk string? 'N/A]
 [#:sourceDiskId sourceDiskId string? 'N/A]
+[#:name name string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -1036,15 +1037,13 @@ Creates a persistent disk snapshot resource in the specified project using the d
 
 @racket[id]: Unique identifier for the resource; defined by the server (output only).
 
-@racket[kind]: Type of the resource.
-
-@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
-
 @racket[description]: An optional textual description of the resource; provided by the client when the resource is created.
 
 @racket[selfLink]: Server defined URL for the resource (output only).
 
 @racket[status]: The status of the persistent disk snapshot (output only).
+
+@racket[kind]: Type of the resource.
 
 @racket[creationTimestamp]: Creation timestamp in RFC3339 text format (output only).
 
@@ -1053,6 +1052,8 @@ Creates a persistent disk snapshot resource in the specified project using the d
 @racket[sourceDisk]: The source disk used to create this snapshot. Once the source disk has been deleted from the system, this field will be cleared, and will not be set even if a disk with the same name has been re-created.
 
 @racket[sourceDiskId]: The 'id' value of the disk used to create this snapshot. This value may be used to determine whether the snapshot was taken from the current or a previous instance of a given disk name.
+
+@racket[name]: Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.
 
 }
 

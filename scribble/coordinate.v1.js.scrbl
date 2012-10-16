@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{Google Maps Coordinate API v1}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you view and manage jobs in a Coordinate team.
@@ -9,7 +9,7 @@ Lets you view and manage jobs in a Coordinate team.
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "coordinate.v1.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,8 +35,8 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
 
 @subsection{customFieldDef}
@@ -112,8 +113,8 @@ Retrieves a job, including all the changes made to the job.
 [#:customerPhoneNumber customerPhoneNumber string? 'N/A]
 [#:note note string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:state state string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:jobChange jobChange string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -147,9 +148,9 @@ Inserts a new job. Only the state field of the job should be set.
 
 @racket[id]: Job id.
 
-@racket[kind]: Identifies this object as a job.
-
 @racket[state]: Current job state.
+
+@racket[kind]: Identifies this object as a job.
 
 @racket[jobChange]: List of job changes since it was created. The first change corresponds to the state of the job when it was created.
 
@@ -169,8 +170,8 @@ Inserts a new job. Only the state field of the job should be set.
 [#:lat lat string? 'N/A]
 [#:lng lng string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:state state string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:jobChange jobChange string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -208,9 +209,9 @@ Updates a job. Fields that are set in the job state will be updated. This method
 
 @racket[id]: Job id.
 
-@racket[kind]: Identifies this object as a job.
-
 @racket[state]: Current job state.
+
+@racket[kind]: Identifies this object as a job.
 
 @racket[jobChange]: List of job changes since it was created. The first change corresponds to the state of the job when it was created.
 
@@ -230,8 +231,8 @@ Updates a job. Fields that are set in the job state will be updated. This method
 [#:lat lat string? 'N/A]
 [#:lng lng string? 'N/A]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
 [#:state state string? 'N/A]
+[#:kind kind string? 'N/A]
 [#:jobChange jobChange string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -269,9 +270,9 @@ Updates a job. Fields that are set in the job state will be updated.
 
 @racket[id]: Job id.
 
-@racket[kind]: Identifies this object as a job.
-
 @racket[state]: Current job state.
+
+@racket[kind]: Identifies this object as a job.
 
 @racket[jobChange]: List of job changes since it was created. The first change corresponds to the state of the job when it was created.
 

@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{Google Site Verification API v1}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you programatically verify ownership of websites or domains with Google.
@@ -9,7 +9,7 @@ Lets you programatically verify ownership of websites or domains with Google.
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "siteVerification.v1.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,8 +35,8 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
 
 @subsection{webResource}
@@ -71,8 +72,8 @@ Get the most current data for a website or domain.
 @defproc[(siteVerification-webResource-insert
 [#:verificationMethod verificationMethod string?]
 [#:id id string? 'N/A]
-[#:owners owners string? 'N/A]
 [#:site site string? 'N/A]
+[#:owners owners string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -87,35 +88,16 @@ Attempt verification of a website or domain.
 
 @racket[id]: The string used to identify this site. This value should be used in the "id" portion of the REST URL for the Get, Update, and Delete operations.
 
-@racket[owners]: The email addresses of all verified owners.
-
 @racket[site]: The address and type of a site that is verified or will be verified.
 
-}
-
-@defproc[(siteVerification-webResource-getToken
-[#:verificationMethod verificationMethod string? 'N/A]
-[#:site site string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Get a verification token for placing on a website or domain.
-
-@racket[verificationMethod]: The verification method that will be used to verify this site. For sites, 'FILE' or 'META' methods may be used. For domains, only 'DNS' may be used.
-
-@racket[site]: The site for which a verification token will be generated.
+@racket[owners]: The email addresses of all verified owners.
 
 }
 
 @defproc[(siteVerification-webResource-patch
 [#:id id string?]
-[#:owners owners string? 'N/A]
 [#:site site string? 'N/A]
+[#:owners owners string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -128,16 +110,35 @@ Modify the list of owners for your website or domain. This method supports patch
 
 @racket[id]: The id of a verified site or domain.
 
+@racket[site]: The address and type of a site that is verified or will be verified.
+
 @racket[owners]: The email addresses of all verified owners.
 
-@racket[site]: The address and type of a site that is verified or will be verified.
+}
+
+@defproc[(siteVerification-webResource-getToken
+[#:site site string? 'N/A]
+[#:verificationMethod verificationMethod string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Get a verification token for placing on a website or domain.
+
+@racket[site]: The site for which a verification token will be generated.
+
+@racket[verificationMethod]: The verification method that will be used to verify this site. For sites, 'FILE' or 'META' methods may be used. For domains, only 'DNS' may be used.
 
 }
 
 @defproc[(siteVerification-webResource-update
 [#:id id string?]
-[#:owners owners string? 'N/A]
 [#:site site string? 'N/A]
+[#:owners owners string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -150,9 +151,9 @@ Modify the list of owners for your website or domain.
 
 @racket[id]: The id of a verified site or domain.
 
-@racket[owners]: The email addresses of all verified owners.
-
 @racket[site]: The address and type of a site that is verified or will be verified.
+
+@racket[owners]: The email addresses of all verified owners.
 
 }
 

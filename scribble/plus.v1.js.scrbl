@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{Google+ API v1}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 The Google+ API enables developers to build on top of the Google+ platform.
@@ -9,7 +9,7 @@ The Google+ API enables developers to build on top of the Google+ platform.
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "plus.v1.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,14 +35,14 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
 
 @subsection{activities}
 @defproc[(plus-activities-list
-[#:collection collection string?]
 [#:userId userId string?]
+[#:collection collection string?]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:fields fields string? 'N/A]
@@ -54,9 +55,9 @@ The following optional keyword arguments may be passed to @italic{all} functions
 ) jsexpr?]{
 List all of the activities in the specified collection for a particular user.
 
-@racket[collection]: The collection of activities to list.
-
 @racket[userId]: The ID of the user to get activities for. The special value "me" can be used to indicate the authenticated user.
+
+@racket[collection]: The collection of activities to list.
 
 @racket[maxResults]: The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
 
@@ -82,9 +83,9 @@ Get an activity.
 
 @defproc[(plus-activities-search
 [#:query query string?]
+[#:language language string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
-[#:language language string? 'N/A]
 [#:orderBy orderBy string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -98,11 +99,11 @@ Search public activities.
 
 @racket[query]: Full-text search query string.
 
+@racket[language]: Specify the preferred language to search with. See search language codes for available values.
+
 @racket[maxResults]: The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
 
 @racket[pageToken]: The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
-
-@racket[language]: Specify the preferred language to search with. See search language codes for available values.
 
 @racket[orderBy]: Specifies how to order search results.
 
@@ -169,9 +170,9 @@ Get a person's profile.
 
 @defproc[(plus-people-search
 [#:query query string?]
+[#:language language string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
-[#:language language string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
 [#:alt alt string? 'N/A]
@@ -184,11 +185,11 @@ Search all public profiles.
 
 @racket[query]: Specify a query string for full text search of public text in all profiles.
 
+@racket[language]: Specify the preferred language to search with. See search language codes for available values.
+
 @racket[maxResults]: The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
 
 @racket[pageToken]: The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
-
-@racket[language]: Specify the preferred language to search with. See search language codes for available values.
 
 }
 

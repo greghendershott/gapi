@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{Translate API v2}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you translate text from one language to another
@@ -9,7 +9,7 @@ Lets you translate text from one language to another
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "translate.v2.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,9 +35,38 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
+
+@subsection{translations}
+@defproc[(language-translations-list
+[#:q q string?]
+[#:target target string?]
+[#:format format string? 'N/A]
+[#:source source string? 'N/A]
+[#:cid cid string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Returns text translations from one language to another.
+
+@racket[q]: The text to translate
+
+@racket[target]: The target language into which the text should be translated
+
+@racket[format]: The format of the text
+
+@racket[source]: The source language of the text
+
+@racket[cid]: The customization id for translate
+
+}
 
 @subsection{detections}
 @defproc[(language-detections-list
@@ -69,35 +99,6 @@ Detect the language of text.
 List the source/target languages supported by the API
 
 @racket[target]: the language and collation in which the localized results should be returned
-
-}
-
-@subsection{translations}
-@defproc[(language-translations-list
-[#:q q string?]
-[#:target target string?]
-[#:format format string? 'N/A]
-[#:cid cid string? 'N/A]
-[#:source source string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Returns text translations from one language to another.
-
-@racket[q]: The text to translate
-
-@racket[target]: The target language into which the text should be translated
-
-@racket[format]: The format of the text
-
-@racket[cid]: The customization id for translate
-
-@racket[source]: The source language of the text
 
 }
 

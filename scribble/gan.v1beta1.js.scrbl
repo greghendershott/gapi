@@ -1,6 +1,6 @@
 #lang scribble/manual
+Hi hi hi
 @(require planet/scribble (for-label racket))
-
 @title{Google Affiliate Network API v1beta1}
 @margin-note{This documentation has been automatically generated using information supplied by the Google API Discovery service.}
 Lets you have programmatic access to your Google Affiliate Network data.
@@ -9,7 +9,7 @@ Lets you have programmatic access to your Google Affiliate Network data.
 @defmodule[gapi/macro]
 @racket[(require-gapi-doc "gan.v1beta1.js")]
 @section{API Parameters}
-The following optional keyword arguments may be passed to @italic{all} functions for this web service:
+The following optional keyword arguments may be passed to all functions for this web service:
 @defproc[(_
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -18,6 +18,7 @@ The following optional keyword arguments may be passed to @italic{all} functions
 [#:prettyPrint prettyPrint string? 'N/A]
 [#:quotaUser quotaUser string? 'N/A]
 [#:userIp userIp string? 'N/A]
+
 ) jsexpr?]{
 @margin-note{This is not actually a function. This is just using Scribble's defproc form to list the optional keyword arguments that may be passed to @italic{all} functions for this service.}
 @racket[fields]: Selector specifying which fields to include in a partial response.
@@ -34,95 +35,9 @@ The following optional keyword arguments may be passed to @italic{all} functions
 
 @racket[userIp]: IP address of the site where the request originates. Use this if you want to enforce per-user limits.
 
-}
 
+}
 @section{Resources}
-
-@subsection{advertisers}
-@defproc[(gan-advertisers-list
-[#:role role string?]
-[#:roleId roleId string?]
-[#:relationshipStatus relationshipStatus string? 'N/A]
-[#:maxResults maxResults string? 'N/A]
-[#:pageToken pageToken string? 'N/A]
-[#:advertiserCategory advertiserCategory string? 'N/A]
-[#:minNinetyDayEpc minNinetyDayEpc string? 'N/A]
-[#:minPayoutRank minPayoutRank string? 'N/A]
-[#:minSevenDayEpc minSevenDayEpc string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Retrieves data about all advertisers that the requesting advertiser/publisher has access to.
-
-@racket[role]: The role of the requester. Valid values: 'advertisers' or 'publishers'.
-
-@racket[roleId]: The ID of the requesting advertiser or publisher.
-
-@racket[relationshipStatus]: Filters out all advertisers for which do not have the given relationship status with the requesting publisher.
-
-@racket[maxResults]: Max number of items to return in this page. Optional. Defaults to 20.
-
-@racket[pageToken]: The value of 'nextPageToken' from the previous page. Optional.
-
-@racket[advertiserCategory]: Caret(^) delimted list of advertiser categories. Valid categories are defined here: http://www.google.com/support/affiliatenetwork/advertiser/bin/answer.py?hl=en&answer=107581. Filters out all advertisers not in one of the given advertiser categories. Optional.
-
-@racket[minNinetyDayEpc]: Filters out all advertisers that have a ninety day EPC average lower than the given value (inclusive). Min value: 0.0. Optional.
-
-@racket[minPayoutRank]: A value between 1 and 4, where 1 represents the quartile of advertisers with the lowest ranks and 4 represents the quartile of advertisers with the highest ranks. Filters out all advertisers with a lower rank than the given quartile. For example if a 2 was given only advertisers with a payout rank of 25 or higher would be included. Optional.
-
-@racket[minSevenDayEpc]: Filters out all advertisers that have a seven day EPC average lower than the given value (inclusive). Min value: 0.0. Optional.
-
-}
-
-@defproc[(gan-advertisers-get
-[#:role role string?]
-[#:roleId roleId string?]
-[#:advertiserId advertiserId string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Retrieves data about a single advertiser if that the requesting advertiser/publisher has access to it. Only publishers can lookup advertisers. Advertisers can request information about themselves by omitting the advertiserId query parameter.
-
-@racket[role]: The role of the requester. Valid values: 'advertisers' or 'publishers'.
-
-@racket[roleId]: The ID of the requesting advertiser or publisher.
-
-@racket[advertiserId]: The ID of the advertiser to look up. Optional.
-
-}
-
-@subsection{ccOffers}
-@defproc[(gan-ccOffers-list
-[#:publisher publisher string?]
-[#:projection projection string? 'N/A]
-[#:advertiser advertiser string? 'N/A]
-[#:fields fields string? 'N/A]
-[#:key key string? (api-key)]
-[#:alt alt string? 'N/A]
-[#:oauth_token oauth_token string? 'N/A]
-[#:prettyPrint prettyPrint string? 'N/A]
-[#:quotaUser quotaUser string? 'N/A]
-[#:userIp userIp string? 'N/A]
-) jsexpr?]{
-Retrieves credit card offers for the given publisher.
-
-@racket[publisher]: The ID of the publisher in question.
-
-@racket[projection]: The set of fields to return.
-
-@racket[advertiser]: The advertiser ID of a card issuer whose offers to include. Optional, may be repeated.
-
-}
 
 @subsection{events}
 @defproc[(gan-events-list
@@ -192,11 +107,96 @@ Retrieves event data for a given advertiser/publisher.
 
 }
 
+@subsection{advertisers}
+@defproc[(gan-advertisers-list
+[#:role role string?]
+[#:roleId roleId string?]
+[#:maxResults maxResults string? 'N/A]
+[#:pageToken pageToken string? 'N/A]
+[#:advertiserCategory advertiserCategory string? 'N/A]
+[#:minNinetyDayEpc minNinetyDayEpc string? 'N/A]
+[#:minPayoutRank minPayoutRank string? 'N/A]
+[#:minSevenDayEpc minSevenDayEpc string? 'N/A]
+[#:relationshipStatus relationshipStatus string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Retrieves data about all advertisers that the requesting advertiser/publisher has access to.
+
+@racket[role]: The role of the requester. Valid values: 'advertisers' or 'publishers'.
+
+@racket[roleId]: The ID of the requesting advertiser or publisher.
+
+@racket[maxResults]: Max number of items to return in this page. Optional. Defaults to 20.
+
+@racket[pageToken]: The value of 'nextPageToken' from the previous page. Optional.
+
+@racket[advertiserCategory]: Caret(^) delimted list of advertiser categories. Valid categories are defined here: http://www.google.com/support/affiliatenetwork/advertiser/bin/answer.py?hl=en&answer=107581. Filters out all advertisers not in one of the given advertiser categories. Optional.
+
+@racket[minNinetyDayEpc]: Filters out all advertisers that have a ninety day EPC average lower than the given value (inclusive). Min value: 0.0. Optional.
+
+@racket[minPayoutRank]: A value between 1 and 4, where 1 represents the quartile of advertisers with the lowest ranks and 4 represents the quartile of advertisers with the highest ranks. Filters out all advertisers with a lower rank than the given quartile. For example if a 2 was given only advertisers with a payout rank of 25 or higher would be included. Optional.
+
+@racket[minSevenDayEpc]: Filters out all advertisers that have a seven day EPC average lower than the given value (inclusive). Min value: 0.0. Optional.
+
+@racket[relationshipStatus]: Filters out all advertisers for which do not have the given relationship status with the requesting publisher.
+
+}
+
+@defproc[(gan-advertisers-get
+[#:role role string?]
+[#:roleId roleId string?]
+[#:advertiserId advertiserId string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Retrieves data about a single advertiser if that the requesting advertiser/publisher has access to it. Only publishers can lookup advertisers. Advertisers can request information about themselves by omitting the advertiserId query parameter.
+
+@racket[role]: The role of the requester. Valid values: 'advertisers' or 'publishers'.
+
+@racket[roleId]: The ID of the requesting advertiser or publisher.
+
+@racket[advertiserId]: The ID of the advertiser to look up. Optional.
+
+}
+
+@subsection{ccOffers}
+@defproc[(gan-ccOffers-list
+[#:publisher publisher string?]
+[#:projection projection string? 'N/A]
+[#:advertiser advertiser string? 'N/A]
+[#:fields fields string? 'N/A]
+[#:key key string? (api-key)]
+[#:alt alt string? 'N/A]
+[#:oauth_token oauth_token string? 'N/A]
+[#:prettyPrint prettyPrint string? 'N/A]
+[#:quotaUser quotaUser string? 'N/A]
+[#:userIp userIp string? 'N/A]
+) jsexpr?]{
+Retrieves credit card offers for the given publisher.
+
+@racket[publisher]: The ID of the publisher in question.
+
+@racket[projection]: The set of fields to return.
+
+@racket[advertiser]: The advertiser ID of a card issuer whose offers to include. Optional, may be repeated.
+
+}
+
 @subsection{links}
 @defproc[(gan-links-list
 [#:role role string?]
 [#:roleId roleId string?]
-[#:relationshipStatus relationshipStatus string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:advertiserId advertiserId string? 'N/A]
@@ -204,6 +204,7 @@ Retrieves event data for a given advertiser/publisher.
 [#:linkType linkType string? 'N/A]
 [#:promotionType promotionType string? 'N/A]
 [#:advertiserCategory advertiserCategory string? 'N/A]
+[#:relationshipStatus relationshipStatus string? 'N/A]
 [#:assetSize assetSize string? 'N/A]
 [#:startDateMax startDateMax string? 'N/A]
 [#:startDateMin startDateMin string? 'N/A]
@@ -221,8 +222,6 @@ Retrieves all links that match the query parameters.
 
 @racket[roleId]: The ID of the requesting advertiser or publisher.
 
-@racket[relationshipStatus]: The status of the relationship.
-
 @racket[maxResults]: Max number of items to return in this page. Optional. Defaults to 20.
 
 @racket[pageToken]: The value of 'nextPageToken' from the previous page. Optional.
@@ -236,6 +235,8 @@ Retrieves all links that match the query parameters.
 @racket[promotionType]: The promotion type.
 
 @racket[advertiserCategory]: The advertiser's primary vertical.
+
+@racket[relationshipStatus]: The status of the relationship.
 
 @racket[assetSize]: The size of the given asset.
 
@@ -271,11 +272,11 @@ Retrieves data about a single link if the requesting advertiser/publisher has ac
 [#:role role string?]
 [#:roleId roleId string?]
 [#:id id string? 'N/A]
-[#:kind kind string? 'N/A]
-[#:name name string? 'N/A]
 [#:description description string? 'N/A]
 [#:endDate endDate string? 'N/A]
 [#:startDate startDate string? 'N/A]
+[#:kind kind string? 'N/A]
+[#:name name string? 'N/A]
 [#:advertiserId advertiserId string? 'N/A]
 [#:authorship authorship string? 'N/A]
 [#:availability availability string? 'N/A]
@@ -304,15 +305,15 @@ Inserts a new link.
 
 @racket[id]: The ID of this link.
 
-@racket[kind]: The kind for one entity.
-
-@racket[name]: The logical name for this link.
-
 @racket[description]: Description.
 
 @racket[endDate]: Date that this link becomes inactive.
 
 @racket[startDate]: Date that this link becomes active.
+
+@racket[kind]: The kind for one entity.
+
+@racket[name]: The logical name for this link.
 
 @racket[advertiserId]: The advertiser id for the advertiser who owns this link.
 
@@ -344,12 +345,12 @@ Inserts a new link.
 @defproc[(gan-publishers-list
 [#:role role string?]
 [#:roleId roleId string?]
-[#:relationshipStatus relationshipStatus string? 'N/A]
 [#:maxResults maxResults string? 'N/A]
 [#:pageToken pageToken string? 'N/A]
 [#:minNinetyDayEpc minNinetyDayEpc string? 'N/A]
 [#:minPayoutRank minPayoutRank string? 'N/A]
 [#:minSevenDayEpc minSevenDayEpc string? 'N/A]
+[#:relationshipStatus relationshipStatus string? 'N/A]
 [#:publisherCategory publisherCategory string? 'N/A]
 [#:fields fields string? 'N/A]
 [#:key key string? (api-key)]
@@ -365,8 +366,6 @@ Retrieves data about all publishers that the requesting advertiser/publisher has
 
 @racket[roleId]: The ID of the requesting advertiser or publisher.
 
-@racket[relationshipStatus]: Filters out all publishers for which do not have the given relationship status with the requesting publisher.
-
 @racket[maxResults]: Max number of items to return in this page. Optional. Defaults to 20.
 
 @racket[pageToken]: The value of 'nextPageToken' from the previous page. Optional.
@@ -376,6 +375,8 @@ Retrieves data about all publishers that the requesting advertiser/publisher has
 @racket[minPayoutRank]: A value between 1 and 4, where 1 represents the quartile of publishers with the lowest ranks and 4 represents the quartile of publishers with the highest ranks. Filters out all publishers with a lower rank than the given quartile. For example if a 2 was given only publishers with a payout rank of 25 or higher would be included. Optional.
 
 @racket[minSevenDayEpc]: Filters out all publishers that have a seven day EPC average lower than the given value (inclusive). Min value 0.0. Optional.
+
+@racket[relationshipStatus]: Filters out all publishers for which do not have the given relationship status with the requesting publisher.
 
 @racket[publisherCategory]: Caret(^) delimted list of publisher categories. Valid categories: (unclassified|community_and_content|shopping_and_promotion|loyalty_and_rewards|network|search_specialist|comparison_shopping|email). Filters out all publishers not in one of the given advertiser categories. Optional.
 
