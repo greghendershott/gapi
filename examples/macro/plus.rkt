@@ -1,6 +1,6 @@
 #lang racket
 
-(require gapi/macro)
+(require (planet gh/gapi/macro))
 (require-gapi-doc "plus.v1.js")
 
 (define js (paged (plus-people-search #:query "Greg Henderson")))

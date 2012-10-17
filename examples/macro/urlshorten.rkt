@@ -1,6 +1,6 @@
 #lang racket
 
-(require gapi/macro)
+(require (planet gh/gapi/macro))
 (require-gapi-doc "urlshortener.v1.js")
 
 (define orig-url "http://www.racket-lang.org/")

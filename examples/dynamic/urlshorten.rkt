@@ -1,6 +1,6 @@
 #lang racket
 
-(require gapi/dynamic)
+(require (planet gh/gapi/dynamic))
 
 ;; Create a `service?' object from the API discovery document:
 (define goo.gl (local-discovery-document->service
