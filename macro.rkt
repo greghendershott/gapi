@@ -17,13 +17,13 @@
        #,@(append*
            (for/list ([(k v) (hash-ref js 'resources)])
              (for/list ([(k v) (hash-ref v 'methods)])
-               (do-method stx js k v))))))
+               (do-method stx js v))))))
  
-  (define (do-method stx root mn mv)
+  (define (do-method stx root meth)
     (define name (string->symbol
-                  (regexp-replace* #rx"\\." (hash-ref mv 'id) "-")))
+                  (regexp-replace* #rx"\\." (hash-ref meth 'id) "-")))
     (define api-param-names (hash-keys (hash-ref root 'parameters)))
-    (define params (hash-ref mv 'parameters (hash)))
+    (define params (hash-ref meth 'parameters (hash)))
     (define (required? x)
       (and (hash-has-key? x 'required)
            (hash-ref x 'required)))
@@ -38,7 +38,7 @@
     (define _body-params
       (hash-ref (hash-ref (hash-ref root 'schemas)
                           (string->symbol
-                           (hash-ref (hash-ref mv 'request (hash)) '$ref ""))
+                           (hash-ref (hash-ref meth 'request (hash)) '$ref ""))
                           (hash))
                 'properties
                 (hash)))
@@ -55,6 +55,8 @@
                                         api-param-names))
     (define qps (append req-param-names opt-param-names api-param-names))
     (define symbol->keyword (compose1 string->keyword symbol->string))
+    (define base-uri (hash-ref root 'baseUrl))
+    (define res-path (hash-ref meth 'path))
     #`(define (#,(datum->syntax stx name)
                #,@(append* (map (lambda (x)
                                   (list (symbol->keyword x)
@@ -67,8 +69,6 @@
                                                      #'(api-key)]
                                                     [else ''N/A]))))
                                 all-opt-param-names)))
-        (define base-uri #,(hash-ref root 'baseUrl))
-        (define res-path #,(hash-ref mv 'path))
         (define _qpstr (alist->form-urlencoded
                         (filter-map
                          (lambda (k v)
@@ -78,7 +78,7 @@
                          (list #,@qps))))
         (define qpstr (cond [(equal? _qpstr "") ""]
                             [else (string-append "?" _qpstr)]))
-        (define url (string->url (string-append base-uri res-path qpstr)))
+        (define url (string->url (string-append #,base-uri #,res-path qpstr)))
         (define h (list "Content-Type: application/json"))
         (define body
           (jsexpr->bytes
@@ -87,7 +87,7 @@
                         #:when (not (eq? v 'N/A)))
              (values (string->symbol k) v)))) 
         (define in
-          #,(match (hash-ref mv 'httpMethod)
+          #,(match (hash-ref meth 'httpMethod)
               ["GET" #'(get-pure-port url h)]
               ["POST" #'(post-pure-port url body h)]
               ["PUT" #'(put-pure-port url body h)]
