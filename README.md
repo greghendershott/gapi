@@ -41,23 +41,25 @@ service documents---they are "source code" just like your `.rkt`
 files. (Huge thanks to Eli Barzilay for pushing me through the
 macro learning crucible to do this!)
 
-    #lang racket
+```racket
+#lang racket
 
-    (require (planet gh/gapi/macro))
-    (require-gapi-doc "urlshortener.v1.js")
+(require (planet gh/gapi/macro))
+(require-gapi-doc "urlshortener.v1.js")
 
-    (define orig-url "http://www.racket-lang.org/")
-    (define js-insert (urlshortener-url-insert #:longUrl orig-url))
-    (define short-url (dict-ref js-insert 'id))
-    (define js-get (urlshortener-url-get #:shortUrl short-url))
-    (define long-url (dict-ref js-get 'longUrl))
-    (printf "~s was shortened to ~s, which expanded back to ~s: ~a"
-            orig-url short-url long-url
-            (if (equal? orig-url long-url) "Yay!" "Boo!"))
+(define orig-url "http://www.racket-lang.org/")
+(define js-insert (urlshortener-url-insert #:longUrl orig-url))
+(define short-url (dict-ref js-insert 'id))
+(define js-get (urlshortener-url-get #:shortUrl short-url))
+(define long-url (dict-ref js-get 'longUrl))
+(printf "~s was shortened to ~s, which expanded back to ~s: ~a"
+        orig-url short-url long-url
+        (if (equal? orig-url long-url) "Yay!" "Boo!"))
 
-    => "http://www.racket-lang.org/" was shortened
-       to "http://goo.gl/uAKH9", which expanded back to
-       "http://www.racket-lang.org/": Yay!
+=> "http://www.racket-lang.org/" was shortened
+   to "http://goo.gl/uAKH9", which expanded back to
+   "http://www.racket-lang.org/": Yay!
+```
 
 Static `.scrbl` files are generated, because there's really no need
 to do these at compile time. Instead they are needed to create
@@ -70,30 +72,32 @@ runtime, or to parse a locally-stored discovery file at runtime. This
 may be desirable if you want to be able to discover newly-added
 services, for instance.
 
-    #lang racket
+```racket
+#lang racket
 
-    (require (planet gh/gapi/dynamic))
+(require (planet gh/gapi/dynamic))
 
-    ;; Create a `service?' object from the API discovery document:
-    (define goo.gl (local-discovery-document->service
-                    "../../vendor/urlshortener.v1.js"))
-    ;; Make procedures, each corresponding to a resource and method:
-    (define urlshortener-url-insert (method-proc goo.gl 'url 'insert))
-    (define urlshortener-url-get (method-proc goo.gl 'url 'get))
+;; Create a `service?' object from the API discovery document:
+(define goo.gl (local-discovery-document->service
+                "../../vendor/urlshortener.v1.js"))
+;; Make procedures, each corresponding to a resource and method:
+(define urlshortener-url-insert (method-proc goo.gl 'url 'insert))
+(define urlshortener-url-get (method-proc goo.gl 'url 'get))
 
-    ;; Use them:
-    (define orig-url "http://www.racket-lang.org/")
-    (define js-insert (urlshortener-url-insert #:longUrl orig-url))
-    (define short-url (dict-ref js-insert 'id))
-    (define js-get (urlshortener-url-get #:shortUrl short-url))
-    (define long-url (dict-ref js-get 'longUrl))
-    (printf "~s was shortened to ~s, which expanded back to ~s: ~a"
-            orig-url short-url long-url
-            (if (equal? orig-url long-url) "Yay!" "Boo!"))
+;; Use them:
+(define orig-url "http://www.racket-lang.org/")
+(define js-insert (urlshortener-url-insert #:longUrl orig-url))
+(define short-url (dict-ref js-insert 'id))
+(define js-get (urlshortener-url-get #:shortUrl short-url))
+(define long-url (dict-ref js-get 'longUrl))
+(printf "~s was shortened to ~s, which expanded back to ~s: ~a"
+        orig-url short-url long-url
+        (if (equal? orig-url long-url) "Yay!" "Boo!"))
 
-    => "http://www.racket-lang.org/" was shortened
-       to "http://goo.gl/uAKH9", which expanded back to
-       "http://www.racket-lang.org/": Yay!
+=> "http://www.racket-lang.org/" was shortened
+   to "http://goo.gl/uAKH9", which expanded back to
+   "http://www.racket-lang.org/": Yay!
+```
 
 ## Documentation
 
