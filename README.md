@@ -41,7 +41,7 @@ service documents---they are "source code" just like your `.rkt`
 files. (Huge thanks to Eli Barzilay for pushing me through the
 macro learning crucible to do this!)
 
-```racket
+```scheme
 #lang racket
 
 (require (planet gh/gapi/macro))
@@ -72,7 +72,7 @@ runtime, or to parse a locally-stored discovery file at runtime. This
 may be desirable if you want to be able to discover newly-added
 services, for instance.
 
-```racket
+```scheme
 #lang racket
 
 (require (planet gh/gapi/dynamic))
