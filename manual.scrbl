@@ -64,7 +64,8 @@ name is @tt{urlshortener.v1.js}.
 instance:
 
 @codeblock{
-(require gapi/macro)
+#lang racket
+(require (planet gh/gapi/macro)
 (require-gapi-doc "urlshortener.v1.js")
 }
 
@@ -75,7 +76,7 @@ For example:
 @codeblock{
 ;; Use goo.gl to make a short URI
 (define js (urlshortener-url-insert #:longUrl "http://www.racket-lang.org/"))
-(dict-ref js-insert 'id)
+(dict-ref js 'id)
 }
 
 In this example, the @racket[urlshortener-url-insert] procedure was
@@ -183,13 +184,15 @@ available service documents are:
 Example:
 
 @codeblock{
-(require gapi/macro)
+#lang racket
+
+(require (planet gh/gapi/macro))
 (require-gapi-doc "urlshortener.v1.js")
 
 (define orig-url "http://www.racket-lang.org/")
 (define js-insert (urlshortener-url-insert #:longUrl orig-url))
 (define short-url (dict-ref js-insert 'id))
-(define js-get (urlshortener-url-get short-url))
+(define js-get (urlshortener-url-get #:shortUrl short-url))
 (define long-url (dict-ref js-get 'longUrl))
 (printf "~s was shortened to ~s, which expanded back to ~s: ~a"
         orig-url short-url long-url

@@ -41,13 +41,11 @@ service documents---they are "source code" just like your `.rkt`
 files. (Huge thanks to Eli Barzilay for pushing me through the
 macro learning crucible to do this!)
 
-    (require gapi/macro)
-    ;; Define procedures for the service in the discovery document.
-    ;; This happens at compile time, not at run time.
+    #lang racket
+
+    (require (planet gh/gapi/macro))
     (require-gapi-doc "urlshortener.v1.js")
 
-    ;; Use them:
-    ;; The remaining code is exactly the same as the dynamic example:
     (define orig-url "http://www.racket-lang.org/")
     (define js-insert (urlshortener-url-insert #:longUrl orig-url))
     (define short-url (dict-ref js-insert 'id))
@@ -72,15 +70,18 @@ runtime, or to parse a locally-stored discovery file at runtime. This
 may be desirable if you want to be able to discover newly-added
 services, for instance.
 
-    (require gapi/dynamic)
-    ;; Create a `service?' from an API discovery document
-    (define goo.gl (local-discovery-document->service
-                    "vendor/urlshortener.v1.js"))
-    ;; Extract some procedures from the service
-    (define url-insert (method-proc goo.gl 'url 'insert))
-    (define url-get (method-proc goo.gl 'url 'get))
+    #lang racket
 
-    ;; Use them
+    (require (planet gh/gapi/dynamic))
+
+    ;; Create a `service?' object from the API discovery document:
+    (define goo.gl (local-discovery-document->service
+                    "../../vendor/urlshortener.v1.js"))
+    ;; Make procedures, each corresponding to a resource and method:
+    (define urlshortener-url-insert (method-proc goo.gl 'url 'insert))
+    (define urlshortener-url-get (method-proc goo.gl 'url 'get))
+
+    ;; Use them:
     (define orig-url "http://www.racket-lang.org/")
     (define js-insert (urlshortener-url-insert #:longUrl orig-url))
     (define short-url (dict-ref js-insert 'id))
