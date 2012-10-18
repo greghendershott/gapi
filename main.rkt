@@ -62,7 +62,7 @@
 
 (define/contract (get-discovery-document name ver)
   (string? string? . -> . jsexpr?)
-  (call/input-url (discovery-url name)
+  (call/input-url (discovery-url name ver)
                   get-pure-port
                   (compose1 bytes->jsexpr port->bytes)))
 
