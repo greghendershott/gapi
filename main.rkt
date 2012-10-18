@@ -2,7 +2,9 @@
 
 (require json
          net/url
-         net/uri-codec)
+         net/uri-codec
+         planet/planet-archives
+         planet/version)
 
 (provide list-services
          download-discovery-document
@@ -57,9 +59,15 @@
     #:mode 'text
     #:exists 'replace))
 
-;; If `doc' is a path-string? then load that file.
-;; Otherwise if `doc' is a symbol? then convert that to a string and append
-;; that to this package's cache directory and the vendor subdirectory.
+(define/contract (get-discovery-document name ver)
+  (string? string? . -> . jsexpr?)
+  (call/input-url (discovery-url name ver)
+                  get-pure-port
+                  (compose1 bytes->jsexpr port->bytes)))
+
+;; If `doc' is a path-string? then load that file.  Otherwise if `doc'
+;; is a symbol? then convert that to a string and append that to this
+;; package's cache directory and the vendor subdirectory.
 (define/contract (load-discovery-document doc)
   ((or/c symbol? path-string?) . -> . jsexpr?)
   (define path 
@@ -68,14 +76,6 @@
           [else doc]))
   (bytes->jsexpr (file->bytes path)))
 
-(define/contract (get-discovery-document name ver)
-  (string? string? . -> . jsexpr?)
-  (call/input-url (discovery-url name ver)
-                  get-pure-port
-                  (compose1 bytes->jsexpr port->bytes)))
-
-(require planet/planet-archives)
-(require planet/version)
 (define/contract (this-package-cache-dir)
   (-> (or/c #f path?))
   (for/or ([x (get-all-planet-packages)])
