@@ -6,7 +6,6 @@
           (for-label (this-package-in main))
           (for-label (this-package-in dynamic))
           (for-label (this-package-in macro))
-          (for-label (this-package-in code-generate))
           )
 
 @title{GAPI: Google API Discovery Service}
