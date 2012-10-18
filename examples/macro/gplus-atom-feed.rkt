@@ -4,8 +4,15 @@
          xml
          json)
 
-(require-gapi-doc plus.v1.js)
-(require-gapi-doc urlshortener.v1.js)
+;;;
+;;; Example use:
+;;;
+(module+ main
+  (define racket-uid "103883747126741038443") ;Racket page on G+
+  (feed racket-uid))
+
+(require-gapi-doc plus.v1.js)           ;for plus-activities-list
+(require-gapi-doc urlshortener.v1.js)   ;for urlshortener-url-insert
 
 ;; Given a Google+ user ID, create an Atom feed of their recent public
 ;; posts.
@@ -31,12 +38,6 @@
   ;; If you want actual XML text, un-comment the following line:
   ;;(xexpr->string x)
   x)
-
-;;;
-;;; Example use:
-;;;
-(define racket-uid "103883747126741038443") ;Racket page on G+
-(feed racket-uid)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
