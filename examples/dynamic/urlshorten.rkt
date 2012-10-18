@@ -3,8 +3,7 @@
 (require (planet gh/gapi/dynamic))
 
 ;; Create a `service?' object from the API discovery document:
-(define goo.gl (local-discovery-document->service
-                "../../vendor/urlshortener.v1.js"))
+(define goo.gl (online-discovery-document->service "urlshortener" "v1"))
 ;; Make procedures, each corresponding to a resource and method:
 (define urlshortener-url-insert (method-proc goo.gl 'url 'insert))
 (define urlshortener-url-get (method-proc goo.gl 'url 'get))
