@@ -26,7 +26,7 @@
 ;; The Atom field's Title and Content may each be emitted as plain
 ;; text or at HTML.
 ;;
-;; Tip: The G+ ID is LONG-NUMBER in a URI like such as
+;; Tip: The G+ ID is LONG-NUMBER in a URI such as
 ;; https://plus.google.com/u/0/LONG-NUMBER/posts
 ;;
 (define (feed uid [title-as-text? #f] [body-as-text? #f])
@@ -35,8 +35,7 @@
   (define x (gplus->atom-feed-flexpr (json->gplus js)
                                      #:title-as-text? title-as-text?
                                      #:content-as-text? body-as-text?))
-  ;; If you want actual XML text, un-comment the following line:
-  ;;(xexpr->string x)
+  ;; If you want actual XML text, instead return (xexpr->string x)
   x)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
