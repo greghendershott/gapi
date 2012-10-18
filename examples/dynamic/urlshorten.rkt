@@ -4,6 +4,16 @@
 
 ;; Create a `service?' object from the API discovery document:
 (define goo.gl (online-discovery-document->service "urlshortener" "v1"))
+
+;; OR: Get the discovery document from among those that are included
+;; with this library. To indicate this, use a symbol not a string.
+;;
+;; (define plus (local-discovery-document->service 'urlshortener.v1.js))
+;;
+;; OR: Get the discovery document from a local file:
+;;
+;; (define plus (local-discovery-document->service "path/to/urlshortener.v1.js"))
+
 ;; Make procedures, each corresponding to a resource and method:
 (define urlshortener-url-insert (method-proc goo.gl 'url 'insert))
 (define urlshortener-url-get (method-proc goo.gl 'url 'get))

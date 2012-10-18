@@ -65,7 +65,7 @@ instance:
 @codeblock{
 #lang racket
 (require (planet gh/gapi/macro))
-(require-gapi-doc "urlshortener.v1.js")
+(require-gapi-doc urlshortener.v1.js)
 }
 
 5. Use the resulting functions to make requests to the service.
@@ -79,7 +79,7 @@ For example:
 }
 
 In this example, the @racket[urlshortener-url-insert] procedure was
-defined when you did @racket[(require-gapi-doc "urlshortener.v1.js")]
+defined when you did @racket[(require-gapi-doc urlshortener.v1.js)]
 in step 4.
 
 Documentation of the functions defined for each service can be found
@@ -105,6 +105,11 @@ files.
 
 Defines functions respresenting the web service defined by the JSON
 file named @racket[discovery-document-name].
+
+@margin-note{If the name is a symbol, then it is supposed to be one of
+the predefined services shipped with this library, and it is looked
+for in the PLaneT cache. Otherwise if the name is a symbol, it should
+be a fully-qualfiied pathname to the file.}
 
 Each function makes an HTTP request to the web service. The function
 takes normal arguments for parameters that are defined as required,
@@ -186,7 +191,7 @@ Example:
 #lang racket
 
 (require (planet gh/gapi/macro))
-(require-gapi-doc "urlshortener.v1.js")
+(require-gapi-doc urlshortener.v1.js)
 
 (define orig-url "http://www.racket-lang.org/")
 (define js-insert (urlshortener-url-insert #:longUrl orig-url))
@@ -230,11 +235,17 @@ by the JSON provided as a @racket[jsexpr?].
 
 
 @defproc[(local-discovery-document->service
-[filename path-string?]
+[filename (or/c symbol? path-string?)]
 ) service?]{
 
 Create a @racket[service?] object representing the web service defined
 by the JSON file @racket[filename].
+
+If @racket[filename] is a @racket[symbol?], then the file is looked
+for in the @tt{vendor} subdirectory of the PLaneT cache. (This is very
+roughly similar to doing a normal Racket @racket[require] using a
+symbol vs. a string. The symbol version means, "look in a standard
+place".)
 
 }
 

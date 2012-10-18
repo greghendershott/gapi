@@ -1,11 +1,9 @@
 #lang racket
 
-(require (for-syntax racket/path racket/match racket/list json)
-         scribble/base
-         "main.rkt")
+(require (for-syntax racket/path racket/match racket/list json "main.rkt")
+         scribble/base "main.rkt")
 
 (provide require-gapi-doc
-         require/gapi-doc
          api-key
          (all-from-out "main.rkt"))
 
@@ -96,24 +94,13 @@
         (close-input-port in)
         js))
 
-  (define (gen-scribble js stx)
-    #'"NOT IMPLEMENTED")
-
   (define (gen gen)
     (define (m stx)
       (syntax-case stx ()
         [(_ js-file)
-         (string? (syntax-e #'js-file))
-         (let* ([dir (cond [(path-only (syntax-e #'js-file)) => values]
-                           [else (build-path (collection-path "gapi")
-                                             "vendor")])]
-                [js (parameterize ([current-directory dir])
-                      (call-with-input-file (syntax-e #'js-file) read-json))])
-           (gen js stx))]))
+         (or (string? (syntax-e #'js-file))
+             (symbol? (syntax-e #'js-file)))
+         (gen (load-discovery-document (syntax-e #'js-file)) stx)]))
     m))
 
-(define-syntax require-gapi-doc        (gen gen-racket))
-(define-syntax gapi-doc->scribble-code (gen gen-scribble))
-
-(define-syntax-rule (require/gapi-doc gapi-doc ...)
-  (begin (gapi-doc->racket-code gapi-doc) ...))
+(define-syntax require-gapi-doc (gen gen-racket))

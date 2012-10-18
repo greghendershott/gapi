@@ -1,7 +1,7 @@
 #lang racket
 
 (require (planet gh/gapi/macro))
-(require-gapi-doc "urlshortener.v1.js")
+(require-gapi-doc urlshortener.v1.js)
 
 (define orig-url "http://www.racket-lang.org/")
 (define js-insert (urlshortener-url-insert #:longUrl orig-url))

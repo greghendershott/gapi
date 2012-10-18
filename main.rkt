@@ -22,6 +22,7 @@
          schema
          api-key
          paged
+         this-package-cache-dir
          )
 
 (define (list-services #:name [name 'N/A]
@@ -56,8 +57,15 @@
     #:mode 'text
     #:exists 'replace))
 
-(define/contract (load-discovery-document path)
-  (path-string? . -> . jsexpr?)
+;; If `doc' is a path-string? then load that file.
+;; Otherwise if `doc' is a symbol? then convert that to a string and append
+;; that to this package's cache directory and the vendor subdirectory.
+(define/contract (load-discovery-document doc)
+  ((or/c symbol? path-string?) . -> . jsexpr?)
+  (define path 
+    (cond [(symbol? doc)
+           (build-path (this-package-cache-dir) "vendor" (symbol->string doc))]
+          [else doc]))
   (bytes->jsexpr (file->bytes path)))
 
 (define/contract (get-discovery-document name ver)
@@ -65,6 +73,18 @@
   (call/input-url (discovery-url name ver)
                   get-pure-port
                   (compose1 bytes->jsexpr port->bytes)))
+
+(require planet/planet-archives)
+(require planet/version)
+(define/contract (this-package-cache-dir)
+  (-> (or/c #f path?))
+  (for/or ([x (get-all-planet-packages)])
+    (match-define (list path owner name _ maj min) x)
+    (and (equal? owner (this-package-version-owner))
+         (equal? name (this-package-version-name))
+         (equal? maj (this-package-version-maj))
+         (equal? min (this-package-version-min))
+         path)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

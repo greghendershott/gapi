@@ -45,7 +45,7 @@ macro learning crucible to do this!)
 #lang racket
 
 (require (planet gh/gapi/macro))
-(require-gapi-doc "urlshortener.v1.js")
+(require-gapi-doc urlshortener.v1.js)
 
 (define orig-url "http://www.racket-lang.org/")
 (define js-insert (urlshortener-url-insert #:longUrl orig-url))
@@ -78,8 +78,7 @@ services, for instance.
 (require (planet gh/gapi/dynamic))
 
 ;; Create a `service?' object from the API discovery document:
-(define goo.gl (local-discovery-document->service
-                "../../vendor/urlshortener.v1.js"))
+(define goo.gl (online-discovery-document->service "urlshortener" "v1"))
 ;; Make procedures, each corresponding to a resource and method:
 (define urlshortener-url-insert (method-proc goo.gl 'url 'insert))
 (define urlshortener-url-get (method-proc goo.gl 'url 'get))
