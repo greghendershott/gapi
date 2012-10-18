@@ -10,8 +10,8 @@
 (define homepage "https://github.com/greghendershott/gapi")
 
 (define release-notes
-  '((p "Initial version. If PLaneT allowed 0.x version numbers, I'd probably call this 0.8.")))
-(define version "2012-10-16")
+  '((p "A first-24-hour update. This version still needs more examples. It also has a mysterious issue when used in the REPL, but should be fine when used in a .rkt file.")))
+(define version "2012-10-18")
 (define can-be-loaded-with 'all)
 
 (define primary-file '("main.rkt"))

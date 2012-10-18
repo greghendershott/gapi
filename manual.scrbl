@@ -65,7 +65,7 @@ instance:
 
 @codeblock{
 #lang racket
-(require (planet gh/gapi/macro)
+(require (planet gh/gapi/macro))
 (require-gapi-doc "urlshortener.v1.js")
 }
 
