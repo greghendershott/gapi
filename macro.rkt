@@ -1,7 +1,15 @@
 #lang racket
 
-(require (for-syntax racket/path racket/match racket/list json "main.rkt")
-         scribble/base "main.rkt")
+(require (for-syntax racket/path
+                     racket/match
+                     racket/list
+                     json
+                     "main.rkt")
+         scribble/base
+         (except-in net/url url) ;scribble/base provides `url'
+         json
+         net/uri-codec
+         "main.rkt")
 
 (provide require-gapi-doc
          api-key
@@ -11,7 +19,6 @@
 
  (define (gen-racket js stx)
    #`(begin
-       (require json net/url net/uri-codec)
        #,@(append*
            (for/list ([(k v) (hash-ref js 'resources)])
              (for/list ([(k v) (hash-ref v 'methods)])
