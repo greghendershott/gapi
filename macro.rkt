@@ -63,6 +63,7 @@
     (define base-uri (hash-ref root 'baseUrl))
     (define res-path (hash-ref meth 'path))
     #`(define (#,(datum->syntax stx name)
+               [headers '()]
                #,@(append* (map (lambda (x)
                                   (list (symbol->keyword x)
                                         x))
@@ -84,7 +85,8 @@
         (define qpstr (cond [(equal? _qpstr "") ""]
                             [else (string-append "?" _qpstr)]))
         (define url (string->url (string-append #,base-uri #,res-path qpstr)))
-        (define h (list "Content-Type: application/json"))
+        (define h (cons "Content-Type: application/json" headers))
+        (printf "Request headers: ~a\n" h)
         (define body
           (jsexpr->bytes
            (for/hasheq ([k (list #,@(map symbol->string body-param-names))]
