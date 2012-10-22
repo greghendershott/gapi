@@ -29,7 +29,7 @@
    @"@"hyperlink["@(hash-ref j 'documentationLink)" "Google documentation."]
    @"@"table-of-contents{}
    @"@"defmodule[gapi/macro]
-   @"@"racket[(require-gapi-doc "@(hash-ref j 'name).@(hash-ref j 'version).js")]
+   @"@"racket[(require-gapi-doc @(hash-ref j 'name).@(hash-ref j 'version).js)]
    }))
 
 (define (do-api-parameters j)
