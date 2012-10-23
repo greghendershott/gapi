@@ -10,8 +10,8 @@
 (define homepage "https://github.com/greghendershott/gapi")
 
 (define release-notes
-  '((p "This version changes how discovery documents are specified. Caveats: Still needs more examples. Still has a mysterious issue when used in the REPL, but should be fine when used in a .rkt file.")))
-(define version "2012-10-18")
+  '((p "More better examples. Reorganized documentation. Fixed issue when used from REPL.")))
+(define version "2012-10-23")
 (define can-be-loaded-with 'all)
 
 (define primary-file '("main.rkt"))
