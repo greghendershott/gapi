@@ -86,7 +86,6 @@
                             [else (string-append "?" _qpstr)]))
         (define url (string->url (string-append #,base-uri #,res-path qpstr)))
         (define h (cons "Content-Type: application/json" headers))
-        (printf "Request headers: ~a\n" h)
         (define body
           (jsexpr->bytes
            (for/hasheq ([k (list #,@(map symbol->string body-param-names))]
