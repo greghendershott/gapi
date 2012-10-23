@@ -22,9 +22,7 @@ web services.  Each web service is described using a JSON format
 methods, and parameters for the web service.  It is possible to use
 this document programatically to create Racket functions that will
 make HTTP requests to the web service, as well as to make
-documentation for the service. This is a great idea. And to be
-appropriately meta, one of the services you can discover with the
-discovery service, is the discovery service itself.
+documentation for the service.
 
 This library provides two approaches to using the discovery service
 with Racket:
@@ -34,7 +32,7 @@ functions are created at compile time. The discovery documents are not
 used at runtime and need not be shipped with your application;
 essentially they are source code just like your @tt{.rkt} files.
 
-2. Dynamically load and parse the discovery docuemnt (from a local
+2. Dynamically load and parse the discovery document (from a local
 file or from the Discovery web service) at runtime.
 
 Unless you need runtime dynamism, the first approach is easier, more
@@ -54,7 +52,7 @@ Let's say you simply want to use one of the Google web services.
 @hyperlink["https://code.google.com/apis/console/" "API Console"].
 
 2. Put your Google API key in a @tt{.google-api-key} file in your home
-directory (On Unix and OSX: @tt{~/.google-api-key}.)
+directory (On Unix and OS X: @tt{~/.google-api-key}.)
 
 3. Find the name of the discovery document corresponding to the
 service you want to use; see @Secref["service-docs"].  For example,
@@ -84,8 +82,8 @@ In this example, the @racket[urlshortener-url-insert] procedure was
 defined when you did @racket[(require-gapi-doc urlshortener.v1.js)]
 in step 4.
 
-Documentation of the functions defined for each service can be found
-using the links in @Secref["service-docs"].
+You can find documentation of the functions defined for each service
+using the links provided in @Secref["service-docs"].
 
 In general the web services will return JSON which is parsed and
 returned to you as a @racket[jsexpr?] via the Racket @racket[json]
@@ -109,84 +107,30 @@ files.
 Defines functions respresenting the web service defined by the JSON
 file named @racket[discovery-document-name].
 
-@margin-note{If the name is a symbol, then it is supposed to be one of
-the predefined services shipped with this library, and it is looked
-for in the PLaneT cache. Otherwise if the name is a symbol, it should
-be a fully-qualfiied pathname to the file.}
+@racket[discovery-document-name] may be either a fully qualified
+pathname, or a literal that is the name of one of the
+@Secref["service-docs"].
 
-Each function makes an HTTP request to the web service. The function
-takes normal arguments for parameters that are defined as required,
-whereas optional keyword arguments are used to represent other
-parameters. These values are supplied in the HTTP request to the service.
+Each defined function makes an HTTP request to the web service. The
+function takes keyword arguments. These values are supplied in the
+HTTP request to the service.
 
-The web service responds with JSON, which is returned by this function
-as a @racket[jsexpr?]. This library doesn't try to marshal the
-response into structs. Instead you will need to understand its format
-and retrieve the information, for example @racket[(hash-ref js
+The web service responds with JSON, which is returned by the wrapper
+function as a @racket[jsexpr?]. This library doesn't try to marshal
+the response into structs. Instead you will need to understand its
+format and retrieve the information, for example @racket[(hash-ref js
 'items)] if the response contains a list of items.
 
-As a convenience, the @racket[#:key] argument (which corresponds to
-the @tt{key} query parameter in the HTTP request) defaults to the
-@racket[api-key] Racket parameter. Put your Google API key in a file
-named @tt{.google-api-key} in your home directory--in other words,
-@tt{~/.google-api-key}.
+Every Google services takes an optional @tt{key} query parameter for a
+Google API key. The wrapper functions provide this as a @racket[#:key]
+argument. As a convenience, the @racket[#:key] argument defaults to
+the @racket[api-key] Racket parameter. Put your Google API key in a
+file named @tt{.google-api-key} in your home directory---in other
+words, @tt{~/.google-api-key}.
 
 As another convenience, see the @racket[paged] form which simplifies
 making repeated calls to a service that returns results in small
 "pages" (batches of results).
-
-If @racket[discovery-document-name] is a fully qualified pathname,
-then it will be loaded.
-
-Otherwise if @racket[discovery-document-name] has no path (i.e. if
-@racket[path-only] returns @racket[#f]) then it must be located in the
-@tt{vendor} subdirectory of the GAPI collection. The currently
-available service documents are:
-
-@subsection[#:tag "service-docs"]{Available service documents}
-
-@itemize[
-@item{@hyperlink["adexchangebuyer.v1.1.js.html" "adexchangebuyer.v1.1.js"] : Lets you manage your Ad Exchange Buyer account.}
-@item{@hyperlink["adsense.v1.1.js.html" "adsense.v1.1.js"] : Gives AdSense publishers access to their inventory and the ability to generate reports}
-@item{@hyperlink["adsensehost.v4.1.js.html" "adsensehost.v4.1.js"] : Gives AdSense Hosts access to report generation, ad code generation, and publisher management capabilities.}
-@item{@hyperlink["analytics.v3.js.html" "analytics.v3.js"] : View and manage your Google Analytics data}
-@item{@hyperlink["androidpublisher.v1.js.html" "androidpublisher.v1.js"] : Lets Android application developers access their Google Play accounts.}
-@item{@hyperlink["audit.v1.js.html" "audit.v1.js"] : Lets you access user activities in your enterprise made through various applications.}
-@item{@hyperlink["bigquery.v2.js.html" "bigquery.v2.js"] : A data platform for customers to create, manage, share and query data.}
-@item{@hyperlink["blogger.v3.js.html" "blogger.v3.js"] : API for access to the data within Blogger.}
-@item{@hyperlink["books.v1.js.html" "books.v1.js"] : Lets you search for books and manage your Google Books library.}
-@item{@hyperlink["calendar.v3.js.html" "calendar.v3.js"] : Lets you manipulate events and other calendar data.}
-@item{@hyperlink["civicinfo.us_v1.js.html" "civicinfo.us_v1.js"] : An API for accessing civic information.}
-@item{@hyperlink["compute.v1beta12.js.html" "compute.v1beta12.js"] : API for the Google Compute Engine service.}
-@item{@hyperlink["coordinate.v1.js.html" "coordinate.v1.js"] : Lets you view and manage jobs in a Coordinate team.}
-@item{@hyperlink["customsearch.v1.js.html" "customsearch.v1.js"] : Lets you search over a website or collection of websites}
-@item{@hyperlink["dfareporting.v1.1.js.html" "dfareporting.v1.1.js"] : Lets you create, run and download reports.}
-@item{@hyperlink["discovery.v1.js.html" "discovery.v1.js"] : Lets you discover information about other Google APIs, such as what APIs are available, the resource and method details for each API}
-@item{@hyperlink["drive.v2.js.html" "drive.v2.js"] : The API to interact with Drive.}
-@item{@hyperlink["freebase.v1.js.html" "freebase.v1.js"] : Lets you access the Freebase repository of open data.}
-@item{@hyperlink["fusiontables.v1.js.html" "fusiontables.v1.js"] : API for working with Fusion Tables data.}
-@item{@hyperlink["gan.v1beta1.js.html" "gan.v1beta1.js"] : Lets you have programmatic access to your Google Affiliate Network data.}
-@item{@hyperlink["groupssettings.v1.js.html" "groupssettings.v1.js"] : Lets you manage permission levels and related settings of a group.}
-@item{@hyperlink["latitude.v1.js.html" "latitude.v1.js"] : Lets you read and update your current location and work with your location history}
-@item{@hyperlink["licensing.v1.js.html" "licensing.v1.js"] : Licensing API to view and manage license for your domain.}
-@item{@hyperlink["moderator.v1.js.html" "moderator.v1.js"] : Moderator API}
-@item{@hyperlink["oauth2.v2.js.html" "oauth2.v2.js"] : Lets you access OAuth2 protocol related APIs.}
-@item{@hyperlink["orkut.v2.js.html" "orkut.v2.js"] : Lets you manage activities, comments and badges in Orkut. More stuff coming in time.}
-@item{@hyperlink["pagespeedonline.v1.js.html" "pagespeedonline.v1.js"] : Lets you analyze the performance of a web page and get tailored suggestions to make that page faster.}
-@item{@hyperlink["plus.v1.js.html" "plus.v1.js"] : The Google+ API enables developers to build on top of the Google+ platform.}
-@item{@hyperlink["prediction.v1.5.js.html" "prediction.v1.5.js"] : Lets you access a cloud hosted machine learning service that makes it easy to build smart apps}
-@item{@hyperlink["reseller.v1.js.html" "reseller.v1.js"] : Lets you create and manage your customers and their subscriptions.}
-@item{@hyperlink["shopping.v1.js.html" "shopping.v1.js"] : Lets you search over product data.}
-@item{@hyperlink["siteVerification.v1.js.html" "siteVerification.v1.js"] : Lets you programatically verify ownership of websites or domains with Google.}
-@item{@hyperlink["storage.v1beta1.js.html" "storage.v1beta1.js"] : Lets you store and retrieve potentially-large, immutable data objects.}
-@item{@hyperlink["taskqueue.v1beta2.js.html" "taskqueue.v1beta2.js"] : Lets you access a Google App Engine Pull Task Queue over REST.}
-@item{@hyperlink["tasks.v1.js.html" "tasks.v1.js"] : Lets you manage your tasks and task lists.}
-@item{@hyperlink["translate.v2.js.html" "translate.v2.js"] : Lets you translate text from one language to another}
-@item{@hyperlink["urlshortener.v1.js.html" "urlshortener.v1.js"] : Lets you create, inspect, and manage goo.gl short URLs}
-@item{@hyperlink["webfonts.v1.js.html" "webfonts.v1.js"] : The Google Web Fonts Developer API.}
-@item{@hyperlink["youtube.v3.js.html" "youtube.v3.js"] : Programmatic access to YouTube features.}
-@item{@hyperlink["youtubeAnalytics.v1.js.html" "youtubeAnalytics.v1.js"] : Retrieve your YouTube Analytics reports.}
-]
 
 Example:
 
@@ -245,11 +189,8 @@ by the JSON provided as a @racket[jsexpr?].
 Create a @racket[service?] object representing the web service defined
 by the JSON file @racket[filename].
 
-If @racket[filename] is a @racket[symbol?], then the file is looked
-for in the @tt{vendor} subdirectory of the PLaneT cache. (This is very
-roughly similar to doing a normal Racket @racket[require] using a
-symbol vs. a string. The symbol version means, "look in a standard
-place".)
+If @racket[filename] is a @racket[symbol?], then it should be one of
+the @Secref["service-docs"].
 
 }
 
@@ -368,6 +309,114 @@ take them in small batches, too.  However if you really want the
 results accumuluated for you, use this form.
 
 }
+
+@; ----------------------------------------------------------------------------
+@section[#:tag "service-docs"]{Available services}
+
+The following service documents are shipped with this library. They
+are located in the @tt{vendor} subdirectory of this library's location
+in your PLaneT cache.
+
+You may reference one with the @racket[require-gapi-doc] form by
+supplying its name literally---for example, @racket[(require-gapi-doc
+plus.v1.js)]. Notice that @racket[plus.v1.js] is neither a
+@racket[string?] nor a @racket[symbol?].
+
+You may reference one with the
+@racket[local-discovery-document->service] procedure by supplying its
+name as a @racket[symbol]---for example,
+@racket[(local-discovery-document->service 'plus.v1.js)]. Notice that
+@racket['plus.v1.js] is a @racket[symbol?] with a leading quote.
+
+Each service listed below has a link to documentation which was
+generated from its discovery document. In that documentation there is
+also a link to Google's "normal" documentation, which you can read for
+a fuller explanation of the service.
+
+@itemize[
+@item{@hyperlink["adexchangebuyer.v1.1.js.html" "adexchangebuyer.v1.1.js"] : Lets you manage your Ad Exchange Buyer account.}
+@item{@hyperlink["adsense.v1.1.js.html" "adsense.v1.1.js"] : Gives AdSense publishers access to their inventory and the ability to generate reports}
+@item{@hyperlink["adsensehost.v4.1.js.html" "adsensehost.v4.1.js"] : Gives AdSense Hosts access to report generation, ad code generation, and publisher management capabilities.}
+@item{@hyperlink["analytics.v3.js.html" "analytics.v3.js"] : View and manage your Google Analytics data}
+@item{@hyperlink["androidpublisher.v1.js.html" "androidpublisher.v1.js"] : Lets Android application developers access their Google Play accounts.}
+@item{@hyperlink["audit.v1.js.html" "audit.v1.js"] : Lets you access user activities in your enterprise made through various applications.}
+@item{@hyperlink["bigquery.v2.js.html" "bigquery.v2.js"] : A data platform for customers to create, manage, share and query data.}
+@item{@hyperlink["blogger.v3.js.html" "blogger.v3.js"] : API for access to the data within Blogger.}
+@item{@hyperlink["books.v1.js.html" "books.v1.js"] : Lets you search for books and manage your Google Books library.}
+@item{@hyperlink["calendar.v3.js.html" "calendar.v3.js"] : Lets you manipulate events and other calendar data.}
+@item{@hyperlink["civicinfo.us_v1.js.html" "civicinfo.us_v1.js"] : An API for accessing civic information.}
+@item{@hyperlink["compute.v1beta12.js.html" "compute.v1beta12.js"] : API for the Google Compute Engine service.}
+@item{@hyperlink["coordinate.v1.js.html" "coordinate.v1.js"] : Lets you view and manage jobs in a Coordinate team.}
+@item{@hyperlink["customsearch.v1.js.html" "customsearch.v1.js"] : Lets you search over a website or collection of websites}
+@item{@hyperlink["dfareporting.v1.1.js.html" "dfareporting.v1.1.js"] : Lets you create, run and download reports.}
+@item{@hyperlink["discovery.v1.js.html" "discovery.v1.js"] : Lets you discover information about other Google APIs, such as what APIs are available, the resource and method details for each API}
+@item{@hyperlink["drive.v2.js.html" "drive.v2.js"] : The API to interact with Drive.}
+@item{@hyperlink["freebase.v1.js.html" "freebase.v1.js"] : Lets you access the Freebase repository of open data.}
+@item{@hyperlink["fusiontables.v1.js.html" "fusiontables.v1.js"] : API for working with Fusion Tables data.}
+@item{@hyperlink["gan.v1beta1.js.html" "gan.v1beta1.js"] : Lets you have programmatic access to your Google Affiliate Network data.}
+@item{@hyperlink["groupssettings.v1.js.html" "groupssettings.v1.js"] : Lets you manage permission levels and related settings of a group.}
+@item{@hyperlink["latitude.v1.js.html" "latitude.v1.js"] : Lets you read and update your current location and work with your location history}
+@item{@hyperlink["licensing.v1.js.html" "licensing.v1.js"] : Licensing API to view and manage license for your domain.}
+@item{@hyperlink["moderator.v1.js.html" "moderator.v1.js"] : Moderator API}
+@item{@hyperlink["oauth2.v2.js.html" "oauth2.v2.js"] : Lets you access OAuth2 protocol related APIs.}
+@item{@hyperlink["orkut.v2.js.html" "orkut.v2.js"] : Lets you manage activities, comments and badges in Orkut. More stuff coming in time.}
+@item{@hyperlink["pagespeedonline.v1.js.html" "pagespeedonline.v1.js"] : Lets you analyze the performance of a web page and get tailored suggestions to make that page faster.}
+@item{@hyperlink["plus.v1.js.html" "plus.v1.js"] : The Google+ API enables developers to build on top of the Google+ platform.}
+@item{@hyperlink["prediction.v1.5.js.html" "prediction.v1.5.js"] : Lets you access a cloud hosted machine learning service that makes it easy to build smart apps}
+@item{@hyperlink["reseller.v1.js.html" "reseller.v1.js"] : Lets you create and manage your customers and their subscriptions.}
+@item{@hyperlink["shopping.v1.js.html" "shopping.v1.js"] : Lets you search over product data.}
+@item{@hyperlink["siteVerification.v1.js.html" "siteVerification.v1.js"] : Lets you programatically verify ownership of websites or domains with Google.}
+@item{@hyperlink["storage.v1beta1.js.html" "storage.v1beta1.js"] : Lets you store and retrieve potentially-large, immutable data objects.}
+@item{@hyperlink["taskqueue.v1beta2.js.html" "taskqueue.v1beta2.js"] : Lets you access a Google App Engine Pull Task Queue over REST.}
+@item{@hyperlink["tasks.v1.js.html" "tasks.v1.js"] : Lets you manage your tasks and task lists.}
+@item{@hyperlink["translate.v2.js.html" "translate.v2.js"] : Lets you translate text from one language to another}
+@item{@hyperlink["urlshortener.v1.js.html" "urlshortener.v1.js"] : Lets you create, inspect, and manage goo.gl short URLs}
+@item{@hyperlink["webfonts.v1.js.html" "webfonts.v1.js"] : The Google Web Fonts Developer API.}
+@item{@hyperlink["youtube.v3.js.html" "youtube.v3.js"] : Programmatic access to YouTube features.}
+@item{@hyperlink["youtubeAnalytics.v1.js.html" "youtubeAnalytics.v1.js"] : Retrieve your YouTube Analytics reports.}
+]
+
+@; ----------------------------------------------------------------------------
+
+@section{Examples}
+
+See the @tt{examples} subdirectory or
+@hyperlink["https://github.com/greghendershott/gapi/tree/master/examples"
+"GitHub"] for examples.
+
+For this documentation, here is one example of an example (ha ha
+ha). This example uses OAuth2 to access Google+ user posts.
+
+@codeblock{
+#lang racket
+
+(require (planet ryanc/webapi))   ;for OAuth
+(require (planet gh/gapi/macro))  ;for Google web services...
+(require-gapi-doc plus.v1.js)     ;..specifically Google+
+
+;; For this example to work, you must go to the Google API Console and
+;; create an application, such as "Racket GAPI Example". Put the
+;; resulting client ID and client secret here:
+(define my-client-id "put your client ID here")
+(define my-client-secret "put your client secret here")
+
+(define client (oauth2-client #:id my-client-id
+                              #:secret my-client-secret))
+
+(define scopes (list "https://www.googleapis.com/auth/plus.me"))
+
+;; This will open a browser window so you can authorize.
+(define auth (oauth2/request-auth-code/browser google-auth-server	 
+                                               client	 
+                                               scopes))
+
+;; Use the access token. We can supply a userId of "me".
+(define access-token (send auth get-access-token #:re-acquire? #t))
+(plus-activities-list #:userId "me"
+                      #:collection "public"
+                      #:oauth_token access-token)
+}
+
 
 @; ----------------------------------------------------------------------------
 @section{License}
