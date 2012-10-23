@@ -159,9 +159,8 @@ Example:
 @defmodule/this-package[dynamic]
 
 Another way to use the API discovery service is to query it at
-runtime, or to parse a locally-stored discovery file at runtime. This
-may be desirable if you want to be able to discover newly-added
-services, for example.
+runtime. This may be desirable if you want to be able to discover
+newly-added services.
 
 
 @defproc[(service? [v any/c]) boolean?]{
