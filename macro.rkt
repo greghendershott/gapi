@@ -98,7 +98,7 @@
               ["POST" #'(post-pure-port url body h)]
               ["PUT" #'(put-pure-port url body h)]
               [else #'(error ',name "TO-DO")]))
-        (define js (bytes->jsexpr (port->bytes in)))
+        (define js (read-json in))
         (close-input-port in)
         js))
 
