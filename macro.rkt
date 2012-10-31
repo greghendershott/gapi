@@ -5,8 +5,7 @@
                      racket/list
                      json
                      "main.rkt")
-         scribble/base
-         (except-in net/url url) ;scribble/base provides `url'
+         net/url
          json
          net/uri-codec
          "main.rkt")
