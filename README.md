@@ -21,7 +21,7 @@ functions are created at compile time. The discovery documents are not
 used at runtime and need not be shipped with your application;
 essentially they are source code just like your `.rkt` files.
 
-2. Dynamically load and parse the discovery docuemnt (from a local
+2. Dynamically load and parse the discovery document (from a local
 file or from the Discovery web service) at runtime.
 
 Unless you need runtime dynamism, the first approach is easier, more
@@ -35,7 +35,7 @@ code.
 ## Macros and .SCRBL generation
 
 The simplest approach creates wrapper functions for the web service
-at compile time. This reduces startup time for your
+at compile time. This reduces start-up time for your
 application. Furthermore, it means that you don't need to ship the
 service documents---they are "source code" just like your `.rkt`
 files. (Huge thanks to Eli Barzilay for pushing me through the
