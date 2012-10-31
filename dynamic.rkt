@@ -95,7 +95,7 @@
                                                   (map keyword->symbol kws)
                                                   vs))))))
   ;; Tweak that procedure to accept only specific required and
-  ;; optional keyword argumetns.
+  ;; optional keyword arguments.
   (define req-kws (map symbol->keyword (hash-keys req-params)))
   (define opt-kws (map symbol->keyword (hash-keys opt-params)))
   (define body-kws (map symbol->keyword (hash-keys body-params)))
