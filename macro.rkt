@@ -4,7 +4,8 @@
                      racket/match
                      racket/list
                      json
-                     "main.rkt")
+                     "main.rkt"
+                     "patch-port.rkt")
          net/url
          json
          net/uri-codec
@@ -99,7 +100,10 @@
               ["GET" #'(get-pure-port url h)]
               ["POST" #'(post-pure-port url body h)]
               ["PUT" #'(put-pure-port url body h)]
-              [else #'(error ',name "TO-DO")]))
+              ["DELETE" #'(delete-pure-port url h)]
+              ["PATCH" #'(patch-pure-port url body h)]
+              [(var m) (lambda (m)
+                         #'(error ',name "HTTP method ~a not supported" m))]))
         (define js (read-json in))
         (close-input-port in)
         js))

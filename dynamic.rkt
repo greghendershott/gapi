@@ -4,6 +4,7 @@
          net/url
          net/uri-codec
          "main.rkt"
+         "patch-port.rkt"
          "dict-merge.rkt"
          )
 
@@ -54,7 +55,10 @@
     (match (hash-ref method 'httpMethod)
       ["GET" (lambda (url body h) (get-pure-port url h))]
       ["POST" post-pure-port]
-      ["PUT" put-pure-port]))
+      ["PUT" put-pure-port]
+      ["DELETE" delete-pure-port]
+      ["PATCH" patch-pure-port]
+      [(var m) (error 'create-new-method "HTTP method ~a not supported" m)]))
   ;; A procedure that takes a dict, and does the actual work of making
   ;; a request to the server.
   (define/contract (f/dict d)
