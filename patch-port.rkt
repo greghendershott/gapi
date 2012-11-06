@@ -65,7 +65,7 @@
   (let*-values
       ([(method) (case method
                    [(get) "GET"] [(post) "POST"] [(head) "HEAD"]
-                   [(put) "PUT"] [(delete) "DELETE"]
+                   [(put) "PUT"] [(delete) "DELETE"] [(patch) "PATCH"]
                    [else (url-error "unsupported method: ~a" method)])]
        [(proxy) (assoc (url-scheme url) (current-proxy-servers))]
        [(server->client client->server) (make-ports url proxy)]
