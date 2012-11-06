@@ -22,7 +22,8 @@
   ;; this method:
   (define params (dict-merge (hash-ref dd 'parameters (hash))
                              (hash-ref method 'parameters (hash))))
-  (define api-params (hash-ref dd 'parameters (hasheq)))
+  (define api-params (hash-ref dd 'parameters))
+  (define api-param-names (hash-keys api-params))
   (define method-params (hash-ref method 'parameters (hasheq)))
   (define (required? x)
     (and (hash-has-key? x 'required)
@@ -45,7 +46,9 @@
   ;; body parameters. Filter such problems here.
   (define body-params
     (for/hasheq ([(k v) _body-params]
-                 #:when (not (hash-has-key? req-params k)))
+                 #:when (not (or (hash-has-key? req-params k)
+                                 (hash-has-key? opt-params k)
+                                 (hash-has-key? api-params k))))
       (values k v)))
   (define request
     (match (hash-ref method 'httpMethod)

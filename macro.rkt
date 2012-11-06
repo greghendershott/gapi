@@ -26,7 +26,8 @@
   (define (do-method stx root meth)
     (define name (string->symbol
                   (regexp-replace* #rx"\\." (hash-ref meth 'id) "-")))
-    (define api-param-names (hash-keys (hash-ref root 'parameters)))
+    (define api-params (hash-ref root 'parameters))
+    (define api-param-names (hash-keys api-params))
     (define params (hash-ref meth 'parameters (hash)))
     (define (required? x)
       (and (hash-has-key? x 'required)
@@ -51,7 +52,9 @@
     ;; body parameters. Filter such problems here.
     (define body-params
       (for/hasheq ([(k v) _body-params]
-                   #:when (not (hash-has-key? req-params k)))
+                   #:when (not (or (hash-has-key? req-params k)
+                                   (hash-has-key? opt-params k)
+                                   (hash-has-key? api-params k))))
         (values k v)))
     (define body-param-names (hash-keys body-params))
     (define all-opt-param-names (append opt-param-names
