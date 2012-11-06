@@ -86,13 +86,22 @@
                        (values k v)))
   (define req-param-names (hash-keys req-params))
   (define opt-param-names (hash-keys opt-params))
-  (define body-params
+  (define _body-params
     (hash-ref (hash-ref (hash-ref root 'schemas)
                         (string->symbol
                          (hash-ref (hash-ref mv 'request (hash)) '$ref ""))
                         (hash))
               'properties
               (hash)))
+  ;; The "licensing" API has a problem where it duplicates a
+  ;; required parameter (such as "userID" or "productID") in the
+  ;; body parameters. Filter such problems here.
+  (define body-params
+    (for/hasheq ([(k v) _body-params]
+                 #:when (not (or (hash-has-key? req-params k)
+                                 (hash-has-key? opt-params k)
+                                 (hash-has-key? api-params k))))
+      (values k v)))
   (define body-param-names (hash-keys body-params))
   (printf "@defproc[(~a\n" name)
   (for ([(k v) req-params])
