@@ -4,12 +4,12 @@
                      racket/match
                      racket/list
                      json
-                     "main.rkt"
-                     "patch-port.rkt")
+                     "main.rkt")
          net/url
          json
          net/uri-codec
-         "main.rkt")
+         "main.rkt"
+         "patch-port.rkt")
 
 (provide require-gapi-doc
          api-key
