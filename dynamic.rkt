@@ -113,7 +113,8 @@
 (define (template-path str d)
   (string-join (for/list ([x (regexp-split #rx"/" str)])
                  (match x
-                   [(pregexp "^\\{(.+)\\}$" (list _ k)) (dict-ref d k)]
+                   [(pregexp "^\\{(.+)\\}$" (list _ k))
+                    (dict-ref d (string->symbol k))]
                    [else x]))
                "/"))
 
