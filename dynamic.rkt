@@ -103,20 +103,22 @@
                                                   vs))))))
   ;; Tweak that procedure to accept only specific required and
   ;; optional keyword arguments.
-  (define req-kws (sort (map symbol->keyword (hash-keys req-params)) keyword<=?))
+  (define req-kws (sort (map symbol->keyword (hash-keys req-params))
+                        keyword<=?))
   (define opt-kws (map symbol->keyword (hash-keys opt-params)))
   (define body-kws (map symbol->keyword (hash-keys body-params)))
   (define api-kws (map symbol->keyword (hash-keys api-params)))
-  (define all-kws (sort (append req-kws opt-kws body-kws api-kws) keyword<=?))
+  (define all-kws (sort (append req-kws opt-kws body-kws api-kws)
+                        keyword<=?))
   (procedure-reduce-keyword-arity f/kw 0 req-kws all-kws))
 
 (define (template-path str d)
-  (string-join (for/list ([x (regexp-split #rx"/" str)])
-                 (match x
-                   [(pregexp "^\\{(.+)\\}$" (list _ k))
-                    (dict-ref d (string->symbol k))]
-                   [else x]))
-               "/"))
+  (string-join
+   (for/list ([x (regexp-split #rx"/" str)])
+     (match x
+       [(pregexp "^\\{(.+)\\}$" (list _ k)) (dict-ref d (string->symbol k))]
+       [else x]))
+   "/"))
 
 ;; Exactly like jsexpr? except allows procedure? as a value.
 (define (service? x #:null [jsnull (json-null)])
