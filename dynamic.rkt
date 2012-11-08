@@ -12,19 +12,34 @@
          discovery-document->service
          local-discovery-document->service
          online-discovery-document->service
+         create-method
+         create-method-spec
+         method-spec->procedure
+         (struct-out method-spec)
          (all-from-out "main.rkt")
          )
 
-(define/contract (create-new-method dd method)
-  (jsexpr? jsexpr? . -> . procedure?)
+(struct method-spec
+        (id
+         base-uri
+         path
+         api-params
+         req-params
+         opt-params
+         query-params
+         body-params
+         http-method)
+        #:transparent)
+
+(define (create-method-spec dd method)
+  (jsexpr? jsexpr? . -> . method-spec?)
+  (define id (string->symbol (regexp-replace* #rx"\\."
+                                              (hash-ref method 'id)
+                                              "-")))
   (define base-uri (string-append (hash-ref dd 'rootUrl)
                                   (hash-ref dd 'servicePath)))
-  ;; Parameters are the union of those for entire API and those for
-  ;; this method:
-  (define params (dict-merge (hash-ref dd 'parameters (hash))
-                             (hash-ref method 'parameters (hash))))
+  (define path (hash-ref method 'path))
   (define api-params (hash-ref dd 'parameters))
-  (define api-param-names (hash-keys api-params))
   (define method-params (hash-ref method 'parameters (hasheq)))
   (define (required? x)
     (and (hash-has-key? x 'required)
@@ -35,6 +50,11 @@
   (define opt-params (for/hasheq ([(k v) method-params]
                                   #:when (not (required? v)))
                        (values k v)))
+  (define query-params (for/list ([(k v) (dict-merge api-params
+                                                     method-params)]
+                                  #:when (equal? "query"
+                                                 (hash-ref v 'location)))
+                         k))
   (define _body-params
     (hash-ref (hash-ref (hash-ref dd 'schemas)
                         (string->symbol
@@ -51,28 +71,38 @@
                                  (hash-has-key? opt-params k)
                                  (hash-has-key? api-params k))))
       (values k v)))
-  (define request
-    (match (hash-ref method 'httpMethod)
-      ["GET" (lambda (url body h) (get-pure-port url h))]
-      ["POST" post-pure-port]
-      ["PUT" put-pure-port]
-      ["DELETE" delete-pure-port]
-      ["PATCH" patch-pure-port]
-      [(var m) (error 'create-new-method "HTTP method ~a not supported" m)]))
+  (define http-method (hash-ref method 'httpMethod))
+  (method-spec id
+               base-uri
+               path
+               (hash-keys api-params)
+               (hash-keys req-params)
+               (hash-keys opt-params)
+               query-params
+               (hash-keys body-params)
+               http-method))
+
+(define/contract (method-spec->procedure ms)
+  (method-spec? . -> . procedure?)
+  (match-define (method-spec
+                 id
+                 base-uri
+                 path
+                 api-params
+                 req-params
+                 opt-params
+                 query-params
+                 body-params
+                 http-method) ms)
   ;; A procedure that takes a dict, and does the actual work of making
   ;; a request to the server.
   (define/contract (f/dict d)
     (dict? . -> . jsexpr?)
     (define u (string-append base-uri
-                             (template-path (hash-ref method 'path) d)))
-    (define qps (filter values
-                        (for/list ([(k v) (in-dict d)])
-                          (define p (hash-ref params k #f))
-                          (cond
-                           [(not p) #f]
-                           [else (match (hash-ref p 'location)
-                                   ["path" #f]
-                                   [else (cons k v)])]))))
+                             (template-path path d)))
+    (define qps (for/list ([(k v) (in-dict d)]
+                           #:when (member k query-params))
+                  (cons k v)))
     (define url
       (string->url
        (cond [(empty? qps) u]
@@ -81,10 +111,17 @@
                                   (alist->form-urlencoded qps))])))
     (define body
       (jsexpr->bytes
-       (for/hasheq ([k (hash-keys body-params)])
+       (for/hasheq ([k body-params])
          (values k (dict-ref d k "")))))
     (define h (list "Content-Type: application/json"))
-    (define in (request url body h))
+    (define in
+      (match http-method
+        ["GET" (get-pure-port url h)]
+        ["POST" (post-pure-port url body h)]
+        ["PUT" (put-pure-port url body h)]
+        ["DELETE" (delete-pure-port url h)]
+        ["PATCH" (patch-pure-port url body h)]
+        [(var m) (error 'create-method "HTTP method ~a not supported" m)]))
     (define js (bytes->jsexpr (port->bytes in)))
     (close-input-port in)
     js)
@@ -103,14 +140,110 @@
                                                   vs))))))
   ;; Tweak that procedure to accept only specific required and
   ;; optional keyword arguments.
-  (define req-kws (sort (map symbol->keyword (hash-keys req-params))
-                        keyword<=?))
-  (define opt-kws (map symbol->keyword (hash-keys opt-params)))
-  (define body-kws (map symbol->keyword (hash-keys body-params)))
-  (define api-kws (map symbol->keyword (hash-keys api-params)))
+  (define req-kws (sort (map symbol->keyword req-params) keyword<=?))
+  (define opt-kws (map symbol->keyword opt-params))
+  (define body-kws (map symbol->keyword body-params))
+  (define api-kws (map symbol->keyword api-params))
   (define all-kws (sort (append req-kws opt-kws body-kws api-kws)
                         keyword<=?))
   (procedure-reduce-keyword-arity f/kw 0 req-kws all-kws))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (create-method dd method)
+  (method-spec->procedure (create-method-spec dd method)))
+
+  ;; (define base-uri (string-append (hash-ref dd 'rootUrl)
+  ;;                                 (hash-ref dd 'servicePath)))
+  ;; (define api-params (hash-ref dd 'parameters))
+  ;; (define method-params (hash-ref method 'parameters (hasheq)))
+
+  ;; (define params (dict-merge api-params method-params))
+  ;; (define (required? x)
+  ;;   (and (hash-has-key? x 'required)
+  ;;        (hash-ref x 'required)))
+  ;; (define req-params (for/hasheq ([(k v) method-params]
+  ;;                                 #:when (required? v))
+  ;;                      (values k v)))
+  ;; (define opt-params (for/hasheq ([(k v) method-params]
+  ;;                                 #:when (not (required? v)))
+  ;;                      (values k v)))
+  ;; (define _body-params
+  ;;   (hash-ref (hash-ref (hash-ref dd 'schemas)
+  ;;                       (string->symbol
+  ;;                        (hash-ref (hash-ref method 'request (hash)) '$ref ""))
+  ;;                       (hash))
+  ;;             'properties
+  ;;             (hash)))
+  ;; ;; The "licensing" API has a problem where it duplicates a
+  ;; ;; required parameter (such as "userID" or "productID") in the
+  ;; ;; body parameters. Filter such problems here.
+  ;; (define body-params
+  ;;   (for/hasheq ([(k v) _body-params]
+  ;;                #:when (not (or (hash-has-key? req-params k)
+  ;;                                (hash-has-key? opt-params k)
+  ;;                                (hash-has-key? api-params k))))
+  ;;     (values k v)))
+  ;; (define request
+  ;;   (match (hash-ref method 'httpMethod)
+  ;;     ["GET" (lambda (url body h) (get-pure-port url h))]
+  ;;     ["POST" post-pure-port]
+  ;;     ["PUT" put-pure-port]
+  ;;     ["DELETE" delete-pure-port]
+  ;;     ["PATCH" patch-pure-port]
+  ;;     [(var m) (error 'create-method "HTTP method ~a not supported" m)]))
+  ;; ;; A procedure that takes a dict, and does the actual work of making
+  ;; ;; a request to the server.
+  ;; (define/contract (f/dict d)
+  ;;   (dict? . -> . jsexpr?)
+  ;;   (define u (string-append base-uri
+  ;;                            (template-path (hash-ref method 'path) d)))
+  ;;   (define qps (filter values
+  ;;                       (for/list ([(k v) (in-dict d)])
+  ;;                         (define p (hash-ref params k #f))
+  ;;                         (cond
+  ;;                          [(not p) #f]
+  ;;                          [else (match (hash-ref p 'location)
+  ;;                                  ["path" #f]
+  ;;                                  [else (cons k v)])]))))
+  ;;   (define url
+  ;;     (string->url
+  ;;      (cond [(empty? qps) u]
+  ;;            [else (string-append u
+  ;;                                 "?"
+  ;;                                 (alist->form-urlencoded qps))])))
+  ;;   (define body
+  ;;     (jsexpr->bytes
+  ;;      (for/hasheq ([k (hash-keys body-params)])
+  ;;        (values k (dict-ref d k "")))))
+  ;;   (define h (list "Content-Type: application/json"))
+  ;;   (define in (request url body h))
+  ;;   (define js (bytes->jsexpr (port->bytes in)))
+  ;;   (close-input-port in)
+  ;;   js)
+  ;; ;; Wrap f/dict in a procedure that takes keyword arguments instead
+  ;; ;; of a dict.
+  ;; (define symbol->keyword (compose1 string->keyword symbol->string))
+  ;; (define keyword->symbol (compose1 string->symbol keyword->string))
+  ;; (define (keyword<=? a b) (string<=? (keyword->string a) (keyword->string b)))
+  ;; (define (maybe-add-api-key d)
+  ;;   (cond [(dict-has-key? d 'key) d]
+  ;;         [else (dict-set* d 'key (api-key))]))
+  ;; (define f/kw (make-keyword-procedure
+  ;;               (lambda (kws vs . rest)
+  ;;                 (f/dict (maybe-add-api-key (map cons
+  ;;                                                 (map keyword->symbol kws)
+  ;;                                                 vs))))))
+  ;; ;; Tweak that procedure to accept only specific required and
+  ;; ;; optional keyword arguments.
+  ;; (define req-kws (sort (map symbol->keyword (hash-keys req-params))
+  ;;                       keyword<=?))
+  ;; (define opt-kws (map symbol->keyword (hash-keys opt-params)))
+  ;; (define body-kws (map symbol->keyword (hash-keys body-params)))
+  ;; (define api-kws (map symbol->keyword (hash-keys api-params)))
+  ;; (define all-kws (sort (append req-kws opt-kws body-kws api-kws)
+  ;;                       keyword<=?))
+  ;; (procedure-reduce-keyword-arity f/kw 0 req-kws all-kws))
 
 (define (template-path str d)
   (string-join
@@ -147,7 +280,7 @@
                  (for/hasheq ([(k v) (in-hash v)])
                    (values k
                            (hash-set* v
-                                      'proc (create-new-method root v)))))]
+                                      'proc (create-method root v)))))]
         [else (values k v)])))
   (do root))
 
