@@ -29,7 +29,7 @@
          query-params
          body-params
          http-method)
-        #:transparent)
+        #:prefab)
 
 (define/contract (create-method-spec dd method)
   (jsexpr? jsexpr? . -> . method-spec?)

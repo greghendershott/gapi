@@ -41,17 +41,7 @@
      (let* ([dd (load-discovery-document (syntax-e #'file))]
             [specs (method-specs dd)])
        #`(begin
-           #,@(for/list ([x specs])
-                #`(define
-                    #,(datum->syntax stx (method-spec-id x))
-                    (method-spec->procedure
-                     (method-spec
-                      ;; struct members as literal values:
-                      #,@(map
-                          (lambda (x)
-                            (datum->syntax stx x))
-                          (cdr (for/list ([v (struct->vector x)])
-                                 (cond
-                                  [(symbol? v) #`'v]
-                                  [(list? v) #`'(#,@v)]
-                                  [else v]))))))))))]))
+           #,@(for/list ([spec specs])
+                (with-syntax ([name (datum->syntax stx (method-spec-id spec))]
+                              [ms (datum->syntax stx spec)])
+                  #'(define name (method-spec->procedure ms))))))]))
