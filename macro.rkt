@@ -16,8 +16,8 @@
 
 (begin-for-syntax
  (define (method-specs root)
-   ;; jsexpr? -> (listof method-spec?)
-   (define specs (make-hasheq)) ;using as mutable list, not really hash
+   ;; (jsexpr? . -> . (listof method-spec?))
+   (define specs (make-hasheq)) ;FIXME: using a mutable list, really
    (define (do j)
      (for ([(k v) (in-hash j)])
        (match k
@@ -46,6 +46,7 @@
                     #,(datum->syntax stx (method-spec-id x))
                     (method-spec->procedure
                      (method-spec
+                      ;; struct members as literal values:
                       #,@(map
                           (lambda (x)
                             (datum->syntax stx x))
@@ -54,4 +55,3 @@
                                   [(symbol? v) #`'v]
                                   [(list? v) #`'(#,@v)]
                                   [else v]))))))))))]))
-                                 
