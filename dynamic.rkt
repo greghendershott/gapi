@@ -31,7 +31,7 @@
          http-method)
         #:transparent)
 
-(define (create-method-spec dd method)
+(define/contract (create-method-spec dd method)
   (jsexpr? jsexpr? . -> . method-spec?)
   (define id (string->symbol (regexp-replace* #rx"\\."
                                               (hash-ref method 'id)
