@@ -42,6 +42,6 @@
             [specs (method-specs dd)])
        #`(begin
            #,@(for/list ([spec specs])
-                (with-syntax ([name (datum->syntax stx (method-spec-id spec))]
+                (with-syntax ([id (datum->syntax stx (method-spec-id spec))]
                               [ms (datum->syntax stx spec)])
-                  #'(define name (method-spec->procedure ms))))))]))
+                  #'(define id (method-spec->procedure ms))))))]))
