@@ -115,10 +115,10 @@
 (define/contract (json->gplus x)
   (jsexpr? . -> . gplus?)
   (gplus (hash-ref x 'title)
-         (hash-ref x 'selfLink)
-         (hash-ref x 'id)
+         (hash-ref x 'selfLink "")
+         (hash-ref x 'id "")
          (hash-ref x 'etag)
-         (hash-ref x 'updated)
+         (hash-ref x 'updated "")
          (map item->post (hash-ref x 'items))))
 
 ;; Given a jsexpr representing a Google+ activity feed item, return a
@@ -144,7 +144,7 @@
   (match verb
     ["share"
      (string-append
-      (hash-ref x 'annotation)
+      (hash-ref x 'annotation "")
       "<br /><hr />"
       "<a href='" (hash-ref (hash-ref object 'actor) 'url) "'>"
       (hash-ref (hash-ref object 'actor) 'displayName) "</a>"
