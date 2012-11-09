@@ -1,37 +1,28 @@
 #lang racket
 
-(require (for-syntax racket/path
-                     racket/match
+(require "dynamic.rkt"
+         (for-syntax racket/match
                      racket/list
                      json
-                     "dynamic.rkt")
-         net/url
-         json
-         net/uri-codec
-         "dynamic.rkt")
+                     "dynamic.rkt"))
 
 (provide require-gapi-doc
-         api-key
          (all-from-out "dynamic.rkt"))
 
 (begin-for-syntax
  (define (method-specs root)
    ;; (jsexpr? . -> . (listof method-spec?))
-   (define specs (make-hasheq)) ;FIXME: using a mutable list, really
-   (define (do j)
-     (for ([(k v) (in-hash j)])
+   ;; Note that resources can be arbitrarily deep,
+   ;; e.g. resource/resource/method.
+   (define (do j xs)
+     (for/list ([(k v) (in-hash j)])
        (match k
-         ['resources
-          (for ([(k v) (in-hash v)])
-            (do v))]
-         ['methods
-          (for ([(k v) (in-hash v)])
-            (hash-set! specs
-                       (create-method-spec root v)
-                       0))]
-         [else (void)])))
-   (do root)
-   (hash-keys specs)))
+         ['resources (append xs (for/list ([x (hash-values v)])
+                                  (do x xs)))]
+         ['methods (append xs (for/list ([x (hash-values v)])
+                                (create-method-spec root x)))]
+         [else xs])))
+   (flatten (do root '()))))
 
 (define-syntax (require-gapi-doc stx)
   (syntax-case stx ()
