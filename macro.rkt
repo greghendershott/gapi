@@ -1,13 +1,13 @@
 #lang racket
 
-(require "dynamic.rkt"
+(require "wrap.rkt"
          (for-syntax racket/match
                      racket/list
                      json
-                     "dynamic.rkt"))
+                     "doc.rkt"
+                     "wrap.rkt"))
 
-(provide require-gapi-doc
-         (all-from-out "dynamic.rkt"))
+(provide require-gapi-doc)
 
 (begin-for-syntax
  (define (method-specs root)
