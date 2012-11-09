@@ -19,17 +19,48 @@
          (all-from-out "main.rkt")
          )
 
-(struct method-spec
-        (id
-         base-uri
-         path
-         api-params
-         req-params
-         opt-params
-         query-params
-         body-params
-         http-method)
-        #:prefab)
+;; History: Originally, `create-method' was a single function, used
+;; only by `discovery-document->service which loads disc docs
+;; "dynamically" at run-time.  The guts of that function were very
+;; nearly duplicated in the template of a macro. This duplicated code
+;; was undesirable and I wanted to foctor it out to be shared.
+;;
+;; As a result, I split `create-method' into two new functions:
+;;
+;; 1. `create-method-spec' takes a discovery document and extracts the
+;; bare minimum necessary to create a wrapper function, returning that
+;; in the `method-spec' struct.
+;;
+;; 2. `method-spec->procedure' uses the struct to creates the wrapper
+;; function.
+;;
+;; When using this library "dynamically" to load a disc doc at
+;; runtime, the new `create-method' can be used; its simply a
+;; composition of its former two pieces. For that scenario, this
+;; reorganziation has no value.
+;;
+;; But when using this library in the other appraoch, where the disc
+;; docs are loaded at compile-time with `require-gapi-doc', it
+;; matters.  In that scenario, the macro transformer uses 1 at compile
+;; time to create a compile-time method-spec struct. The call to 2
+;; must be at run-time, and the method-spec struct as a literal value
+;; in the generated syntax to call 2. In other words,
+;; method-spec->procedure still works at run-time. It has to be done
+;; this way because the struct can't exist in both syntax and run-time
+;; phases, as a Racket varaible. However provided the struct is
+;; #:prefab, it can be quoted as a literal value in the syntax.
+
+(struct method-spec (id
+                     base-uri
+                     path
+                     api-params
+                     req-params
+                     opt-params
+                     query-params
+                     body-params
+                     http-method)
+        #:prefab) ;lets us quote compile-time struct as a literal
+                  ;value in macro template
 
 (define/contract (create-method-spec dd method)
   (jsexpr? jsexpr? . -> . method-spec?)
